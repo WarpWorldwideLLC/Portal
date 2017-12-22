@@ -1,0 +1,18 @@
+# Start with the latest version of CentOS 7
+FROM centos:centos7:Latest
+MAINTAINER John Arp <john.arp@warpww.com>
+
+# Set default working directory for the container
+WORKDIR /tmp
+
+# Set Environment Variables for Oracle Java packages.
+ENV JDK_URL http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.rpm
+ENV JDK_RPM jdk-8u91-linux-x64.rpm'
+
+# Install wget with YUM, then use wget to retrieve the Oracle Java packages
+RUN yum install -y wget tar 
+      
+# Set up Java environment variables, pointing to the just installed Java JDK. 
+ENV JAVA_HOME /usr/java/latest
+ENV JRE_HOME $JAVA_HOME/jre
+ENV PATH $JAVA_HOME/bin:$JRE_HOME/bin:$PATH

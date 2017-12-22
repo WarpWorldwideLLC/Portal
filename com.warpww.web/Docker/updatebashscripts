@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Running Update Bash Scripts updatebashscripts 1.0"
+
+chmod a+x ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/updatebashscripts
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/updatebashscripts ~/warp_scripts
+
+chmod a+x ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/warp
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/warp ~/warp_scripts
+
+chmod a+x ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/warp_*
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/warp_* ~/warp_scripts
+
+chmod a+x ~/warp_scripts/*

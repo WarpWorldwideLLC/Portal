@@ -1,0 +1,29 @@
+/*!
+ * warp_util v1.0.0 
+ *
+ */
+
+
+
+function toggleHide2(inputValue1, inputValue2)
+{
+	toggleHide(inputValue1);
+	toggleHide(inputValue2);
+}
+
+
+function toggleHide(inputValue)
+{
+
+	var att = document.getElementById(inputValue).getAttribute('type');
+
+	if(att == 'password')
+		{
+			document.getElementById(inputValue).setAttribute('type', 'text');
+		}
+	else 
+		{
+		document.getElementById(inputValue).setAttribute('type', 'password');
+		}
+}
+

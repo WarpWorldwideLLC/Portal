@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Cleaning up all docker images and containers."
+# List all containers (only IDs) 
+docker ps -aq
+# Stop all running containers. 
+docker stop $(docker ps -aq)
+# Remove all containers. 
+docker rm $(docker ps -aq)
+# Remove all images. 
+docker rmi $(docker images -q)
+echo "All docker images and containers removed."

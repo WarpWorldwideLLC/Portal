@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Change working diretory to the scripts directory
+cd /Users/jarp/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/SQL/DbBuild
+
+# Call mysql from the command line, pipe in the script name. 
+# -u is user -p
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < TestScript.sql

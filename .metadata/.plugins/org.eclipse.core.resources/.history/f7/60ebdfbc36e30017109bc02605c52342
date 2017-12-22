@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}          
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+# We need a slightly different behaviour for the sidebar on the smaller screens. Instead of appearing by default, it'll be hidden and appear only after clicking the toggle button. Like this, we will save valuable space for your content and show the navigation to the user only when needed.
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}

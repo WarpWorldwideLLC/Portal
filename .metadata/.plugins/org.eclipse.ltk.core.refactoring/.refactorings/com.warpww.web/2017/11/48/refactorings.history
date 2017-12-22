@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;docker_tomcat.txt, Warpww.docker.txt&apos; to &apos;Docker&apos;" description="Move 2 resources to &apos;Docker&apos;" destination="Docker" element1="docker_tomcat.txt" element2="Warpww.docker.txt" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="2" stamp="1512012459165" updateReferences="true"/>
+</session>

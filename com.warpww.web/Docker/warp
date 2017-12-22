@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "WARP bash utility 1.0"
+# echo '$0 = ' $0
+# echo '$1 = ' $1
+# echo '$2 = ' $2
+# echo '$3 = ' $3
+
+# echo "warp_$1"
+
+"warp_$1"

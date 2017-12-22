@@ -1,0 +1,8 @@
+127.0.0.1 - - [29/Nov/2017:21:14:48 -0600] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:14:53 -0600] "GET /com.warpww.web/ HTTP/1.1" 200 2143
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:14:53 -0600] "GET /com.warpww.web/cssx/warpSite2.css HTTP/1.1" 200 1435
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:14:53 -0600] "GET /com.warpww.web/imgx/Warp_Image_Shutterstock_Star.jpg HTTP/1.1" 200 5011058
+127.0.0.1 - - [29/Nov/2017:21:49:21 -0600] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:49:24 -0600] "GET /com.warpww.web/ HTTP/1.1" 200 2143
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:49:25 -0600] "GET /com.warpww.web/imgx/Warp_Image_Shutterstock_Star.jpg HTTP/1.1" 200 5011058
+0:0:0:0:0:0:0:1 - - [29/Nov/2017:21:50:00 -0600] "GET /com.warpww.web/TomcatVersion.jsp HTTP/1.1" 200 297

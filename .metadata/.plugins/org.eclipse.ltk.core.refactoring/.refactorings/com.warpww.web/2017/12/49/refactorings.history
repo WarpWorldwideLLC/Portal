@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;com.warpww.web/Docker/dockertowarp.sh&apos; to &apos;warp_todocker&apos;" description="Rename resource &apos;dockertowarp.sh&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Docker/dockertowarp.sh" name="warp_todocker" stamp="1512766930517" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;com.warpww.web/Docker/buildtomcat&apos; to &apos;warp_buildtomcat&apos;" description="Rename resource &apos;buildtomcat&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Docker/buildtomcat" name="warp_buildtomcat" stamp="1512828990607" updateReferences="true"/>
+</session>

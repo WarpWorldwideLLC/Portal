@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Change working diretory to the scripts directory
+cd /Users/jarp/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/SQL/DbBuild
+
+# Call mysql from the command line, redirect STDIN to the script file for input. 
+# -u is user -p is password.
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < 01_WarpAdmin2017.sql
+
+# Change working directory to the StoredProcedures directory
+cd /Users/jarp/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/SQL/StoredProcedures
+echo SP_generateNotification
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < SP_generateNotification.sql
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < SP_generatePasswordResetToken.sql
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < SP_getMemberNameFromEMailAddress.sql
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < SP_getUserAccountByID.sql
+mysql -u root -p62XYhC\;erw\;zZaCmZVzrFEwW < SP_registerUserAccount.sql
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+echo changing diretory to:
+pwd
+cd ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker
+#shorthand for source ~/.bash_profile
+. ~/.bash_profile
+exit
+exec bash
+
+
+# $ alias cdproj='cd /dir/web/www/proj' in bash shell startup config
