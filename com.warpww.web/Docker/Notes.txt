@@ -26,3 +26,5 @@ git push -u origin --all
 
 
 git pull https://github.com/WarpWorldwideLLC/Portal.git
+
+Some text notes. 
