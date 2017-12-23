@@ -14,14 +14,21 @@
 			<meta http-equiv="expires" content="-1" />
 			<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 			<meta http-equiv="pragma" content="no-cache" />
-			
 
-    			<link href="cssx/warpSite2.css" rel="stylesheet"/>
+			<!--  
+			<link href="cssx/warpSite2.css" rel="stylesheet"/>
+			
+			 -->
+    			<link href="cssx/warp_custom.css" rel="stylesheet"/>
+    			
 	        <title>Welcome to WARP!</title>
 	       
 
 	    </head>
-	<body>
+	<body class="landingPage">
+	
+	<a href="#openModal">Open Modal</a>
+	
 		<header>
 			<h1>
 				<br><label><fmt:message key="landing.label.title1" /></label> 
@@ -37,7 +44,7 @@
 			</div>		
 
 			<div id=login>
-				<label for="memberName">Account Name</label><br/>
+				<label for="memberName">Member Name</label><br/>
 				<input id="memberName" name="memberName" type="text" value="" /><br/>
 				<label for="passPhrase">Passphrase</label><br/>
 				<input id="passPhrase" name="passPhrase" type="text" value="" /><br/><br/>
@@ -48,6 +55,17 @@
        		</div>
 		</section>
 		<br>
+		
+
+		<div id="openModal" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
+				<h2>Modal Box</h2>
+				<p>This is a sample modal box that can be created using the powers of CSS3.</p>
+				<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+			</div>
+		</div>
+		
 		<footer>
 				<%@ include file="/htx/footer.html"%>
 		</footer>

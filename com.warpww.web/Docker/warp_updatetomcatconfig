@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Running Update Bash Scripts updatetomcatconfig 1.0"
+
+# -rw-------@  1 jarp  staff    2164 Jun 21  2017 tomcat-users.xml
+
+#chmod a+x ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/updatebashscripts
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/tomcat-users.xml /Applications/apache-tomcat-9.0.0.M22/conf
+
+

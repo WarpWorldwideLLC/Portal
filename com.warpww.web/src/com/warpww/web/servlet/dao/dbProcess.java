@@ -105,7 +105,9 @@ public class dbProcess extends HttpServlet {
 	            case "GeneratePasswordResetToken": spName = "generatePasswordResetToken";
 	            		break;
 	            case "GetMemberList": spName = "getMemberList";
-	            		
+	            		break;
+	            case "ValidateSignon": spName = "validateSignon";
+	            		break;
 	            default: spName = "Invalid_Command";
 	                     break;
 	        }
