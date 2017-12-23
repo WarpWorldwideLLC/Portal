@@ -1,2 +1,3 @@
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\n<messages>\n<message>Removed the following files used by the Docker build process to reduce&\#x0A;the size of the commit to GIThub.&\#x0A;&\#x0A;apache-tomcat-9.0.1.tar.gz&\#x0A;jdk-8u152-linux-x64.rpm</message>\n</messages>
+StagingView_SyncWithSelection=false
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\n<messages>\n<message>First Update</message>\n<message>Removed the following files used by the Docker build process to reduce&\#x0A;the size of the commit to GIThub.&\#x0A;&\#x0A;apache-tomcat-9.0.1.tar.gz&\#x0A;jdk-8u152-linux-x64.rpm</message>\n</messages>
 eclipse.preferences.version=1
