@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.sec.*;
+import com.warpww.util.*;
 
 /**
  * Servlet implementation class landing
@@ -26,14 +27,13 @@ public class landing extends HttpServlet {
      */
     public landing() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Util.printParams("landing.doGet", request);
 		request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
 		
 	}
@@ -42,8 +42,28 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		boolean validated = validateSignon(request, response);
+		
+		boolean validated = false;
+		
+		Util.printParams("landing.doPost", request);
+		
+		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
+		try {
+			if(request.getParameter("memberName").trim() + "" != "")
+			{
+				if(request.getParameter("passPhrase").trim() + "" != "")
+				{ 
+					String passphraseHash = Password.createHash(request.getParameter("passPhrase"));
+					request.setAttribute("passphraseHash", passphraseHash);
+				}
+				
+				validated = validateSignon(request, response);
+			}
+			
+		} catch (Exception ex)
+		{
+			System.out.println(ex.toString());
+		}
 		
 		if(validated) {
 			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
@@ -56,7 +76,7 @@ public class landing extends HttpServlet {
 	protected boolean validateSignon(HttpServletRequest request, HttpServletResponse response)
 	{
 		boolean returnValue = false;
-		
+		Util.printParams("landing.validateSignon", request);
 		try
 		{
 		String json = Json.createObjectBuilder()
@@ -64,18 +84,20 @@ public class landing extends HttpServlet {
 				 .add("AuID", 1)
 				 .add("IuID", 1)
 				 .add("MemberName", request.getParameter("memberName"))
-				 .add("PassphraseHash", request.getParameter("passphraseHash"))
+				 .add("PassphraseHash", request.getAttribute("passphraseHash").toString())
 				 .build()
 				 .toString(); 		
 		
 		String jsonParms = "";
 		jsonParms = json;
 		request.setAttribute("CommandText", jsonParms);
+		Util.printParams("landing.validateSignon", request);
+		request.getRequestDispatcher("/dbProcess").include(request, response);
 		
-		request.getRequestDispatcher("/dbProcess").forward(request, response);
 
 		} catch (Exception ex)
 		{
+			System.out.println(ex.toString());
 			returnValue = false;
 		}
 		

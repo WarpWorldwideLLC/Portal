@@ -1,5 +1,6 @@
 package com.warpww.util;
 
+import java.time.Instant;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class Util {
 	
 	public static void printParams(String titleText, HttpServletRequest request)
 	{
-		System.out.println("**** HTTP Servlet Request Data for " + titleText + " ****");
+		System.out.println("**** HTTP Servlet Request Data for " + titleText + " " + Instant.now().toString() + " ****");
 		
 		System.out.println("Parameter Map:");
 		Map params = request.getParameterMap();

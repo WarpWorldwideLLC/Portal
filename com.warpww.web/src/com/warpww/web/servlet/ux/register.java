@@ -31,7 +31,6 @@ public class register extends HttpServlet {
      */
     public register() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected String actionMode;
@@ -139,7 +138,7 @@ public class register extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 			
-			//Util.printParams("Register.processRequest", request);
+			Util.printParams("Register.processRequest", request);
 			
 			break;
 		case "twitter":

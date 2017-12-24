@@ -59,13 +59,14 @@ public class dbProcess extends HttpServlet {
 	{
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
-		//Util.printParams("dbProcess.processCommand", request);
+		Util.printParams("dbProcess.processCommand", request);
 		
 		String spName = "";
-        // spName = translateCommand("RegisterUserAccount");
+
 		JsonReader reader = Json.createReader(new ByteArrayInputStream(json.getBytes()));
 		JsonObject jsonst = reader.readObject();
-		spName = jsonst.getString("Command");
+        // spName = translateCommand("RegisterUserAccount");
+		spName = translateCommand(jsonst.getString("Command"));
 		
 		try 
         {
