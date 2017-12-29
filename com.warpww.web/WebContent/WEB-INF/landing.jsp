@@ -21,7 +21,7 @@
  			<form method="post" action="/com.warpww.web/landing" enctype="multipart/form-data" name="landing" autocomplete="off">
  			-->
     			<link href="cssx/warp_custom.css" rel="stylesheet"/>
-    			<script src="jsx/util.js"></script>
+    			<script src="jsx/warp_util.js"></script>
 	        <title>Welcome to WARP!</title>
 	       
 
@@ -50,7 +50,7 @@
 					<input type="text" name="memberName" id="memberName" value=${param["memberName"]}>
 					<br/>
 					<label for="passPhrase"><fmt:message key="landing.passPhrase" /></label><br/>
-					<input id="passPhrase" name="passPhrase" type="text"  value="" />
+					<input id="passPhrase" name="passPhrase" type="password"  value="" />
 					<br/><br/>
 					<button type="submit" id="validateSignOn" value="validateSignon" >Sign In</button><br>
 					<a href="register">Not a WARP member? Membership is free, register now!</a><br/>

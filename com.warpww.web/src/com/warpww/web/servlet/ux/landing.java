@@ -45,7 +45,7 @@ public class landing extends HttpServlet {
 		
 		boolean validated = false;
 		
-		Util.printParams("landing.doPost", request);
+		//Util.printParams("landing.doPost", request);
 		
 		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
 		try {
@@ -62,6 +62,7 @@ public class landing extends HttpServlet {
 			
 		} catch (Exception ex)
 		{
+			validated = false;
 			System.out.println(ex.toString());
 		}
 		
@@ -76,7 +77,7 @@ public class landing extends HttpServlet {
 	protected boolean validateSignon(HttpServletRequest request, HttpServletResponse response)
 	{
 		boolean returnValue = false;
-		Util.printParams("landing.validateSignon", request);
+		// Util.printParams("landing.validateSignon", request);
 		try
 		{
 		String json = Json.createObjectBuilder()
@@ -91,10 +92,18 @@ public class landing extends HttpServlet {
 		String jsonParms = "";
 		jsonParms = json;
 		request.setAttribute("CommandText", jsonParms);
-		Util.printParams("landing.validateSignon", request);
+		Util.printParams("landing.validateSignon.Before", request);
 		request.getRequestDispatcher("/dbProcess").include(request, response);
+		Util.printParams("landing.validateSignon.After", request);
 		
-
+		Command cmd = new Command(request.getAttribute("CommandResults").toString());
+		System.out.println("CommandResults: " + request.getAttribute("CommandResults").toString());
+		System.out.println("ProcStatus = " + cmd.ProcStatus);
+		System.out.println("COMMAND_SUCCESS = " + cmd.COMMAND_SUCCESS);
+		if(cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS)) {
+			returnValue = true;
+		}
+		
 		} catch (Exception ex)
 		{
 			System.out.println(ex.toString());

@@ -1,9 +1,9 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS registerUserAccount;
+DROP PROCEDURE IF EXISTS registerMember;
 
 DELIMITER $$
-CREATE PROCEDURE registerUserAccount(query JSON)
+CREATE PROCEDURE registerMember(query JSON)
 BEGIN 
 	
     DECLARE AuID BIGINT DEFAULT NULL;
@@ -16,6 +16,7 @@ BEGIN
     DECLARE PassphraseHash NVARCHAR(255) DEFAULT NULL;
     DECLARE EntityID BIGINT DEFAULT 0;
 
+	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
     DECLARE ProcMessage NVARCHAR(999) DEFAULT '';
 	DECLARE lSqlState NVARCHAR(255) DEFAULT '';
@@ -30,8 +31,8 @@ BEGIN
 			lErrNumber = MYSQL_ERRNO, 
             lMessageText = MESSAGE_TEXT;
 		SET ProcStatus = 'ERROR';
-		SET ProcMessage = CONCAT(@errno, " (", @sqlstate, "): ", @text);
-		SELECT JSON_OBJECT('MemberID', EntityID, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage);
+		SET ProcMessage = CONCAT(lErrNumber, " (", lSqlState, "): ", lMessageText);
+		SELECT JSON_OBJECT('MessageSource', 'DB0', 'MemberID', EntityID, 'ProcStatus', ProcStatus, 'MessageCode', lErrNumber, 'ProcMessage', ProcMessage);
 
 	  ROLLBACK;
 	END;
@@ -41,6 +42,9 @@ BEGIN
 		-- WARNING
 	 ROLLBACK;
 	END;
+    
+	-- group_concat defaults to 1024 charaters; expand it for this query. 
+	SET SESSION group_concat_max_len = 1000000;
 
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.IuID');
@@ -75,7 +79,7 @@ BEGIN
 	
     COMMIT;
 	
-    SELECT JSON_OBJECT('MemberID', EntityID, 'MemberName', NewMemberName, 'EmailAddress', EmailAddress, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage);
+    SELECT JSON_OBJECT('MemberID', EntityID, 'MemberName', NewMemberName, 'EmailAddress', EmailAddress, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage) AS CommandResult;
 
 END $$
 DELIMITER ;

@@ -34,8 +34,8 @@
     
  			<script>
  			
-	 			// Retrieve the jsonResults parameter contents into a javascript variable. 
-	 			var myList = '${jsonResults}'; 
+	 			// Retrieve the CommandResults parameter contents into a javascript variable. 
+	 			var myList = '${CommandResults}'; 
 	 			//alert(myList);
 				var myList2 = 
 				[

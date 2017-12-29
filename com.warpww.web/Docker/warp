@@ -8,4 +8,4 @@ echo "WARP bash utility 1.0"
 
 # echo "warp_$1"
 
-"warp_$1"
+"warp_$1" $2

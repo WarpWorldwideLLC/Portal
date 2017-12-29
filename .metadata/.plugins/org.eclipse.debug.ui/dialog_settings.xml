@@ -2,6 +2,16 @@
 <section name="Workbench">
 	<item value="250" key="org.eclipse.jdt.internal.debug.ui.actions.PopupInspectAction$2DIALOG_HEIGHT"/>
 	<item value="300" key="org.eclipse.jdt.internal.debug.ui.actions.PopupInspectAction$2DIALOG_WIDTH"/>
+	<section name="org.eclipse.debug.ui.WORKSPACE_SELECTION_DIALOG">
+		<item value="399" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="390" key="DIALOG_HEIGHT"/>
+	</section>
+	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATION_PROPERTIES_DIALOG_SECTION">
+		<item value="702" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="935" key="DIALOG_HEIGHT"/>
+	</section>
 	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATIONS_DIALOG_SECTION">
 		<item value="800" key="DIALOG_WIDTH"/>
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>

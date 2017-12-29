@@ -116,7 +116,7 @@ CREATE TABLE ctlEntityNameType (
 	);
 
 INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (1, 'Legal Name');
-INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (2, 'Account Name');
+INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (2, 'Member Name'); /* Member name is Signon Account Name */
 INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (3, 'First Name');
 INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (4, 'Middle Name');
 INSERT INTO ctlEntityNameType (ID, EntityNameTypeName) VALUES (5, 'Last Name');
@@ -183,7 +183,7 @@ CREATE TABLE ctlCountry (
 
 
 -- INSERT INTO ctlCountry (ID, CountryNameEng, Alpha2Code, Alpha3Code, NumericCode)
-LOAD DATA LOCAL INFILE '/Users/jarp/Dropbox/Personal/WARP Worldwide/WARP Source/SQL/DbBuild/CountryCodes.txt' 
+LOAD DATA LOCAL INFILE '/Users/jarp/Dropbox/Personal/WARP Worldwide/WARP Source/JWeb/SQL/DbBuild/CountryCodes.txt' 
 INTO TABLE ctlCountry  
     FIELDS TERMINATED BY ',' 
            OPTIONALLY ENCLOSED BY '"'
@@ -364,13 +364,15 @@ CREATE TABLE EntityName (
 	LastIuID 							BIGINT DEFAULT -1,
     EntityID							BIGINT, 
     EntityNameTypeID					BIGINT, 
-    EntityName							NVARCHAR(100),
+    EntityName							NVARCHAR(50),
+    EntityNameKey						NVARCHAR(100), /* Used to enforce unique constraint on specific entity types in the uniqueName constraint */
     DefaultName							NVARCHAR(1) DEFAULT 'N'
 	);
    
-   
+/* This constraint is used to enforce uniqueness on specific EntityName Types. For those that don't require uniquenss,  
+   a UUIDis appended to the name and inserted in this column. */
 ALTER TABLE EntityName
-	ADD CONSTRAINT uniqueName UNIQUE (EntityNameTypeID, EntityName);
+	ADD CONSTRAINT uniqueName UNIQUE (EntityNameTypeID, EntityNameKey);
    
 INSERT INTO EntityName (ID, EntityID, EntityNameTypeID, EntityName, DefaultName) VALUES (1, 1, 1, 'WARP Worldwide, LLC', 'Y');
 

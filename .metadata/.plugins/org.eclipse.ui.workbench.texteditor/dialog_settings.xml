@@ -9,12 +9,18 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Glyph" key="selection"/>
+		<item value="font" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="font"/>
+			<item value="body"/>
+			<item value="background-"/>
+			<item value="h2"/>
+			<item value="background"/>
+			<item value="ansebbian"/>
 			<item value="glyph"/>
 			<item value="isH"/>
 			<item value="isLogged"/>
@@ -24,12 +30,6 @@
 			<item value="monthString"/>
 			<item value="form-group"/>
 			<item value="form"/>
-			<item value="body"/>
-			<item value="("/>
-			<item value="viewport"/>
-			<item value="static"/>
-			<item value="base64"/>
-			<item value="clean"/>
 		</list>
 		<list key="replacehistory">
 			<item value="spName"/>

@@ -59,7 +59,7 @@ public class dbProcess extends HttpServlet {
 	{
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
-		Util.printParams("dbProcess.processCommand", request);
+		Util.printParams("dbProcess.processCommand.Start", request);
 		
 		String spName = "";
 
@@ -68,12 +68,19 @@ public class dbProcess extends HttpServlet {
         // spName = translateCommand("RegisterUserAccount");
 		spName = translateCommand(jsonst.getString("Command"));
 		
+		// If the command is invalid,stop processing and return an error.
+		if(spName == "Invalid_Command") {
+			 request.setAttribute("CommandResults", "{\"MemberID\": -1, \"MemberName\": \"\", \"EmailAddress\": \"\", \"ProcStatus\": \"ERROR\", \"ProcMessage\": \"Invalid Command: '" + jsonst.getString("Command") + "'\"}");
+			 /* {"MemberID": 43, "ProcStatus": "ERROR", "ProcMessage": "Invalid Command: '"+ jsonst.getString("Command") + "'"} */
+			 return;
+		}
+		
 		try 
         {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");          
             
-            System.out.println("StoredProc: " + spName);
+            System.out.println("dbprocess.processCommand:StoredProc: " + spName);
             CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");
             cStmt.setString(1, json);
             
@@ -86,10 +93,11 @@ public class dbProcess extends HttpServlet {
                 System.out.println(name);
                 while(rs.next())
                 {
-                 request.setAttribute("jsonResults", rs.getString(1));
+                 request.setAttribute("CommandResults", rs.getString(1));
                 }
                 hadResults = cStmt.getMoreResults();
             }          
+            Util.printParams("dbProcess.processCommand.AfterProcessing", request);
  
         } catch (Exception e2) 
         {
@@ -101,7 +109,7 @@ public class dbProcess extends HttpServlet {
 	{
 			String spName = "foo";
 	        switch (command) {
-	            case "RegisterUserAccount":  spName = "registerUserAccount";
+	            case "RegisterMember":  spName = "registerMember";
 	                     break;
 	            case "GeneratePasswordResetToken": spName = "generatePasswordResetToken";
 	            		break;
@@ -116,7 +124,7 @@ public class dbProcess extends HttpServlet {
 	        return spName;
 	}
 	
-	public void mapParams(String titleText, HttpServletRequest request)
+	public void mapParamsOld(String titleText, HttpServletRequest request)
 	{
 		System.out.println("**** HTTP Request Data for" + titleText + " ****");
 		/* 

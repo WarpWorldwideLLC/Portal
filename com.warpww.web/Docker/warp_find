@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Running WARP Bash Script warp_find 2.0"
+
+echo "Finding " $1
+
+# echo '$0 = ' $0
+# echo '$1 = ' $1
+# echo '$2 = ' $2
+# echo '$3 = ' $
+
+
+# Mac OS find command. 
+# find or locate on pure linux. Locate will require that updatedb be run periodically to update the corresponding database.
+mdfind -name $1

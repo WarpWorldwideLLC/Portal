@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.util.*;
-import com.warpww.command.*;
 
 /**
  * Servlet implementation class passphrasereminder

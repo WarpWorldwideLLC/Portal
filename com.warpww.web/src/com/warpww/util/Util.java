@@ -1,10 +1,16 @@
 package com.warpww.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.servlet.http.HttpServletRequest;
 
 public class Util {
@@ -29,6 +35,7 @@ public class Util {
 	
 	public static void printParams(String titleText, HttpServletRequest request)
 	{
+		System.out.println();
 		System.out.println("**** HTTP Servlet Request Data for " + titleText + " " + Instant.now().toString() + " ****");
 		
 		System.out.println("Parameter Map:");
@@ -58,5 +65,93 @@ public class Util {
 		}
 
 	}
+	
+	// Returns null on error, prints error to the system log.
+	public static InputStream StringToStream(String inputString)
+	{
+		try 
+		{
+			InputStream stream = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8.name()));
+			return stream;
+		} catch (Exception ex)
+		{
+			System.out.println(ex.toString());
+			System.out.println(ex.getStackTrace().toString());
+			return null;
+		}
+	}
+	
+	// Returns an unquoted JSON value
+	public static String getJsonValue(String jsonInput, String keyName) {
+		String returnValue = "";
+		
+		try {
+			InputStream stream = Util.StringToStream(jsonInput);
+			JsonReader reader = Json.createReader(stream);
+			JsonObject jsonst = reader.readObject();
+			returnValue = jsonst.getJsonString(keyName).getString();
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+			System.out.println(ex.getStackTrace().toString());
+			returnValue =  null;
+		}
+		
+		return returnValue;
+	}
 
+	
+	public static boolean setErrorMessage(HttpServletRequest request) {
+		boolean returnValue = false;
+		
+		try {
+			String jsonResponse = request.getAttribute("jsonResponse").toString();
+			
+			String procStatus = getJsonValue(jsonResponse, "ProcStatus");
+			String procMessage = getJsonValue(jsonResponse, "ProcMessage");
+			String messageSource = getJsonValue(jsonResponse, "MessageSource");
+			String messageCode = getJsonValue(jsonResponse, "MessageCode");
+	
+			String userMessage = "(" + messageSource + ") " + messageCode + ": " + procMessage;
+			request.setAttribute("ErrorMessage", userMessage);
+			request.setAttribute("ErrorMessageVisible", "\"display:none;\"");
+			returnValue = true;
+			
+		} catch (Exception ex) {
+			returnValue = false;
+		}
+		
+		return returnValue;
+	}
+	
+	public static boolean clearErrorMessage(HttpServletRequest request) {
+		boolean returnValue = false;
+		
+		try {
+				
+			String userMessage = "";
+			request.setAttribute("ErrorMessage", userMessage);
+			request.setAttribute("ErrorMessageVisible", "\"display:none;\"");
+			returnValue = true;
+			
+		} catch (Exception ex) {
+			returnValue = false;
+		}
+		
+		return returnValue;
+	}
+	
+	public static String getErrorCode (String jsonResponse) {
+		String returnValue = "";
+		
+		
+		return returnValue;
+	}
+	
+	
+	public static String getErrorMessage(String jsonResponse) {
+		String returnValue = "";
+		
+		
+		return returnValue;
+	}
 }

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.json.Json;
+
+
 import javax.servlet.RequestDispatcher;
 import com.warpww.sec.Password;
 import com.warpww.util.*;
@@ -50,14 +52,17 @@ public class register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Clear any existing error messages.
+		Util.clearErrorMessage(request);
+		
 		// Check the Captcha first. 
 		Captcha captcha = Captcha.load(request, "exampleCaptcha");
 		// validate the Captcha to check we're not dealing with a bot
 		boolean isHuman = captcha.validate(request.getParameter("captchaCode"));
-		if (isHuman) {
-		  // TODO: Captcha validation passed, perform protected action
+		if (isHuman) {  // Captcha validation passed
 			
-			// Process the request		
+			
+			// Process the request (registration)		
 			try 
 			{
 				setRequestState(request, response);
@@ -67,12 +72,46 @@ public class register extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		
+			String jsonResults = request.getAttribute("CommandResults").toString();
+			
+			System.out.println("CommandResults: " + jsonResults);
+			System.out.println("MemberName: " + Util.getJsonValue(jsonResults, "MemberName"));
+			System.out.println("EmailAddress: " + Util.getJsonValue(jsonResults, "EmailAddress"));
+			
+			switch(Util.getJsonValue(jsonResults, "ProcStatus")) {
+				case "SUCCESS":
+					request.setAttribute("MemberName", Util.getJsonValue(jsonResults, "MemberName"));
+					request.setAttribute("EmailAddress", Util.getJsonValue(jsonResults, "EmailAddress"));		
+					
+					
+					request.getRequestDispatcher("/WEB-INF/registrationconfirmation.jsp").forward(request, response);
+					break;
+					
+				case "ERROR":
+					System.out.println("MemberName: " + Util.getJsonValue(jsonResults, "MemberName"));
+					System.out.println("EmailAddress: " + Util.getJsonValue(jsonResults, "EmailAddress"));
+					
+					request.setAttribute("MemberName", "");
+					request.setAttribute("EmailAddress", "");
+		
+					Util.setErrorMessage(request);	
+					
+					request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+					break; 
+					
+				default: 
+					request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+					break;	
+			}	
+			
+			
 			// Pass control to RegistrationConfirmation
-			request.getRequestDispatcher("/WEB-INF/registrationconfirmation.jsp").forward(request, response);
+			//request.getRequestDispatcher("/registrationconfirmation").forward(request, response);
 			
-		} else {
-		  // TODO: Captcha validation failed, show error message
-			
+		} else {  // Captcha validation failed, show error message
+		 
+			request.setAttribute("ErrorMessage", "Captcha Validation Failed.");
 			request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 		}
 
@@ -108,12 +147,13 @@ public class register extends HttpServlet {
 	
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		//Hash the password. 
+		String passphraseHash = Password.createHash(request.getParameter("passPhrase1"));
 		
-		Password pw = new Password();
-		String passphraseHash = pw.createHash(request.getParameter("passPhrase1"));
 		
+		// Create the command JSON.
 		String json = Json.createObjectBuilder()
-				 .add("Command", "RegisterUserAccount")
+				 .add("Command", "RegisterMember")
 				 .add("AuID", 1)
 				 .add("IuID", 1)
 				 .add("MemberName", request.getParameter("memberName"))
@@ -140,8 +180,6 @@ public class register extends HttpServlet {
 			
 			Util.printParams("Register.processRequest", request);
 			
-			break;
-		case "twitter":
 			break;
 		default: 
 			

@@ -14,7 +14,7 @@
     <head>
     		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WARP Registration</title>
-        <script src="jsx/util.js"></script>
+        <script src="jsx/warp_util.js"></script>
     </head>
 <body>
 		<%@include  file="/htx/LanguageSelector.html" %>
@@ -27,13 +27,13 @@
 	  		<input type="text" name="emailAddress" id="emailAddress" value=${param["emailAddress"]}>
 	  		<br/>
 	  	  	<label>Passphrase:</label>
-	  		<input type="password" name="passPhrase1" id="passPhrase1" value=${param["passPhrase"]}>
+	  		<input type="password" name="passPhrase1" id="passPhrase1"}>
 	  		<br>
 	  		<label>Re-Enter Passphrase:</label>
-	  		<input type="password" name="passPhrase2" id="passPhrase2" value=${param["passPhrase"]}>
+	  		<input type="password" name="passPhrase2" id="passPhrase2"}>
 	  		<br>
 	  		<button type="button" onclick="toggleHide2('passPhrase1','passPhrase2')" id="passToggle">Show/Hide Passphrase</button>
-	  		
+	  		<textarea id="errorMessage" name="errorMessage" style='<%=request.getAttribute("ErrorMessageVisible")%>' readonly>value='<%=request.getAttribute("ErrorMessage")%>'</textarea>	
   		
   		</div>
   		<br>
