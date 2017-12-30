@@ -59,7 +59,7 @@ public class dbProcess extends HttpServlet {
 	{
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
-		Util.printParams("dbProcess.processCommand.Start", request);
+		// Util.printParams("dbProcess.processCommand.Start", request);
 		
 		String spName = "";
 
@@ -80,7 +80,7 @@ public class dbProcess extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");          
             
-            System.out.println("dbprocess.processCommand:StoredProc: " + spName);
+            // System.out.println("dbprocess.processCommand:StoredProc: " + spName);
             CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");
             cStmt.setString(1, json);
             
@@ -90,14 +90,14 @@ public class dbProcess extends HttpServlet {
             		ResultSet rs = cStmt.getResultSet();
             		ResultSetMetaData rsmd = rs.getMetaData(); 
                 String name = rsmd.getColumnName(1);
-                System.out.println(name);
+                // System.out.println(name);
                 while(rs.next())
                 {
                  request.setAttribute("CommandResults", rs.getString(1));
                 }
                 hadResults = cStmt.getMoreResults();
             }          
-            Util.printParams("dbProcess.processCommand.AfterProcessing", request);
+            // Util.printParams("dbProcess.processCommand.AfterProcessing", request);
  
         } catch (Exception e2) 
         {

@@ -1,4 +1,13 @@
 # *************************************************************************
+# General
+# *************************************************************************
+:root {
+  --main-bg-color: #1596a7;
+}
+
+
+
+# *************************************************************************
 # Landing Page Section
 # *************************************************************************
 
@@ -177,7 +186,7 @@ a[aria-expanded="true"]::before {
 body {
 	
     /* font-family: 'Poppins', sans-serif; */
-    background: #fafafa;
+    background: red;
 }
 
 p {
@@ -196,7 +205,7 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
+    background: black;
     color: #fff;
     transition: all 0.3s;
 }

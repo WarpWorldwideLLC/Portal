@@ -57,14 +57,14 @@ public class membermanagement extends HttpServlet {
 	
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		
-		String json = Json.createObjectBuilder()
-				 .add("Command", "GetMemberList")
-				 .add("AuID", 1)
-				 .add("IuID", 1)
-				 .build()
-				 .toString(); 		
-		
+		try {
+			
+			String json = Json.createObjectBuilder()
+					 .add("Command", "GetMemberList")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .build()
+					 .toString(); 		
 		
 			String jsonParms = "";
 		
@@ -75,7 +75,10 @@ public class membermanagement extends HttpServlet {
 			dispatcher.include(request, response);
 			
 			Util.printParams("MemberManagement.processRequest", request);
-	
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 		
 		
 	}

@@ -33,7 +33,7 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Util.printParams("landing.doGet", request);
+
 		request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
 		
 	}
@@ -92,14 +92,12 @@ public class landing extends HttpServlet {
 		String jsonParms = "";
 		jsonParms = json;
 		request.setAttribute("CommandText", jsonParms);
-		Util.printParams("landing.validateSignon.Before", request);
+		//Util.printParams("landing.validateSignon.Before", request);
 		request.getRequestDispatcher("/dbProcess").include(request, response);
-		Util.printParams("landing.validateSignon.After", request);
+		//Util.printParams("landing.validateSignon.After", request);
 		
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
-		System.out.println("CommandResults: " + request.getAttribute("CommandResults").toString());
-		System.out.println("ProcStatus = " + cmd.ProcStatus);
-		System.out.println("COMMAND_SUCCESS = " + cmd.COMMAND_SUCCESS);
+
 		if(cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = true;
 		}
