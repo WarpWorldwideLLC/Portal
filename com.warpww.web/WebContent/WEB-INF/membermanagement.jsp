@@ -46,8 +46,6 @@
 				];			
 				
 			</script>
-    			
-    			
 	        <title>WARP Member Management</title>
 	    </head>
 	<body onLoad="warpBuildHtmlTable('#jsonDataTable')"  >

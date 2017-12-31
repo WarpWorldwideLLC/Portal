@@ -9,38 +9,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			<meta http-equiv="cache-control" content="max-age=0" />
-			<meta http-equiv="cache-control" content="no-cache" />
-			<meta http-equiv="expires" content="-1" />
-			<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-			<meta http-equiv="pragma" content="no-cache" />
-			
-			<!-- Bootstrap and Custom CSS -->
-			<!--  
-    			<link href="cssx/bootstrap.min.css" rel="stylesheet"/>
-    			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    			 -->
-    			 <link href="cssx/bootstrap.css" rel="stylesheet"/>
-    			
-    			<link href="cssx/warp_custom.css" rel="stylesheet"/>
-    			
-    				<!-- jQuery  -->
-		    <script src="jsx/jquery.js"></script>
-		  
-		    <!-- Bootstrap Js CDN -->
-		    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-
-	        <title>WARP Member Management</title>
-	    </head>
-	<body onLoad="warpBuildHtmlTable('#jsonDataTable')">
-	<!-- onLoad="buildHtmlTable('#jsonDataTable')"  -->
-	     <form method="post" action="/com.warpww.web/membermanagement" enctype="multipart/form-data" name="membermanagement" autocomplete="off">
-
-
-	    
+		<%@ include file="/htx/head.html"%>
+		<title>WARP Home</title>
+	</head>
+	<body >
+	<!-- 
+		onLoad="buildHtmlTable('#jsonDataTable')"  
+		onLoad="warpBuildHtmlTable('#jsonDataTable')"
+	-->
+	     <form method="post" action="/com.warpww.web/home" enctype="multipart/form-data" name="home" autocomplete="off">
 			<header>
 				<h1>
 					<br><label><fmt:message key="label.title1" /></label> 
@@ -51,62 +28,30 @@
 			<div class="wrapper">
 			
 			    <!-- Sidebar -->
-			    
-			    <nav id="sidebar">
-					<!-- Sidebar Header -->
-			        <div class="sidebar-header">
-			            <h3>Collapsible Sidebar</h3>
-			        </div>		       
-	
-					<!-- Sidebar Links -->
-			        <ul class="list-unstyled components">
-			            <li class="active"><a href="#">Home</a></li>
-			            <li><a href="#">About</a></li>
-			
-			            <li><!-- Link with dropdown items -->
-			                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-			                <ul class="collapse list-unstyled" id="homeSubmenu">
-			                    <li><a href="#">Page</a></li>
-			                    <li><a href="#">Page</a></li>
-			                    <li><a href="#">Page</a></li>
-			                </ul>
-			
-			            <li><a href="#">Portfolio</a></li>
-			            <li><a href="#">Contact</a></li>
-			        </ul>
-	
-	
-			    </nav>
+				<%@ include file="/htx/sidebar.html"%>
 			
 			    <!-- Page Content -->
 			    <div id="content">
-				    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-				        <i class="glyphicon glyphicon-align-left"></i>
-				        Toggle Sidebar
-				    </button>
 				    <br>
-
 	     			<table id="jsonDataTable" border="1"></table>
-
 				    <br>
-				    
 				    <button type="submit" id="Submit" >Submit</button>
 			    </div>
 			</div>       
 	
 			<br>
 			<footer>
-					<%@ include file="/htx/footer.html"%>
+				<%@ include file="/htx/footer.html"%>
 			</footer>
-			
+					
 			 <script type="text/javascript">
-	             $(document).ready(function () {
-	                 $('#sidebarCollapse').on('click', function () {
-	                     $('#sidebar').toggleClass('active');
-	                 });
-	             });
-	         </script>
+			     $(document).ready(function () {
+			         $('#sidebarCollapse').on('click', function () {
+			            	$('#sidebar').toggleClass('active');
+			         });
+			     });
+	      	</script>
    
-	    </form>
+    		</form>
 	</body>
 </html>
