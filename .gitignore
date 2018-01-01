@@ -1,2 +1,6 @@
 /.metadata/
 /.recommenders/
+
+__MACOSX
+.DS_Store
+
