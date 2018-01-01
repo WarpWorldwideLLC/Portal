@@ -28,3 +28,21 @@ git push -u origin --all
 git pull https://github.com/WarpWorldwideLLC/Portal.git
 
 Some text notes. 
+
+
+
+
+Maven & GSON
+
+First you need to clone the repository locally on your computer:
+
+git clone https://github.com/google/gson
+Then you go inside the project folder ./gson and you create the jar file running:
+
+mvn package
+Of course to do this you need to have maven installed, if you are under osx you can install it running
+
+brew install maven
+Otherwise you can look for the installation for your system on the maven official website
+
+After running mvn package the jar file will be in ./gson/gson/target/gson-2.7.1-SNAPSHOT.jar

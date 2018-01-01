@@ -31,9 +31,9 @@
 		<form method="post" action="/com.warpww.web/registrationconfirmation" enctype="multipart/form-data" name="registrationconfirmation" autocomplete="off">
 		        <div>
 			  		<br><label><fmt:message key="label.membername" /></label> 
-					<input type="text" name="memberName" id="memberName" value='<%=request.getAttribute("MemberName")%>'}>
+					<input type="text" name="memberName" id="memberName" value='<%=request.getAttribute("MemberName")%>'>
 			  		<label><fmt:message key="label.emailaddress" /></label>
-			  		<input type="text" name="emailAddress" id="emailAddress" value='<%=request.getAttribute("EmailAddress")%>'}>
+			  		<input type="text" name="emailAddress" id="emailAddress" value='<%=request.getAttribute("EmailAddress")%>'>
 			  		<br/>
 			  	  	
 		  			Welcome to WARP! You can access your services now using the menu on the left. 

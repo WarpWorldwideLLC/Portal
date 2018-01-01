@@ -30,17 +30,47 @@
 			</h1>
 
 		</header>
-		<form action="/checkout" method="POST">
+		<form action="http://localhost:8080/com.warpww.web/checkout" method="POST">
+
 		  <script
-		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		    data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
-		    data-amount="999"
-		    data-name="WARP Worldwide, LLC"
-		    data-description="Widget"
-		    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-		    data-locale="auto">
-		  </script>
+			  // Base configuration
+			  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
+			  data-name="WARP Worldwide, LLC"
+			  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+			  data-locale="auto"
+
+	    		  data-allow-remember-me="false"
+	    		  
+	    		  // Info specific to a single payment
+	    		  data-amount='${paymentAmount}'
+	    		  data-email='${emailAddress}'
+	    		  data-description='${paymentDescription}'
+	    		    
+		>
+		</script>
+		
+				 	  
+				 	  
+
+		<!-- Test & Live Keys
+		  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
+		  data-key="pk_live_lPPqJikYmHwl2MUVZWMd76uz"
+		  
+		  			data-zip-code="true"
+		  	  data-billing-address="true"
+		  
+		 -->
+		<input type="text" id="payorName" name= "payorName" value='<%=request.getAttribute("payorName")%>' />
+		<input type="email" id="emailAddress" name = "emailAddress" value='<%=request.getAttribute("emailAddress")%>'>
+		<input type="text" id="paymentAmount" name = "paymentAmount" value='<%=request.getAttribute("paymentAmount")%>'>
+		<input type="text" id="paymentDescription" name = "paymentDescription" value='<%=request.getAttribute("paymentDescription")%>'>
+		
+		
+		
+		
 		</form>
+		
 		<footer>
 				<%@ include file="/htx/footer.html"%>
 		</footer>
