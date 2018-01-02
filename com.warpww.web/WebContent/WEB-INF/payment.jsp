@@ -22,7 +22,7 @@
 									};
 					
 					
-					stripe.createSource(sourceData).then(function(result) {alert("Success!"); alert("result: " + JSON.stringify(result));}, function(err) { alert("Failure.");});
+					stripe.createSource(sourceData).then(function(result) {saveSource(result);}, function(err) {saveError(err);});
 					
 				} catch (err) {
 					alert(err.message);
@@ -30,12 +30,31 @@
 	
 			}
 			
-			function saveSource() {
+			function saveSource(result) {
 				
+				try {
+					alert("Success!"); 
+					alert("result: " + JSON.stringify(result));
+					
+					oForm = document.getElementById("payment");
+					oForm.elements["source"].value = JSON.stringify(result);
+					alert(oForm.elements["source"].value);
+					submitForm("payment");
+				} catch (err) {
+					alert(err.message);
+				}
 			}
 			
-			function saveError() {
-				
+			function saveError(err) {
+				alert("Failure.");
+			}
+			
+			function submitForm(formID) {
+				try {
+			    		document.getElementById("payment").submit();
+				} catch (err) {
+					alert(err.message);
+				}
 			}
 			
 		</script>
@@ -54,10 +73,15 @@
 			<%@ include file="/htx/sidebar.html"%>
 			
 			<!-- Page Content -->
+			<form id="payment" name="payment" method="post">
+			<input type="hidden" id="source" name="source" value="foo">
+
+			</form>
 		    <div id="content">
-				<button id="customButton" onclick="createSource();">Purchase</button>
-				<input type="hidden" id="source" name="source" value="foo">
+				
+							<button id="customButton" onclick="createSource();">Purchase</button>
 		    </div>
+		    
 		</div>
 
 		<footer>
