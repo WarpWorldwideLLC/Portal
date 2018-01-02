@@ -33,16 +33,13 @@
 		<form action="http://localhost:8080/com.warpww.web/checkout" method="POST">
 
 		  <script
-			  // Base configuration
 			  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 			  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
 			  data-name="WARP Worldwide, LLC"
 			  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 			  data-locale="auto"
-
 	    		  data-allow-remember-me="false"
 	    		  
-	    		  // Info specific to a single payment
 	    		  data-amount='${paymentAmount}'
 	    		  data-email='${emailAddress}'
 	    		  data-description='${paymentDescription}'

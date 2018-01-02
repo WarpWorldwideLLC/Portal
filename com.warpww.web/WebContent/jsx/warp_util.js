@@ -4,6 +4,9 @@
  * 
  */
 
+function testFunction() {
+	alert("testFunction Runnng!");
+}
 
 function toggleHide(targetElement)
 {

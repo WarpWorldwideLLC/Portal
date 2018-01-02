@@ -15,19 +15,20 @@
 			</h1>
 
 		</header>
-		<div class="wrapper">
-			<!-- Sidebar -->
-			<%@ include file="/htx/sidebar.html"%>
-			
-			<!-- Page Content -->
-		    <div id="content">
-			    <br>
-     			<table id="jsonDataTable" border="1"></table>
-			    <br>
-			    <button type="submit" id="Submit" >Submit</button>
-		    </div>
-		</div>
-
+		<form action="http://localhost:8080/com.warpww.web/checkout" method="POST">
+			<div class="wrapper">
+				<!-- Sidebar -->
+				<%@ include file="/htx/sidebar.html"%>
+				
+				<!-- Page Content -->
+			    <div id="content">
+				    <br>
+	     			<table id="jsonDataTable" border="1"></table>
+				    <br>
+				    <button type="submit" id="Submit" >Submit</button>
+			    </div>
+			</div>
+		</form>
 		<footer>
 				<%@ include file="/htx/footer.html"%>
 		</footer>
