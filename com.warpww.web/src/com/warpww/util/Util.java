@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +81,31 @@ public class Util {
 			return null;
 		}
 	}
+	
+	// Returns an unquoted JSON value
+	public static String getJsonArrayValue(String jsonInput, String arrayName, String keyName) {
+		String returnValue = "";
+		
+		try {
+			InputStream stream = Util.StringToStream(jsonInput);
+			JsonReader reader = Json.createReader(stream);
+			JsonObject jsonst = reader.readObject();
+			reader.close();
+			// Get the array
+			JsonArray jsonArr = jsonst.getJsonArray(arrayName);
+			
+			returnValue = jsonArr.getJsonString(0).getString();
+			
+			// returnValue = jsonst.getJSONArray("arrayName").getJsonString(keyName).getString();
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+			System.out.println(ex.getStackTrace().toString());
+			returnValue =  null;
+		}
+		
+		return returnValue;
+	}
+	
 	
 	// Returns an unquoted JSON value
 	public static String getJsonValue(String jsonInput, String keyName) {

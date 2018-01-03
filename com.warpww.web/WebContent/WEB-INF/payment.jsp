@@ -34,11 +34,12 @@
 				
 				try {
 					alert("Success!"); 
-					alert("result: " + JSON.stringify(result));
+					//alert("result: " + JSON.stringify(result));
 					
 					oForm = document.getElementById("payment");
 					oForm.elements["source"].value = JSON.stringify(result);
-					alert(oForm.elements["source"].value);
+					
+					//alert(oForm.elements["source"].value);
 					submitForm("payment");
 				} catch (err) {
 					alert(err.message);
