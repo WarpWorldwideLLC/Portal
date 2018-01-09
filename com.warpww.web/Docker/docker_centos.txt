@@ -1,0 +1,4 @@
+# Start with the latest version of CentOS 7
+FROM centos:latest
+
+

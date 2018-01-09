@@ -1,7 +1,7 @@
 /* 
 CREATE Schema WarpAdmin2017;
 */
-DROP DATABASE WarpAdmin2017;
+DROP DATABASE IF EXISTS WarpAdmin2017;
 CREATE DATABASE WarpAdmin2017 CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE  WarpAdmin2017;
 

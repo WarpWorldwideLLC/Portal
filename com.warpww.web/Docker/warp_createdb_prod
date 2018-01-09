@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Change working diretory to the scripts directory
+cd /Users/jarp/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/SQL/DbBuild
+
+
+# Call mysql from the command line, redirect STDIN to the script file for input. 
+# -u is user -p is password.
+mysql -h singapore-db-1.cuwqizgjegfw.ap-southeast-1.rds.amazonaws.com -u warpdbm -pwarp-is-live-2018 < 01_WarpAdmin2017.sql
+
+# Change working directory to the StoredProcedures directory
+cd /Users/jarp/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/SQL/StoredProcedures
+
+# echo SP_registerUserAccount
+# mysql -h singapore-db-1.cuwqizgjegfw.ap-southeast-1.rds.amazonaws.com -u warpdbm -pwarp-is-live-2018 < SP_registerUserAccount.sql
+
+echo "Starting Stored Procedure Creation. "
+
+ for file in {.*,SP_*}; 
+ do 
+ 	echo "$file";
+ 	mysql -h singapore-db-1.cuwqizgjegfw.ap-southeast-1.rds.amazonaws.com -u warpdbm -pwarp-is-live-2018 < $file;
+ done
+ 	
+ 	
+echo "Stored Procedure Creation Complete."
+ 	

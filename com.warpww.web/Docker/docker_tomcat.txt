@@ -2,62 +2,39 @@
 FROM centos:latest
 
 LABEL maintainer="John Arp <john.arp@warpww.com>"
-# https://www.if-not-true-then-false.com/2014/install-oracle-java-8-on-fedora-centos-rhel/
-# http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-# https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
-# https://stackoverflow.com/questions/36146977/how-to-access-containers-web-application-from-host
 
-
-# cd ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker
-# List all containers (only IDs) docker ps -aq
-# Stop all running containers. docker stop $(docker ps -aq)
-# Remove all containers. docker rm $(docker ps -aq)
-# Remove all images. docker rmi $(docker images -q)
-# docker build -f docker_tomcat.txt .
-# docker run --privileged  -ti -e "container=docker"  -v /sys/fs/cgroup:/sys/fs/cgroup  trinitronx/ansible-base:stable-centos7  /usr/sbin/init
-# RUN systemctl daemon-reload
-# http://server_IP_address:8080
-# docker ps 
-# docker inspect container_name
-# docker run 3fa822599e10 yum search java | grep 'java-'
-# docker tag a0b warpsrv:latest
-# docker run -p 72:8080  --name="webserver" warpsrv 
-# docker run --name="testname"
-
-
-# GeoTrust SSL Cert - $79.00
-
-# Warning: RPMDB altered outside of yum. - happens if RPM is run directly, outside of YUM (the java install)
-# yum history sync
-
-# docker run 8e289da52c71 ls /opt/tomcat
-# docker network ls
-
+# Display CentOS Version
 RUN cat /etc/*elease
+
+#Helpful utils, but only sudo is required
+#RUN yum -y install tar
+#RUN yum -y install vim
+#RUN yum -y install nc
+RUN yum -y install sudo
 
 # Set default directory for container
 WORKDIR /tmp
 
-ADD /jdk-8u152-linux-x64.rpm /jdk-8u152-linux-x64.rpm
+#*************  ADD JAVA ****************************
+ADD jdk-8u152-linux-x64.rpm /jdk-8u152-linux-x64.rpm
 RUN rpm -i /jdk-8u152-linux-x64.rpm
-      
 RUN java -version
 
-# RUN echo 'y' | yum install openssl
-
+#****** INSTALL OPENSSL  ****************************
 RUN echo 'y' | yum install openssl --nogpgcheck
 
-# create a new user and group that will run the Tomcat service.
+#****** create a new user and group that will run the Tomcat service.
 RUN groupadd tomcat
 
-# Create a new tomcat user. We'll make this user a member of the tomcat group, with a home directory of /opt/tomcat (where we will install Tomcat), and with a shell of /bin/false (so nobody can log into the account):
+#****** Create a new tomcat user. Make the user a member of the tomcat group, with a home directory of /opt/tomcat (where we will install Tomcat), 
+#****** and with a shell of /bin/false (so nobody can log into the account):
 RUN useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 
-# install Tomcat to the /opt/tomcat directory. Create the directory, then extract the the archive to it with these commands:
-
+#****** Install Tomcat to the /opt/tomcat directory. Create the directory, then extract the the archive to it with these commands:
 RUN mkdir /opt/tomcat
-ADD /apache-tomcat-9.0.1.tar.gz /tmp/apache-tomcat-9.0.1.tar.gz
-#RUN tar xvf /apache-tomcat-9.0.1.tar.gz
+
+#*************  ADD *********************************
+ADD apache-tomcat-9.0.1.tar.gz /tmp/apache-tomcat-9.0.1.tar.gz
 RUN mv /tmp/apache-tomcat-9.0.1.tar.gz/apache-tomcat-9.0.1/* /opt/tomcat
 
 RUN cd /opt/tomcat
@@ -66,22 +43,22 @@ RUN chmod -R g+r /opt/tomcat/conf
 RUN chmod g+x /opt/tomcat/conf
 RUN chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/
 
-ADD /tomcat.service /tomcat.service
-RUN mv /tomcat.service /etc/systemd/system/tomcat.service
+#*************  ADD *********************************
+#ADD docker_tomcat.service /tomcat.service
+#RUN mv /tomcat.service /etc/systemd/system/tomcat.service
 
+#ADD docker_tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
+#ADD docker_manager.xml /opt/tomcat/webapps/host-manager/manager.xml
 
-#docker run -p 192.17.0.2:72:8080  a0bb9288dec3 
-# http://localhost:72/
+#ADD docker_manager_context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
+
 EXPOSE 8080
 
+#*************  Command to run Docker *********************************
+# docker run  --rm=true -t -i -d -p 8888:8080 --name tomcat7 warpweb  /usr/bin/sudo -u tomcat /opt/tomcat/bin/catalina.sh run
 
-# Cataline .sh is in a different location.
-# CMD ["service","tomcat","start"]
-# CMD ["/opt/tomcat/bin/catalina.sh", "run"]
-# you can restart services by
-# /etc/init.d/service-name restart (status, stop and start work too).
-CMD /etc/init.d/tomcat start && tail -f /var/lib/tomcat/logs/catalina.out
+#*************  Access the container with: *********************************
+# http://localhost:8888/
+# run command on running container: docker exec -it 45e4b2dc1693 pwd
 
-# RUN systemctl start tomcat
-# RUN exec /usr/sbin/init
 
