@@ -10,6 +10,8 @@ BEGIN
 	DECLARE IuID BIGINT DEFAULT NULL;
     DECLARE MemberName NVARCHAR(255);
     DECLARE PassphraseHash NVARCHAR(255);
+    DECLARE AuthToken NVARCHAR(255);
+    DECLARE AuthTokenTime DATETIME;
 
 	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
@@ -46,7 +48,10 @@ BEGIN
     SET IuID := JSON_EXTRACT(query, '$.PuID');
 	SET MemberName := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.MemberName')));
     SET PassphraseHash := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.PassphraseHash')));
-    
+
+	SET AuthTokenTime := NOW();
+    -- SET AuthToken := CONCAT((NOW() + 0), SHA1(DATE_FORMAT(NOW(), "%H%f%j%e%s")) ,SHA1(CONCAT(MemberName, PassphraseHash, NOW(0) +0)));
+    SET AuthToken = 'foo';
 
 
 -- 	SELECT JSON_OBJECT('TAG', 'TAG');
@@ -79,7 +84,8 @@ BEGIN
                      'MemberNumber', e.ID,
                      'ProcStatus', 'Success',
                      'MemberName', en.EntityName ,
-                     'MemberSince', DATE_FORMAT(e.CreateDate, "%Y.%m.%d") 
+                     'MemberSince', DATE_FORMAT(e.CreateDate, "%Y.%m.%d"), 
+                     'AuthToken', AuthToken
 				) AS CommandResult
 		FROM Entity e 
 			LEFT JOIN Passphrase p

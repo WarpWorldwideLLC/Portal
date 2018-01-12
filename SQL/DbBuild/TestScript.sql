@@ -4,6 +4,22 @@ USE WarpAdmin2017;
 
 SELECT * FROM EntityName;
 
+/* 40 Bytes, 54 with time + SHA1 */
+SELECT LENGTH(CONCAT((NOW() + 0) ,SHA1(NOW())));
+
+SELECT DATE_FORMAT(NOW(), "%Y");
+
+SELECT CONCAT((NOW() + 0) ,SHA1(CONCAT(MemberName, PassphraseHash, NOW(0) +0))) ;
+
+SELECT CONCAT(REVERSE((NOW() + 0)) ,SHA1(CONCAT('JohnnyWarp', '1000:dd47287a430d50a93a5e39e5184090661a1c13297395d6fb:67391a09d9dbf3b267f1b983796104928119dd873b7eecb7', NOW(0) +0))) ;
+
+SELECT NOW(), NOW() + 0;
+
+
+SELECT * FROM Passphrase;
+
+SELECT @@version;
+
 /* 
 '4', '10', '2017-12-24 13:04:23', '1', '1', '2017-12-24 13:04:23', '1', '1', '10', '2', 'JonLi', '1.7976931348623157e308', 'N'
 # JSON_OBJECT('MemberID', EntityID, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage)
@@ -49,8 +65,12 @@ UPDATE Passphrase SeT PassphraseHash = '1000:8b3777ad427cfcf006d41cfef4134b2d072
 
 /* 
 
+Error Code: 1305. PROCEDURE warpadmin2017.validateSignon does not exist
+
 Error Code: 1305. PROCEDURE warpadmin2017.SP_registerUserAccount does not exist
 Error Code: 1305. PROCEDURE warpadmin2017.validateSignon does not exist
 
 
 */
+
+
