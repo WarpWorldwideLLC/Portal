@@ -222,5 +222,19 @@ public class Password
             System.out.println("ERROR: " + ex);
         }
     }
+    
+    public static boolean validateAuthentication(String authToken) {
+    		//ToDo: Move out of landing.java
+    		boolean returnValue = false;
+    		
+    		if(authToken == "foo")
+    		{
+    			return true;
+    		}
+    			
+    		return returnValue;
+    		
+    }
+    
 
 }

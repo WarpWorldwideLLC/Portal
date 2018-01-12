@@ -46,3 +46,18 @@ brew install maven
 Otherwise you can look for the installation for your system on the maven official website
 
 After running mvn package the jar file will be in ./gson/gson/target/gson-2.7.1-SNAPSHOT.jar
+
+
+Docker Debug
+
+sudo vi /etc/sysconfig/docker
+(add -D to options: OPTIONS="-D --default-ulimit nofile=1024:4096")
+
+sudo service docker restart
+
+sudo start ecs
+
+logs in /var/log/docker
+
+
+scp ec2-user@172.31.19.215:/var/log/docker ./docker -i singapore-ecs-cluster-1.pem

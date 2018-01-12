@@ -30,7 +30,7 @@
 			</div>
 		</form>
 		<footer>
-				<%@ include file="/htx/footer.html"%>
+				<%@ include file="/htx/footer1.html"%>
 		</footer>
 	</body>
 </html>

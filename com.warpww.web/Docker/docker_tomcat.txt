@@ -48,15 +48,21 @@ RUN chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /op
 #RUN mv /tomcat.service /etc/systemd/system/tomcat.service
 
 # Create management interface users.
-# ADD docker_conf_tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
+ADD docker_conf_tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
 
 # Allow tomcat host-manager to accept connections from any host.
-# ADD docker_host-manager_META-INF_context.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
+ADD docker_host-manager_META-INF_context.xml /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
 # Allow tomcat manager to accept connections from any host.
-# ADD docker_manager_META-INF_context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
+ADD docker_manager_META-INF_context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
 
 EXPOSE 8080
+
+
+#**********************  ADD  **************************
+#** ADD warpweb warfile to tomcat /opt/tomcat/webapps **
+#*******************************************************
+ADD root.war /opt/tomcat/webapps/root.war
 
 #*************  Command to run Docker *********************************
 # docker run  --rm=true -t -i -d -p 8888:8080 --name warpweb warpweb  /usr/bin/sudo -u tomcat /opt/tomcat/bin/catalina.sh run
@@ -68,7 +74,7 @@ EXPOSE 8080
 # docker cp warpweb:/opt/tomcat/webapps/manager/ ./manager
 # docker cp warpweb:/opt/tomcat/webapps/host-manager/ ./host-manager
 # docker cp warpweb:/opt/tomcat/conf/ ./conf
-
+# run docker container interactively: docker exec -it 
 
 
 

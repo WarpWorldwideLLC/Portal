@@ -76,7 +76,7 @@
 	
 			<br>
 			<footer>
-					<%@ include file="/htx/footer.html"%>
+					<%@ include file="/htx/footer1.html"%>
 			</footer>
 			
 			 <script type="text/javascript">

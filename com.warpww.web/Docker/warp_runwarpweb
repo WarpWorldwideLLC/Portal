@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Running warpweb:latest"
+docker run  --rm=true -t -i -d -p 8888:8080 --name warpweb warpweb  /usr/bin/sudo -u tomcat /opt/tomcat/bin/catalina.sh run

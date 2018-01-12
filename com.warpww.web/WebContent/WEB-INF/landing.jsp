@@ -9,28 +9,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	    		<!-- 
-			<meta http-equiv="cache-control" content="max-age=0" />
-			<meta http-equiv="cache-control" content="no-cache" />
-			<meta http-equiv="expires" content="-1" />
-			<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-			<meta http-equiv="pragma" content="no-cache" />
- 			
- 			<link href="cssx/warp_custom.css" rel="stylesheet"/>
- 			<form method="post" action="/com.warpww.web/landing" enctype="multipart/form-data" name="landing" autocomplete="off">
- 			-->
-    			<link href="cssx/warp_custom.css" rel="stylesheet"/>
-    			<script src="jsx/warp_util.js"></script>
-	        <title>Welcome to WARP!</title>
+		<%@ include file="/htx/head.html"%>
+	    <title><fmt:message key="landing.page_title" /></title>
 	       
 
 	</head>
 	<body class="landingPage">
 		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
-			<a href="#openModal">Open Modal</a>
-			<input type="text" id="foo" name="foo" value="foo"/>
-			
+
 			<header>
 				<h1>
 					<br><label><fmt:message key="landing.label.title1" /></label> 
@@ -71,7 +57,7 @@
 			</div>
 			
 			<footer>
-					<%@ include file="/htx/footer.html"%>
+					<%@ include file="/htx/footer1.html"%>
 			</footer>
 		</form>
 	</body>
