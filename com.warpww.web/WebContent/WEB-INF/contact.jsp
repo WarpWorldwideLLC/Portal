@@ -6,11 +6,19 @@
     <head>
     		<%@ include file="/htx/head.html"%>
     </head>
-    
-
-<body>
+	<body>
+		<form>
+		      <div class="row">
+	            <div class="col-md-3" style="width:90%">
+	                <ul>
+	                    <h3><fmt:message key="contact.subject1" /></h3>
+	                    <p><fmt:message key="contact.text1" /><a href="mailto:warpcustomer@warpww.com"><fmt:message key="contact.mail_link" /></a><fmt:message key="about.text2" /></p>
+	                </ul>
+	            </div>
+	        </div>
+		</form>
 		<footer>
-        		<%@ include file="/htx/footer1.html"%>
-        	</footer>
-</body>
+	    		<%@ include file="/htx/footer1.html"%>
+	    	</footer>
+	</body>
 </html>
