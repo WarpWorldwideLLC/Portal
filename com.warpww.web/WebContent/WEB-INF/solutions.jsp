@@ -8,7 +8,7 @@
     </head>  
 
 <body>
-		<header>
+		<header class="row">
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>	
 		<form>
