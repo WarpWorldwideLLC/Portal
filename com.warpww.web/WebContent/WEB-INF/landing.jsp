@@ -10,9 +10,6 @@
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
-	    <title><fmt:message key="landing.page_title" /></title>
-	       
-
 	</head>
 	<body class="landingPage">
 		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">

@@ -1,16 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="com.warpww.web.filecounter.i18n.Contact" />
+<%@ include file="/htx/pagehead.html"%>
+<fmt:setBundle basename="com.warpww.web.i18n.solutions" />
 
 <!DOCTYPE html>
 <html>
     <head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="jsx/header.js"></script>
-        <title>About WARP</title>
+    		<%@ include file="/htx/head.html"%>
     </head>
     
 
@@ -64,8 +58,10 @@
                 <p>&copy; 2016-17 - WARP Worldwide, LLC</p>
             </footer>
         </div>
-        
-        <script src="jsx/carousel_run.js"></script>
+
 
 </body>
+		<footer>
+        		<%@ include file="/htx/footer1.html"%>
+        	</footer>
 </html>

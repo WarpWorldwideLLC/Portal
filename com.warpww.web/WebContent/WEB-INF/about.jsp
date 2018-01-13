@@ -5,8 +5,7 @@
 <html>
     <head>
 		<%@ include file="/htx/head.html"%>
-        <script src="jsx/header.js"></script>
-        <title><fmt:message key="about.page_title" /></title>
+        
     </head>
     
     <body>

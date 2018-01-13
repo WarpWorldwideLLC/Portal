@@ -1,22 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="com.warpww.web.filecounter.i18n.Contact" />
+<%@ include file="/htx/pagehead.html"%>
+<fmt:setBundle basename="com.warpww.web.i18n.mission" />
 
 <!DOCTYPE html>
 <html>
     <head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="jsx/header.js"></script>
-        <title>About WARP</title>
+    		<%@ include file="/htx/head.html"%>
     </head>
-          <script src="jsx/menu.js"></script>
-        <br><br><br/>
-        <script src="jsx/carousel.js"></script>
-
-
+	<body>
+		<form>
                 <div class="row">
 
                     <div class="col-md-3" style="width:90%">
@@ -71,39 +62,14 @@
                  </footer>
              </div>
                 
-        <script src="jsx/carousel_run.js"></script>
+   
                 
-                <script>window.twttr = (function(d, s, id) {
-                                        var js, fjs = d.getElementsByTagName(s)[0],
-                                        t = window.twttr || {};
-                                        if (d.getElementById(id)) return t;
-                                        js = d.createElement(s);
-                                        js.id = id;
-                                        js.src = "https://platform.twitter.com/widgets.js";
-                                        fjs.parentNode.insertBefore(js, fjs);
-                                        
-                                        t._e = [];
-                                        t.ready = function(f) {
-                                        t._e.push(f);
-                                        };
-                                        
-                                        return t;
-                                        }(document, "script", "twitter-wjs"));
-                </script>
-                
-                <script>
-                /*
-                     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                     
-                     ga('create', 'UA-90491270-1', 'auto');
-                     ga('send', 'pageview');
-                */
-                </script>
 
-<body>
 
-</body>
+
+		</form>
+		<footer>
+        		<%@ include file="/htx/footer1.html"%>
+        	</footer>
+	</body>
 </html>
