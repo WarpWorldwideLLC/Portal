@@ -10,11 +10,6 @@
     
     <body>
     		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
-			<!-- 
-	        <script src="jsx/menu.js"></script>
-	          <br><br><br/>
-	        <script src="jsx/carousel.js"></script>
-			-->
 	        <a><img src="imgx/consulting.jpg" title=<fmt:message key="about.image1" /> width="600" height="450" /></a>
 	        <div class="row">
 	            <div class="col-md-3" style="width:90%">	
