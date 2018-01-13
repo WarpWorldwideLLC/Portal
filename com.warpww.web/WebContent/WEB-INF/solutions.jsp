@@ -5,8 +5,7 @@
 <html>
     <head>
     		<%@ include file="/htx/head.html"%>
-    </head>
-    
+    </head>  
 
 <body>
 		<header>

@@ -7,7 +7,6 @@
 		<%@ include file="/htx/head.html"%>
         
     </head>
-    
     <body>
     		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
 	        <a><img src="imgx/consulting.jpg" title=<fmt:message key="about.image1" /> width="600" height="450" /></a>
