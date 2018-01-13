@@ -7,6 +7,9 @@
     		<%@ include file="/htx/head.html"%>
     </head>
 	<body>
+	    	<header class="row">
+			<%@ include file="/htx/headerbar1.html"%>
+		</header>
 		<form>
 		      <div class="row">
 	            <div class="col-md-3" style="width:90%">

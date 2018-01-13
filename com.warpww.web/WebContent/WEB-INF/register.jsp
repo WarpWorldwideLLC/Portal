@@ -17,7 +17,8 @@
         <script src="jsx/warp_util.js"></script>
     </head>
 <body>
-		<%@include  file="/htx/LanguageSelector.html" %>
+		<!--  		<%@include  file="/htx/LanguageSelector.html" %> -->
+		
 
         <form method="post" action="/com.warpww.web/register" enctype="multipart/form-data" name="registration" autocomplete="off">
         <div>

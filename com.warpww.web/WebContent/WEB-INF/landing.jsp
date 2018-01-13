@@ -28,7 +28,10 @@
 					<br><label><fmt:message key="landing.label.messageA2" /></label> 
 				</div>		
 	
-				<div id=login>
+				<div id="compBurst" class="centered">
+					<a href="camps"><img src="imgx/burst_camp.png" width="600" height="300" title=<fmt:message key="landing.image1" /> /></a>
+				</div>
+				<div id="login" style="display: none;">
 					<label><fmt:message key="landing.memberName" /></label><br/>
 					<input type="text" name="memberName" id="memberName" value=${param["memberName"]}>
 					<br/>

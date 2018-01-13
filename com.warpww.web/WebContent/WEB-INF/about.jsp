@@ -5,9 +5,11 @@
 <html>
     <head>
 		<%@ include file="/htx/head.html"%>
-        
     </head>
     <body>
+    		<header class="row">
+			<%@ include file="/htx/headerbar1.html"%>
+		</header>
     		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
 	        <a><img src="imgx/consulting.jpg" title=<fmt:message key="about.image1" /> width="600" height="450" /></a>
 	        <div class="row">

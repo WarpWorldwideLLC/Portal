@@ -5,6 +5,14 @@
   --main-bg-color: #1596a7;
 }
 
+# *************************************************************************
+# JSP Template 1
+# *************************************************************************
+.warpHeaderBar {
+	color: black;
+	background-color: red;
+	
+}
 
 
 # *************************************************************************
@@ -76,6 +84,21 @@ footer {
 	font-size: x-large;
 	text-align: center;
 }
+
+.campBurst {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 		
 #login {
 	display: block;
