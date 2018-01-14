@@ -60,13 +60,19 @@
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="campregistration" class="btn btn-primary">Pay in Full</a>
+  				<a href="campregistration?paymentmethod=full" class="btn btn-primary">Pay in Full</a>
 			</div>
 		</td>
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="campregistration" class="btn btn-primary">Pay Deposit</a>
+  				<a href="campregistration?paymentmethod=deposit" class="btn btn-primary">Pay Deposit</a>
+			</div>
+		</td>
+		<td>&nbsp;</td>
+		<td>
+			<div style=" margin-top: 1em;">
+  				<a href="requestinformation" class="btn btn-primary">Request More Information</a>
 			</div>
 		</td>
 	</tr>
@@ -74,31 +80,32 @@
 
 
 		
-<h4>Trip Details</h4><div></div>
-•ALL-INCLUSIVE PRICE* WARP Worldwide International Educational Camp Program is  proud to be all-inclusive. All courses, accommodation, meals, entrance tickets and guides, travel medical insurance are included. 
-*** Our price includes emergency cancellation to protect our attendees and their full family. If anyone does not want this option, he/she can get $150 discount.
-*** Attendees need to get their VISA. We can help to provide VISA application guidance and invitation letter.
-<br><br>
-ALL-INCLUSIVE* PRICE Includes 
-<ul>
-	<li>18-20 hours of classroom-based tuition per week</li>
-	<li>A modern, comfortable On-Campus accommodation hotel in double rooms (en-suite kitchen, refrigerator, microwave, shower/bath, TV, internet access, air conditioning, with the beautiful campus lake view)</li>
-	<li>One suite for a group leader (discount $1,000)</li>
-	<li>All registration and administration fees</li>
-	<li>Course materials, textbooks and end-of-course certificates</li>
-	<li>Round-trip flight tickets</li>
-	<li>Travel Medical Insurance with evacuation benefit</li>
-	<li>Cancellation Insurance to cover your whole family</li>
-	<li>Tour guides and entrance tickets are included.</li>
-	<li>All meals at camps cafeteria not including alcohol</li>
-	<li>Welcome event and orientation tour</li>
-	<li>Integrated cultural and experiential learning program including one half-day excursion per week, two full-day excursions and one evening activities</li>
-	<li>Transportation from/to XIY airport</li>
-</ul>
-
-
 <div>
-<label>What's Included</label>
+	<h4>Trip Details - What's Included</h4>
+	<h4>ALL-INCLUSIVE PRICE</h4>
+	WARP Worldwide is proud to present an all-inclusive price for the International Educational Camp Program. All courses, accommodation, meals, entrance tickets and guides, travel and medical insurance are included in the package price.  <br>
+	*** Our price includes emergency cancellation to protect our attendees and their full family. If anyone does not want this option, it can be waived for a $150.00 discount on the pacakge price. <br>
+	*** Attendees need to have their own VISA. WARP/XAIU can help to provide VISA application guidance and invitation letter.<br>
+	<br><br>
+	<h4>ALL-INCLUSIVE PRICE Includes:</h4>
+	<ul class="baselist">
+		<li> - 18-20 hours of classroom-based tuition per week</li><br>
+		<li> - A modern, comfortable On-Campus accommodation hotel in double rooms (en-suite kitchen, refrigerator, microwave, shower/bath, TV, internet access, air conditioning, with the beautiful campus lake view)</li><br>
+		<li> - One suite for a group leader (discount $1,000)</li><br>
+		<li> - All registration and administration fees</li><br>
+		<li> - Course materials, textbooks and end-of-course certificates</li><br>
+		<li> - Round-trip flight tickets</li><br>
+		<li> - Travel Medical Insurance with evacuation benefit</li><br>
+		<li> - Cancellation Insurance to cover your whole family</li><br>
+		<li> - Tour guides and entrance tickets are included.</li><br>
+		<li> - All meals at camps cafeteria not including alcohol</li><br>
+		<li> - Welcome event with dinner and orientation tour</li><br>
+		<li> - Integrated cultural and experiential learning program including one half-day excursion per week, two full-day excursions and one evening activities</li><br>
+		<li> - Transportation from/to XIY airport</li><br>
+	</ul>
+</div>
+<br><br>
+<div>
 
 
 </div>
