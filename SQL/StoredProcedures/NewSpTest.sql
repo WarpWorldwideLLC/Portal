@@ -14,6 +14,20 @@ SET EntityNameTypeID = 2
 WHERE ID > 0
 ;
 
+CALL saveCampData('{"AuID": 1, "IuID": 1, "travelerName": "John Arp", "parentName": "Esther Myers", "travelerAddress": "Some Address", "travelerPrimaryPhoneNumber": "Phone1", "travelerAlternatePhoneNumber": "Phone2", 
+		"travelerEMailAddress": "EmailAddress", "travelerGender": "Male", "travelerDateOfBirth": "01/01/1901", "travelerComments": "Some comments.", "paymentType": "full", 
+        "paymentAmountText": "$ 5,990.00", "paymentAmount": "599000", "paymentDescription": "2018 Summer Camp", "paymentNotes": "Payment Succeeded."}');
+
+SELECT * FROM CampData;
+
+CALL saveStripeCampData('{"AuID": 1, "IuID": 1, "stripeToken": "tok_1BkGAZDm8rfcoBsJt8IWbrxr", "stripeTokenType": "card", "stripeEmail": "john.arp@warpww.com", "stripeBillingName": "John Arp", "stripeBillingAddressCountry": "United States", "stripeBillingAddressCountryCode": "US", 
+		"stripeBillingAddressZip": "9999", "stripeBillingAddressLine1": "steeet", "stripeBillingAddressCity": "coty"}');
+
+
+SELECT * FROM StripeCampData;
+
+
+
 DELETE FROM EntityName WHERE ID = 12;
 
 /* 
