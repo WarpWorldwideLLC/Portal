@@ -57,11 +57,7 @@ public class payment extends HttpServlet {
 			
 			StripeSource source = new StripeSource(sourceJSON);
 			
-			Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB";
-			/* Test & Live Keys
-			  Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB"
-			  Stripe.apiKey = "sk_live_o8BwAQAIAlxQiJlanq8fdABC"
-			*/
+			Stripe.apiKey = "sk_test_xxxxxxxxxxxxxxxxxxxxxxxx";
 			
 			// https://stripe.com/docs/sources/alipay
 			

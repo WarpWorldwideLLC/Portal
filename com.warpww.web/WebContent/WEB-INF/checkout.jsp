@@ -14,7 +14,7 @@
 
 		  <script
 			  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-			  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
+			  data-key="pk_test_xxxxxxxxxxxxxxxxxxxxxxxx"
 			  data-name="WARP Worldwide, LLC"
 			  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 			  data-locale="auto"
@@ -29,17 +29,6 @@
 		>
 		</script>
 		
-				 	  
-				 	  
-
-		<!-- Test & Live Keys
-		  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
-		  data-key="pk_live_lPPqJikYmHwl2MUVZWMd76uz"
-		  
-		  			data-zip-code="true"
-		  	  data-billing-address="true"
-		  
-		 -->
 		<input type="text" id="payorName" name= "payorName" value='<%=request.getAttribute("payorName")%>' />
 		<input type="email" id="emailAddress" name = "emailAddress" value='<%=request.getAttribute("emailAddress")%>'>
 		<input type="text" id="paymentAmount" name = "paymentAmount" value='<%=request.getAttribute("paymentAmount")%>'>

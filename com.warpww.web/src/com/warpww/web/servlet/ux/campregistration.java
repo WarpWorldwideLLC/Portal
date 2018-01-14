@@ -17,6 +17,7 @@ import com.stripe.exception.AuthenticationException;
 import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
+import com.warpww.pymt.hsc;
 import com.warpww.util.Util;
 
 /**
@@ -38,6 +39,8 @@ public class campregistration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Parameter Value: " + request.getParameter("paymentmethod"));
+		request.setAttribute("paymentPublicKey", hsc.pk_test);
+		System.out.println("Public Key: " + hsc.pk_test);
 		
 		switch(request.getParameter("paymentmethod") + "") {
 			case "deposit":
@@ -67,14 +70,16 @@ public class campregistration extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Util.printParams("checkout.doPost", request);
 		
+		processPayment(request, response);
+
+	}
+	
+	private boolean processPayment(HttpServletRequest request, HttpServletResponse response) {
+		boolean returnValue = false;
 		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
-		Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB";
-		/* Test & Live Keys
-		  Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB"
-		  Stripe.apiKey = "sk_live_o8BwAQAIAlxQiJlanq8fdABC"
-		*/
+		Stripe.apiKey = hsc.sk_test;
 		
 		// Token is created using Checkout or Elements!
 		// Get the payment token ID submitted by the form:
@@ -94,6 +99,7 @@ public class campregistration extends HttpServlet {
 		initialMetadata.put("metadata", metadata);
 		params.put("metadata", initialMetadata);
 
+		// Create the charge and process the payment. 
 		try {
 			Charge charge = Charge.create(params);
 			System.out.println("Payment Succeeded!");
@@ -101,6 +107,8 @@ public class campregistration extends HttpServlet {
 				| APIException e) {
 			e.printStackTrace();
 		}
+		
+		return returnValue;
 	}
 
 }

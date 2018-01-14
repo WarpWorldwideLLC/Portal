@@ -59,11 +59,7 @@ public class checkout extends HttpServlet {
 		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
-		Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB";
-		/* Test & Live Keys
-		  Stripe.apiKey = "sk_test_iYDame9B8KD9g5b5SOQr3FlB"
-		  Stripe.apiKey = "sk_live_o8BwAQAIAlxQiJlanq8fdABC"
-		*/
+		Stripe.apiKey = "sk_test_xxxxxxxxxxxxxxxxxxxxxxxx";
 		
 		// Token is created using Checkout or Elements!
 		// Get the payment token ID submitted by the form:

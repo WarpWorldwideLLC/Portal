@@ -11,8 +11,8 @@
 				try {
 					
 					// alert("Running!");
-					var stripe = Stripe('pk_test_by26sehj2q4BVMDuUjCvfHg6');
-
+					var stripe = Stripe('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx');
+	
 					var sourceData = {type: 'alipay', 
 										amount: 500, 
 										currency: 'usd', 

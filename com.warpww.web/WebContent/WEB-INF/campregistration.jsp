@@ -42,7 +42,7 @@
 				<input type="text" id="travelerDateOfBirth" name="travelerDateOfBirth" size="40" required><br>
 
 				Comments:<br> 
-				<textarea id=""travelerComments"" name="travelerComments" cols="43" rows="10"  aria-required="true" aria-invalid="false"></textarea><br>
+				<textarea id="travelerComments" name="travelerComments" cols="43" rows="10"  aria-required="true" aria-invalid="false"></textarea><br>
 
 				Payment Type:<br>
 				<input type="text" id="paymentType" name="paymentType" value='${paymentType}' size="40" readonly="readonly"><br>
@@ -56,7 +56,7 @@
 				
 		    		<script
 					  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-					  data-key="pk_test_by26sehj2q4BVMDuUjCvfHg6"
+					  data-key='${paymentPublicKey}'
 					  data-name="WARP Worldwide, LLC"
 					  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 					  data-locale="auto"
