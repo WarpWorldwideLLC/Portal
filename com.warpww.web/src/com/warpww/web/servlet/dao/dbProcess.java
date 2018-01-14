@@ -117,6 +117,10 @@ public class dbProcess extends HttpServlet {
 	            		break;
 	            case "ValidateSignon": spName = "validateSignon";
 	            		break;
+	            case "SaveCampData":  spName = "saveCampData";
+                		break;
+	            case "SaveStripeCampData":  spName = "saveStripeCampData";
+                		break;
 	            default: spName = "Invalid_Command";
 	                     break;
 	        }

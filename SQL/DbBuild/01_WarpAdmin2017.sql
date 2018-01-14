@@ -596,7 +596,54 @@ CREATE TABLE Notification (
     MessageCode							NVARCHAR(10),
     MessageText							NVARCHAR(255)
     );
-    
+
+DROP TABLE IF EXISTS CampData;
+CREATE TABLE CampData (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    travelerName						NVARCHAR(512), 
+    parentName							NVARCHAR(512),
+    travelerAddress						NVARCHAR(512),
+    travelerPrimaryPhoneNumber			NVARCHAR(512),
+    travelerAlternatePhoneNumber		NVARCHAR(512),
+    travelerEMailAddress				NVARCHAR(512),
+    travelerGender						NVARCHAR(512),
+    travelerDateOfBirth					NVARCHAR(512),
+    travelerComments					NVARCHAR(1024),
+    paymentType							NVARCHAR(512),
+    paymentAmountText					NVARCHAR(512),
+    paymentAmount						NVARCHAR(512),
+    paymentDescription					NVARCHAR(1024),
+    paymentNotes						NVARCHAR(1024)
+);
+
+DROP TABLE IF EXISTS StripeCampData;
+CREATE TABLE StripeCampData (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    stripeToken							NVARCHAR(512), 
+    stripeTokenType						NVARCHAR(512),
+    stripeEmail							NVARCHAR(512),
+    stripeBillingName					NVARCHAR(512),
+    stripeBillingAddressCountry			NVARCHAR(512),
+    stripeBillingAddressCountryCode		NVARCHAR(512),
+    stripeBillingAddressZip				NVARCHAR(512),
+    stripeBillingAddressLine1			NVARCHAR(512),
+    stripeBillingAddressCity			NVARCHAR(512)
+);
+
 -- EntitySolution shows which Entities have access to which Solutions, and which billing method is assigned.     
  DROP TABLE IF EXISTS XXit;
  CREATE TABLE XXit (
