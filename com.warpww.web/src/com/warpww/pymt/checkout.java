@@ -32,7 +32,6 @@ public class checkout extends HttpServlet {
      */
     public checkout() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,13 +39,12 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		request.setAttribute("payorName", "John Arp");
 		request.setAttribute("emailAddress", "jarp@ansebbian.com");
 		request.setAttribute("paymentAmount", "500");
 		request.setAttribute("paymentDescription", "A Test transaction");
 	
-		Util.printParams("checkout.doGet", request);
+		// Util.printParams("checkout.doGet", request);
 	
 		request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 	}
@@ -56,7 +54,7 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Util.printParams("checkout.doPost", request);
+		// Util.printParams("checkout.doPost", request);
 		
 		
 		// Set your secret key: remember to change this to your live secret key in production

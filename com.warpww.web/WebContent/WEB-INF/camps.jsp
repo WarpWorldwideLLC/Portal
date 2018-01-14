@@ -10,8 +10,8 @@
     		<header class="row">
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
-		<form>
-		
+		<form method="post" action="/com.warpww.web/campregistration" name="camps" autocomplete="off">>
+			<button id="btnCampRegistration" name="btnCampRegistration" >Register for the Trip!</button>
 		</form>
 		<footer>
 				<%@ include file="/htx/footer1.html"%>

@@ -12,9 +12,7 @@
 					
 					// alert("Running!");
 					var stripe = Stripe('pk_test_by26sehj2q4BVMDuUjCvfHg6');
-					// alert(stripe);
-					// var sourceData = "foo";
-					/* */
+
 					var sourceData = {type: 'alipay', 
 										amount: 500, 
 										currency: 'usd', 
@@ -59,46 +57,49 @@
 			}
 			
 		</script>
-	    <title>WARP Worldwide</title>
 	</head>
 	<body>
-		<header>
-			<h1>
-				<br><label><fmt:message key="label.title1" /></label> 
-				<br><label><fmt:message key="label.title2" /></label> 
-			</h1>
-
+    		<header class="row">
+			<%@ include file="/htx/headerbar1.html"%>
 		</header>
-		<div class="wrapper">
-			<!-- Sidebar -->
-			<%@ include file="/htx/sidebar.html"%>
-			
-			<!-- Page Content -->
-			<form id="payment" name="payment" method="post">
+		<form id="payment" name="payment" method="post">
 			<input type="hidden" id="source" name="source" value="foo">
-
-			</form>
-		    <div id="content">
-				
-							<button id="customButton" onclick="createSource();">Purchase</button>
-		    </div>
-		    
-		</div>
-
-		<footer>
-				<%@ include file="/htx/footer1.html"%>
-		</footer>
+			<div class="form-row">
+				<fieldset>
+			       <legend>Selecting Payment Type</legend>
+			       <p>
+			          <label>Payment Type: </label>            
+			          <input type = "radio"
+			                 name = "paymentType"
+			                 id = "typeCreditCard"
+			                 value = "CreditCard"
+			               	 />
+			          <label for = "typeCreditCard">Credit Card</label>
+			          
+			          <input type = "radio"
+			                 name = "paymentType"
+			                 id = "typeAliPay"
+			                 value = "AliPay" 
+			                 />
+			          <label for = "typeAliPay">AliPay</label>
+			        </p>       
+			      </fieldset>     
+			
+			    <label for="card-element">
+			      Credit or debit card
+			    </label>
+			    <div id="card-element">
+			      <!-- a Stripe Element will be inserted here. -->
+			    </div>
+		
+			    <!-- Used to display Element errors -->
+			    <div id="card-errors" role="alert"></div>
+	  			</div>
+			<br>
+			<button id="customButton" onclick="createSource();">Purchase</button>
+		</form>
+	<footer>
+		<%@ include file="/htx/footer1.html"%>
+	</footer>
 	</body>
 </html>
-
-<!--  
-
-{"source":
-
-{"id":"src_1BfeqSDm8rfcoBsJlVM3nGhv","object":"source","amount":500,"client_secret":"src_client_secret_C3mP5YgzHY7xWnRINd7IQOyQ","created":1514857536,"currency":"usd","flow":"redirect","livemode":false,"metadata":{},"owner":{"address":null,"email":null,"name":null,"phone":null,"verified_addre
-ss":null,"verified_email":null,"verified_name":null,"verified_phone":null},"redi
-rect":{"failure_reason":null,"return_url":"http://localhost:8080/com.warpww.web/alipay","status":"pending","url":"https://hooks.stripe.com/redirect/authenticate/src_1BfeqSDm8rfcoBsJlVM3nGhv?client_secret=src_client_secr
-et_C3mP5YgzHY7xWnRINd7IQOyQ"},"statement_descriptor":null,"status":"pending","ty
-pe":"alipay","usage":"single_use","alipay":{"statement_descriptor":null,"native_url":null,"data_string":null}}}
-
- -->
