@@ -117,7 +117,7 @@ footer {
 
 }
 
-ul {
+ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -262,11 +262,12 @@ a, a:hover, a:focus {
     color: #fff;
     background: #6d7fcc;
 }
-ul ul a {
+
+ul_x ul_x a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
-}
+ }
 
 # *************************************************************************
 # Modal Dialog section

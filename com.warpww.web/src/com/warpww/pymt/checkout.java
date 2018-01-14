@@ -54,7 +54,7 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Util.printParams("checkout.doPost", request);
+		Util.printParams("checkout.doPost", request);
 		
 		
 		// Set your secret key: remember to change this to your live secret key in production
