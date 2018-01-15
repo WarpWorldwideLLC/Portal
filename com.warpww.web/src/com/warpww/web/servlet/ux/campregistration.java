@@ -71,7 +71,7 @@ public class campregistration extends HttpServlet {
 				request.setAttribute("paymentType", "Deposit");
 				request.setAttribute("paymentAmountText", "$ 150.00");
 				request.setAttribute("paymentAmount", "15000");
-				request.setAttribute("paymentNotes", "Deposits are not refundable. Full Payment must be made before March 1st, 2018 or you will be removed from the trip and your deposit will not be returned.");
+				request.setAttribute("paymentNotes", "Deposits are not refundable. Full Payment must be made before March 1st, 2018 or your spot will not be guaranteed.");
 				request.setAttribute("paymentDescription", "XAIU Chinese Culture Summer Trip Deposit" );
 				break;
 			case "full":

@@ -1,0 +1,33 @@
+# Redirects any requests on port 80 to port 8080 (where Tomcat is listening)
+service tomcat-http
+{
+        disable                 = no
+        flags                   = REUSE
+        wait                    = no
+        user                    = root
+        socket_type         = stream
+        protocol                = tcp
+        port                    = 80
+        redirect                = localhost 8080
+        log_on_success  -= PID HOST DURATION EXIT
+ 
+        #per_source = UNLIMITED
+        #instances = UNLIMITED
+}
+ 
+# Redirects any requests on port 443 to port 8443 (where Tomcat is listening)
+service tomcat-https
+{
+        disable                 = no
+        flags                   = REUSE
+        wait                    = no
+        user                    = root
+        socket_type         = stream
+        protocol                = tcp
+        port                    = 443
+        redirect                = localhost 8443
+        log_on_success  -= PID HOST DURATION EXIT
+ 
+        #per_source = UNLIMITED
+        #instances = UNLIMITED
+}
