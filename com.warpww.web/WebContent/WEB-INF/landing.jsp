@@ -12,7 +12,7 @@
 		<%@ include file="/htx/head.html"%>
 	</head>
 	<body class="landingPage">
-		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
+		<form method="post" action="landing" name="landing" autocomplete="off">
 
 			<header>
 				<h1>

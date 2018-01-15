@@ -10,7 +10,7 @@
     		<header class="row">
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
-    		<form method="post" action="/com.warpww.web/landing" name="landing" autocomplete="off">
+    		<form method="post" action="about" name="about" autocomplete="off">
 	        <a><img src="imgx/consulting.jpg" title=<fmt:message key="about.image1" /> width="600" height="450" /></a>
 	        <div class="row">
 	            <div class="col-md-3" style="width:90%">	

@@ -64,6 +64,7 @@ public class landing extends HttpServlet {
 		{
 			validated = false;
 			System.out.println(ex.toString());
+			ex.printStackTrace();
 		}
 		
 		if(validated) {
@@ -105,6 +106,7 @@ public class landing extends HttpServlet {
 		} catch (Exception ex)
 		{
 			System.out.println(ex.toString());
+			ex.printStackTrace();
 			returnValue = false;
 		}
 		

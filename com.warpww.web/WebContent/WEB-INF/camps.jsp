@@ -10,7 +10,7 @@
     		<header class="row">
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
-		<form method="post" action="/com.warpww.web/campregistration" name="camps" autocomplete="off">
+		<form method="post" action="campregistration" name="camps" autocomplete="off">
 <table style="padding: 2">
 <tr>
 <td>
