@@ -72,7 +72,8 @@
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="requestinformation" class="btn btn-primary">Request More Information</a>
+  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
 			</div>
 		</td>
 	</tr>
