@@ -45,7 +45,7 @@
 	Xi'an, China
 	<br>
 	<h4>Description Xi'an</h4>
-	WARP Worldwide is a U.S. based company in Omaha, partnering with one of the largest private universities in China to offer this extraordinary 17-day international educational camp opportunity. Xi'an International University is located in the heart of China’s most historic city, Xi'an. Xi'an is often called the birthplace of Chinese civilization. The history and cultural significance of Xi'an stretches through China's ancient past and into its bright future.
+	WARP Worldwide is a U.S. based company in Omaha, partnering with one of the largest private universities in China to offer this extraordinary 17-day international educational camp opportunity. Xi'an International University is located in the heart of China's most historic city, Xi'an. Xi'an is often called the birthplace of Chinese civilization. The history and cultural significance of Xi'an stretches through China's ancient past and into its bright future.
 </td>
 </tr>
 </table>
@@ -84,7 +84,7 @@
 <div>
 	<h4>Trip Details - What's Included</h4>
 	<h4>ALL-INCLUSIVE PRICE</h4>
-	WARP Worldwide is proud to present an all-inclusive price for the International Educational Camp Program. All courses, accommodation, meals, entrance tickets and guides, travel and medical insurance are included in the package price.  <br>
+	WARP Worldwide is proud to present an all-inclusive price for the International Educational Camp Program. All courses, accommodation, meals, entrance tickets and guides, travel and medical insurance are included in the package price.  <br>
 	*** Our price includes emergency cancellation to protect our attendees and their full family. If anyone does not want this option, it can be waived for a $150.00 discount on the pacakge price. <br>
 	*** Attendees need to have their own VISA. WARP/XAIU can help to provide VISA application guidance and invitation letter.<br>
 	<br><br>

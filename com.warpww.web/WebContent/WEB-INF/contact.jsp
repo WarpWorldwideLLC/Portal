@@ -18,10 +18,10 @@
 	                    <p><fmt:message key="contact.text1" /><a href="mailto:warpcustomer@warpww.com"><fmt:message key="contact.mail_link" /></a><fmt:message key="about.text2" /></p>
 	                </ul>
 	            </div>
+			</div>
 			<div style=" margin-top: 1em;">
   				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
   				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Contact WARP</a>
-			</div>
 			</div>
 		</form>
 		<footer>

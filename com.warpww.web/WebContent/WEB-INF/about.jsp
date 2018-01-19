@@ -7,36 +7,56 @@
 		<%@ include file="/htx/head.html"%>
     </head>
     <body>
-    		<header class="row">
+    		<header class="row" class="col-md-3" style="width:90%">
 			<%@ include file="/htx/headerbar1.html"%>
+			<hr/>
 		</header>
     		<form method="post" action="about" name="about" autocomplete="off">
-	        <a><img src="imgx/consulting.jpg" title=<fmt:message key="about.image1" /> width="600" height="450" /></a>
-	        <div class="row">
-	            <div class="col-md-3" style="width:90%">	
-	                    <h2><fmt:message key="about.subject1" /></h2>
-	                    <p><fmt:message key="about.paragraph1" />
-	                    <br/><br>
-	                    <div class="subnav">
-	                        <h3><fmt:message key="about.subject2" /></h3>
-	                        <p><fmt:message key="about.paragraph2" /></p>
-	                        <br>
-	                        
-	                        <h3><fmt:message key="about.gracie_name" /></h3>
-	                        <h4><fmt:message key="about.gracie_title" /></h4>
-	                        <p><fmt:message key="about.gracie_bio" />
-	                        </p>
-	                        <br>
-	                        
-	                        <h3><fmt:message key="about.johnny_name" /></h3>
-	                        <h4><fmt:message key="about.johnny_title" /></h4>
-	                        <p><fmt:message key="about.johnny_bio1" />
-	                        <p><fmt:message key="about.johnny_bio2" />
-	                        <p>
-	                        <br>	                        
-	                    </div>	                   
-	            </div>
+    		        
+	        	<div id="vision" class="col-md-3" style="width:90%">
+				<h2><fmt:message key="vision.title" /></h2><br>
+				<h4><font size="5" color="red"> <i><fmt:message key="vision.vision_statement" /> </i> </font> </h4>
+				<br/>
+				<p><fmt:message key="vision.text1" /></p>
+				<p><fmt:message key="vision.text2" /></p>
+				<br><br>
+			</div>
+	        <div id="mission" class="col-md-3" style="width:90%">
+	       		<h2><fmt:message key="mission.title" /></h2><br>
+				<h4> <i><fmt:message key="mission.mission_statement" /> </i> </font> </h4>
+				<br/>
+				<p><fmt:message key="mission.text1" /></p>
+				<p><fmt:message key="mission.text2" /></p>
+				<p><fmt:message key="mission.text3" /></p>
+				<p><fmt:message key="mission.text4" /></p>
+	        		<br><br>
+	        	</div>
+	        <div id="values" class="col-md-3" style="width:90%">
+	        		<h2><fmt:message key="values.title" /></h2>
+				<br/>
+				<ol>
+					<li style="border-right: medium none;"><fmt:message key="values.principle1" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle2" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle3" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle4" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle5" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle6" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle7" /></li><br>
+					<li style="border-right: medium none;"><fmt:message key="values.principle8" /></li><br>
+				</ol>
+				<br><br>
 	        </div>
+	        
+	        	<div id="warp_team" class="col-md-3" style="width:90%">
+				<h2><fmt:message key="team.title" /></h2><br>
+				<p><fmt:message key="team.paragraph1" /></p>
+				<p><fmt:message key="team.paragraph2" /></p>
+				<p><fmt:message key="team.paragraph3" /></p>
+				<br/><br>
+	        </div>
+	        
+	        
+	        
         </form>
          <footer>
          		<%@ include file="/htx/footer1.html"%>

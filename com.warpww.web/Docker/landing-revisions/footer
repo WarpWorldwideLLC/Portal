@@ -1,0 +1,5 @@
+		<li><a style="display:none;" href="partner"><fmt:message key="footer1.href.partner" /></a>
+		<li><a style="display:none;" href="careers"><fmt:message key="footer1.href.careers" /></a>
+		<li><a style="display:none;" href="support"><fmt:message key="footer1.href.support" /></a>
+		<li><a style="display:none;" href="landing"><fmt:message key="footer1.href.login" /></a>
+		<li><a style="display:none;" href="register"><fmt:message key="footer1.href.register" /></a>	

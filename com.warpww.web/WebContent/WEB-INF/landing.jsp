@@ -14,7 +14,7 @@
 	<body class="landingPage">
 		<form method="post" action="landing" name="landing" autocomplete="off">
 
-			<header>
+			<header class="warpHeader2">
 				<h1>
 					<br><label><fmt:message key="landing.label.title1" /></label> 
 					<br><label><fmt:message key="landing.label.title2" /></label> 
@@ -22,10 +22,9 @@
 	
 			</header>
 	
-			<section id="content">
+			<section id="content" class="content">
 				<div id="sideContent">	
-					<br><label><fmt:message key="landing.label.messageA1" /></label> 
-					<br><label><fmt:message key="landing.label.messageA2" /></label> 
+				&nbsp
 				</div>		
 	
 				<div id="compBurst" class="centered">
@@ -41,7 +40,6 @@
 					<button type="submit" id="validateSignOn" value="validateSignon" >Sign In</button><br>
 					<a href="register">Not a WARP member? Membership is free, register now!</a><br/>
 					<a href="passphrasereminder">Forgot your Passphrase or Member Name?</a><br/>
-					
 	       		</div>
 			</section>
 			<br>
