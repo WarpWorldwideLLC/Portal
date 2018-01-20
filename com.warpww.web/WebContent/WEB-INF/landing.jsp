@@ -1,9 +1,4 @@
-<%@page trimDirectiveWhitespaces="true"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<%@ include file="/htx/pagehead.html"%>
 <fmt:setBundle basename="com.warpww.web.i18n.landing" />
 
 <!DOCTYPE html>
@@ -16,15 +11,20 @@
 
 			<header class="warpHeader2">
 				<h1>
-					<br><label><fmt:message key="landing.label.title1" /></label> 
-					<br><label><fmt:message key="landing.label.title2" /></label> 
+					<br><label><fmt:message key="landing.label.title1" /></label>
 				</h1>
-	
+					<div class="carousel-div">
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message1" /></label></a></h1> 
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message2" /></label></a></h1> 
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message3" /></label></a></h1> 
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message4" /></label></a></h1> 
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message5" /></label></a></h1> 
+						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message6" /></label></a></h1> 
+					</div>
 			</header>
 	
 			<section id="content" class="content">
 				<div id="sideContent">	
-				&nbsp
 				</div>		
 	
 				<div id="compBurst" class="centered">
@@ -44,19 +44,11 @@
 			</section>
 			<br>
 			
-	
-			<div id="openModal" class="modalDialog">
-				<div>
-					<a href="#close" title="Close" class="close">X</a>
-					<h2>Modal Box</h2>
-					<p>This is a sample modal box that can be created using the powers of CSS3.</p>
-					<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
-				</div>
-			</div>
 			
 			<footer>
 					<%@ include file="/htx/footer1.html"%>
 			</footer>
+			<script src="jsx/carousel_run.js"></script>
 		</form>
 	</body>
 </html>

@@ -15,6 +15,10 @@
 }
 
 
+.warpHeader2 {
+	color: gold;
+}
+
 hr {
     display: block;
     height: 1px;
@@ -200,4 +204,37 @@ li a {
     text-decoration: none;
 }
 
+/***************************************************************/
+/*                     Carousel                                */
+/***************************************************************/
+.mySlides {
+	color: gold;
+}
+
+.carousel-div {
+    max-width:900px;
+    max-height:500px;
+    margin:auto;
+    margin-top:16px!important;
+    margin-bottom:16px!important;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"]
+{
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none
+    }
+}
 

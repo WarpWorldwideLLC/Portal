@@ -16,13 +16,6 @@
 			<fmt:message key="solutions.p1" />
 			<br><br/>
 			
-			<div id="a" class="row">
-				<div id="1" class="block">Test</div>
-				<div id="2" class="block">Test</div>
-				<div id="3" class="block">Test</div>
-			</div>
-			
-			
 			<div id="solution_panel" class="row" style="width: 90%; vertical-align: text-top;">
 		        <div id="warp_sol" class="block" style="width: 30%; vertical-align: text-top;  background-color: yellow;">
 		            <div >
@@ -87,7 +80,6 @@
 		        			<h4><fmt:message key="warp_vega.p3.0" /></h4>
 		        			<div style="margin-left: 25px;">
 		        				<fmt:message key="warp_vega.p3.1" /><br><br>
-		        				<fmt:message key="warp_vega.p2.2" /><br>
 		        				<img src="imgx/what_we_offer.png" style="max-width: 100%; max-height: 100%;" alt="<fmt:message key="warp_vega.p2.0.1" />" /><br>
 		        			</div>
 		        			

@@ -85,13 +85,13 @@
 	<h4>Trip Details - What's Included</h4>
 	<h4>ALL-INCLUSIVE PRICE</h4>
 	WARP Worldwide is proud to present an all-inclusive price for the International Educational Camp Program. All courses, accommodation, meals, entrance tickets and guides, travel and medical insurance are included in the package price.  <br>
-	*** Our price includes emergency cancellation to protect our attendees and their full family. If anyone does not want this option, it can be waived for a $150.00 discount on the pacakge price. <br>
+	*** Our price includes emergency cancellation to protect our attendees and their full family. If anyone does not want this option, it can be waived for a $150.00 discount on the package price. <br>
 	*** Attendees need to have their own VISA. WARP/XAIU can help to provide VISA application guidance and invitation letter.<br>
 	<br><br>
 	<h4>ALL-INCLUSIVE PRICE Includes:</h4>
 	<ul class="baselist">
 		<li> - 18-20 hours of classroom-based tuition per week</li><br>
-		<li> - A modern, comfortable On-Campus accommodation hotel in double rooms (en-suite kitchen, refrigerator, microwave, shower/bath, TV, internet access, air conditioning, with the beautiful campus lake view)</li><br>
+		<li> - A modern, comfortable On-Campus accommodation hotel in double rooms (in-suite kitchen, refrigerator, microwave, shower/bath, TV, internet access, air conditioning, with the beautiful campus lake view)</li><br>
 		<li> - One suite for a group leader (discount $1,000)</li><br>
 		<li> - All registration and administration fees</li><br>
 		<li> - Course materials, textbooks and end-of-course certificates</li><br>

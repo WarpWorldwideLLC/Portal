@@ -23,7 +23,7 @@
 			</div>
 	        <div id="mission" class="col-md-3" style="width:90%">
 	       		<h2><fmt:message key="mission.title" /></h2><br>
-				<h4> <i><fmt:message key="mission.mission_statement" /> </i> </font> </h4>
+				<h4><i><fmt:message key="mission.mission_statement" /></i></h4>
 				<br/>
 				<p><fmt:message key="mission.text1" /></p>
 				<p><fmt:message key="mission.text2" /></p>

@@ -1,0 +1,1 @@
+find /path/to/srcdir -name '*.txt' | cpio -pdm /path/to/destdir
