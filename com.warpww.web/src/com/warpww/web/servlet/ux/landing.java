@@ -47,17 +47,17 @@ public class landing extends HttpServlet {
 		
 		//Util.printParams("landing.doPost", request);
 		
+		// if(str != null && !str.isEmpty())
 		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
 		try {
-			if(request.getParameter("memberName").trim() + "" != "")
+			if(!request.getParameter("memberName").trim().isEmpty() && request.getParameter("memberName").trim() != null )
 			{
-				if(request.getParameter("passPhrase").trim() + "" != "")
+				if(!request.getParameter("passPhrase").trim().isEmpty() && request.getParameter("passPhrase").trim() != null)
 				{ 
 					String passphraseHash = Password.createHash(request.getParameter("passPhrase"));
 					request.setAttribute("passphraseHash", passphraseHash);
+					validated = validateSignon(request, response);
 				}
-				
-				validated = validateSignon(request, response);
 			}
 			
 		} catch (Exception ex)

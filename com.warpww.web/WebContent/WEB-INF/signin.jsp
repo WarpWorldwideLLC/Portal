@@ -10,7 +10,6 @@
     <head>
     		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width, initial-scale=1.0" name="viewport">
         <script src="jsx/header.js"></script>
-            <meta charset="utf-8" />
 
     <title>Sign In and Start Reaching for the Stars with WARP!</title>
     <link href="cssx/bootstrap.css" rel="stylesheet"/>
