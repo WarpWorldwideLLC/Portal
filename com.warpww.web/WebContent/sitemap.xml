@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://warpww.com/</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://warpww.com/camps</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://warpww.com/passphrasereminder</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://warpww.com/about</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://warpww.com/contact</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://warpww.com/solutions</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://warpww.com/landing</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://warpww.com/filx/CampGuide.pdf</loc>
+  <lastmod>2018-01-13T19:59:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://warpww.com/campregistration?paymentmethod=full</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://warpww.com/campregistration?paymentmethod=deposit</loc>
+  <lastmod>2018-01-20T05:01:19+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

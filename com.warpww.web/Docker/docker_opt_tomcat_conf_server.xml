@@ -70,11 +70,11 @@
                connectionTimeout="20000"
                redirectPort="8443" />
     <!-- A "Connector" using the shared thread pool-->
-    <!--
+    <!-- Changed redirectPort from 8443 to 443 to support SSL Only connetions. -->
     <Connector executor="tomcatThreadPool"
                port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               redirectPort="8443" />
+               redirectPort="443" />
     -->
     <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443
          This connector uses the NIO implementation. The default
@@ -93,6 +93,12 @@
         </SSLHostConfig>
     </Connector>
     -->
+    <!-- Config from DigiCert -->
+	<Connector port="8443" maxHttpHeaderSize="8192" maxThreads="150" minSpareThreads="25" maxSpareThreads="75" enableLookups="false" 
+	disableUploadTimeout="true" acceptCount="100" scheme="https" secure="true" SSLEnabled="true" clientAuth="false" sslProtocol="TLS" 
+	keyAlias="server" keystoreFile="conf/warpww_com.jks" keystorePass="HappyLife1001" />
+
+
     <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
          OpenSSL for TLS.
