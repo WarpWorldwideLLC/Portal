@@ -46,17 +46,15 @@
 				</ol>
 				<br><br>
 	        </div>
-	        
 	        	<div id="warp_team" class="col-md-3" style="width:90%">
 				<h2><fmt:message key="team.title" /></h2><br>
 				<p><fmt:message key="team.paragraph1" /></p>
 				<p><fmt:message key="team.paragraph2" /></p>
 				<p><fmt:message key="team.paragraph3" /></p>
 				<br/><br>
+				<br><br><br><br>
+	        		<br><br><br><br>
 	        </div>
-	        
-	        
-	        
         </form>
          <footer>
          		<%@ include file="/htx/footer1.html"%>
