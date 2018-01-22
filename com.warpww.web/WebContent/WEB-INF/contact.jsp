@@ -22,7 +22,7 @@
   				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary"><fmt:message key="contact.subject1" /></a>
 			</div>
 			 <div class="col-md-3" style="width:90%; margin: 0 auto;">
-			 	<img src="imgx/WARP_Website_Contact.png" style="max-width: 75%; max-height: 75%; display: block; margin: 0 auto;" />"<br>
+			 	<img src="imgx/warp_contact.jpg" style="max-width: 75%; max-height: 75%; display: block; margin: 0 auto;" />"<br>
 			 </div>
 
 		</form>

@@ -110,7 +110,7 @@
 		        			</div>
 						<br>
 						 -->
-						<img src="imgx/Warp_Image_Shutterstock_US_Colleges.jpg" style="max-width: 85%; max-height: 85%; display: block; margin: 0 auto;" alt="<fmt:message key="warp_sirius.p5.0.1" />" /><br>
+						<img src="imgx/warp_graduation_s.jpg" style="max-width: 85%; max-height: 85%; display: block; margin: 0 auto;" alt="<fmt:message key="warp_sirius.p5.0.1" />" /><br>
 						<h4><fmt:message key="warp_sirius.p5.0" /></h4>
 		        			
 		        		</div>		        
