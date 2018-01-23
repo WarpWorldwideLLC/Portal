@@ -1,6 +1,10 @@
 /.metadata/
 /.recommenders/
 /com.warpww.web/src/com/warpww/pymt/hsc.java
+/com.warpww.web/.classpath
+Servers/
+com.warp.classpath
+Servers/.settings
 
 __MACOSX
 .DS_Store
