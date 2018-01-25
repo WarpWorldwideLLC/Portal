@@ -9,7 +9,6 @@
     <body>
     		<header class="row" class="col-md-3" style="width:90%">
 			<%@ include file="/htx/headerbar1.html"%>
-			<hr/>
 		</header>
     		<form method="post" action="about" name="about" autocomplete="off">
     		        

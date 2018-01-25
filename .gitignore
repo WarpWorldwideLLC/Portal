@@ -6,6 +6,8 @@ Servers/
 com.warp.classpath
 Servers/.settings
 
+/warp.logparse/
+
 __MACOSX
 .DS_Store
 

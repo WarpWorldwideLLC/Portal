@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.pymt.hsc;
 import com.warpww.util.Util;
 
 import javax.json.Json;
@@ -78,7 +79,7 @@ public class dbProcess extends HttpServlet {
 		try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://singapore-db-1.cuwqizgjegfw.ap-southeast-1.rds.amazonaws.com:3306/WarpAdmin2017", "warpdbm", "warp-is-live-2018");          
+            Connection conn = DriverManager.getConnection(hsc.jdbcKey);          
             
             // System.out.println("dbprocess.processCommand:StoredProc: " + spName);
             CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");

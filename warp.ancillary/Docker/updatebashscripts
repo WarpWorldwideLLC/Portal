@@ -13,6 +13,6 @@ cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/warp.ancillary/Docker/wa
 
 chmod a+x ~/warp_scripts/*
 
-cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/docker_* ~/DockerBuildFiles
-cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/com.warpww.web/Docker/updatebashscripts ~/warp_scripts
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/warp.ancillary/Docker/docker_* ~/DockerBuildFiles
+cp ~/Dropbox/Personal/WARP\ Worldwide/WARP\ Source/JWeb/warp.ancillary/Docker/updatebashscripts ~/warp_scripts
 
