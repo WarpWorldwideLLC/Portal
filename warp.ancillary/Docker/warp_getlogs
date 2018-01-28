@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scp centos@warpweb:logs/* ~/Dropbox/servers/logs

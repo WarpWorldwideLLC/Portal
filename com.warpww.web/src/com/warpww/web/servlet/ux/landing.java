@@ -33,19 +33,21 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
-		
+		validate(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		validate(request, response);
+	}
+
+	protected void validate(HttpServletRequest request, HttpServletResponse response)
+	{
 		boolean validated = false;
 		
-		//Util.printParams("landing.doPost", request);
+		Util.printParams("landing.doPost", request);
 		
 		// if(str != null && !str.isEmpty())
 		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
@@ -56,7 +58,7 @@ public class landing extends HttpServlet {
 				{ 
 					String passphraseHash = Password.createHash(request.getParameter("passPhrase"));
 					request.setAttribute("passphraseHash", passphraseHash);
-					validated = validateSignon(request, response);
+					validated = Login.validateSignon(request, response);
 				}
 			}
 			
@@ -66,52 +68,24 @@ public class landing extends HttpServlet {
 			System.out.println(ex.toString());
 			ex.printStackTrace();
 		}
-		
-		if(validated) {
-			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-			
-		} else {
-			request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
+		try {		
+			if(validated) {
+	
+					request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+				
+				
+			} else {
+				request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
+			}
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
-
-	protected boolean validateSignon(HttpServletRequest request, HttpServletResponse response)
-	{
-		boolean returnValue = false;
-		// Util.printParams("landing.validateSignon", request);
-		try
-		{
-		String json = Json.createObjectBuilder()
-				 .add("Command", "ValidateSignon")
-				 .add("AuID", 1)
-				 .add("IuID", 1)
-				 .add("MemberName", request.getParameter("memberName"))
-				 .add("PassphraseHash", request.getAttribute("passphraseHash").toString())
-				 .build()
-				 .toString(); 		
-		
-		String jsonParms = "";
-		jsonParms = json;
-		request.setAttribute("CommandText", jsonParms);
-		//Util.printParams("landing.validateSignon.Before", request);
-		request.getRequestDispatcher("/dbProcess").include(request, response);
-		//Util.printParams("landing.validateSignon.After", request);
-		
-		Command cmd = new Command(request.getAttribute("CommandResults").toString());
-
-		if(cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS)) {
-			returnValue = true;
-		}
-		
-		} catch (Exception ex)
-		{
-			System.out.println(ex.toString());
-			ex.printStackTrace();
-			returnValue = false;
-		}
-		
-		return returnValue;
-	}
+	
 	
 	
 }

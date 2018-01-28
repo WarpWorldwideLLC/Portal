@@ -25,7 +25,7 @@ public class AES {
 	private byte[] byteInitVector = null;
 	private int nInitVectorSize = 16;			// InitVectorSize is in bytes to make it easy to relate to how IV's are typically described.
 	private byte[] byteAesKey = null;
-	private int nAesKeySize = 128;				// AesKeySize is in bits to make it easy to relate to how AES Keys are typically described.
+	private int nAesKeySize = 256;				// AesKeySize is in bits to make it easy to relate to how AES Keys are typically described.
 	private byte[] byteClearData = null;
 	private byte[] byteEncryptedData = null;
 	private byte[] byteDecryptedData = null;
@@ -80,25 +80,47 @@ public class AES {
 		System.out.println("AES.aesError: " + aesError);
 	}
 	
-	public void aesEncrypt() throws Exception
+	public void aesEncrypt(String textToEncrypt) throws Exception
 	{
 		String encryptedText = null;
         String decryptedText = null;
 
-        KeyGenerator KeyGen = KeyGenerator.getInstance("AES");
-        KeyGen.init(128);
+        //KeyGenerator KeyGen = KeyGenerator.getInstance("AES");
+        //KeyGen.init(256);
 
-        SecretKey SecKey = KeyGen.generateKey();
-
+        //SecretKey SecKey = KeyGen.generateKey();
+        
+        //******************** Use Peterson's Key **********************
+        // decode the base64 encoded string
+        //byte[] test = new byte[] {(byte) 0xa0, (byte)0x9f, 0x59, (byte)0xcf, (byte)0x92, 0x6e, (byte)0xa3, (byte)0xe6, 0x49, 0x64, 0x15, (byte)0xb7, (byte)0x4f, (byte)0xba, 0x38, (byte)0x84, 0x4a, (byte)0xc7, 0x5c, 0x56, (byte)0xcb, 0x77, (byte)0x8d, (byte)0x91, (byte)0xe9, (byte)0xc4, (byte)0x99, (byte)0xf5, 0x4e, 0x41, 0x6a, (byte)0xad};
+        String petKeyB64 = "zTAMXVdQ9YlPUT1HXDkKrgjBxDOetDq56vbR5UWH5Uo=";
+        byte[] decodedKey = Base64.decodeBase64(petKeyB64);
+        System.out.println("Key Length: " + decodedKey.length);
+        System.out.println("Key: " + decodedKey);
+        System.out.println("Confirm Key: " + Base64.encodeBase64String(decodedKey));
+        // rebuild key using SecretKeySpec
+        SecretKey SecKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+        //******************** Use Peterson's Key **********************
+        
         Cipher AesCipher = Cipher.getInstance("AES");
-
-        byte[] byteText = "Your Plain Text Here".getBytes();
+        AesCipher = Cipher.getInstance("AES/CBC/ISO10126Padding");
+        //*AesCipher = Cipher.getInstance("AES/CTR/ISO10126Padding");
+        //*AesCipher = Cipher.getInstance("AES/CFB/ISO10126Padding");
+        //*AesCipher = Cipher.getInstance("AES/CFB1/ISO10126Padding");
+        //AesCipher = Cipher.getInstance("AES/ECB/ISO10126Padding");
+        //*AesCipher = Cipher.getInstance("AES/OFB/ISO10126Padding");
+        
+        
+        byte[] byteText = textToEncrypt.getBytes();
         System.out.println("byteText: " + new String(byteText));
         	
         	// Encrypt the text
         AesCipher.init(Cipher.ENCRYPT_MODE, SecKey);
+      
         byte[] byteCipherText = AesCipher.doFinal(byteText);
         System.out.println("byteCipherText: " + new String(byteCipherText));
+        System.out.println("Base64: " + Base64.encodeBase64String(byteCipherText));
+        
 
         // Decrypt the text
         AesCipher.init(Cipher.DECRYPT_MODE, SecKey);

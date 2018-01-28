@@ -11,7 +11,19 @@
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
 		<form method="post" action="test" name="test" autocomplete="off">
+		    Tomcat Version : <%= application.getServerInfo() %><br>    
+    			Servlet Specification Version : 
+			<%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>    
+    			JSP version :
+			<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
 		
+			Java Class Path :
+			<%=System.getProperty("java.class.path") %><br>
+			Java VM Version :
+			<%=System.getProperty("java.vm.version") %><br>
+			Java Version :
+			<%=System.getProperty("java.version") %><br>
+			
 		
 		
 			<button id="refresh" name="refresh">Refresh</button>

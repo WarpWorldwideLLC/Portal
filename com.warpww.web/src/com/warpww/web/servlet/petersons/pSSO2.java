@@ -50,20 +50,27 @@ public class pSSO2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		  String payload = "<proxieduser><ACCESSCODE>BELLEVUE13</ACCESSCODE><SPONSORID>1</SPONSORID><SUBSPONSORID>1</SUBSPONSORID><USERID>ddsr3rffssd</USERID><ROLEID>6</ROLEID><GRADEID>12058</GRADEID><CLASSID>0</CLASSID><FNAME>ddsfdasf</FNAME><LNAME>sdsdsd</LNAME><EMAIL>myemail@petersons.com</EMAIL><STREETADDRESS>sstreet</STREETADDRESS><GRADUATIONYEAR>2021</GRADUATIONYEAR><applicationid>2</applicationid><errorurl>Error.aspx</errorurl><RETURNURL>Login.htm</RETURNURL><SELTESTCATEGORY>SAT2016</SELTESTCATEGORY><TESTDATE>1/2/2004</TESTDATE><TESTACTIVATIONDATE>1/1/2004</TESTACTIVATIONDATE><TESTEXPIREDATE>1/1/2004</TESTEXPIREDATE><RegDate>1/1/2004</RegDate><REGISTRATIONDATE>1/1/2004</REGISTRATIONDATE><Gender></Gender><Ethnicity></Ethnicity><County>DuPage</County><State>Illinois</State><Nation>USA</Nation><DISTRICTNAME></DISTRICTNAME><SCHOOLNAME></SCHOOLNAME><GRADENAME></GRADENAME><CLASSNAME></CLASSNAME><EconoDisadvantaged></EconoDisadvantaged><LimitedEng></LimitedEng><SpecialEducation></SpecialEducation><GradeCategoryId></GradeCategoryId><opinionservice></opinionservice><OnlineTutoring></OnlineTutoring></proxieduser>";
+		
 		// Instantiate the AES crypto object
 		AES aes = new AES();
 		
 		// Encrypt the Data
 		try 
 		{
-			String s = genPayload("1234", "ABCD");
+			//String s = genPayload("1234", "ABCD");
+			String s = payload;
 			
+			aes.aesEncrypt(s);
+			/* 
 			aes.setClearData(s.getBytes("UTF-8"));
 			aes.genInitializationVector();
 			aes.genAesKeyBytes();
 			aes.aesivEncrypt(false);
 			aes.aesivDecrypt(false);
 			aes.printDebugInfo();
+			*/
 	
 		} catch (Exception ex)
 		{
@@ -72,6 +79,7 @@ public class pSSO2 extends HttpServlet {
 		
 		
 		// Instantiate the RSA crypto object.
+		/*
 		RSA rsa = new RSA();
 		
 		try 
@@ -92,15 +100,15 @@ public class pSSO2 extends HttpServlet {
 			// postResponse = sendPost2(aes.getEncryptedDataBase64(), "111", aes.getInitVectorBase64(), rsa.getEncryptedData64());
 			
 			// Clear POST
-			String vToken = "E21vDQ1pfVBZnspJsel1sJ9daYLPFAyvCNe7YG-VO7p6y-dYFdj0f2K1H3h8ZuGxLuzBCjKCLFzAVuy8P0qasgD984gS8Df8AKMX2P4aJHw1";
-			postResponse = sendPost3(vToken, "john.arp@warpww.com", "John", "Arp", "john.arp@warpww.com", "OCAD");
+			//String vToken = "E21vDQ1pfVBZnspJsel1sJ9daYLPFAyvCNe7YG-VO7p6y-dYFdj0f2K1H3h8ZuGxLuzBCjKCLFzAVuy8P0qasgD984gS8Df8AKMX2P4aJHw1";
+			//postResponse = sendPost3(vToken, "john.arp@warpww.com", "John", "Arp", "john.arp@warpww.com", "OCAD");
 			
-			response.getWriter().append(postResponse);
+			//response.getWriter().append(postResponse);
 		} catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
-	
+		*/
 		
 	}
 
@@ -112,6 +120,7 @@ public class pSSO2 extends HttpServlet {
 		doGet(request, response);
 	}
 
+	// Create the XML that is being sent to Peterson's
 	protected String genPayload (String TeacherID, String StudentID)
 	{
 		String returnValue = null;

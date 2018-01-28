@@ -1,56 +1,73 @@
-<%@page trimDirectiveWhitespaces="true"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<%@ include file="/htx/pagehead.html"%>
 <fmt:setBundle basename="com.warpww.web.i18n.home" />
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
-		<title>WARP Home</title>
+		<style>
+			body {
+			    font-family: "Lato", sans-serif;
+			}
+			
+
+			
+			.sidenav .closebtn {
+			    position: absolute;
+			    top: 0;
+			    right: 25px;
+			    font-size: 36px;
+			    margin-left: 50px;
+			}
+			
+			@media screen and (max-height: 450px) {
+			  .sidenav {padding-top: 15px;}
+			  .sidenav a {font-size: 18px;}
+			}
+		</style>
 	</head>
 	<body >
-	<!-- 
-		onLoad="buildHtmlTable('#jsonDataTable')"  
-		onLoad="warpBuildHtmlTable('#jsonDataTable')"
-	-->
-	     <form method="post" action="/com.warpww.web/home" enctype="multipart/form-data" name="home" autocomplete="off">
-			<header>
-				<h1>
-					<br><label><fmt:message key="label.title1" /></label> 
-					<br><label><fmt:message key="label.title2" /></label> 
-				</h1>
-			</header>	
-					
-			<div class="wrapper">
+		<header>
+			<h1>
+				<%@ include file="/htx/headerbar1.html"%>
+			</h1>
+		</header>	
+		<form method="post" action="home" enctype="multipart/form-data" name="home" autocomplete="off">
+			<!-- 
+				onLoad="buildHtmlTable('#jsonDataTable')"  
+				onLoad="warpBuildHtmlTable('#jsonDataTable')"
+			-->
+
 			
 			    <!-- Sidebar -->
-				<%@ include file="/htx/sidebar.html"%>
+				<div id="mySidenav" class="sidenav">
+				  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				  <a href="about">About</a>
+				 	<a href="contact">Contact Us</a>
+				  <a href="solutions">Solutions</a>
+				  <a href="camps">Camps</a>
+				  <a href="login">Login</a>
+				</div>
+			
+				<!-- Use any element to open the sidenav -->
+				<span onclick="openNav()">open</span>
 			
 			    <!-- Page Content -->
-			    <div id="content">
+			    <div id="main">
 				    <br>
 	     			<table id="jsonDataTable" border="1"></table>
 				    <br>
 				    <button type="submit" id="Submit" >Submit</button>
 			    </div>
-			</div>       
+   
 	
 			<br>
+			 <script type="text/javascript">
+
+	      	</script>
 			<footer>
 				<%@ include file="/htx/footer1.html"%>
 			</footer>
-					
-			 <script type="text/javascript">
-			     $(document).ready(function () {
-			         $('#sidebarCollapse').on('click', function () {
-			            	$('#sidebar').toggleClass('active');
-			         });
-			     });
-	      	</script>
    
     		</form>
 	</body>

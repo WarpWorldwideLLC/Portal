@@ -7,8 +7,7 @@
 		<%@ include file="/htx/head.html"%>
 	</head>
 	<body class="landingPage">
-		<form method="post" action="landing" name="landing" autocomplete="off">
-
+		<form action="landing" method="post">
 			<header class="warpHeader2">
 				<h1>
 					<br><label><fmt:message key="landing.label.title1" /></label>
@@ -25,12 +24,16 @@
 	
 			<section id="content" class="content">
 				<div id="sideContent">	
+			
+		
+
 				</div>		
 	
 				<div id="compBurst" class="centered">
 					<a href="camps"><img src="imgx/burst_camp-2.png" width="600" height="300" title=<fmt:message key="landing.image1" /> /></a>
 				</div>
-				<div id="login" style="display: none;">
+				<!-- style="display: none;" -->
+				<div id="login" >
 					<label><fmt:message key="landing.memberName" /></label><br/>
 					<input type="text" name="memberName" id="memberName" value=${param["memberName"]}>
 					<br/>
@@ -41,10 +44,9 @@
 					<a href="register">Not a WARP member? Membership is free, register now!</a><br/>
 					<a href="passphrasereminder">Forgot your Passphrase or Member Name?</a><br/>
 	       		</div>
+	       		
 			</section>
 			<br>
-			
-			
 			<footer>
 					<%@ include file="/htx/footer1.html"%>
 			</footer>
