@@ -46,43 +46,66 @@ public class landing extends HttpServlet {
 	protected void validate(HttpServletRequest request, HttpServletResponse response)
 	{
 		boolean validated = false;
+		boolean tryValidation = false;
 		
 		Util.printParams("landing.doPost", request);
 		
-		// if(str != null && !str.isEmpty())
-		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
-		try {
-			if(!request.getParameter("memberName").trim().isEmpty() && request.getParameter("memberName").trim() != null )
-			{
-				if(!request.getParameter("passPhrase").trim().isEmpty() && request.getParameter("passPhrase").trim() != null)
-				{ 
-					String passphraseHash = Password.createHash(request.getParameter("passPhrase"));
-					request.setAttribute("passphraseHash", passphraseHash);
-					validated = Login.validateSignon(request, response);
-				}
+        // Check if memberName parameter exists
+        if (request.getParameterMap().containsKey("memberName")) {
+        		if(request.getParameter("memberName").trim().isEmpty() || request.getParameter("memberName").trim() == null )
+        		{
+        			tryValidation = false;
+        		} else {
+        			tryValidation = true;
+        		}
+        } else {
+        		tryValidation = false;
+        }
+
+        // Check if passPhrase parameter exists
+        if (tryValidation == true) {
+        		tryValidation = false;
+            if (request.getParameterMap().containsKey("passPhrase")) {
+        		if(request.getParameter("passPhrase").trim().isEmpty() || request.getParameter("passPhrase").trim() == null)
+			{ 
+        			tryValidation = false;
+			} else {
+				tryValidation = true;
 			}
-			
-		} catch (Exception ex)
-		{
+        } else {
+        		tryValidation = false;
+        }        
+        	
+        }
+
+		
+		
+		// Hash passPhrase and validate memberName and passPhrase
+        String passphraseHash = "";
+		try {
+			if(tryValidation) {
+				passphraseHash = Password.createHash(request.getParameter("passPhrase"));
+				request.setAttribute("passphraseHash", passphraseHash);
+				validated = Login.validateSignon(request, response);
+			}
+	
+		} catch (Exception ex) {
 			validated = false;
 			System.out.println(ex.toString());
 			ex.printStackTrace();
 		}
+		
+		// If memberName and passPhrase pass validation, react appropriately
 		try {		
 			if(validated) {
-	
 					request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-				
-				
 			} else {
 				request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
 			}
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception ex) {
+			validated = false;
+			System.out.println(ex.toString());
+			ex.printStackTrace();
 		}
 	}
 	

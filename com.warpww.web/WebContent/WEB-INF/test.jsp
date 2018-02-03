@@ -11,21 +11,25 @@
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
 		<form method="post" action="test" name="test" autocomplete="off">
-		    Tomcat Version : <%= application.getServerInfo() %><br>    
-    			Servlet Specification Version : 
+		    <b>Tomcat Version</b> : <%= application.getServerInfo() %><br>    
+    			<b>Servlet Specification Version :</b> 
 			<%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>    
-    			JSP version :
+    			<b>JSP version :</b>
 			<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
 		
-			Java Class Path :
+			<b>Java Class Path :</b>b
 			<%=System.getProperty("java.class.path") %><br>
-			Java VM Version :
+			<b>Java VM Version :</b>
 			<%=System.getProperty("java.vm.version") %><br>
-			Java Version :
+			<b>Java Version :</b>
 			<%=System.getProperty("java.version") %><br>
 			
-		
-		
+			<b>User-Agent:</b> 
+			<%=request.getHeader("User-Agent") %><br>
+			<b>Headers:</b><br>
+			<textarea id="headers" name="headers" rows="4" cols="120" style="overflow-y: scroll;"><%=  request.getAttribute("headers")  %></textarea><br>
+			<b>IP Address</b>
+			<%=request.getRemoteAddr() %><br>
 			<button id="refresh" name="refresh">Refresh</button>
 		</form>
 		<footer>

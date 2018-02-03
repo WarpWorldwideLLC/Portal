@@ -1,11 +1,16 @@
 package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.warpww.util.Util;
 
 /**
  * Servlet implementation class test
@@ -26,7 +31,17 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String headerNameList = "";
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String headerName = headerNames.nextElement();
+			System.out.println("Header Name: " + headerName + " = " + request.getHeader(headerName));
+			headerNameList += headerName + " = " + request.getHeader(headerName) + "\n";
+		}
+		request.setAttribute("headers", headerNameList);
+		
+		Util.printParams("test.java", request);
 		request.getRequestDispatcher("/WEB-INF/test.jsp").forward(request, response);
 	}
 

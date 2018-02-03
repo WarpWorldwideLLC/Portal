@@ -6,24 +6,8 @@
 	<head>
 		<%@ include file="/htx/head.html"%>
 		<style>
-			body {
-			    font-family: "Lato", sans-serif;
-			}
-			
 
-			
-			.sidenav .closebtn {
-			    position: absolute;
-			    top: 0;
-			    right: 25px;
-			    font-size: 36px;
-			    margin-left: 50px;
-			}
-			
-			@media screen and (max-height: 450px) {
-			  .sidenav {padding-top: 15px;}
-			  .sidenav a {font-size: 18px;}
-			}
+
 		</style>
 	</head>
 	<body >
