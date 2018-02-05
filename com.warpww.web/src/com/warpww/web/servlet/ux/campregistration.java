@@ -20,7 +20,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 import com.warpww.pymt.hsc;
-import com.warpww.sec.Password;
+import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
 /**
@@ -42,7 +42,10 @@ public class campregistration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Util.printParams("campregistration.doGet", request);
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		
 		// Public Keys
 		//***********************************************************************************
@@ -92,7 +95,10 @@ public class campregistration extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Util.printParams("campregistration.doPost", request);
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		
 		validateRegistration(request, response);
 		System.out.println(request.getAttribute("validateRegistrationMessage"));

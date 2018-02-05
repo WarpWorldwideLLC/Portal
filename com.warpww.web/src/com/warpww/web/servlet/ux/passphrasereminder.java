@@ -2,13 +2,13 @@ package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
 import com.warpww.util.*;
 
 /**
@@ -23,14 +23,17 @@ public class passphrasereminder extends HttpServlet {
      */
     public passphrasereminder() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		request.getRequestDispatcher("WEB-INF/passphrasereminder.jsp").forward(request, response);
 	}
 
@@ -38,7 +41,10 @@ public class passphrasereminder extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		String inputJSON = Command.createRequestInput(request);
 		System.out.println(inputJSON);
 

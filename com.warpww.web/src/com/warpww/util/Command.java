@@ -53,6 +53,7 @@ public class Command
 			if(pJsonInput.indexOf("NewMemberName") > -1) {NewMemberName = inputJson.getString("NewMemberName").toString();}
 			if(pJsonInput.indexOf("MemberNameKey") > -1) {MemberNameKey = inputJson.getString("MemberNameKey").toString();}
 			if(pJsonInput.indexOf("MemberID") > -1) {MemberID = inputJson.getString("MemberID").toString();}
+			if(pJsonInput.indexOf("MemberNumber") > -1) {MemberID = inputJson.getJsonNumber("MemberNumber").toString();}
 			if(pJsonInput.indexOf("ProcStatus") > -1) {ProcStatus = inputJson.getString("ProcStatus");}
 			if(pJsonInput.indexOf("MessageSource") > -1) {MessageSource = inputJson.getString("MessageSource").toString();}
 			if(pJsonInput.indexOf("MessageCode") > -1) {MessageCode = inputJson.getString("MessageCode").toString();}

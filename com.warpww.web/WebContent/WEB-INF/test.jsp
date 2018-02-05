@@ -5,6 +5,18 @@
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
+		<script>
+			$(document).ready(function(){
+			    $("button").click(function(){
+			        var txt = "";
+			        txt += "Document width/height: " + $(document).width();
+			        txt += "x" + $(document).height() + "\n";
+			        txt += "Window width/height: " + $(window).width();
+			        txt += "x" + $(window).height();
+			        alert(txt);
+			    });
+			});
+		</script>
 	</head>
 	<body>
 		<header class="row" class="col-md-3" style="width:90%">
@@ -30,6 +42,10 @@
 			<textarea id="headers" name="headers" rows="4" cols="120" style="overflow-y: scroll;"><%=  request.getAttribute("headers")  %></textarea><br>
 			<b>IP Address</b>
 			<%=request.getRemoteAddr() %><br>
+			
+			<b>Cookie</b><br>
+			<%=request.getRemoteAddr() %><br>
+			
 			<button id="refresh" name="refresh">Refresh</button>
 		</form>
 		<footer>

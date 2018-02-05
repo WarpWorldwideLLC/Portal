@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
+
 /**
  * Servlet implementation class home
  */
@@ -26,6 +28,10 @@ public class home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
 

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
+
 /**
  * Servlet implementation class index
  */
@@ -26,8 +28,10 @@ public class index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 	}
 
 	/**

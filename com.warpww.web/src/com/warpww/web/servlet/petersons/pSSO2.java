@@ -31,7 +31,7 @@ import com.warpww.sec.AES;
 import com.warpww.sec.RSA;
 
 /**
- * Servlet implementation class pSSO2
+ * Integration Gateway ba18 - Peterson's Clear Integration
  */
 @WebServlet("/pSSO2")
 public class pSSO2 extends HttpServlet {

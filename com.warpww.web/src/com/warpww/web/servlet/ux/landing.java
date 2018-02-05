@@ -4,8 +4,6 @@ package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
 
-import javax.json.Json;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +31,10 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			Util.foo();
+		}
 		validate(request, response);
 	}
 
@@ -40,6 +42,10 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		validate(request, response);
 	}
 
@@ -48,7 +54,7 @@ public class landing extends HttpServlet {
 		boolean validated = false;
 		boolean tryValidation = false;
 		
-		Util.printParams("landing.doPost", request);
+		//Util.printParams("landing.doPost", request);
 		
         // Check if memberName parameter exists
         if (request.getParameterMap().containsKey("memberName")) {

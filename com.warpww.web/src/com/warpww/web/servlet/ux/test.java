@@ -1,7 +1,6 @@
 package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
 /**
@@ -24,24 +24,27 @@ public class test extends HttpServlet {
      */
     public test() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			Util.foo();
+		}
 		
+		// List all the headers with this request.
 		String headerNameList = "";
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String headerName = headerNames.nextElement();
-			System.out.println("Header Name: " + headerName + " = " + request.getHeader(headerName));
 			headerNameList += headerName + " = " + request.getHeader(headerName) + "\n";
 		}
 		request.setAttribute("headers", headerNameList);
 		
-		Util.printParams("test.java", request);
 		request.getRequestDispatcher("/WEB-INF/test.jsp").forward(request, response);
 	}
 
@@ -49,7 +52,6 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

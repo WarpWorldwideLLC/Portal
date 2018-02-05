@@ -1,8 +1,6 @@
 package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -16,6 +14,8 @@ import javax.json.Json;
 
 
 import javax.servlet.RequestDispatcher;
+
+import com.warpww.sec.Login;
 import com.warpww.sec.Password;
 import com.warpww.util.*;
 import com.captcha.botdetect.web.servlet.Captcha;
@@ -41,6 +41,10 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		// Process the request
 		setRequestState(request, response);
 		
@@ -51,7 +55,10 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		// Clear any existing error messages.
 		Util.clearErrorMessage(request);
 		

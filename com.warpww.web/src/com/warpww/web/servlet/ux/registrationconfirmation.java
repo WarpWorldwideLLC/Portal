@@ -1,8 +1,6 @@
 package com.warpww.web.servlet.ux;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
 import com.warpww.util.*;
 
 /**
@@ -30,7 +29,10 @@ public class registrationconfirmation extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		// Clear any existing error messages.
 		request.setAttribute("ErrorMessage","");
 		
@@ -50,8 +52,7 @@ public class registrationconfirmation extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("Registration Confirmation POST fired.");
+
 		doGet(request, response);
 	}
 

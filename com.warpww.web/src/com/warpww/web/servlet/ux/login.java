@@ -31,6 +31,10 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		validate(request, response);
 	}
 
@@ -38,6 +42,10 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Validate authentication - 
+		if(!Login.authenticateToken(request)) {
+			
+		}
 		validate(request, response);
 	}
 

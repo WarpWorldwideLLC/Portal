@@ -39,6 +39,7 @@ public class payment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Util.foo();
 		// Util.printParams("payment.doGet", request);
 		System.out.println("Payment GET.");
 		request.getRequestDispatcher("/WEB-INF/payment.jsp").forward(request, response);
