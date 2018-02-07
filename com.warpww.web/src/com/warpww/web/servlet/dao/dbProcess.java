@@ -79,7 +79,8 @@ public class dbProcess extends HttpServlet {
 		try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");          
+            // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");
+            Connection conn = DriverManager.getConnection(hsc.jdbcURI, hsc.jdbcUser, hsc.jdbcPassword);   
             
             // System.out.println("dbprocess.processCommand:StoredProc: " + spName);
             CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");

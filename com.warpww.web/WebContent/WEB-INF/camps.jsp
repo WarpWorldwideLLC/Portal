@@ -53,6 +53,13 @@
 	<tr>
 		<td>
 			<div style=" margin-top: 1em;">
+  				<!--  <p class="lead">About XAIU (vidoe)</p>  -->
+  				<a target="_blank" href="filx/XAIU.mp4" class="btn btn-video" style="background-color=#ffff00;">About XAIU (video)</a>
+			</div>
+		</td>
+		<td>&nbsp;</td>	
+		<td>
+			<div style=" margin-top: 1em;">
   				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
   				<a target="_blank" href="filx/CampGuide.pdf" class="btn btn-primary">Download the full Brochure</a>
 			</div>
@@ -69,7 +76,7 @@
   				<a href="campregistration?paymentmethod=deposit" class="btn btn-primary">Pay Deposit</a>
 			</div>
 		</td>
-		<td>&nbsp;</td>
+		<td>&nbsp;</td>	
 		<td>
 			<div style=" margin-top: 1em;">
   				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->

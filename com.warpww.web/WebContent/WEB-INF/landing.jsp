@@ -33,7 +33,7 @@
 					<a href="camps"><img src="imgx/burst_camp-2.png" width="600" height="300" title=<fmt:message key="landing.image1" /> /></a>
 				</div>
 				<!-- style="display: none;" -->
-				<div id="login" >
+				<div id="login" style="display: none;">
 					<label><fmt:message key="landing.memberName" /></label><br/>
 					<input type="text" name="memberName" id="memberName" value=${param["memberName"]}>
 					<br/>
