@@ -13,23 +13,21 @@
 					<br><label><fmt:message key="landing.label.title1" /></label>
 				</h1>
 					<div class="carousel-div">
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message1" /></label></a></h1> 
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message2" /></label></a></h1> 
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message3" /></label></a></h1> 
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message4" /></label></a></h1> 
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message5" /></label></a></h1> 
-						<h1><a class="mySlides" href="Main.html"><label><fmt:message key="carousel.label.message6" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message1" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message2" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message3" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message4" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message5" /></label></a></h1> 
+						<h1><a class="mySlides"><label><fmt:message key="carousel.label.message6" /></label></a></h1> 
 					</div>
 			</header>
 	
 			<section id="content" class="content">
 				<div id="sideContent">	
 			
-		
-
 				</div>		
 	
-				<div id="compBurst" class="centered">
+				<div id="compBurst" class="centered" style="display: none;">
 					<a href="camps"><img src="imgx/burst_camp-2.png" width="600" height="300" title=<fmt:message key="landing.image1" /> /></a>
 				</div>
 				<!-- style="display: none;" -->

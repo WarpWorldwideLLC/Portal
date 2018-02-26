@@ -1,7 +1,9 @@
 package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +33,12 @@ public class test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// Read Properties File
+		Properties prop = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+		InputStream stream = loader.getResourceAsStream("/com.warpww.web/src/com/warpww/web/i18n/test.properties");
+		prop.load(stream);
+		
 		// Validate authentication - 
 		if(!Login.authenticateToken(request)) {
 			Util.foo();

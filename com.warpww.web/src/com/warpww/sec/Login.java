@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import com.warpww.pymt.hsc;
 import com.warpww.util.Command;
+import com.warpww.util.Util;
 
 public class Login {
 
@@ -282,8 +283,14 @@ public class Login {
 		
 		
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
-
-		if(cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS)) {
+		Util.printParams("login", request);
+		
+		System.out.println("Status: " + cmd.CommandResults);
+		System.out.println("Constant" + cmd.COMMAND_SUCCESS);
+		System.out.println("Comparison: " + cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS));
+		
+		
+		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			String token = createAuthenticationToken(request, response, Integer.parseInt(cmd.MemberID));
 			System.out.println("Token: " + token);
 			returnValue = true;

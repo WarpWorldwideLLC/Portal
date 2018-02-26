@@ -1,4 +1,4 @@
-package com.warpww.web.servlet.dao;
+package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class getEntityList
+ * Servlet implementation class warp18002
  */
-@WebServlet("/getEntityList")
-public class getEntityList extends HttpServlet {
+@WebServlet("/warp18002")
+public class warp18002 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getEntityList() {
+    public warp18002() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +27,9 @@ public class getEntityList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/warp18002.jsp").forward(request, response);
 	}
-
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

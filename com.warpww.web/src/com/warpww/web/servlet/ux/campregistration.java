@@ -51,7 +51,7 @@ public class campregistration extends HttpServlet {
 		//***********************************************************************************
 		//***********************************************************************************
 		//***********************************************************************************
-		request.setAttribute("paymentPublicKey", hsc.pk_live);
+		request.setAttribute("paymentPublicKey", hsc.pk_stripe);
 		//***********************************************************************************
 		//***********************************************************************************
 		//***********************************************************************************
@@ -74,7 +74,7 @@ public class campregistration extends HttpServlet {
 				request.setAttribute("paymentType", "Deposit");
 				request.setAttribute("paymentAmountText", "$ 150.00");
 				request.setAttribute("paymentAmount", "15000");
-				request.setAttribute("paymentNotes", "Deposits are not refundable. Full Payment must be made before March 1st, 2018 or your spot will not be guaranteed.");
+				request.setAttribute("paymentNotes", "In order to assure a remarkable experience for all, space is limited. Reserve your place with a deposit and make the full Payment before April 15th, 2018. Deposits will be applied to the full payment and are not refundable.");
 				request.setAttribute("paymentDescription", "XAIU Chinese Culture Summer Trip Deposit" );
 				break;
 			case "full":
@@ -170,7 +170,7 @@ public class campregistration extends HttpServlet {
 		//***********************************************************************************
 		//***********************************************************************************
 		//***********************************************************************************
-		Stripe.apiKey = hsc.sk_live;
+		Stripe.apiKey = hsc.sk_stripe;
 		//***********************************************************************************
 		//***********************************************************************************
 		//***********************************************************************************

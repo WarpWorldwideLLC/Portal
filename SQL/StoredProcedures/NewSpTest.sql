@@ -23,10 +23,16 @@ SELECT * FROM CampData;
 CALL saveStripeCampData('{"AuID": 1, "IuID": 1, "stripeToken": "tok_1BkGAZDm8rfcoBsJt8IWbrxr", "stripeTokenType": "card", "stripeEmail": "john.arp@warpww.com", "stripeBillingName": "John Arp", "stripeBillingAddressCountry": "United States", "stripeBillingAddressCountryCode": "US", 
 		"stripeBillingAddressZip": "9999", "stripeBillingAddressLine1": "steeet", "stripeBillingAddressCity": "coty"}');
 
-
 SELECT * FROM StripeCampData;
 
+CALL addEntitySolution ('{"AuID": 1, "IuID": 1, "MemberID": 1, "SolutionID": 1, "BillingEventID": 1 }');
 
+SELECT * FROM EntitySolution;
+
+CALL addSolutionToCart ('{"AuID": 1, "IuID": 1, "MemberID": 1, "SolutionID": 1, "BillingEventID": 1 }');
+
+
+SELECT * FROM ShoppingCart;
 
 DELETE FROM EntityName WHERE ID = 12;
 

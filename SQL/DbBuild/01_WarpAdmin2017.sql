@@ -33,6 +33,22 @@ CREATE TABLE Entity (
 /*******************************************************************************************************/
 /* Begin Control Tables                                                                                */
 /*******************************************************************************************************/
+DROP TABLE IF EXISTS ctlPhoneType;    
+CREATE TABLE ctlPhoneType (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+	PhoneTypeName						NVARCHAR(20)
+	)
+    AUTO_INCREMENT = 10000,
+    ENGINE = InnoDB;
+
+INSERT INTO ctlPhoneType (ID, PhoneTypeName) VALUES (1, 'Unknown');
+INSERT INTO ctlPhoneType (ID, PhoneTypeName) VALUES (2, 'Cell');
+INSERT INTO ctlPhoneType (ID, PhoneTypeName) VALUES (3, 'Not Cell');
 
 DROP TABLE IF EXISTS ctlRecordStatus;    
 CREATE TABLE ctlRecordStatus (
@@ -155,7 +171,7 @@ CREATE TABLE ctlBillingEventType (
     CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
     AuID 								BIGINT DEFAULT -1,
 	IuID 								BIGINT DEFAULT -1,
-	LastModifyDate 					DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	LastAuID 							BIGINT DEFAULT -1,
 	LastIuID 							BIGINT DEFAULT -1,
     BillingEventName					NVARCHAR(100),
@@ -320,6 +336,21 @@ INSERT INTO Entity (ID, RecordStatusID, EntityTypeID) VALUES (1, 10, 1);
     
 SELECT * FROM Entity;    
     
+    
+DROP TABLE IF EXISTS EntityCountry;
+CREATE TABLE EntityCountry (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    EntityID							BIGINT,
+    CountryID							BIGINT
+);    
+    
 DROP TABLE IF EXISTS Passphrase;    
 CREATE TABLE Passphrase (
 	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -425,6 +456,7 @@ It illustrates several points, all of which are discussed later in greater detai
 
 */
 
+
 DROP TABLE IF EXISTS PostalAddress;    
 CREATE TABLE PostalAddress (
 	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -482,9 +514,23 @@ CREATE TABLE Phone (
 	LastIuID 							BIGINT DEFAULT -1,
     ContactTypeID						BIGINT,
     PhoneTypeID							BIGINT,
-	PhoneNumber							BIGINT,
+	PhoneNumber							NVARCHAR(100),
 	CountryID							BIGINT
     );
+
+DROP TABLE IF EXISTS EntityPhone;
+CREATE TABLE EntityPhone (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    EntityID							BIGINT, 
+    PhoneID								BIGINT
+);
         
 DROP TABLE IF EXISTS eContact;        
 CREATE TABLE eContact (
@@ -549,7 +595,47 @@ CREATE TABLE eContact (
 -- No Group table for roles,just user hierarchies?
 
 
--- Solutions are the products we sell.         
+-- Products are the compontents of a solution. Only Solutions are sold, not individual products.    
+ DROP TABLE IF EXISTS Product;
+ CREATE TABLE Product (
+ 	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    ProductCode							NVARCHAR(25) NOT NULL,
+    ProductExternalKey					NVARCHAR(25) NULL, 
+	ProductName							NVARCHAR(100) NOT NULL,
+    ProductCost							DECIMAL(19,4) NOT NULL
+	);
+    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-001', 'AP Courses', 0.00);
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-002', 'CLEP', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-003', 'DSST', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-004', 'GMAT', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-005', 'GRE', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-006', 'LSAT', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-007', 'MAT', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-008', 'MCAT', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-009', 'ACT Practice Test', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-010', 'ACT Prep', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-011', 'CPST', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-012', 'PSAT/NMSQT', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-013', 'SATPractice Test', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-014', 'SAT Subjects (10)', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-015', 'SAT/ACT Flash Cards', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-016', 'STEM HUBS', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-017', 'TOEFL', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-018', 'OASC', 0.00);    
+    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-019', 'SSAT', 0.00);    
+
+    
+    SELECT * FROM Product;
+    
+-- Solutions are what we sell. A solution is made up of 1 or more products.    
  DROP TABLE IF EXISTS Solution;
  CREATE TABLE Solution (
  	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -560,9 +646,51 @@ CREATE TABLE eContact (
 	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	LastAuID 							BIGINT DEFAULT -1,
 	LastIuID 							BIGINT DEFAULT -1,
-	SolutionName						NVARCHAR(100)
+    SolutionCode						NVARCHAR(25) NOT NULL,
+	SolutionName						NVARCHAR(100) NOT NULL,
+    SolutionCost						DECIMAL(19,4) NOT NULL
 	);
-    
+        
+	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-17001', 'Petersons Suite', 15.55);
+      
+        
+ -- Describes which products are part of a solution. It is possible that a solution has only one product.       
+ DROP TABLE IF EXISTS SolutionProduct;
+ CREATE TABLE SolutionProduct (
+ 	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    SolutionCode						NVARCHAR(25) NOT NULL,
+    ProductCode							NVARCHAR(25) NOT NULL
+	);       
+        
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-001');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-002');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-003');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-004');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-005');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-006');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-007');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-008');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-009');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-010');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-011');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-012');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-013');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-014');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-015');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-016');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-017');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-018');
+ 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-019');
+
+      
+ 
 -- EntitySolution shows which Entities have access to which Solutions, and which billing method is assigned.     
  DROP TABLE IF EXISTS EntitySolution;
  CREATE TABLE EntitySolution (
@@ -643,6 +771,23 @@ CREATE TABLE StripeCampData (
     stripeBillingAddressLine1			NVARCHAR(512),
     stripeBillingAddressCity			NVARCHAR(512)
 );
+
+DROP TABLE IF EXISTS ShoppingCart;
+CREATE TABLE ShoppingCart (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    EntityID							BIGINT NOT NULL, 
+    SolutionID							BIGINT NOT NULL,
+    BillingEventID						BIGINT NOT NULL,
+    Quantity							BIGINT
+);
+
 
 -- EntitySolution shows which Entities have access to which Solutions, and which billing method is assigned.     
  DROP TABLE IF EXISTS XXit;

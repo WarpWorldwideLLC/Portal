@@ -20,7 +20,6 @@ BEGIN
     DECLARE lErrNumber NVARCHAR(255) DEFAULT '';
 	DECLARE lMessageText NVARCHAR(255) DEFAULT '';
 
-
 	DECLARE exit handler for sqlexception
 	  BEGIN
 		-- ERROR
@@ -30,7 +29,7 @@ BEGIN
 			lMessageText = MESSAGE_TEXT;
 		SET ProcStatus := 'ERROR';
 		SET ProcMessage := CONCAT(lErrNumber, " (", lSqlState, "): ", lMessageText);
-		SELECT JSON_OBJECT('MessageSource', 'DB0', 'ProcStatus', ProcStatus, 'MessageCode', lErrNumber, 'ProcMessage', ProcMessage);
+		SELECT JSON_OBJECT('MessageSource', 'DB0', 'CommandResults', ProcStatus, 'MessageCode', lErrNumber, 'ProcMessage', ProcMessage);
 
 	  ROLLBACK;
 	END;
@@ -53,36 +52,9 @@ BEGIN
     -- SET AuthToken := CONCAT((NOW() + 0), SHA1(DATE_FORMAT(NOW(), "%H%f%j%e%s")) ,SHA1(CONCAT(MemberName, PassphraseHash, NOW(0) +0)));
     SET AuthToken = 'foo';
 
-
--- 	SELECT JSON_OBJECT('TAG', 'TAG');
-
-
-
-/*
-	SELECT JSON_OBJECT (
-                     'MemberNumber', e.ID, 
-					 'MemberSince', DATE_FORMAT(e.CreateDate, "%Y.%m.%d"), 
-                     'MemberName', en.EntityName 
-					 'TAG', 'TAG'
-				)
-		FROM Entity e
-			LEFT JOIN Passphrase p
-			  ON e.ID = p.EntityID
-				AND p.RecordStatusID = 10
-			LEFT JOIN EntityName en
-			  ON e.ID = en.EntityID
-				AND  EntityNameTypeID = 2
-				AND en.RecordStatusID = 10
-		WHERE e.EntityTypeID = 6
-		  AND en.EntityName = MemberName
-		  AND p.PassphraseHash = PassphraseHash
-		  AND e.RecordStatusID = 10;
-*/		  
-
-
 	SELECT JSON_OBJECT(
                      'MemberNumber', e.ID,
-                     'ProcStatus', 'Success',
+                     'CommandResults', 'Success',
                      'MemberName', en.EntityName ,
                      'MemberSince', DATE_FORMAT(e.CreateDate, "%Y.%m.%d"), 
                      'AuthToken', AuthToken

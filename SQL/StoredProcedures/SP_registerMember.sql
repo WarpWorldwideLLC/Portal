@@ -15,6 +15,13 @@ BEGIN
     DECLARE EmailAddress NVARCHAR(255) DEFAULT NULL; 
     DECLARE PassphraseHash NVARCHAR(255) DEFAULT NULL;
     DECLARE EntityID BIGINT DEFAULT 0;
+    DECLARE PhoneID BIGINT DEFAULT 0;
+    DECLARE PhoneNumber NVARCHAR(200) DEFAULT NULL;
+    DECLARE FirstName NVARCHAR(200) DEFAULT NULL;
+    DECLARE FirstNameKey NVARCHAR(255) DEFAULT NULL;
+    DECLARE LastNameKey NVARCHAR(255) DEFAULT NULL;
+    DECLARE LastName NVARCHAR (200) DEFAULT NULL;
+    DECLARE CountryID BIGINT DEFAULT 0;
 
 	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
@@ -51,6 +58,11 @@ BEGIN
     SET MemberName := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.MemberName')));
     SET EmailAddress := JSON_UNQUOTE(JSON_EXTRACT(query, '$.EmailAddress'));
     SET PassphraseHash := JSON_UNQUOTE(JSON_EXTRACT(query, '$.PassphraseHash'));
+    SET PhoneNumber := JSON_UNQUOTE(JSON_EXTRACT(query, '$.PhoneNumber'));
+    SET FirstName := JSON_UNQUOTE(JSON_EXTRACT(query, '$.FirstName'));
+    SET LastName := JSON_UNQUOTE(JSON_EXTRACT(query, '$.LastName'));
+    SET CountryID := JSON_UNQUOTE(JSON_EXTRACT(query, '$.CountryID'));
+  
 	
     SET EntityID := 0;
 
@@ -66,13 +78,34 @@ BEGIN
     SET NewMemberName := CASE WHEN COALESCE(MemberName, '') = '' THEN EmailAddress ELSE MemberName END;
 	SET MemberNameKey := NewMemberName;
     
+    /* MemberNameKey is used to enforce uniqueness across different name types */
+    SET FirstNameKey := CONCAT(FirstName,CAST(CURRENT_TIMESTAMP AS SIGNED));
+    SET LastNameKey := CONCAT(LastName,CAST(CURRENT_TIMESTAMP AS SIGNED));
+    
 	-- SELECT * FROM Entity;
 	-- Asssign UserAccount Name
 	INSERT INTO EntityName (AuiD, IuID, LastAuID, LastIuID, EntityID, EntityNameTypeID, EntityName, EntityNameKey)
       VALUES (AuID, IuID, AuID, IuID, EntityID, 2, NewMemberName, MemberNameKey);
-	-- Assign eContact account information.
+	-- First Name
+	INSERT INTO EntityName (AuiD, IuID, LastAuID, LastIuID, EntityID, EntityNameTypeID, EntityName, EntityNameKey)
+      VALUES (AuID, IuID, AuID, IuID, EntityID, 3, FirstName, FirstNameKey);
+    -- Last Name
+	INSERT INTO EntityName (AuiD, IuID, LastAuID, LastIuID, EntityID, EntityNameTypeID, EntityName, EntityNameKey)
+      VALUES (AuID, IuID, AuID, IuID, EntityID, 5, LastName, LastNameKey);
+    -- Assign eContact account information.
 	INSERT INTO eContact (AuiD, IuID, LastAuID, LastIuID, EntityID, ContactTypeID, eContactIdentifier, CountryID) 
       VALUES (AuID, IuID, AuID, IuID, EntityID, 1, EmailAddress, 999);
+    -- Phone Number
+    INSERT INTO Phone (AuiD, IuID, LastAuID, ContactTypeID, PhoneTypeID, PhoneNumber, CountryID)
+		VALUES (AuID, IuID, AuID, IuID, 0, PhoneNumber, CountryID);
+        SET PhoneID := LAST_INSERT_ID();
+    -- EntityPhoneNumber
+    INSERT INTO EntityPhone (AuiD, IuID, LastAuID, LastIuID, EntityID, PhoneID)
+		VALUES (AuID, IuID, AuID, IuID, EntityID, PhoneID);
+    -- CountryCode
+	INSERT INTO EntityCountry (AuiD, IuID, LastAuID, LastIuID, EntityID, CountryID) 
+      VALUES (AuID, IuID, AuID, IuID, EntityID, CountryID);
+       
 	-- Assign Passphrase for account.
 	INSERT INTO Passphrase (AuiD, IuID, LastAuID, LastIuID, EntityID, PassphraseHash) 
       VALUES (AuID, IuID, AuID, IuID, EntityID, PassphraseHash);
@@ -83,3 +116,6 @@ BEGIN
 
 END $$
 DELIMITER ;
+
+-- CommandResults: {"MemberID": 4, "ProcStatus": "ERROR", "MessageCode": "1136", "ProcMessage": "1136 (21S01): Column count doesn't match value count at row 1", "MessageSource": "DB0"}
+

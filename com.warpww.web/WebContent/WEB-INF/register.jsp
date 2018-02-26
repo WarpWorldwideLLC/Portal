@@ -1,41 +1,62 @@
-<%@page trimDirectiveWhitespaces="true"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp"%>
-<%@page import="com.captcha.botdetect.web.servlet.Captcha"%>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<%@ include file="/htx/pagehead.html"%>
 <fmt:setBundle basename="com.warpww.web.i18n.register" />
-
 
 <!DOCTYPE html>
 <html>
     <head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WARP Registration</title>
-        <script src="jsx/warp_util.js"></script>
+		<%@ include file="/htx/head.html"%>
     </head>
 <body>
-		<!--  		<%@include  file="/htx/LanguageSelector.html" %> -->
-		
-
+    		<header class="row" class="col-md-3" style="width:90%">
+			<%@ include file="/htx/headerbar1.html"%>
+		</header>
         <form method="post" action="/com.warpww.web/register" enctype="multipart/form-data" name="registration" autocomplete="off">
         <div>
-	  		<br><label><fmt:message key="register.label.username" /></label> 
-			<input type="text" name="memberName" id="memberName" value=${param["memberName"]}>
-	  		<label>Email Address:</label>
-	  		<input type="text" name="emailAddress" id="emailAddress" value=${param["emailAddress"]}>
-	  		<br/>
-	  	  	<label>Passphrase:</label>
-	  		<input type="password" name="passPhrase1" id="passPhrase1">
-	  		<br>
-	  		<label>Re-Enter Passphrase:</label>
-	  		<input type="password" name="passPhrase2" id="passPhrase2">
-	  		<br>
-	  		<button type="button" onclick="toggleHide2('passPhrase1','passPhrase2')" id="passToggle">Show/Hide Passphrase</button>
-	  		<textarea id="errorMessage" name="errorMessage" style='<%=request.getAttribute("ErrorMessageVisible")%>' readonly>value='<%=request.getAttribute("ErrorMessage")%>'</textarea>	
-  		
+	        <table>
+	        		<tr>
+			  		<td><br><label><fmt:message key="register.label.username" /></label></td>
+			  		<td><input type="text" name="memberName" id="memberName" class="registerInput" value=${param["memberName"]}></td>
+		  		</tr>
+	        		<tr>
+	        			<td><label>Country:</label></td>
+				  	<td>	
+				  		<select name="countrySelector" id="countrySelector">
+				  			<option value="0">- Choose One -</option>
+						  	<option value="236">United States</option>
+						  	<option value="46">China</option>
+						  	<option value="41">Canada</option>
+						</select>
+				  	</td>
+				  <tr>
+				  	<td><label>Email Address:</label></td>
+				  	<td><input type="text" name="emailAddress" id="emailAddress" class="registerInput" value=${param["emailAddress"]}></td>
+				  </tr>
+				  <tr>	
+				  	<td>	<label>First Name:</label></td>
+				  	<td><input type="text" name="firstName" id="firstName" class="registerInput" value=${param["firstName"]}></td>
+				  </tr>
+				  
+				  <tr>
+				  	<td>	<label>Last Name:</label></td>
+				  	<td>	<input type="text" name="lastName" id="lastName" class="registerInput" value=${param["lastName"]}></td>
+				  </tr>
+				  <tr>	
+				  	<td>	<label>Phone Number:</label></td>
+				  	<td><input type="text" name="phoneNumber" id="phoneNumber" class="registerInput" value=${param["phoneNumber"]}></td>
+				  </tr>
+				  <tr>	
+				  	<td>	<label>Passphrase:</label></td>
+				  	<td><input type="password" name="passPhrase1" id="passPhrase1" class="registerInput"></td>
+				  </tr>		
+				  <tr>
+				  	<td><label>Re-Enter Passphrase:</label></td>
+				  	<td><input type="password" name="passPhrase2" id="passPhrase2" class="registerInput"></td>
+				  </tr>		
+				  <tr>
+				  	<td><button type="button" onclick="toggleHide2('passPhrase1','passPhrase2')" id="passToggle" class="btn btn-primary">Show/Hide Passphrase</button></td>
+				  	<td><textarea id="errorMessage" name="errorMessage" class="statusMessageBox" style='<%=request.getAttribute("ErrorMessageVisible")%>' readonly><%=request.getAttribute("ErrorMessage")%></textarea></td>
+	  			</tr>
+	  		</table>
   		</div>
   		<br>
 		<div>
@@ -56,10 +77,13 @@
 			
 		</div>
 		<br/>
-		<button type="submit" value="native" name="btnNative">Join WARP Now!</button>
+		<button type="submit" value="native" name="btnNative" class="btn btn-primary">Join WARP Now!</button>
 		
   		  
 
 	</form>
+	<footer>
+		<%@ include file="/htx/footer1.html"%>
+	</footer>
 </body>
 </html>

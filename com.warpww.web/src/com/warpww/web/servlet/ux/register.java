@@ -41,6 +41,10 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(null == request.getAttribute("ErrorMessage")) {
+			request.setAttribute("ErrorMessage", "");
+		}
+		
 		// Validate authentication - 
 		if(!Login.authenticateToken(request)) {
 			
@@ -166,6 +170,10 @@ public class register extends HttpServlet {
 				 .add("MemberName", request.getParameter("memberName"))
 				 .add("EmailAddress", request.getParameter("emailAddress"))
 				 .add("PassphraseHash", passphraseHash)
+				 .add("PhoneNumber", request.getParameter("phoneNumber"))
+				 .add("FirsName", request.getParameter("firstName"))
+				 .add("LastName", request.getParameter("lastName"))
+				 .add("CountryID", request.getParameter("countrySelector"))
 				 .build()
 				 .toString(); 		
 		

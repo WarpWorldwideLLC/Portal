@@ -36,10 +36,9 @@
 <td>
 	<h1>Explore the Heart of China 2018</h1>
 	<h3>College Student and Adult Program 2018 (18+)</h3>
-	<h3>$ 5,990.00</h3><h4>(All-Inclusive)</h4>
 	<br>
 	<h4>DATE OF PROGRAM</h4>
-	Wednesday, May 30th 2018
+	Registration for this camp is currently closed.
 	<br>
 	<h4>LOCATIONS VISITED</h4>
 	Xi'an, China
@@ -67,13 +66,13 @@
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="campregistration?paymentmethod=full" class="btn btn-primary">Pay in Full</a>
+  				<a href="campregistration?paymentmethod=full" class="btn btn-primary disabled">Pay in Full</a>
 			</div>
 		</td>
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="campregistration?paymentmethod=deposit" class="btn btn-primary">Pay Deposit</a>
+  				<a href="campregistration?paymentmethod=deposit" class="btn btn-primary disabled">Pay Deposit</a>
 			</div>
 		</td>
 		<td>&nbsp;</td>	

@@ -40,7 +40,6 @@ public class Command
 		JsonObject inputJson = reader.readObject();
 		try {
 			
-		
 			if(pJsonInput.indexOf("MemberName") > -1) {MemberName = inputJson.getString("MemberName").toString();}
 			if(pJsonInput.indexOf("EmailAddress") > -1) {EmailAddress = inputJson.getString("EmailAddress").toString();}
 			if(pJsonInput.indexOf("ErrorMessage") > -1) {ErrorMessage = inputJson.getString("ErrorMessage").toString();}
