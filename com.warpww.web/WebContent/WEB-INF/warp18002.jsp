@@ -26,6 +26,7 @@
 				</div>
 				<div style=" margin-top: 1em; margin-left: 15%;">
 			  		<a href="campregistration?paymentmethod=deposit" class="btn btn-primary disabled" style="width: 45%;"><fmt:message key="warp18002.button.pay" /></a>
+
 				</div>   
 				<br><br>
 				<div>

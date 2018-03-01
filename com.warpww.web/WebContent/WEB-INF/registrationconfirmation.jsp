@@ -10,7 +10,7 @@
 		<header>
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
-		<form method="post" action="/com.warpww.web/registrationconfirmation" enctype="multipart/form-data" name="registrationconfirmation" autocomplete="off">
+		<form method="post" action="registrationconfirmation" enctype="multipart/form-data" name="registrationconfirmation" autocomplete="off">
 		        <div>
 		        		<table>
 		        			<tr>

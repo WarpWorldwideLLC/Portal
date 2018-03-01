@@ -106,7 +106,7 @@ public class landing extends HttpServlet {
 			if(validated) {
 					request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
 			}
 		} catch (Exception ex) {
 			validated = false;
