@@ -1,14 +1,15 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.contact" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>
     <head>
     		<%@ include file="/htx/head.html"%>
+    		<title><fmt:message key="contact.page_title" /></title>
     </head>
 	<body>
 	    	<header class="row">
-			<%@ include file="/htx/headerbar1.html"%>
+			<%@ include file="/htx/menu.html"%>
 		</header>
 		<form>
 		      <div class="row">

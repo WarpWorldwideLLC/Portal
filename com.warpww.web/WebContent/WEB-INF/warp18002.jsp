@@ -1,18 +1,15 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp18002" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
+		<title><fmt:message key="warp18002.page_title" /></title>
 	</head>
 	<body>
 		<header>
-			<h1>
-				<br><label><fmt:message key="warp18002.certficate.title" /></label> 
-				<br><label><fmt:message key="warp18xxx.pathways.text" /></label> 
-			</h1>
-
+			<%@ include file="/htx/menu.html"%>
 		</header>
 		<div id="solution_panel" class="row" style="width: 99%; vertical-align: text-top; display: flex;">
 		   

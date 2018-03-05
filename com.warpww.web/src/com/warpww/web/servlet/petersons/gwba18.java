@@ -5,9 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,15 +49,19 @@ public class gwba18 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String data = genPayload("test", "test");
+		//String data = genPayload("test", "test");
 		try {
 			
+			/*
 			Rijndael r = new Rijndael();
 			r.warpKey();
 			r.warpEncrypt();
+			*/
 			
-			// String postResponse = sendPost("BELLEVUE13", "JohnnyWarp", "Johnny", "Warp", "myemail@petersons.com", "SAT2016");
-			// response.getWriter().append(postResponse);
+			String postResponse = sendPost("BELLEVUE13", "GracieWarp", "Gracie", "Warp", "grace.arp@warpww.com", "SAT2016");
+			// String postResponse = sendPost8("test");
+			response.getWriter().append(postResponse);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,7 +77,7 @@ public class gwba18 extends HttpServlet {
 	}
 
 	// Create the XML that is being sent to Peterson's
-	protected String genPayload (String TeacherID, String StudentID)
+	protected String genPayload (String userID, String firstName, String lastName, String eMail, String courseCode )
 	{
 		String returnValue = null;
 		String payload = "<proxieduser><ACCESSCODE>BELLEVUE13</ACCESSCODE><SPONSORID>1</SPONSORID><SUBSPONSORID>1</SUBSPONSORID><USERID>ddsr3rffssd</USERID><ROLEID>6</ROLEID><GRADEID>12058</GRADEID><CLASSID>0</CLASSID><FNAME>ddsfdasf</FNAME><LNAME>sdsdsd</LNAME><EMAIL>myemail@petersons.com</EMAIL><STREETADDRESS>sstreet</STREETADDRESS><GRADUATIONYEAR>2021</GRADUATIONYEAR><applicationid>2</applicationid><errorurl>Error.aspx</errorurl><RETURNURL>Login.htm</RETURNURL><SELTESTCATEGORY>SAT2016</SELTESTCATEGORY><TESTDATE>1/2/2004</TESTDATE><TESTACTIVATIONDATE>1/1/2004</TESTACTIVATIONDATE><TESTEXPIREDATE>1/1/2004</TESTEXPIREDATE><RegDate>1/1/2004</RegDate><REGISTRATIONDATE>1/1/2004</REGISTRATIONDATE><Gender></Gender><Ethnicity></Ethnicity><County>DuPage</County><State>Illinois</State><Nation>USA</Nation><DISTRICTNAME></DISTRICTNAME><SCHOOLNAME></SCHOOLNAME><GRADENAME></GRADENAME><CLASSNAME></CLASSNAME><EconoDisadvantaged></EconoDisadvantaged><LimitedEng></LimitedEng><SpecialEducation></SpecialEducation><GradeCategoryId></GradeCategoryId><opinionservice></opinionservice><OnlineTutoring></OnlineTutoring></proxieduser>";
@@ -87,43 +93,43 @@ public class gwba18 extends HttpServlet {
 				Element rootElement = doc.createElement("proxieduser");
 				doc.appendChild(rootElement);
 
-				// AccessCode
+				// AccessCode - **** Static ****
 				Element accessCode = doc.createElement("ACCESSCODE");
 				accessCode.setTextContent("BELLEVUE13");
 				rootElement.appendChild(accessCode);
 
-				// sponsorID
+				// sponsorID - **** Static ****
 				Element sponsorID = doc.createElement("SPONSORID");
 				sponsorID.setTextContent("1");
 				rootElement.appendChild(sponsorID);
 				
-				// subSponsorID
+				// subSponsorID - **** Static ****
 				Element subSponsorID = doc.createElement("SUBSPONSORID");
 				subSponsorID.setTextContent("1");
 				rootElement.appendChild(subSponsorID);
 				
 				// userID
-				Element userID = doc.createElement("USERID");
-				userID.setTextContent("ddsr3rffssd");
-				rootElement.appendChild(userID);
+				Element userID1 = doc.createElement("USERID");
+				userID1.setTextContent("ddsr3rffssd");
+				rootElement.appendChild(userID1);
 
-				// roleID
+				// roleID - **** Static ****
 				Element roleID = doc.createElement("ROLEID");
 				roleID.setTextContent("6");
 				rootElement.appendChild(roleID);
 			
-				// gradeID
+				// gradeID - **** Static ****
 				Element gradeID = doc.createElement("GRADEID");
 				gradeID.setTextContent("12058");
 				rootElement.appendChild(gradeID);
 			
-				// classID
+				// classID - **** Static ****
 				Element classID = doc.createElement("CLASSID");
 				classID.setTextContent("0");
 				rootElement.appendChild(classID);
 			
 
-				// fName
+				// fName 
 				Element fName = doc.createElement("FNAME");
 				fName.setTextContent("ddsfdasf");
 				rootElement.appendChild(fName);
@@ -136,26 +142,33 @@ public class gwba18 extends HttpServlet {
 			
 
 				// eMail
-				Element eMail = doc.createElement("EMAIL");
-				eMail.setTextContent("myemail@petersons.com");
-				rootElement.appendChild(eMail);
+				Element eMail1 = doc.createElement("EMAIL");
+				eMail1.setTextContent("myemail@petersons.com");
+				rootElement.appendChild(eMail1);
 			
 
+				// selTestCategory
+				Element selTestCategory = doc.createElement("SELTESTCATEGORY");
+				selTestCategory.setTextContent("SAT2016");
+				rootElement.appendChild(selTestCategory);
+			   
+
+				/* 
 				// streetAddress
 				Element streetAddress = doc.createElement("STREETADDRESS");
-				streetAddress.setTextContent("sstreet");
+				streetAddress.setTextContent("");
 				rootElement.appendChild(streetAddress);
 			
 
 				// graduationYear
 				Element graduationYear = doc.createElement("GRADUATIONYEAR");
-				graduationYear.setTextContent("2021");
+				graduationYear.setTextContent("");
 				rootElement.appendChild(graduationYear);
 			
 
 				// applicationID
 				Element applicationID = doc.createElement("applicationid");
-				applicationID.setTextContent("2");
+				applicationID.setTextContent("");
 				rootElement.appendChild(applicationID);
 			
 
@@ -169,14 +182,10 @@ public class gwba18 extends HttpServlet {
 				Element returnUrl = doc.createElement("RETURNURL");
 				returnUrl.setTextContent("Login.htm");
 				rootElement.appendChild(returnUrl);
-			
+				*/
 
-				// selTestCategory
-				Element selTestCategory = doc.createElement("SELTESTCATEGORY");
-				selTestCategory.setTextContent("SAT2016");
-				rootElement.appendChild(selTestCategory);
-			
-
+				/*
+					
 				// testDate
 				Element testDate = doc.createElement("TESTDATE");
 				testDate.setTextContent("1/2/2004");
@@ -295,6 +304,9 @@ public class gwba18 extends HttpServlet {
 				Element onlineTutoring = doc.createElement("OnlineTutoring");
 				onlineTutoring.setTextContent("");
 				rootElement.appendChild(onlineTutoring);
+				
+				*/
+
 
 				/*
 				// set attribute to staff element
@@ -391,14 +403,13 @@ public class gwba18 extends HttpServlet {
 		//OLD - DO NOT USE: String url = "http://warp.eastasia.cloudapp.azure.com/warp/olc/authenticate";
 		
 		// Current URL for Peterson's 9/1/17
-		String url = "http://warpauth.petersons.com/olc/authenticate";
+		//String url = "http://warpauth.petersons.com/olc/authenticate";
 		
-		
+		// Old Value, not used. 
 		//String url = "http://warpauth.petersons.com/WarpTest/authenticate";
 		
-		// Clear Text Redirects
-		// String url = "http://warpauth.petersons.com/WarpTest/Plainauthenticate";
-		
+		// Clear Text Redirects - Curren
+		String url = "http://warpauth.petersons.com/WarpTest/Plainauthenticate";
 		
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -449,4 +460,120 @@ public class gwba18 extends HttpServlet {
 
 	}
 
+	private String sendPost8(String query) throws Exception {
+		
+        // Encode the query 
+		query = "<!DOCTYPE html>\n" + 
+				"<html>\n" + 
+				"<head>\n" + 
+				"<meta charset=\"UTF-8\">\n" + 
+				"<title>Insert title here</title>\n" + 
+				"</head>\n" + 
+				"<body>\n" + 
+				"\n" + 
+				"<form action=\"http://warpauth.petersons.com//olc/PlainAuthenticate\" method=\"post\">\n" + 
+				"    <input name=\"userData\" value=\"&lt;proxieduser&gt;\n" + 
+				"  &lt;ACCESSCODE&gt;BELLEVUE13&lt;/ACCESSCODE&gt;\n" + 
+				"  &lt;SPONSORID&gt;1&lt;/SPONSORID&gt;\n" + 
+				"  &lt;SUBSPONSORID&gt;1&lt;/SUBSPONSORID&gt;\n" + 
+				"  &lt;USERID&gt;JohnnyWarp&lt;/USERID&gt;\n" + 
+				"  &lt;ROLEID&gt;6&lt;/ROLEID&gt;\n" + 
+				"  &lt;GRADEID&gt;12058&lt;/GRADEID&gt;\n" + 
+				"  &lt;CLASSID&gt;0&lt;/CLASSID&gt;\n" + 
+				"  &lt;FNAME&gt;Johnny&lt;/FNAME&gt;\n" + 
+				"  &lt;LNAME&gt;Warp&lt;/LNAME&gt;\n" + 
+				"  &lt;EMAIL&gt;john.arp@warpww.com&lt;/EMAIL&gt;\n" + 
+				"  &lt;STREETADDRESS&gt;sstreet&lt;/STREETADDRESS&gt;\n" + 
+				"  &lt;GRADUATIONYEAR&gt;2021&lt;/GRADUATIONYEAR&gt;\n" + 
+				"  &lt;applicationid&gt;2&lt;/applicationid&gt;\n" + 
+				"  &lt;errorurl&gt;Error.aspx&lt;/errorurl&gt;\n" + 
+				"  &lt;RETURNURL&gt;Login.htm&lt;/RETURNURL&gt;\n" + 
+				"  &lt;SELTESTCATEGORY&gt;ACT2016&lt;/SELTESTCATEGORY&gt;\n" + 
+				"  &lt;TESTDATE&gt;1/2/2004&lt;/TESTDATE&gt;\n" + 
+				"  &lt;TESTACTIVATIONDATE&gt;1/1/2004&lt;/TESTACTIVATIONDATE&gt;\n" + 
+				"  &lt;TESTEXPIREDATE&gt;1/1/2004&lt;/TESTEXPIREDATE&gt;\n" + 
+				"  &lt;RegDate&gt;1/1/2004&lt;/RegDate&gt;\n" + 
+				"  &lt;REGISTRATIONDATE&gt;1/1/2004&lt;/REGISTRATIONDATE&gt;\n" + 
+				"  &lt;Gender&gt;&lt;/Gender&gt;\n" + 
+				"  &lt;Ethnicity&gt;&lt;/Ethnicity&gt;\n" + 
+				"  &lt;County&gt;DuPage&lt;/County&gt;\n" + 
+				"  &lt;State&gt;Illinois&lt;/State&gt;\n" + 
+				"  &lt;Nation&gt;USA&lt;/Nation&gt;\n" + 
+				"  &lt;DISTRICTNAME&gt;&lt;/DISTRICTNAME&gt;\n" + 
+				"  &lt;SCHOOLNAME&gt;&lt;/SCHOOLNAME&gt;\n" + 
+				"  &lt;GRADENAME&gt;&lt;/GRADENAME&gt;\n" + 
+				"  &lt;CLASSNAME&gt;&lt;/CLASSNAME&gt;\n" + 
+				"  &lt;EconoDisadvantaged&gt;&lt;/EconoDisadvantaged&gt;\n" + 
+				"  &lt;LimitedEng&gt;&lt;/LimitedEng&gt;\n" + 
+				"  &lt;SpecialEducation&gt;&lt;/SpecialEducation&gt;\n" + 
+				"  &lt;GradeCategoryId&gt;&lt;/GradeCategoryId&gt;\n" + 
+				"  &lt;opinionservice&gt;&lt;/opinionservice&gt;\n" + 
+				"  &lt;OnlineTutoring&gt;&lt;/OnlineTutoring&gt;\n" + 
+				"&lt;/proxieduser&gt;\" type=\"hidden\" />\n" + 
+				"    <input name=\"clientId\" value=\"111\" type=\"hidden\" />\n" + 
+				"    <input name=\"symKey\" type=\"hidden\" />\n" + 
+				"    <input type=\"submit\" value=\"Go\" />\n" + 
+				"</form>\n" + 
+				"\n" + 
+				"</body>\n" + 
+				"</html>";
+        String encodedQuery = URLEncoder.encode(query, "UTF-8");
+        // This is the data that is going to be send to itcuties.com via POST request
+        // 'e' parameter contains data to echo
+        String postData = "e=" + encodedQuery;
+		
+		
+		// OLC Redirects - Current
+		String url = "http://warpauth.petersons.com/olc/PlainAuthenticate";
+		
+		
+		URL urlObj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+		con.setDoOutput(true);	
+		//add request header
+		con.setRequestMethod("POST");
+		con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        con.setRequestProperty("Content-Length",  String.valueOf(postData.length()));
+			
+        // Write data
+        OutputStream os = con.getOutputStream();
+        os.write(postData.getBytes());
+  
+		// Send post request
+        /*
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+		*/
+        
+		int responseCode = con.getResponseCode();
+		System.out.println("Response Code: " + responseCode);
+
+		InputStream _is;
+		
+		if (con.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+		    _is = con.getInputStream();
+		} else {
+		     /* error from server */
+		    _is = con.getErrorStream();
+		}
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(_is));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		// print result
+		// System.out.println(response.toString());
+		return response.toString();
+
+	}
+
+	
 }

@@ -53,9 +53,8 @@ public class login extends HttpServlet {
 	{
 		boolean validated = false;
 		
-		Util.printParams("landing.doPost", request);
+		Util.printParams("login.validate", request);
 		
-		// if(str != null && !str.isEmpty())
 		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
 		try {
 			if(!request.getParameter("memberName").trim().isEmpty() && request.getParameter("memberName").trim() != null )
@@ -81,7 +80,7 @@ public class login extends HttpServlet {
 				
 				
 			} else {
-				request.getRequestDispatcher("/WEB-INF/landing.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
 			}
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block

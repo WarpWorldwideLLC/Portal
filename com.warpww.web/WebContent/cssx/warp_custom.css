@@ -23,7 +23,6 @@ header {
 	text-align: center;	
 	width: 100%;
 	top: 0;
-	
 	font-size: xx-large;
 	color: darkgoldenrod;
 }
@@ -34,12 +33,139 @@ footer {
 	text-align: center;	
 	width: 100%;
 	bottom:0;
-	position: fixed;
-	background-color: black;
 }
 
 /* cellpadding */
 th, td { padding: 5px; }
+
+
+
+/* ************************************************************************* */
+/* Top Menu                                                               */
+/* ************************************************************************* */
+.topMenu {
+	color: black;
+	text-align: center;
+	background-color: skyblue;
+	display: inline-block; 
+	width: 100%;
+	font-size: .5em;
+	width: 100%;
+	vertical-align: midddle;
+	
+}
+
+.topMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.topMenu li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.topMenu li:last-child {
+    border-right: none;
+}
+
+.topMenu li a:hover {
+    background-color: white;
+    color: black;
+}
+
+.topMenu active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topMenu li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.topMenuItem {
+	display: inline-block;
+}
+
+/* ************************************************************************* */
+/* Front Page Solution
+/* ************************************************************************* */
+.frontPageSolution {
+	display: inline-block;
+	color: black;
+	vertical-align: middle;
+	
+}
+
+
+/* ************************************************************************* */
+/* Value Statement                                                           */
+/* ************************************************************************* */
+.valueStatement {
+	display: inline-block;
+	font-size: .5em;
+	color: black;
+	width: 100%;
+}
+
+
+/* ************************************************************************* */
+/* Bottom Menu                                                               */
+/* ************************************************************************* */
+.bottomMenu {
+	color: black;
+	font-size: .5em;
+	text-align: center;
+	background-color: #000099;
+	display: inline-block; 
+	width: 100%;
+	vertical-align: midddle;
+}
+
+.bottomMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.bottomMenu li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.bottomMenu li:last-child {
+    border-right: none;
+}
+
+.bottomMenu li a:hover {
+    background-color: white;
+    color: black;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.bottomMenu li a {
+    display: block;
+    color: gold;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.bottomMenuItem {
+	display: block;
+    color: gold;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: transparent;
+}
 
 .statusMessageBox {
 	border: none;
@@ -47,15 +173,6 @@ th, td { padding: 5px; }
 
 .registerInput {
 	width: 25em;
-}
-
-a {
-	color: darkgoldenrod;
-}
-
-a:hover, a:focus {
-    color: darkgoldenrod;
-    text-decoration: none;
 }
 
 .button.disabled {
@@ -250,6 +367,7 @@ hr {
 
 }
 
+/* 
  ul {
     list-style-type: none;
     margin: 0;
@@ -281,6 +399,7 @@ li a {
     padding: 8px 16px;
     text-decoration: none;
 }
+*/
 
 /***************************************************************/
 /*                     Carousel                                */

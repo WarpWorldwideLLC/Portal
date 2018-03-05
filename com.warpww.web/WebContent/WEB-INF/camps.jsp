@@ -66,7 +66,7 @@
 		<td>&nbsp;</td>
 		<td>
 			<div style=" margin-top: 1em;">
-  				<a href="campregistration?paymentmethod=full" class="btn btn-primary disabled">Pay in Full</a>
+  				<a href="campregistration?paymentmethod=full" class="btn btn-primary">Pay in Full</a>
 			</div>
 		</td>
 		<td>&nbsp;</td>

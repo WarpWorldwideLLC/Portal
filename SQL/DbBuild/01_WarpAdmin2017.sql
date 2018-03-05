@@ -612,28 +612,6 @@ CREATE TABLE eContact (
     ProductCost							DECIMAL(19,4) NOT NULL
 	);
     
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-001', 'AP Courses', 0.00);
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-002', 'CLEP', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-003', 'DSST', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-004', 'GMAT', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-005', 'GRE', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-006', 'LSAT', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-007', 'MAT', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-008', 'MCAT', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-009', 'ACT Practice Test', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-010', 'ACT Prep', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-011', 'CPST', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-012', 'PSAT/NMSQT', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-013', 'SATPractice Test', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-014', 'SAT Subjects (10)', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-015', 'SAT/ACT Flash Cards', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-016', 'STEM HUBS', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-017', 'TOEFL', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-018', 'OASC', 0.00);    
-    INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('NES-019', 'SSAT', 0.00);    
-
-    
-    SELECT * FROM Product;
     
 -- Solutions are what we sell. A solution is made up of 1 or more products.    
  DROP TABLE IF EXISTS Solution;
@@ -651,9 +629,7 @@ CREATE TABLE eContact (
     SolutionCost						DECIMAL(19,4) NOT NULL
 	);
         
-	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-17001', 'Petersons Suite', 15.55);
-      
-        
+
  -- Describes which products are part of a solution. It is possible that a solution has only one product.       
  DROP TABLE IF EXISTS SolutionProduct;
  CREATE TABLE SolutionProduct (
@@ -668,29 +644,7 @@ CREATE TABLE eContact (
     SolutionCode						NVARCHAR(25) NOT NULL,
     ProductCode							NVARCHAR(25) NOT NULL
 	);       
-        
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-001');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-002');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-003');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-004');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-005');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-006');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-007');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-008');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-009');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-010');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-011');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-012');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-013');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-014');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-015');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-016');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-017');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-018');
- 	INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-17001', 'NES-019');
 
-      
- 
 -- EntitySolution shows which Entities have access to which Solutions, and which billing method is assigned.     
  DROP TABLE IF EXISTS EntitySolution;
  CREATE TABLE EntitySolution (

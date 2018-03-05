@@ -1,14 +1,15 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.register" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>
     <head>
 		<%@ include file="/htx/head.html"%>
+		<title><fmt:message key="register.page_title" /></title>
     </head>
 <body>
-    		<header class="row" class="col-md-3" style="width:90%">
-			<%@ include file="/htx/headerbar1.html"%>
+    		<header>
+			<%@ include file="/htx/menu.html"%>
 		</header>
         <form method="post" action="register" enctype="multipart/form-data" name="registration" autocomplete="off">
         <div>
@@ -18,7 +19,7 @@
 			  		<td><input type="text" name="memberName" id="memberName" class="registerInput" value=${param["memberName"]}></td>
 		  		</tr>
 	        		<tr>
-	        			<td><label>Country:</label></td>
+	        			<td><label><fmt:message key="register.label.country" /></label></td>
 				  	<td>	
 				  		<select name="countrySelector" id="countrySelector">
 				  			<option value="0">- Choose One -</option>
@@ -28,28 +29,32 @@
 						</select>
 				  	</td>
 				  <tr>
-				  	<td><label>Email Address:</label></td>
+				  	<td><label><fmt:message key="register.label.email1" /></label></td>
+				  	<td><input type="text" name="emailAddress" id="emailAddress" class="registerInput" value=${param["emailAddress"]}></td>
+				  </tr>
+				  <tr>
+				  	<td><label><fmt:message key="register.label.email2" /></label></td>
 				  	<td><input type="text" name="emailAddress" id="emailAddress" class="registerInput" value=${param["emailAddress"]}></td>
 				  </tr>
 				  <tr>	
-				  	<td>	<label>First Name:</label></td>
+				  	<td>	<label><fmt:message key="register.label.firstname" /></label></td>
 				  	<td><input type="text" name="firstName" id="firstName" class="registerInput" value=${param["firstName"]}></td>
 				  </tr>
 				  
 				  <tr>
-				  	<td>	<label>Last Name:</label></td>
+				  	<td>	<label><fmt:message key="register.label.lastname" /></label></td>
 				  	<td>	<input type="text" name="lastName" id="lastName" class="registerInput" value=${param["lastName"]}></td>
 				  </tr>
 				  <tr>	
-				  	<td>	<label>Phone Number:</label></td>
+				  	<td>	<label><fmt:message key="register.label.phonenumber" /></label></td>
 				  	<td><input type="text" name="phoneNumber" id="phoneNumber" class="registerInput" value=${param["phoneNumber"]}></td>
 				  </tr>
 				  <tr>	
-				  	<td>	<label>Passphrase:</label></td>
+				  	<td>	<label><fmt:message key="register.label.passphrase1" /></label></td>
 				  	<td><input type="password" name="passPhrase1" id="passPhrase1" class="registerInput"></td>
 				  </tr>		
 				  <tr>
-				  	<td><label>Re-Enter Passphrase:</label></td>
+				  	<td><label><fmt:message key="register.label.passphrase2" /></label></td>
 				  	<td><input type="password" name="passPhrase2" id="passPhrase2" class="registerInput"></td>
 				  </tr>		
 				  <tr>

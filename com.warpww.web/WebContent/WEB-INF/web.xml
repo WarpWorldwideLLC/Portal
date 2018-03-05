@@ -9,7 +9,6 @@
     <servlet-name>BotDetect Captcha</servlet-name>
     <url-pattern>/botdetectcaptcha</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <servlet-name>warp18001</servlet-name>
     <servlet-class>com.warpww.web.servlet.ux.warp18001</servlet-class>
@@ -19,7 +18,6 @@
     <url-pattern>/businessanalytics</url-pattern>
     <url-pattern>/BusinessAnalytics</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <servlet-name>warp18002</servlet-name>
     <servlet-class>com.warpww.web.servlet.ux.warp18002</servlet-class>
@@ -29,6 +27,4 @@
     <url-pattern>/projectmanagement</url-pattern>
     <url-pattern>/ProjectManagement</url-pattern>
   </servlet-mapping>
-
-
 </web-app>

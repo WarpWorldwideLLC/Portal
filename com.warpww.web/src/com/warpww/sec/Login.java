@@ -281,9 +281,9 @@ public class Login {
 		
 		request.getRequestDispatcher("/dbProcess").include(request, response);
 		
-		
+		Util.printParams("login1", request);
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
-		Util.printParams("login", request);
+		Util.printParams("login2", request);
 		
 		System.out.println("Status: " + cmd.CommandResults);
 		System.out.println("Constant" + cmd.COMMAND_SUCCESS);

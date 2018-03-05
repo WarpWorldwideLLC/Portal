@@ -5,10 +5,11 @@
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
+		<title><fmt:message key="registrationconfirmation.page_title" /></title>
 	</head>
 	<body>
 		<header>
-			<%@ include file="/htx/headerbar1.html"%>
+			<%@ include file="/htx/menu.html"%>
 		</header>
 		<form method="post" action="registrationconfirmation" enctype="multipart/form-data" name="registrationconfirmation" autocomplete="off">
 		        <div>

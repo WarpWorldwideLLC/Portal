@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Copy Files to S3"
+aws s3 cp More-Fun-Comics_0050_0066.jpg s3://comic-library/More-Fun-Comics/More-Fun-Comics_0050_0066.jpg
+
+
+#copy my-file.txt to the to the "data" directory located in my-s3-bucket 
+aws s3 cp my-file.txt s3://my-s3-bucket/data/
+ 
+#copy all files in my-data-dir into the "data" directory located in my-s3-bucket 
+aws s3 cp my-data-dir/ s3://my-s3-bucket/data/ --recursive
+
+# copy groups of files using masks. Order of includes and excludes is significant.
+aws s3 cp .  s3://comic-library/More-Fun-Comics/ --recursive --exclude "*" --include "More-Fun-Comics_0050*"
+
+# https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters
