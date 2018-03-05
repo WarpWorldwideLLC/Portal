@@ -32,7 +32,7 @@
 								<td>&nbsp;</td>
 								<td>
 									<div style=" margin-top: 1em;">
-						  				<a href="checkout?paymentmethod=full" class="btn btn-primary">Purchase (USD $1.487.00)</a>
+						  				<a href="checkout?product=vega&price=1487;" class="btn btn-primary disabled">Purchase (USD $1,487.00)</a>
 									</div>
 								</td>
 								<td>&nbsp;</td>

@@ -12,12 +12,10 @@
 			<%@ include file="/htx/menu.html"%>
 		</header>
     		<form method="post" action="landing" name="landing" autocomplete="off">
-			<br><br><br/>
-			<h4><fmt:message key="warp.short.description" /></h4>
-			<br><br/>
-
-			
-			
+			<div style="color: black;">
+				<h4><fmt:message key="warp.short.description" /></h4>
+			</div>
+			<br>
 		        <div id="warp_sol" class="row" style="background-color: yellow; border-radius: 25px; padding: 20px; display: flex; text-align: center; vertical-align: middle;">
 		        		<div class="block">
 		        			<a href="warp_sol" ><img src="imgx/k12.jpg" title="WARP Worldwide, LLC" width="142" height="80" /><br>

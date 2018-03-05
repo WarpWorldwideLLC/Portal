@@ -17,8 +17,6 @@
 		        			<h4><fmt:message key="warp_sirius.p2.0" /></h4>
 		        			<div style="margin-left: 25px;">
 		        				<fmt:message key="warp_sirius.p2.1" /><br>
-		        				<fmt:message key="warp_sirius.p2.2" /><br>
-		        				<fmt:message key="warp_sirius.p2.3" /><br>
 		        				<fmt:message key="warp_sirius.p2.4" /><br>
 		        				<fmt:message key="warp_sirius.p2.5" /><br>
 		        			</div>

@@ -41,6 +41,24 @@
 							</div>
 							<br>
 		            </div>
+		            		<table>
+							<tr>
+								<td>&nbsp;</td>
+								<td>
+									<div style=" margin-top: 1em;">
+						  				<a href="checkout?product=vega&price=1487;" class="btn btn-primary disabled">Purchase</a>
+									</div>
+								</td>
+								<td>&nbsp;</td>
+								<td>
+									<div style=" margin-top: 1em;">
+						  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+						  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+									</div>
+								</td>
+							</tr>
+						</table>
+		            
 		          </div>
 
 		<footer>
