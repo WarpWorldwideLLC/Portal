@@ -755,3 +755,6 @@ CREATE TABLE ShoppingCart (
 	LastAuID 							BIGINT DEFAULT -1,
 	LastIuID 							BIGINT DEFAULT -1
 	);
+    
+    
+  SELECT 'Build Complete. Add Stored Procedures.'  

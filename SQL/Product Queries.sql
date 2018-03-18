@@ -4,7 +4,7 @@ USE WarpAdmin2017;
 	/* *************************************************************************************************** */
     /* Peterson's ILRN
     /* *************************************************************************************************** */
-	INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('PILR-001', 'GMAT', 0.00);  
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-001', 'GMAT', 0.00);  
     INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('PILR-002', 'GRE', 0.00);  
 	INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('PILR-003', 'SAT Practice Test', 0.00); 
 	INSERT INTO Product (ProductCode, ProductName, ProductCost) VALUES ('PILR-004', 'TOEFL', 0.00);  

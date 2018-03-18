@@ -55,7 +55,9 @@ BEGIN
 	SELECT JSON_OBJECT(
                      'MemberNumber', e.ID,
                      'CommandResults', 'Success',
-                     'MemberName', en.EntityName ,
+                     'MemberName', en0.EntityName ,
+                     'FirstName', en1.EntityName,
+                     'LastName', en2.EntityName,
                      'MemberSince', DATE_FORMAT(e.CreateDate, "%Y.%m.%d"), 
                      'AuthToken', AuthToken
 				) AS CommandResult
@@ -63,12 +65,20 @@ BEGIN
 			LEFT JOIN Passphrase p
 			  ON e.ID = p.EntityID
 			    AND p.RecordStatusID = 10
-			LEFT JOIN EntityName en
-			  ON e.ID = en.EntityID
-				AND  EntityNameTypeID = 2
-				AND en.RecordStatusID = 10
+			LEFT JOIN EntityName en0
+			  ON e.ID = en0.EntityID
+				AND  en0.EntityNameTypeID = 2
+				AND en0.RecordStatusID = 10
+			LEFT JOIN EntityName en1
+			  ON e.ID = en1.EntityID
+				AND  en1.EntityNameTypeID = 3
+				AND en1.RecordStatusID = 10
+			LEFT JOIN EntityName en2
+			  ON e.ID = en2.EntityID
+				AND  en2.EntityNameTypeID = 5
+				AND en2.RecordStatusID = 10
 		WHERE e.EntityTypeID = 6
- 		  AND en.EntityName = MemberName
+ 		  AND en0.EntityName = MemberName
         
 		;
         
