@@ -12,6 +12,7 @@ import java.time.temporal.TemporalAccessor;
 import java.util.UUID;
 
 import javax.json.Json;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +24,48 @@ import com.warpww.util.Util;
 
 public class Login {
 
-	public static String getGreeting() {
+	public static String getGreeting(int MemberID, HttpServletRequest request, HttpServletResponse response) {
 		String returnValue = null;
 		
+		try
+		{
+		String json = Json.createObjectBuilder()
+				 .add("Command", "GetGreeting")
+				 .add("AuID", 1)
+				 .add("IuID", 1)
+				 .add("MemberID", MemberID)
+				 .build()
+				 .toString(); 		
 		
+		String jsonParms = "";
+		jsonParms = json;
+		request.setAttribute("CommandText", jsonParms);
 		
+		//request.getRequestDispatcher("/dbProcess").include(request, response);
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+		dispatcher.include(request, response);
+		
+		Util.printParams("getGreeting", request);
+		Command cmd = new Command(request.getAttribute("CommandResults").toString());
+		
+		/* 
+		System.out.println("Status: " + cmd.CommandResults);
+		System.out.println("Constant: " + cmd.COMMAND_SUCCESS);
+		System.out.println("Comparison: " + cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS));
+		*/
+		
+		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
+			returnValue = "Hello, " + cmd.FirstName + " " + cmd.LastName;
+			request.setAttribute("Greeting", returnValue);
+		}
+		
+		} catch (Exception ex)
+		{
+			System.out.println(ex.toString());
+			ex.printStackTrace();
+			returnValue = null;
+		}
+			
 		return returnValue;
 	}
 	
@@ -75,7 +113,7 @@ public class Login {
 			{
 				returnValue = true;
 			}
-
+			
 			
 		} catch (Exception ex) {
 			System.out.println(ex.toString());
@@ -83,6 +121,7 @@ public class Login {
 			returnValue = false;				
 		}
 		
+		// System.out.println("validateTokenHash: " + returnValue);
 		return returnValue;
 	}
 	
@@ -235,7 +274,7 @@ public class Login {
 		    returnValue = false;
 		}   
 		
-		
+		//System.out.println("authenticateToken: " + returnValue);
 		return returnValue;
 	}
 	
@@ -257,6 +296,8 @@ public class Login {
 			
 			boolean tokenHash = validateTokenHash(tokenRaw.substring(23), tokenCreateTime, request.getHeader("User-Agent"), request.getRemoteAddr(), tokenMemberID);
 			
+			if(tokenHash) { request.setAttribute("TokenMemberID", tokenMemberID); }
+			
 			returnValue = tokenHash;
 			
 		} catch (Exception ex) {
@@ -265,6 +306,7 @@ public class Login {
 			returnValue = false;
 		}
 		
+		// System.out.println("verifyToken: " + returnValue);
 		return returnValue;
 	}
 	

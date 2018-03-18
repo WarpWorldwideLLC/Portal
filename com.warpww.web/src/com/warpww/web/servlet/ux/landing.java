@@ -32,8 +32,13 @@ public class landing extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			Util.foo();
+		if(Login.authenticateToken(request)) {
+			System.out.println("authenticateToken Succeeded.");
+			Util.printParams("landing.java", request);
+			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
+			
+		} else {
+			System.out.println("authenticateToken Failed.");
 		}
 		validate(request, response);
 	}
@@ -43,8 +48,13 @@ public class landing extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
+		if(Login.authenticateToken(request)) {
+			System.out.println("authenticateToken Succeeded.");
+			Util.printParams("landing.java", request);
+			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
 			
+		} else {
+			System.out.println("authenticateToken Failed.");
 		}
 		validate(request, response);
 	}

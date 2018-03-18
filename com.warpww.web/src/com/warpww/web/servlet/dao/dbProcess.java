@@ -40,7 +40,8 @@ public class dbProcess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		processCommand(request, response);
 	}
 
 	/**
@@ -123,8 +124,10 @@ public class dbProcess extends HttpServlet {
                 		break;
 	            case "SaveStripeCampData":  spName = "saveStripeCampData";
                 		break;
+	            case "GetGreeting":  spName = "getGreeting";
+        				break;
 	            default: spName = "Invalid_Command";
-	                     break;
+	                break;
 	        }
 	        
 	        return spName;

@@ -27,6 +27,8 @@ public class Command
 	public String ProcStatus = "";
 	public String MessageSource = "";
 	public String MessageCode = "";
+	public String FirstName = "";
+	public String LastName = "";
 	
 
 	// Public Constants
@@ -56,6 +58,9 @@ public class Command
 			if(pJsonInput.indexOf("ProcStatus") > -1) {ProcStatus = inputJson.getString("ProcStatus");}
 			if(pJsonInput.indexOf("MessageSource") > -1) {MessageSource = inputJson.getString("MessageSource").toString();}
 			if(pJsonInput.indexOf("MessageCode") > -1) {MessageCode = inputJson.getString("MessageCode").toString();}
+			if(pJsonInput.indexOf("FirstName") > -1) {FirstName = inputJson.getString("FirstName").toString();}
+			if(pJsonInput.indexOf("LastName") > -1) {LastName = inputJson.getString("LastName").toString();}
+			
 
 		} catch (Exception ex) {
 			System.out.println(ex.toString());

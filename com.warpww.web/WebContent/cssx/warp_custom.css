@@ -52,6 +52,10 @@ th, td { padding: 5px; }
 	font-size: .5em;
 	width: 100%;
 	vertical-align: midddle;
+	padding-left: 35px;
+	padding-right: 35px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	
 }
 
