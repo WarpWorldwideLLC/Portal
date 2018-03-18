@@ -46,7 +46,7 @@
 								<td>&nbsp;</td>
 								<td>
 									<div style=" margin-top: 1em;">
-						  				<a href="checkout?product=vega&price=1487;" class="btn btn-primary disabled">Purchase</a>
+						  				<a href="checkout?product=vega&price=1487;" class="btn btn-primary">Purchase</a>
 									</div>
 								</td>
 								<td>&nbsp;</td>

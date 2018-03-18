@@ -83,7 +83,7 @@ public class register extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		
+			Util.printParams("register.doPost", request);
 			String jsonResults = request.getAttribute("CommandResults").toString();
 			
 			System.out.println("CommandResults: " + jsonResults);
@@ -125,16 +125,11 @@ public class register extends HttpServlet {
 			request.setAttribute("ErrorMessage", "Captcha Validation Failed.");
 			request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 		}
-
-
-		
-		
 		
 	}
 
 	public void setRequestState(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
-		
 		
 		// Determine which button was pressed. 
 		Map params = request.getParameterMap();
@@ -150,17 +145,14 @@ public class register extends HttpServlet {
 				actionMode = value;
 		    	}
 		    
-		    
 		}
-	    		
-		        
+	    			        
 	}
 	
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		//Hash the password. 
 		String passphraseHash = Password.createHash(request.getParameter("passPhrase1"));
-		
 		
 		// Create the command JSON.
 		String json = Json.createObjectBuilder()
@@ -171,7 +163,7 @@ public class register extends HttpServlet {
 				 .add("EmailAddress", request.getParameter("emailAddress"))
 				 .add("PassphraseHash", passphraseHash)
 				 .add("PhoneNumber", request.getParameter("phoneNumber"))
-				 .add("FirsName", request.getParameter("firstName"))
+				 .add("FirstName", request.getParameter("firstName"))
 				 .add("LastName", request.getParameter("lastName"))
 				 .add("CountryID", request.getParameter("countrySelector"))
 				 .build()
@@ -193,7 +185,7 @@ public class register extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 			
-			Util.printParams("Register.processRequest", request);
+			// Util.printParams("Register.processRequest", request);
 			
 			break;
 		default: 

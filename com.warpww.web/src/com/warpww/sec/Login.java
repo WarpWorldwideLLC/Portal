@@ -23,6 +23,14 @@ import com.warpww.util.Util;
 
 public class Login {
 
+	public static String getGreeting() {
+		String returnValue = null;
+		
+		
+		
+		return returnValue;
+	}
+	
 	// Format time for the token. 
 	public static String formatTokenTime(Instant instantValue) {
 		String returnValue = null;
@@ -203,7 +211,7 @@ public class Login {
 		            */
 		        		
 		            cookieValue = cookie.getValue();
-		            System.out.println("Cookie Name: " + cookie.getName() + " [" + cookieValue + "]");
+		            // System.out.println("Cookie Name: " + cookie.getName() + " [" + cookieValue + "]");
 		            
 		            /*
 		            System.out.println("cookieValue: " + cookieValue);
@@ -281,18 +289,17 @@ public class Login {
 		
 		request.getRequestDispatcher("/dbProcess").include(request, response);
 		
-		Util.printParams("login1", request);
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
-		Util.printParams("login2", request);
 		
+		/* 
 		System.out.println("Status: " + cmd.CommandResults);
-		System.out.println("Constant" + cmd.COMMAND_SUCCESS);
+		System.out.println("Constant: " + cmd.COMMAND_SUCCESS);
 		System.out.println("Comparison: " + cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS));
-		
+		*/
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			String token = createAuthenticationToken(request, response, Integer.parseInt(cmd.MemberID));
-			System.out.println("Token: " + token);
+			// System.out.println("Token: " + token);
 			returnValue = true;
 		}
 		

@@ -53,8 +53,6 @@ public class login extends HttpServlet {
 	{
 		boolean validated = false;
 		
-		Util.printParams("login.validate", request);
-		
 		// Ensure member name and passphrase were typed, hash passphrase before continuing. 
 		try {
 			if(!request.getParameter("memberName").trim().isEmpty() && request.getParameter("memberName").trim() != null )
