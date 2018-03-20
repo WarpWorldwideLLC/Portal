@@ -28,10 +28,7 @@ public class partner extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
 		request.getRequestDispatcher("/WEB-INF/partner.jsp").forward(request, response);
 	}
 

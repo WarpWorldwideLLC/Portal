@@ -31,10 +31,8 @@ public class petersons extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
+		
 		request.setAttribute("ResultCode", "Petersons");
 		
 		request.getRequestDispatcher("/WEB-INF/petersons.jsp").forward(request, response);

@@ -44,7 +44,10 @@ public class checkout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
+		// Authenticate 
+		Login.authenticate(request, response);
+		
+		// Clear Messages
 		request.setAttribute("statusMessage", "");
 		if(Login.authenticateToken(request)) {
 			request.setAttribute("statusMessage", "");
@@ -107,7 +110,7 @@ public class checkout extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 	

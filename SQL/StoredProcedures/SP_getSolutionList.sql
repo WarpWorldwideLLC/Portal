@@ -1,18 +1,17 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS getGreeting;
+DROP PROCEDURE IF EXISTS getSolutionList;
 
 DELIMITER $$
-CREATE PROCEDURE getGreeting(query JSON)
+CREATE PROCEDURE getSolutionList(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
-    DECLARE MemberID BIGINT DEFAULT -1;
-	DECLARE MemberGreeting NVARCHAR(255);
+
 
 	-- Error and Warning Block Variables 
-	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'Success';
+	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
     DECLARE ProcMessage NVARCHAR(999) DEFAULT '';
 	DECLARE lSqlState NVARCHAR(255) DEFAULT '';
     DECLARE lErrNumber NVARCHAR(255) DEFAULT '';
@@ -43,24 +42,22 @@ BEGIN
 
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.PuID');
-	SET MemberID := JSON_EXTRACT(query, '$.MemberID');
 
 	SELECT JSON_OBJECT(
-					 'CommandResults', ProcStatus,
-                     'MemberNumber', e.ID,
-                     'FirstName', en1.EntityName, 
-                     'LastName', en2.EntityName,
-                     'MemberSince', DATE_FORMAT(e.CreateDate, "%M %Y")
+                     'SolutionCode', s.SolutionCode, 
+                     'ProductCode', p.ProductCode, 
+                     'SolutionName', s.SolutionName, 
+                     'ProductName', p.ProductName, 
+                     'SolutionCost', s.SolutionCost
 				) AS CommandResult
-	FROM Entity e
-	  INNER JOIN EntityName en1
-		ON e.ID = en1.EntityID
-		AND en1.EntityNameTypeID = 3
-	  INNER JOIN EntityName en2
-		ON e.ID = en2.EntityID
-		AND en2.EntityNameTypeID = 5
+	FROM Solution s
+		INNER JOIN SolutionProduct sp
+		  ON s.SolutionCode = sp.SolutionCode
+		LEFT JOIN Product p
+		  ON sp.ProductCode = p.ProductCode
+	;
         
-		;
+		
         
 END $$
 DELIMITER ;

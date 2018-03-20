@@ -32,7 +32,8 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Login.authenticate(request, response);
+		
 		// Read Properties File
 		Properties prop = new Properties();
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();           

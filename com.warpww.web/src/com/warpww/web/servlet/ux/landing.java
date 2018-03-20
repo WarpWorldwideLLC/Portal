@@ -31,32 +31,16 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(Login.authenticateToken(request)) {
-			System.out.println("authenticateToken Succeeded.");
-			Util.printParams("landing.java", request);
-			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
-			
-		} else {
-			System.out.println("authenticateToken Failed.");
-		}
-		validate(request, response);
+		Login.authenticate(request, response);
+		request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(Login.authenticateToken(request)) {
-			System.out.println("authenticateToken Succeeded.");
-			Util.printParams("landing.java", request);
-			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
-			
-		} else {
-			System.out.println("authenticateToken Failed.");
-		}
-		validate(request, response);
+		Login.authenticate(request, response);
+		request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
 	}
 
 	protected void validate(HttpServletRequest request, HttpServletResponse response)

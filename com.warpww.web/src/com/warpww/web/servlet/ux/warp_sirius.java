@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
+
 /**
  * Servlet implementation class warp_sirius
  */
@@ -26,6 +28,8 @@ public class warp_sirius extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Login.authenticate(request, response);
+		
 		request.getRequestDispatcher("/WEB-INF/warp_sirius.jsp").forward(request, response);
 	}
 

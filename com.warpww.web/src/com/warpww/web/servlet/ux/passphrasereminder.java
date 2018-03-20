@@ -30,10 +30,7 @@ public class passphrasereminder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
 		request.getRequestDispatcher("WEB-INF/passphrasereminder.jsp").forward(request, response);
 	}
 
@@ -41,10 +38,8 @@ public class passphrasereminder extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
+		
 		String inputJSON = Command.createRequestInput(request);
 		System.out.println(inputJSON);
 

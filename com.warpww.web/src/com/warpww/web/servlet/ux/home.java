@@ -28,10 +28,7 @@ public class home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
 
@@ -39,7 +36,7 @@ public class home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

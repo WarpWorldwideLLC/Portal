@@ -45,10 +45,8 @@ public class register extends HttpServlet {
 			request.setAttribute("ErrorMessage", "");
 		}
 		
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
+		
 		// Process the request
 		setRequestState(request, response);
 		
@@ -59,10 +57,8 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Validate authentication - 
-		if(!Login.authenticateToken(request)) {
-			
-		}
+		Login.authenticate(request, response);
+		
 		// Clear any existing error messages.
 		Util.clearErrorMessage(request);
 		

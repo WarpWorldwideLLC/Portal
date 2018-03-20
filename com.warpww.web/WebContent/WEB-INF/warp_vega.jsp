@@ -20,30 +20,169 @@
 		        				<img src="imgx/stem.png" style="max-width: 85%; max-height: 85%; display: block; margin: auto auto;" alt="<fmt:message key="warp_vega.p2.0.1" />" /><br>
 
 		        				<div>
-		        					<fmt:message key="warp_vega.p2.1.0" /><br><br>
-		        					<fmt:message key="warp_vega.p2.1.1" />
+		        					<fmt:message key="warp_vega.p100.0" /><br><br>
+		        			
 		        				</div>
 		        				<br>
-		        				<fmt:message key="warp_vega.p2.2" />
+		        				<div>
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p101.0"/></a><br>
+			        				<fmt:message key="warp_vega.p101.1" /><br>
+			        				<fmt:message key="warp_vega.p101.2" /><br>
+			        				<fmt:message key="warp_vega.p101.3" /><br>
+			        				<fmt:message key="warp_vega.p101.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-001;" class="btn btn-primary"><fmt:message key="warp_vega.p101.payment" /><br></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+								<br><br>
+		        				</div>
+		        				
+		        				<div>     				
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p102.0" /></a><br>
+			        				<fmt:message key="warp_vega.p102.1" /><br>
+			        				<fmt:message key="warp_vega.p102.2" /><br>
+			        				<fmt:message key="warp_vega.p102.3" /><br>
+			        				<fmt:message key="warp_vega.p102.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-002;" class="btn btn-primary"><fmt:message key="warp_vega.p102.payment" /></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+								<br><br>
+		        				</div>
+		        				
+		        				<div>
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p103.0" /></a><br>
+			        				<fmt:message key="warp_vega.p103.1" /><br>
+			        				<fmt:message key="warp_vega.p103.2" /><br>
+			        				<fmt:message key="warp_vega.p103.3" /><br>
+			        				<fmt:message key="warp_vega.p103.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-003;" class="btn btn-primary"><fmt:message key="warp_vega.p103.payment" /></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+								<br><br>
+			        			</div>
+		        						   
+		        				<div>   				
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p104.0" /></a><br>
+			        				<fmt:message key="warp_vega.p104.1" /><br>
+			        				<fmt:message key="warp_vega.p104.2" /><br>
+			        				<fmt:message key="warp_vega.p104.3" /><br>
+			        				<fmt:message key="warp_vega.p104.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-004;" class="btn btn-primary"><fmt:message key="warp_vega.p104.payment" /></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+								<br><br>
+		        				</div>
+		        				
+		        				<div>
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p105.0" /></a><br>
+			        				<fmt:message key="warp_vega.p105.1" /><br>
+			        				<fmt:message key="warp_vega.p105.2" /><br>
+			        				<fmt:message key="warp_vega.p105.3" /><br>
+			        				<fmt:message key="warp_vega.p105.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-005;" class="btn btn-primary"><fmt:message key="warp_vega.p105.payment" /></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+								<br><br>
+		        				</div>
+		        				
+		        				<div>
+			        				<a class="productHeading" ><fmt:message key="warp_vega.p106.0" /></a><br>
+			        				<fmt:message key="warp_vega.p106.1" /><br>
+			        				<fmt:message key="warp_vega.p106.2" /><br>
+			        				<fmt:message key="warp_vega.p106.3" /><br>
+			        				<fmt:message key="warp_vega.p106.4" /><br>
+			        				<table>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<a href="checkout?product=WARP-STEM-006;" class="btn btn-primary"><fmt:message key="warp_vega.p106.payment" /></a>
+										</div>
+									</td>
+									<td>&nbsp;</td>
+									<td>
+										<div style=" margin-top: 1em;">
+							  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
+							  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+										</div>
+									</td>
+								</tr>
+								</table>
+			        				<br><br>
+		        				</div>
+		        				
+		        				
 		        			</div>
 		        			<br>
-		        			<table>
-							<tr>
-								<td>&nbsp;</td>
-								<td>
-									<div style=" margin-top: 1em;">
-						  				<a href="checkout?product=vega&price=1487;" class="btn btn-primary disabled">Purchase (USD $1,487.00)</a>
-									</div>
-								</td>
-								<td>&nbsp;</td>
-								<td>
-									<div style=" margin-top: 1em;">
-						  				<!--  <p class="lead">Download the full brochure by clicking below.</p>  -->
-						  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
-									</div>
-								</td>
-							</tr>
-						</table>
 		        		</div>
 		        </div>
 		</form>

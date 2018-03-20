@@ -355,4 +355,18 @@ public class Login {
 		return returnValue;
 	}
 	
+	public static void authenticate(HttpServletRequest request, HttpServletResponse response) { 
+		// Validate authentication - 
+		String callingMethod = Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName();
+		
+		if(Login.authenticateToken(request)) {
+			System.out.println(callingMethod + ": authenticateToken Succeeded.");
+			// Util.printParams(location, request);
+			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
+			
+		} else {
+			System.out.println(callingMethod + ": authenticateToken Failed.");
+		}
+	}
+	
 }

@@ -96,6 +96,22 @@ th, td { padding: 5px; }
 }
 
 /* ************************************************************************* */
+/* Product Page Product Heading
+/* ************************************************************************* */
+.productHeading {
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+	
+}
+
+.productHeading:hover {
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+}
+
+/* ************************************************************************* */
 /* Front Page Solution
 /* ************************************************************************* */
 .frontPageSolution {
