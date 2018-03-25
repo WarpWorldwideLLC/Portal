@@ -71,14 +71,14 @@ public class checkout extends HttpServlet {
 		String tokenTest = request.getParameter("stripeToken");
 		if(tokenTest != null && !tokenTest.isEmpty()) {
 			saveStripeCampData(request, response);
-			System.out.println("Don't createScript");
+			// System.out.println("Don't createScript");
 			
 		} else {
 			request.setAttribute("stripeScript", genStripeScript(request));
-			System.out.println("createScript");
+			// System.out.println("createScript");
 		}
 		
-		System.out.print("stripeScript: " + request.getAttribute("stripeScript"));
+		// System.out.print("stripeScript: " + request.getAttribute("stripeScript"));
 		
 		switch(request.getParameter("paymentmethod") + "") {
 			case "deposit":
@@ -96,11 +96,18 @@ public class checkout extends HttpServlet {
 				request.setAttribute("paymentDescription", "XAIU Chinese Culture Summer Trip Full Payment" );
 				break;
 			default:
+				request.setAttribute("paymentType", "STEM");
+				request.setAttribute("paymentAmountText", "$ 50.00");
+				request.setAttribute("paymentAmount", "5000");
+				request.setAttribute("paymentNotes", "Thank you for your payment!");
+				request.setAttribute("paymentDescription", "TestPayment" );
+
 				break;
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/campregistration.jsp").forward(request, response);
-		
+		// request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
+		System.out.print("stripeScript: " + request.getAttribute("stripeScript"));
+		processPayment(request, response);
 		
 		
 		

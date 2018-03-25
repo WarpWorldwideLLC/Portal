@@ -13,7 +13,6 @@
 		</header>
 		<form>
 			<textarea id="statusMessage" style="color: red; width: 100%; border-style: none; text-align: center;">${statusMessage}</textarea>
-			<br>
 			<label>SolutionCode</label><br>
 			<label>SolutionName</label><br>
 			<label>Price</label><br>
@@ -22,7 +21,6 @@
 			<div style=" margin-top: 1em;">
 				<a href="checkout?product=WARP-STEM-002;" class="btn btn-primary"><fmt:message key="warp_vega.p102.payment" /></a>
 			</div><br>
-			
 		</form>
 		<footer>
 				<%@ include file="/htx/footer1.html"%>

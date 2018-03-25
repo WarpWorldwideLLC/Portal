@@ -82,6 +82,13 @@ public class Main {
 			int issueStop = allData.indexOf("-", issueStart + issueIndexValue.length());
 			String issue = allData.substring(issueStart + issueIndexValue.length(), issueStop);
 			
+			try { 
+				Integer.parseInt(issue);
+			} catch (Exception ex) {
+				issue = "0";
+			}
+			
+			
 			System.out.println("Title : " + title);
 			System.out.println("Issue : " + issue);
 			
