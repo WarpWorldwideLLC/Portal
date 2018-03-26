@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.campregistration" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>

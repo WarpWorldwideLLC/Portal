@@ -45,7 +45,7 @@ public class Login {
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 		dispatcher.include(request, response);
 		
-		Util.printParams("getGreeting", request);
+		// Util.printParams("getGreeting", request);
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
 		
 		/* 

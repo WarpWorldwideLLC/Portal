@@ -1,10 +1,11 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.about" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>
     <head>
 		<%@ include file="/htx/head.html"%>
+		<title><fmt:message key="about.page_title" /></title>
     </head>
     <body>
     		<header class="row" class="col-md-3" style="width:90%">

@@ -1,7 +1,12 @@
 package com.warpww.util;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.DataOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Enumeration;
@@ -105,8 +110,7 @@ public class Util {
 		
 		return returnValue;
 	}
-	
-	
+		
 	// Returns an unquoted JSON value
 	public static String getJsonValue(String jsonInput, String keyName) {
 		String returnValue = "";
@@ -124,7 +128,6 @@ public class Util {
 		
 		return returnValue;
 	}
-
 	
 	public static boolean setErrorMessage(HttpServletRequest request) {
 		boolean returnValue = false;
@@ -173,11 +176,63 @@ public class Util {
 		return returnValue;
 	}
 	
-	
 	public static String getErrorMessage(String jsonResponse) {
 		String returnValue = "";
 		
 		
 		return returnValue;
 	}
+
+	private String sendPost(String destinationUrl, String userID, String firstName, String lastName, String eMail, String testName) throws Exception {
+		
+		String USER_AGENT = "Mozilla/5.0";
+		
+		// Clear Text Redirects - Curren
+		String url = "http://warpauth.petersons.com/WarpTest/Plainauthenticate";
+		
+		URL obj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+		//add request header
+		con.setRequestMethod("POST");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+			
+		String urlParameters = "_RequestVerificationToken=";
+		
+		// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+		int responseCode = con.getResponseCode();
+		System.out.println("Response Code: " + responseCode);
+
+		InputStream _is;
+		
+		if (con.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+		    _is = con.getInputStream();
+		} else {
+		     /* error from server */
+		    _is = con.getErrorStream();
+		}
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(_is));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		// print result
+		// System.out.println(response.toString());
+		return response.toString();
+
+	}
+
+
 }

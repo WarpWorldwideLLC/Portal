@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.landing" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp" />
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 
 		
 		<script>			
-		function createSource() {
+		function createSourceAlipay() {
 			// .then is from the JavaScript Promise API
 			try {
 				
@@ -38,9 +38,22 @@
 
 		}
 
-		
+		function createSourceCard() {
+			stripe.createSource(card, ownerInfo).then(function(result) {
+		    	if (result.error) {
+		      	// Inform the user if there was an error
+		      	var errorElement = document.getElementById('card-errors');
+		      	errorElement.textContent = result.error.message;
+		    	} else {
+		      // Send the source to your server
+		      stripeSourceHandler(result.source);
+		    }
+		}
 			
-
+		function createSourceAch() {
+			
+		}
+		
 		function test() {
 			alert("Test!");
 		}
@@ -60,26 +73,9 @@
 
 		</header>
 		<form>
-		
-			<div class="wrapper">
-				<!-- Sidebar -->
-				<%@ include file="/htx/sidebar.html"%>
 			
-				<!-- Page Content -->
-			    <div id="content">
-					<button id="customButton" onclick="createSource();">Purchase</button>
-					
-					
-					<script>
-					
-	
-						
-						
 
-					    
-					</script>			    
-				</div>
-			</div>
+		
 		</form>
 		<footer>
 				<%@ include file="/htx/footer1.html"%>

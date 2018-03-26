@@ -51,64 +51,33 @@ public class checkout extends HttpServlet {
 		request.setAttribute("statusMessage", "");
 		if(Login.authenticateToken(request)) {
 			request.setAttribute("statusMessage", "");
-			request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 
+			// Public Keys
+			request.setAttribute("paymentPublicKey", hsc.pk_stripe);
+			
+			// Check to see if there is a Stripe Source ID
+			String tokenTest = request.getParameter("stripeSourceId");
+			if(tokenTest != null && !tokenTest.isEmpty()) {
+				System.out.println("Stripe Source Id Found");
+				request.getRequestDispatcher("checkoutconfirm?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
+			
+				
+			} else {
+				System.out.println("Stripe Source Id Not Found");
+				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
+			}
+			
+			// Util.printParams("StripeCheckout", request);
+			
+			// processPayment(request, response);
+					
 		} else {
 			request.setAttribute("statusMessage", "You must register as a member and be signed in to complete a purchase.");
 			request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 		}
 		
-		// Public Keys
-		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
-		request.setAttribute("paymentPublicKey", hsc.pk_stripe);
-		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
-		request.setAttribute("stripeScript", "");
 		
-		String tokenTest = request.getParameter("stripeToken");
-		if(tokenTest != null && !tokenTest.isEmpty()) {
-			saveStripeCampData(request, response);
-			// System.out.println("Don't createScript");
-			
-		} else {
-			request.setAttribute("stripeScript", genStripeScript(request));
-			// System.out.println("createScript");
-		}
-		
-		// System.out.print("stripeScript: " + request.getAttribute("stripeScript"));
-		
-		switch(request.getParameter("paymentmethod") + "") {
-			case "deposit":
-				request.setAttribute("paymentType", "Deposit");
-				request.setAttribute("paymentAmountText", "$ 150.00");
-				request.setAttribute("paymentAmount", "15000");
-				request.setAttribute("paymentNotes", "In order to assure a remarkable experience for all, space is limited. Reserve your place with a deposit and make the full Payment before April 15th, 2018. Deposits will be applied to the full payment and are not refundable.");
-				request.setAttribute("paymentDescription", "XAIU Chinese Culture Summer Trip Deposit" );
-				break;
-			case "full":
-				request.setAttribute("paymentType", "Full");
-				request.setAttribute("paymentAmountText", "$ 5,990.00");
-				request.setAttribute("paymentAmount", "599000");
-				request.setAttribute("paymentNotes", "Thank you for your payment!");
-				request.setAttribute("paymentDescription", "XAIU Chinese Culture Summer Trip Full Payment" );
-				break;
-			default:
-				request.setAttribute("paymentType", "STEM");
-				request.setAttribute("paymentAmountText", "$ 50.00");
-				request.setAttribute("paymentAmount", "5000");
-				request.setAttribute("paymentNotes", "Thank you for your payment!");
-				request.setAttribute("paymentDescription", "TestPayment" );
 
-				break;
-		}
-		
-		// request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
-		System.out.print("stripeScript: " + request.getAttribute("stripeScript"));
-		processPayment(request, response);
-		
 		
 		
 	}
@@ -121,44 +90,11 @@ public class checkout extends HttpServlet {
 		doGet(request, response);
 	}
 	
-
-	private boolean validateRegistration(HttpServletRequest request, HttpServletResponse response) {
-		boolean returnValue = false;
-		String validateRegistrationMessage = "";
-
+	private String genStripeScriptSource(HttpServletRequest request) {
+		String returnValue = "";
 		
-		validateParameterField(request, "travelerName", validateRegistrationMessage);
-
-		validateParameterField(request, "parentName", validateRegistrationMessage);
-
-		validateParameterField(request, "travelerAddress", validateRegistrationMessage);
-
-		validateParameterField(request, "travelerPrimaryPhoneNumber", validateRegistrationMessage);
-
-		validateParameterField(request, "travelerAlternatePhoneNumber", validateRegistrationMessage);
-
-		validateParameterField(request, "travelerEMailAddress", validateRegistrationMessage);
-
-		validateParameterField(request, "travelerGender", validateRegistrationMessage);
-				
-		validateParameterField(request, "travelerDateOfBirth", validateRegistrationMessage);
-				
-		validateParameterField(request, "travelerComments", validateRegistrationMessage);
 		
-		validateParameterField(request, "travelerComments", validateRegistrationMessage);
-				
 		
-
-		validateParameterField(request, "paymentAmountText", validateRegistrationMessage);
-				
-		validateParameterField(request, "paymentAmount", validateRegistrationMessage);
-				
-		validateParameterField(request, "travelerName", validateRegistrationMessage);
-				
-		validateParameterField(request, "paymentNotes", validateRegistrationMessage);
-		
-		request.setAttribute("validateRegistrationMessage", validateRegistrationMessage);
-	
 		return returnValue;
 	}
 	
@@ -173,6 +109,8 @@ public class checkout extends HttpServlet {
 		return returnValue;
 	}
 	
+
+	// Sources Payment Processing via Stripe Sources
 	private boolean processPayment(HttpServletRequest request, HttpServletResponse response) {
 		boolean returnValue = false;
 		
@@ -180,14 +118,7 @@ public class checkout extends HttpServlet {
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
 		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
 		Stripe.apiKey = hsc.sk_stripe;
-		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
-		//***********************************************************************************
 		
 		
 		// Token is created using Checkout or Elements!
@@ -234,6 +165,50 @@ public class checkout extends HttpServlet {
 		return returnValue;
 	}
 
+	/* ********************************************************************************************** */
+	/* ********************************************************************************************** */
+	/* ********************************************************************************************** */
+	
+	private boolean validateRegistration(HttpServletRequest request, HttpServletResponse response) {
+		boolean returnValue = false;
+		String validateRegistrationMessage = "";
+
+		
+		validateParameterField(request, "travelerName", validateRegistrationMessage);
+
+		validateParameterField(request, "parentName", validateRegistrationMessage);
+
+		validateParameterField(request, "travelerAddress", validateRegistrationMessage);
+
+		validateParameterField(request, "travelerPrimaryPhoneNumber", validateRegistrationMessage);
+
+		validateParameterField(request, "travelerAlternatePhoneNumber", validateRegistrationMessage);
+
+		validateParameterField(request, "travelerEMailAddress", validateRegistrationMessage);
+
+		validateParameterField(request, "travelerGender", validateRegistrationMessage);
+				
+		validateParameterField(request, "travelerDateOfBirth", validateRegistrationMessage);
+				
+		validateParameterField(request, "travelerComments", validateRegistrationMessage);
+		
+		validateParameterField(request, "travelerComments", validateRegistrationMessage);
+				
+		
+
+		validateParameterField(request, "paymentAmountText", validateRegistrationMessage);
+				
+		validateParameterField(request, "paymentAmount", validateRegistrationMessage);
+				
+		validateParameterField(request, "travelerName", validateRegistrationMessage);
+				
+		validateParameterField(request, "paymentNotes", validateRegistrationMessage);
+		
+		request.setAttribute("validateRegistrationMessage", validateRegistrationMessage);
+	
+		return returnValue;
+	}
+	
 	private String genStripeScript (HttpServletRequest request) {
 		String returnValue = "";
 		
@@ -310,7 +285,7 @@ public class checkout extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		Util.printParams("Register.processRequest", request);
+		//Util.printParams("Register.processRequest", request);
 					
 
 		
@@ -367,10 +342,31 @@ public class checkout extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		Util.printParams("Register.processRequest", request);
+		//Util.printParams("Register.processRequest", request);
 		
 		return returnValue;
 	}
 	
+	
+	/* Stripe Token Generatoon Script 
+	/* 
+	 <script>
+		function foo1 {
+			// Create Stripe Token for use
+			
+			  stripe.createToken(card).then(function(result) {
+				    if (result.error) {
+				      // Inform the user if there was an error.
+				      var errorElement = document.getElementById('card-errors');
+				      errorElement.textContent = result.error.message;
+				    } else {
+				      // Send the token to your server.
+				      stripeTokenHandler(result.token);
+				    }
+				  });
+				});
+		}
+	</script>
+	 */
 
 }
