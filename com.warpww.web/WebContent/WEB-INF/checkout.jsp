@@ -66,21 +66,43 @@
 	</head>
 	
 	<form action="checkout" method="post" id="payment-form">
+	
+	/* 
+		1. When the user selects Purchase/Pay, add the item to the shopping cart.
+		2. Redirect the user to Checkout.
+		3. Checkout retrieves the info from the shopping cart, displays it, and asks the user to enter payment information. 
+		4. Redirect to CheckoutConfirm
+		5. CheckoutConfirm retrieves shopping cart, displays it, asks for confirmation. 
+		6. Confirmation and thank you is presented. 
+		
+		
+		For the solution description, take the solution code passed in, validate it, and pull the information from the database for confirmation. 
+		First Query pulls the solution by ID from the database. 
+		Secont action builds the display table HTML = showing Solution Code, Solution Price, Solution Description
+		Third action pulls the Product info for the Solution and displays it. 
+		Checkout Confirmation pulls the pricing from the database again, so it cant' be tampered with by manipulating the HTML. 
+	*/
+	<div class="form-row" id="productDescription]">
+	<fieldset>
+		<label>${param["product"]}</label><br>
+		<label>${param["price"]}</label>
+	</fieldset>
+	</div>	
 	<div class="form-row" id="ownerInfo">
 		<fieldset>
-			<input id="owner-name" name="owner-name" placeholder="Cardholder Name" type="text">
-			<input id="email-address" name="email-address" placeholder="E-Mail Address" type="text">
-			<input id="street-address" name="street-address" placeholder="Street Address" type="text">
-			<input id="city" name="city" placeholder="City" type="text">
-			<input id="state" name="state" placeholder="State" type="text">
-			<input id="zip-code" name="zip-code" placeholder="Postal Code" type="text">
+			<input id="owner-name" name="owner-name" placeholder="Cardholder Name" type="text"><br>
+			<input id="email-address" name="email-address" placeholder="E-Mail Address" type="text"><br>
+			<input id="street-address" name="street-address" placeholder="Street Address" type="text"><br>
+			<input id="city" name="city" placeholder="City" type="text"><br>
+			<input id="state" name="state" placeholder="State" type="text"><br>
+			<input id="zip-code" name="zip-code" placeholder="Postal Code" type="text"><br>
 			
 		</fieldset>
 		   
 	</div>
 	
 	
-	  <div class="form-row">
+	  <div class="form-row" id="cardInfo">
 	    <label for="card-element">
 	      Credit or debit card
 	    </label>

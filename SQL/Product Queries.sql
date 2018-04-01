@@ -5,16 +5,16 @@ USE WarpAdmin2017;
 	/* *************************************************************************************************** */
     /* Peterson's ILRN
     /* *************************************************************************************************** */
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-001', 'N/A', 'GMAT', 0.00);  
-    INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-002', 'N/A', 'GRE', 0.00);  
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-003', 'N/A', 'SAT Practice Test', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-004', 'N/A', 'TOEFL', 0.00);  
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-005', 'N/A', 'STEM - SCIENCE HUB', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-006', 'N/A', 'STEM - NURSING HUB', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-007', 'N/A', 'STEM - MATH HUB', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-008', 'N/A', 'STEM - PRE-ENGINEERING HUB', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-009', 'N/A', 'STEM - TECHNOLOGY HUB', 0.00); 
-	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-010', 'N/A', 'STEM - SOCIAL SCIENCE HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-001', 'http://warpauth.petersons.com//TestPrep/index?testid=3', 'GMAT', 0.00);  
+    INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-002', 'http://warpauth.petersons.com//TestPrep/index?testid=2', 'GRE', 0.00);  
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-003', 'http://warpauth.petersons.com//TestPrep/index?testid=123', 'SSAT Practice Test', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-004', 'http://warpauth.petersons.com//TestPrep/index?testid=347', 'TOEFL', 0.00);  
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-005', 'http://warpauth.petersons.com//TestPrep/index?testid=321', 'STEM - SCIENCE HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-006', 'http://warpauth.petersons.com//TestPrep/index?testid=332', 'STEM - NURSING HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-007', 'http://warpauth.petersons.com//TestPrep/index?testid=333', 'STEM - MATH HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-008', 'http://warpauth.petersons.com//TestPrep/index?testid=334', 'STEM - PRE-ENGINEERING HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-009', 'http://warpauth.petersons.com//TestPrep/index?testid=335', 'STEM - TECHNOLOGY HUB', 0.00); 
+	INSERT INTO Product (ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES ('PILR-010', 'http://warpauth.petersons.com//TestPrep/index?testid=336', 'STEM - SOCIAL SCIENCE HUB', 0.00); 
 
 	/* *************************************************************************************************** */
     /* Peterson's OLC
@@ -81,40 +81,43 @@ USE WarpAdmin2017;
     
     
     SELECT * FROM SolutionProduct;
-    
-	SELECT JSON_OBJECT(
-                     'SolutionCode', s.SolutionCode, 
-                     'ProductCode', p.ProductCode, 
-                     'SolutionName', s.SolutionName, 
-                     'ProductName', p.ProductName, 
-                     'SolutionCost', s.SolutionCost
-				) AS CommandResult
-	FROM Solution s
-		LEFT JOIN SolutionProduct sp
-		  ON s.SolutionCode = sp.SolutionCode
-		LEFT JOIN Product p
-		  ON sp.ProductCode = p.ProductCode
-	;
-    
-    	SELECT 
-                     s.SolutionCode, 
-                     sp.ProductCode
-                     /*
-                     s.SolutionName, 
-                     p.ProductName, 
-                     s.SolutionCost
-					 */
-	FROM (Solution s
-		INNER JOIN SolutionProduct sp
-		  ON s.SolutionCode = sp.SolutionCode)
-		LEFT JOIN Product p
-		  ON sp.ProductCode = p.ProductCode
-	;
-;
+
+	SELECT * FROM Solution;
+    SELECT * FROM EntityName;
+	SELECT * FROM EntitySolution;
+    SELECT * FROM ShoppingCart; 
+
+CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
+CALL clearCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
+
+/* Save Shopping Cart Record */
+	INSERT INTO ShoppingCart (EntityID, SolutionID, BillingEventID, Quantity) VALUES (2, 1, 0, 1);
+	CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
+	CALL clearCart('{"CommandName":"ClearCart","AuID":1,"IuID":1,"MemberID":2}');
+
+/* Clear Shopping Cart Record */
+	DELETE FROM ShoppingCart WHERE EntityID = 2;
 
 
+	INSERT INTO EntitySolution (SolutionID, EntityID, BillingEventID) VALUES (1, 2, 0);
+    CALL addMemberSolution('{"CommandName":"AddMemberSolution","AuID":1,"IuID":1,"MemberID":2, "SolutionID": 1}');
+	SELECT * FROM EntitySolution;
+    -- TRUNCATE TABLE EntitySolution;
+    
+    
+    SELECT * FROM Product;
+    
 
 /* 
+
+ DROP TABLE IF EXISTS EntitySolution;
+ CREATE TABLE EntitySolution (
+
+	SolutionID							BIGINT, 
+    EntityID							BIGINT,
+    BillingEventID						BIGINT
+	);
+
 	TRUNCATE TABLE Product;
 
 	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-17001', 'Petersons Suite', 15.55);

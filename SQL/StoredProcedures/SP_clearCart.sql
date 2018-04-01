@@ -1,18 +1,18 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS getGreeting;
+DROP PROCEDURE IF EXISTS clearCart;
 
 DELIMITER $$
-CREATE PROCEDURE getGreeting(query JSON)
+CREATE PROCEDURE clearCart(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
-    DECLARE MemberID BIGINT DEFAULT -1;
-	DECLARE MemberGreeting NVARCHAR(255);
+    DECLARE MemberID BIGINT DEFAULT NULL;
+
 
 	-- Error and Warning Block Variables 
-	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'Success';
+	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
     DECLARE ProcMessage NVARCHAR(999) DEFAULT '';
 	DECLARE lSqlState NVARCHAR(255) DEFAULT '';
     DECLARE lErrNumber NVARCHAR(255) DEFAULT '';
@@ -40,27 +40,22 @@ BEGIN
 
 	-- group_concat defaults to 1024 charaters; expand it for this query. 
 	SET SESSION group_concat_max_len := 1000000;
+    SET SQL_SAFE_UPDATES = 0;
 
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.PuID');
-	SET MemberID := JSON_EXTRACT(query, '$.MemberID');
+    SET MemberID := JSON_EXTRACT(query, '$.MemberID');
+
+	DELETE FROM ShoppingCart WHERE EntityID = MemberID;
 
 	SELECT JSON_OBJECT(
-					 'CommandResults', ProcStatus,
-                     'MemberNumber', e.ID,
-                     'FirstName', en1.EntityName, 
-                     'LastName', en2.EntityName,
-                     'MemberSince', DATE_FORMAT(e.CreateDate, "%M %Y")
+                     'MemberID', MemberID, 
+                     'CommandResults', ProcStatus
+                     
 				) AS CommandResult
-	FROM Entity e
-	  INNER JOIN EntityName en1
-		ON e.ID = en1.EntityID
-		AND en1.EntityNameTypeID = 3
-	  INNER JOIN EntityName en2
-		ON e.ID = en2.EntityID
-		AND en2.EntityNameTypeID = 5
-    WHERE e.ID = MemberID    
-		;
+
         
+		;
+	SET SQL_SAFE_UPDATES = 1;
 END $$
 DELIMITER ;

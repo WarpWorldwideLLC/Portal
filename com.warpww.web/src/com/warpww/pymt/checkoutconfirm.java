@@ -18,6 +18,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
+import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
 /**
@@ -40,6 +41,7 @@ public class checkoutconfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Util.printParams("CheckoutConfirm", request);
+		Login.authenticate(request, response);
 		request.setAttribute("stripeSourceId", request.getAttribute("stripeSourceId"));
 		request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
 	}

@@ -40,16 +40,165 @@ public class Main {
 		// List<String> fileNames = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(directory))) {
             for (Path path : directoryStream) {
-                // fileNames.add(path.toString());
-                System.out.println(path.toString());
-                readHtmlFile(path.toString());
+            		System.out.println("Processing " + path.getFileName());
+                extractIndex(path.toString());
+
             }
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        		ex.printStackTrace();
+        }
 		
 		// readHtmlFile("New Fun Issue #2 - Read New Fun Issue #2 comic online in high quality.html");
 		
 		System.out.println("Done.");
 
+	}
+	
+	private static int extractIndex(String fileName) {
+		int returnValue = -1;
+		
+			
+            // Class.forName("com.mysql.jdbc.Driver");
+            // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");
+               
+            // CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");
+            //cStmt.setString(1, json);
+			
+			// String pathName = "/Users/jarp/comics/input/";
+	
+		try {
+			
+			
+			// Only process HTML or HTM files. 
+			if(fileName.indexOf(".html") < 0) {
+				System.out.println("    Invalid File Format: " + fileName);
+				return returnValue;
+			}
+			
+			// Open a file and writer
+			String outputFile = fileName.replace(".html", ".index");
+		
+			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+		   
+			String pathName = "";
+			String allData = "";
+			
+			allData = new String(Files.readAllBytes(Paths.get(pathName + fileName)));
+
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			/* Title and Issue                                                                          */
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			String titleIndexStart = "<title>";
+			String titleIndexStop = "- Read";
+			
+			int titleStart = allData.indexOf(titleIndexStart);
+			int titleStop = allData.indexOf(titleIndexStop);
+			String title = allData.substring(titleStart + titleIndexStart.length(), titleStop).trim();
+			String[] titleIssue = title.split("\n");
+			title = titleIssue[0].trim();
+			String issue = titleIssue[1].trim();
+			issue = issue.replace("Issue #", "");
+			
+			try { 
+				int i  = Integer.parseInt(issue.trim());
+				issue = String.format("%05d", i);
+			} catch (Exception ex) {
+				// Leave the value alone. 
+			}
+		
+			String titleRecord = "    Title : " + title.trim();
+			String issueRecord = "    Issue : " + issue.trim();
+			
+			System.out.println(titleRecord);
+			writer.write(titleRecord + "\n");
+			 
+			System.out.println(issueRecord);
+			writer.write(issueRecord + "\n");
+			
+			
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			/* Image Index                                                                          */
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			int sequenceNumber = 0;
+
+			BufferedReader br = new BufferedReader(new FileReader(fileName));  
+			String line = null;  
+			while ((line = br.readLine()) != null)  
+			{  
+				String startValue = "lstImages.push\\(\\\"";
+				String endValue = "\\\"\\);";
+						
+				
+			   if(line.indexOf("lstImages.push") > -1) {
+				   String imageId = line.replaceAll(startValue, "").trim();
+				   imageId = imageId.replaceAll(endValue, "");
+				   String imageRecord = "    Image : " + String.format("%05d ", sequenceNumber)  + imageId ;
+				   System.out.println(imageRecord);
+				   writer.write(imageRecord + "\n");
+				   sequenceNumber += 1;
+			   }
+			   
+			   
+			} 
+			
+			// Close the file. 
+			writer.flush();
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} 
+
+	    	
+		return returnValue;
+	}
+	
+	private static int getImages(String fileName) {
+		int returnValue = -1;
+		
+		try {
+			// Open the Index File. 
+			BufferedReader br = new BufferedReader(new FileReader(fileName));  
+			String line = null;  
+			while ((line = br.readLine()) != null)  
+			{  
+						
+			   if(line.indexOf("Image :") > -1) {
+				   String imageId = "";
+				   System.out.println("    Image : " + imageId );
+			   }
+			} 
+			
+			
+			// Set the Library Path for images
+			String title = "";
+			String issue = "";
+			String savePath = "/Users/jarp/comics/library/" + title + "/";
+			createDirectory(savePath);
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			/* Image Retrieval                                                                          */
+			/* ******************************************************************************************/
+			/* ******************************************************************************************/
+			int sequenceNumber = 0;
+			String images = "";
+			String imageFileName = title + "_" + String.format("%05d", Integer.parseInt(issue.trim())) + "_" + String.format("%04d", sequenceNumber) + ".jpg";
+			System.out.println("Save Image: " + imageFileName );
+			
+			URL website = new URL(images);
+			File output = new File(savePath + imageFileName);
+			
+			FileUtils.copyURLToFile(website, output);
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		}
+
+		
+		return returnValue;
 	}
 	
 	private static int readHtmlFile(String fileName) {
@@ -163,7 +312,6 @@ public class Main {
       
 	}
 	
-	
 	private static int getPage() {
 		int returnValue = -1;
 
@@ -187,7 +335,7 @@ public class Main {
 		return returnValue;
 	}
 	
-	private static int getImages() {
+	private static int getImagesOld() {
 		int returnValue = -1;
 		
 		// https://stackoverflow.com/questions/921262/how-to-download-and-save-a-file-from-internet-using-java

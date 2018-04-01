@@ -7,7 +7,19 @@ CALL registerMember('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":
 
 CALL validateSignon(' {"Command":"ValidateSignon","AuID":1,"IuID":1,"MemberName":"JohnnyWarp","PassphraseHash":"1000:4533f38cdcd4286506f66cb454826a9ee91665fdba201bfd:32169d7d74bb94972363c22355cd70482435ba96ddd60a6c"}');
 
-CALL getGreeting(' {"Command":"GetGreeting","AuID":1,"IuID":1,"MemberID":"2"}');
+CALL getGreeting(' {"Command":"GetGreeting","AuID":1,"IuID":1,"MemberID":2}');
+
+CALL getSolutionList('{}');
+
+CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
+
+
+
+ SET CommandName := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.CommandName')));
+ 	SET MemberID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.MemberID')));
+	SET SolutionID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.SolutionID')));
+    SET BillingEventID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.BillingEventID')));
+
 
 
 SELECT en1.EntityName AS FirstName, en2.EntityName AS LastName
