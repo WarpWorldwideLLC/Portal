@@ -13,7 +13,7 @@ BEGIN
 --  Basic Variables common to all stored procs.
     DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
-    DECLARE CommandName NVARCHAR(255) DEFAULT NULL;
+    DECLARE Command NVARCHAR(255) DEFAULT NULL;
 	
 --  Proc Specific Variables    
     DECLARE MemberID BIGINT DEFAULT -1;
@@ -59,7 +59,7 @@ BEGIN
 
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.IuID');
-    SET CommandName := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.CommandName')));
+    SET Command := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.Command')));
  	SET MemberID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.MemberID')));
 	SET SolutionID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.SolutionID')));
     SET BillingEventID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.BillingEventID')));
@@ -78,7 +78,7 @@ BEGIN
       
     COMMIT;
     
-    SELECT JSON_OBJECT('ShoppingCartID', ShoppingCartID, 'MemberID', MemberID, 'SolutionID', SolutionID, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage, 'CommandName', CommandName) AS CommandResult;
+    SELECT JSON_OBJECT('ShoppingCartID', ShoppingCartID, 'MemberID', MemberID, 'SolutionID', SolutionID, 'ProcStatus', ProcStatus, 'ProcMessage', ProcMessage, 'Command', Command) AS CommandResult;
 
 END $$
 DELIMITER ;
