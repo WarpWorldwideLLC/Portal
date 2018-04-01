@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-
+ 
 	<head>
 		<title>STRIPE Checkout</title>
 		<script src="https://js.stripe.com/v3/"></script>
