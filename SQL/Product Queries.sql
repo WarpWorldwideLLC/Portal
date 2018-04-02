@@ -87,8 +87,33 @@ USE WarpAdmin2017;
 	SELECT * FROM EntitySolution;
     SELECT * FROM ShoppingCart; 
 
-CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
-CALL clearCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
+
+SELECT sc.ID as CartID, mn.EntityName AS MemberName, 
+  s.ID AS SolutionID, s.SolutionName, s.SolutionCode, s.SolutionCost,
+  p.ID as ProductID, p.ProductName, p.ProductCode,
+  'END' AS EndCode
+--  sc.*, mn.*, s.*, sp.*, p.*
+FROM ShoppingCart sc
+  LEFT JOIN EntityName mn
+	ON mn.ID = sc.EntityID
+      AND mn.EntityNameTypeID = 2
+  LEFT JOIN Solution s
+    ON s.ID = sc.SolutionID
+  LEFT JOIN SolutionProduct sp
+    ON s.SolutionCode = sp.SolutionCode
+  LEFT JOIN Product p
+    ON sp.ProductCode = p.ProductCode
+
+
+;
+
+SELECT * FROM SolutionProduct;
+
+
+
+CALL getCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
+CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":3, "BillingEventID":0}');
+-- CALL clearCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
 
 /* Save Shopping Cart Record */
 	INSERT INTO ShoppingCart (EntityID, SolutionID, BillingEventID, Quantity) VALUES (2, 1, 0, 1);

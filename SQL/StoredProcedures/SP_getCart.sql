@@ -47,14 +47,30 @@ BEGIN
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
     SET Command := JSON_EXTRACT(query, '$.Command');
 
-	SELECT JSON_OBJECT(
-                     'MemberNumber', sc.EntityID, 
+	SELECT GROUP_CONCAT(JSON_OBJECT(
                      'Command', Command, 
                      'CommandResults', ProcStatus, 
-                     'SolutionID', sc.SolutionID
-				) AS CommandResult
-		FROM ShoppingCart sc
-		WHERE sc.EntityID = MemberID
+                     'CartID', sc.ID,
+                     'MemberNumber', sc.EntityID,
+                     'MemberName', mn.EntityName, 
+                     'SolutionID', sc.SolutionID,
+                     'SolutionName', s.SolutionName, 
+                     'SolutionCode', s.SolutionCode, 
+                     'SolutionCost', s.SolutionCost,
+                     'ProductID', p.ID, 
+                     'ProdctName', p.ProductName, 
+                     'ProductCode', p.ProductCode
+				) ) AS CommandResult
+	FROM ShoppingCart sc
+	  LEFT JOIN EntityName mn
+		ON mn.ID = sc.EntityID
+		  AND mn.EntityNameTypeID = 2
+	  LEFT JOIN Solution s
+		ON s.ID = sc.SolutionID
+	  LEFT JOIN SolutionProduct sp
+		ON s.SolutionCode = sp.SolutionCode
+	  LEFT JOIN Product p
+		ON sp.ProductCode = p.ProductCode       
         
 		;
         
