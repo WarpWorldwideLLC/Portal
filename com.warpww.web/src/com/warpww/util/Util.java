@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +18,11 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.warpww.pymt.hsc;
 
 public class Util {
 	
@@ -234,5 +239,130 @@ public class Util {
 
 	}
 
+	// Retrieve the contents of the shopping cart for display to the payor. 
+	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response) {
+		String returnValue = null;
+		
+		try {
+			
+			// Create the command JSON
+			String json = Json.createObjectBuilder()
+					 .add("Command", "GetCart")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", 2)
+					 .build()
+					 .toString(); 		
+
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			// Retrieve the shopping cart information in JSON format.
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			// Format the data for display on the web page. 
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			
+			// Load and Parse the InputJSON
+			JsonReader reader = Json.createReader(new StringReader("{\"CartItems\": [" + request.getAttribute("CommandResults").toString() + "]}"));
+			JsonObject originalDoc = reader.readObject();
+			// returnValue = originalDoc.getJsonString("CommandResults").toString();
+			// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
+			
+			String displayCart = "";
+			int solutionCost = 0;
+			int totalCost = 0;
+			
+			displayCart += "<table class=\"table1\">";
+			displayCart += "<tr><td>&nbsp</td><td>Code</td><td>Name</td><td>Price</td><td>&nbsp</td></tr>";
+
+			javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
+			for (int i = 0; i < cart.size(); i++) {
+				
+				JsonObject explrObject = cart.getJsonObject(i);
+					
+				solutionCost = (int)Double.parseDouble(explrObject.getJsonNumber("SolutionCost").toString());
+				totalCost += solutionCost;
+				
+				displayCart += "<tr>";
+				displayCart += "<td>" + explrObject.getJsonNumber("CartID").toString() + "</td>";
+			    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
+			    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
+			    displayCart += "<td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
+			    displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button>";
+			    displayCart += "</tr>";
+			}
+			
+			
+			displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
+			displayCart += "</table>";
+			request.setAttribute("displayCart", displayCart);
+			System.out.println("Cart: " + displayCart);
+			
+			/*
+			javax.json.JsonArray value = javax.json.Json.createArrayBuilder()
+				     .add(javax.json.Json.createObjectBuilder()
+				             .add("type", "home")
+				             .add("number", "212 555-1234"))
+				     .add(javax.json.Json.createObjectBuilder()
+				             .add("type", "fax")
+				             .add("number", "646 555-4567"))
+				     .build();
+
+				for (javax.json.JsonValue jsonValue : value) {
+				    System.out.println(jsonValue);
+				}
+			*/
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		return returnValue;
+	}
+	
+	
+	
+	// Add the solution passed to the shopping cart
+	public static boolean addSolutionToCart(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "AddSolutionToCart")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("SolutionID", solutionID)
+					 .add("BillingEventID", 0)
+					 .build()
+					 .toString(); 		
+
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
 
 }

@@ -35,7 +35,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-001;" class="btn btn-primary"><fmt:message key="warp_vega.p101.payment" /><br></a>
+							  				<button name="purchase" class="btn btn-primary" value="1"><fmt:message key="warp_vega.p101.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>
@@ -61,7 +61,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-002;" class="btn btn-primary"><fmt:message key="warp_vega.p102.payment" /></a>
+							  				<button name="purchase" class="btn btn-primary" value="2"><fmt:message key="warp_vega.p102.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>
@@ -87,7 +87,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-003;" class="btn btn-primary"><fmt:message key="warp_vega.p103.payment" /></a>
+							  				<button name="purchase" class="btn btn-primary" value="3"><fmt:message key="warp_vega.p103.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>
@@ -113,7 +113,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-004;" class="btn btn-primary"><fmt:message key="warp_vega.p104.payment" /></a>
+							  				<button name="purchase" class="btn btn-primary" value="4"><fmt:message key="warp_vega.p104.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>
@@ -139,7 +139,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-005;" class="btn btn-primary"><fmt:message key="warp_vega.p105.payment" /></a>
+							  				<button name="purchase" class="btn btn-primary" value="5"><fmt:message key="warp_vega.p105.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>
@@ -165,7 +165,7 @@
 									<td>&nbsp;</td>
 									<td>
 										<div style=" margin-top: 1em;">
-							  				<a href="checkout?product=WARP-STEM-006;" class="btn btn-primary"><fmt:message key="warp_vega.p106.payment" /></a>
+							  				<button name="purchase" class="btn btn-primary" value="6"><fmt:message key="warp_vega.p106.payment" /></button>
 										</div>
 									</td>
 									<td>&nbsp;</td>

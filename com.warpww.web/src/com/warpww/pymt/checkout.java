@@ -1,10 +1,14 @@
 package com.warpww.pymt;
 
 import java.io.IOException;
+import java.io.StringReader;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +27,8 @@ import com.stripe.model.Charge;
 import com.warpww.pymt.hsc;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
+
+import sun.security.util.Debug;
 
 
 /**
@@ -57,7 +63,12 @@ public class checkout extends HttpServlet {
 			// Public Keys
 			request.setAttribute("paymentPublicKey", hsc.pk_stripe);
 			
-			addSolutionToCart(request, response);
+			
+			// Add the solution being purchased to the Shopping Cart
+			// Util.addSolutionToCart(request, response, 2, 2 );
+			// And retreive the full ShoppingCart
+			Util.getShoppingCart(request, response);
+			
 			Util.printParams("checkout.doGet.afterShoppingCart", request);
 			
 			// After the user confirms payment, forward to the checkout confirmation screen. 
@@ -84,13 +95,19 @@ public class checkout extends HttpServlet {
 		
 		
 		/* 
-		For the solution description, take the solution code passed in, validate it, and pull the information from the database for confirmation. 
-		First Query pulls the solution by ID from the database. 
-		Secont action builds the display table HTML = showing Solution Code, Solution Price, Solution Description
-		Third action pulls the Product info for the Solution and displays it. 
-		Checkout Confirmation pulls the pricing from the database again, so it cant' be tampered with by manipulating the HTML. 
+			1. When the user selects Purchase/Pay, add the item to the shopping cart.
+			2. Redirect the user to Checkout.
+			3. Checkout retrieves the info from the shopping cart, displays it, and asks the user to enter payment information. 
+			4. Redirect to CheckoutConfirm
+			5. CheckoutConfirm retrieves shopping cart, displays it, asks for confirmation. 
+			6. Confirmation and thank you is presented. 
+			
+			For the solution description, take the solution code passed in, validate it, and pull the information from the database for confirmation. 
+			First Query pulls the solution by ID from the database. 
+			Secont action builds the display table HTML = showing Solution Code, Solution Price, Solution Description
+			Third action pulls the Product info for the Solution and displays it. 
+			Checkout Confirmation pulls the pricing from the database again, so it cant' be tampered with by manipulating the HTML. 
 		 */
-		
 		
 	}
 
@@ -102,86 +119,7 @@ public class checkout extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	
-	// Add the solution passed to the shopping cart
-	private boolean addSolutionToCart(HttpServletRequest request, HttpServletResponse response) { 
-		boolean returnValue = false;
 		
-		try {
-			
-			// Create the command JSON.
-			String json = Json.createObjectBuilder()
-					 .add("Command", "AddSolutionToCart")
-					 .add("AuID", 1)
-					 .add("IuID", 1)
-					 .add("MemberID", 2)
-					 .add("SolutionID", 1)
-					 .add("BillingEventID", 0)
-					 .build()
-					 .toString(); 		
-
-
-			String jsonParms = "";
-		
-			jsonParms = json;
-			request.setAttribute("CommandText", jsonParms);
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
-			dispatcher.include(request, response);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		return returnValue;
-	}
-	
-	// Retrieve the contents of the shopping cart for display to the payor. 
-	private String getSolutionMetaData (HttpServletRequest request, HttpServletResponse response) {
-		String returnValue = null;
-		
-		try {
-			
-			// Create the command JSON.
-			String json = Json.createObjectBuilder()
-					 .add("Command", "GetCart")
-					 .add("AuID", 1)
-					 .add("IuID", 1)
-					 .add("MemberID", 2)
-					 .build()
-					 .toString(); 		
-
-
-			String jsonParms = "";
-		
-			jsonParms = json;
-			request.setAttribute("CommandText", jsonParms);
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
-			dispatcher.include(request, response);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		
-		return returnValue;
-	}
-	
-	private String getProductMetaData () {
-		String returnValue = null;
-		
-		
-		
-		return returnValue;
-	}
-	
-	private String getShoppingCart () {
-		String returnValue = null;
-		
-		return returnValue;
-	}
-	
 	private String genStripeScriptSource(HttpServletRequest request) {
 		String returnValue = "";
 		
@@ -201,7 +139,6 @@ public class checkout extends HttpServlet {
 		return returnValue;
 	}
 	
-
 	// Sources Payment Processing via Stripe Sources
 	private boolean processPayment(HttpServletRequest request, HttpServletResponse response) {
 		boolean returnValue = false;

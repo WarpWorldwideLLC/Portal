@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Copy Index Files to S3"
+aws s3 cp ~/comics/input/. s3://comic-library/_index/. --recursive
+
+
+

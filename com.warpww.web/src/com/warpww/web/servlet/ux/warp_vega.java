@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.sec.Login;
+import com.warpww.util.Util;
 
 /**
  * Servlet implementation class warp_vega
@@ -29,7 +30,34 @@ public class warp_vega extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Login.authenticate(request, response);
-		request.getRequestDispatcher("/WEB-INF/warp_vega.jsp").forward(request, response);
+		
+		
+		String purchase_action = request.getParameter("purchase") + "";
+		switch(purchase_action) {
+			case "1":  // STEM Science Hub
+				break;
+			case "2":  // STEM Mathematics Hub
+				break;
+			case "3":  //Technology
+				break;
+			case "4":  // Social Science
+				break; 
+			case "5":  // Medical
+				break;
+			case "6":  // Pre-Engineering
+				break;
+			default:
+				purchase_action = "-1";
+				 break;
+		
+		}
+		if(Integer.parseInt(purchase_action) >= 0) {
+			Util.addSolutionToCart(request, response, 2, Integer.parseInt(purchase_action));
+			request.getRequestDispatcher("checkout").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/warp_vega.jsp").forward(request, response);
+		}
+	
 	}
 
 	/**
