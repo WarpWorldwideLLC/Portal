@@ -53,7 +53,8 @@ public class warp_vega extends HttpServlet {
 		}
 		if(Integer.parseInt(purchase_action) >= 0) {
 			Util.addSolutionToCart(request, response, 2, Integer.parseInt(purchase_action));
-			request.getRequestDispatcher("checkout").forward(request, response);
+			// request.getRequestDispatcher("checkout").forward(request, response);
+			request.getRequestDispatcher("cartmaint").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/warp_vega.jsp").forward(request, response);
 		}

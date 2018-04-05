@@ -1,15 +1,15 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS getCart;
+DROP PROCEDURE IF EXISTS markCartPending;
 
 DELIMITER $$
-CREATE PROCEDURE getCart(query JSON)
+CREATE PROCEDURE markCartPending(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
     DECLARE MemberID BIGINT DEFAULT NULL;
-    DECLARE Command NVARCHAR(255) DEFAULT NULL;
+    DECLARE ReceiptNumber NVARCHAR(100) DEFAULT NULL;
 
 
 	-- Error and Warning Block Variables 
@@ -41,40 +41,26 @@ BEGIN
 
 	-- group_concat defaults to 1024 charaters; expand it for this query. 
 	SET SESSION group_concat_max_len := 1000000;
+    SET SQL_SAFE_UPDATES = 0;
 
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.PuID');
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
-    SET Command := JSON_EXTRACT(query, '$.Command');
+    SET ReceiptNumber = UPPER(SUBSTRING(UUID(), 1, 13));
 
-	SELECT GROUP_CONCAT(JSON_OBJECT(
-                     'Command', Command, 
-                     'CommandResults', ProcStatus, 
-                     'CartID', sc.ID,
-                     'MemberNumber', sc.EntityID,
-                     'MemberName', mn.EntityName, 
-                     'SolutionID', sc.SolutionID,
-                     'SolutionName', s.SolutionName, 
-                     'SolutionCode', s.SolutionCode, 
-                     'SolutionCost', s.SolutionCost,
-                     'ProductID', p.ID, 
-                     'ProdctName', p.ProductName, 
-                     'ProductCode', p.ProductCode
-				) ) AS CommandResult
-	FROM ShoppingCart sc
-	  LEFT JOIN EntityName mn
-		ON mn.ID = sc.EntityID
-		  AND mn.EntityNameTypeID = 2
-	  LEFT JOIN Solution s
-		ON s.ID = sc.SolutionID
-	  LEFT JOIN SolutionProduct sp
-		ON s.SolutionCode = sp.SolutionCode
-	  LEFT JOIN Product p
-		ON sp.ProductCode = p.ProductCode 
-	WHERE sc.RecordStatusID IN (10, 50)
-	ORDER BY sc.ID
+
+
+	UPDATE ShoppingCart SET RecordStatusID = 50, ReceiptNumber = ReceiptNumber WHERE RecordStatusID IN (10, 50) AND EntityID = MemberID;
+
+	SELECT JSON_OBJECT(
+                     'MemberID', MemberID, 
+                     'ReceiptNumber', ReceiptNumber,
+                     'CommandResults', ProcStatus
+                     
+				) AS CommandResult
+
         
 		;
-        
+	SET SQL_SAFE_UPDATES = 1;
 END $$
 DELIMITER ;

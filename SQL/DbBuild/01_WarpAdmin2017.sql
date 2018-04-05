@@ -70,6 +70,8 @@ INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (30,
 INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (80, 'PURGE', 'PURG');				-- Records to be Physically Deleted.
 INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (90, 'DELETED', 'DEL');			-- Records to be treated as Logically Deleted.
 INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (99, 'RESTRICTED', 'RES');
+INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (50, 'Receipt Identified', 'RCI');
+INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (51, 'Purchase Completed', 'PUR');
 
 SELECT * FROM ctlRecordStatus;
 
@@ -739,7 +741,9 @@ CREATE TABLE ShoppingCart (
     EntityID							BIGINT NOT NULL, 
     SolutionID							BIGINT NOT NULL,
     BillingEventID						BIGINT NOT NULL,
-    Quantity							BIGINT
+    Quantity							BIGINT, 
+    PaymentDate							DATETIME, 
+    ReceiptNumber						NVARCHAR(100)
 );
 
 

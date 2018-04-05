@@ -48,3 +48,7 @@ FROM Entity e
 		ON e.ID = en2.EntityID
 		AND en2.EntityNameTypeID = 5
         ;
+
+
+SELECT *
+FROM 

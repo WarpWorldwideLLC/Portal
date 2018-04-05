@@ -52,6 +52,8 @@ public class checkout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Authenticate 
 		Login.authenticate(request, response);
+		int memberID = 2;
+		
 		
 		Util.printParams("checkout.doGet", request);
 		
@@ -60,13 +62,16 @@ public class checkout extends HttpServlet {
 		if(Login.authenticateToken(request)) {
 			request.setAttribute("statusMessage", "");
 
+			// determine if a remove button was pressed
+			String buttonRemove = request.getParameter("Remove");
+			if(buttonRemove != null) {
+				Util.removeSolutionFromCart(request, response, memberID, Integer.parseInt(buttonRemove));
+			}
+			
 			// Public Keys
 			request.setAttribute("paymentPublicKey", hsc.pk_stripe);
 			
-			
-			// Add the solution being purchased to the Shopping Cart
-			// Util.addSolutionToCart(request, response, 2, 2 );
-			// And retreive the full ShoppingCart
+			// And retrieve the full ShoppingCart
 			Util.getShoppingCart(request, response);
 			
 			Util.printParams("checkout.doGet.afterShoppingCart", request);
@@ -77,8 +82,7 @@ public class checkout extends HttpServlet {
 			if(tokenTest != null && !tokenTest.isEmpty()) {
 				System.out.println("Stripe Source Id Found");
 				request.getRequestDispatcher("checkoutconfirm?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
-			
-				
+							
 			} else {
 				System.out.println("Stripe Source Id Not Found");
 				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
@@ -115,7 +119,7 @@ public class checkout extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		doGet(request, response);
 	}
 	

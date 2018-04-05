@@ -82,6 +82,10 @@ USE WarpAdmin2017;
     
     SELECT * FROM SolutionProduct;
 
+	UPDATE Solution 
+    SET SolutionCost = SolutionCost * 100
+    WHERE ID > 0;
+
 	SELECT * FROM Solution;
     SELECT * FROM EntityName;
 	SELECT * FROM EntitySolution;

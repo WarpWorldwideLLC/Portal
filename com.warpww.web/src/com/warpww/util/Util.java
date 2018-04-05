@@ -303,6 +303,7 @@ public class Util {
 			
 			displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
 			displayCart += "</table>";
+			displayCart += "<br><br>";
 			request.setAttribute("displayCart", displayCart);
 			System.out.println("Cart: " + displayCart);
 			
@@ -328,9 +329,7 @@ public class Util {
 		
 		return returnValue;
 	}
-	
-	
-	
+		
 	// Add the solution passed to the shopping cart
 	public static boolean addSolutionToCart(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
 		boolean returnValue = false;
@@ -364,5 +363,98 @@ public class Util {
 		return returnValue;
 	}
 	
+	// Remove the solution from the shopping cart
+	public static boolean removeSolutionFromCart(HttpServletRequest request, HttpServletResponse response, int memberID, int cartID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "RemoveSolutionFromCart")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("CartID", cartID)
+					 .build()
+					 .toString(); 		
+
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
+	// Remove the solution from the shopping cart
+	public static boolean markCartPending(HttpServletRequest request, HttpServletResponse response, int memberID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "MarkCartPending")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .build()
+					 .toString(); 		
+
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
+	// Remove the solution from the shopping cart
+	public static boolean markCartSold(HttpServletRequest request, HttpServletResponse response, int memberID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "MarkCartPending")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .build()
+					 .toString(); 		
+
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
 
 }

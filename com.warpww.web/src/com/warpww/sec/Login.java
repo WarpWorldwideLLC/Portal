@@ -25,7 +25,7 @@ import com.warpww.util.Util;
 public class Login {
 
 	public static String getGreeting(int MemberID, HttpServletRequest request, HttpServletResponse response) {
-		String returnValue = null;
+		String returnValue = "";
 		
 		try
 		{
@@ -56,7 +56,6 @@ public class Login {
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = "Hello, " + cmd.FirstName + " " + cmd.LastName;
-			request.setAttribute("Greeting", returnValue);
 		}
 		
 		} catch (Exception ex)
@@ -65,7 +64,7 @@ public class Login {
 			ex.printStackTrace();
 			returnValue = null;
 		}
-			
+		
 		return returnValue;
 	}
 	
@@ -289,10 +288,12 @@ public class Login {
 			String tokenRaw = decodeToken(tokenValue);		
 			
 			String tokenCreateTime = tokenRaw.substring(0,  17);
+			request.setAttribute("verifyToken_CreateTime", tokenCreateTime);
 			
 			String tokenMemberHex = tokenRaw.substring(17, 23);
 			
 			int tokenMemberID = getTokenMemberID(tokenMemberHex, tokenCreateTime);
+			request.setAttribute("verifyToken_MemberID", tokenMemberID);
 			
 			boolean tokenHash = validateTokenHash(tokenRaw.substring(23), tokenCreateTime, request.getHeader("User-Agent"), request.getRemoteAddr(), tokenMemberID);
 			
@@ -355,18 +356,31 @@ public class Login {
 		return returnValue;
 	}
 	
-	public static void authenticate(HttpServletRequest request, HttpServletResponse response) { 
+	public static boolean authenticate(HttpServletRequest request, HttpServletResponse response) { 
+		boolean returnValue = false;
+		
 		// Validate authentication - 
 		String callingMethod = Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName();
+		String greeting = "";
 		
-		if(Login.authenticateToken(request)) {
-			System.out.println(callingMethod + ": authenticateToken Succeeded.");
-			// Util.printParams(location, request);
-			Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
-			
-		} else {
-			System.out.println(callingMethod + ": authenticateToken Failed.");
+		try {
+			if(Login.authenticateToken(request)) {
+				returnValue = true;
+				System.out.println(callingMethod + ": authenticateToken Succeeded.");
+				// Util.printParams(location, request);
+				greeting = Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
+				request.setAttribute("Greeting", greeting);
+			} else {
+				returnValue = false;
+				System.out.println(callingMethod + ": authenticateToken Failed.");
+			}
+		} catch (Exception ex) {
+			returnValue = false;
+			System.out.println("Calling Method: " + callingMethod);
+			ex.printStackTrace();
 		}
+		
+		return returnValue;
 	}
 	
 }
