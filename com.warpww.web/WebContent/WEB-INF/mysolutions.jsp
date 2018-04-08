@@ -12,12 +12,9 @@
 			<%@ include file="/htx/menu.html"%>
 		</header>
 		<form action="cartmaint" method="post" id="shopping-cart">	
-			
-			<!-- 
-			
-				Content Goes Here 
-			
-			-->
+		My Solutions<br>
+				
+	
 
 		</form>
 	    <footer>

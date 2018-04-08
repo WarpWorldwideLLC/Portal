@@ -9,7 +9,6 @@ BEGIN
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
     DECLARE MemberID BIGINT DEFAULT NULL;
-    DECLARE ReceiptNumber NVARCHAR(100) DEFAULT NULL;
 
 
 	-- Error and Warning Block Variables 
@@ -46,15 +45,16 @@ BEGIN
 	SET AuID := JSON_EXTRACT(query, '$.AuID');
     SET IuID := JSON_EXTRACT(query, '$.PuID');
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
-    SET ReceiptNumber = UPPER(SUBSTRING(UUID(), 1, 13));
 
 
 
-	UPDATE ShoppingCart SET RecordStatusID = 50, ReceiptNumber = ReceiptNumber WHERE RecordStatusID IN (10, 50) AND EntityID = MemberID;
+	UPDATE ShoppingCart 
+    SET RecordStatusID = 50
+    WHERE RecordStatusID IN (10, 50) 
+      AND EntityID = MemberID;
 
 	SELECT JSON_OBJECT(
                      'MemberID', MemberID, 
-                     'ReceiptNumber', ReceiptNumber,
                      'CommandResults', ProcStatus
                      
 				) AS CommandResult

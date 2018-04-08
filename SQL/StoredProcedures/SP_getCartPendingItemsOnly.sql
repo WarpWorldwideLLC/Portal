@@ -1,9 +1,9 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS getCart;
+DROP PROCEDURE IF EXISTS getCartPendingItemsOnly;
 
 DELIMITER $$
-CREATE PROCEDURE getCart(query JSON)
+CREATE PROCEDURE getCartPendingItemsOnly(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
@@ -59,7 +59,8 @@ BEGIN
                      'SolutionCost', s.SolutionCost,
                      'ProductID', p.ID, 
                      'ProdctName', p.ProductName, 
-                     'ProductCode', p.ProductCode
+                     'ProductCode', p.ProductCode,
+                     'ReceiptNumber', sc.ReceiptNumber
 				) ) AS CommandResult
 	FROM ShoppingCart sc
 	  LEFT JOIN EntityName mn
@@ -71,7 +72,7 @@ BEGIN
 		ON s.SolutionCode = sp.SolutionCode
 	  LEFT JOIN Product p
 		ON sp.ProductCode = p.ProductCode 
-	WHERE sc.RecordStatusID IN (10, 50)
+	WHERE sc.RecordStatusID IN (50)
       AND sc.EntityID = MemberID
 	ORDER BY sc.ID
         
