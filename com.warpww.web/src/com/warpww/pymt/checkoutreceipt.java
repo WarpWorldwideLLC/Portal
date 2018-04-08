@@ -1,4 +1,4 @@
-package com.warpww.web.servlet.ux;
+package com.warpww.pymt;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.warpww.pymt.hsc;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
 /**
- * Servlet implementation class cartmaint
+ * Servlet implementation class checkoutreceipt
  */
-@WebServlet("/cartmaint")
-public class cartmaint extends HttpServlet {
+@WebServlet("/checkoutreceipt")
+public class checkoutreceipt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cartmaint() {
+    public checkoutreceipt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,46 +45,22 @@ public class cartmaint extends HttpServlet {
 			authenticated = true;
 		} else {
 			authenticated = false;
-			memberID = 0;
-			
+			memberID = 0;	
 		}
-
-		System.out.println("Auth Time - " + authTime);
 		
 		if(authenticated) {
-			
-			Util.markCartPending(request, response, memberID);
-			// request.setAttribute("ReceiptNumber", Util.getJsonValueString(request.getAttribute("CommandResults").toString(),"ReceiptNumber"));
-			
-				
-			// determine if a remove button was pressed
-			String buttonRemove = request.getParameter("remove");
-			if(buttonRemove != null) {
-				Util.removeSolutionFromCart(request, response, memberID, Integer.parseInt(buttonRemove));
-			}
-			
-			// And retrieve the full ShoppingCart - on cartmaint, always pull the full cart. 
-			Util.getShoppingCart(request, response, memberID); 
-
-			if(request.getParameter("continueShopping") != null) {
-				request.getRequestDispatcher("landing").forward(request, response);
-			} else if(request.getParameter("completePurchase") != null) {
-				request.getRequestDispatcher("checkout").forward(request, response);
-			} else { 
-				request.getRequestDispatcher("/WEB-INF/cartmaint.jsp").forward(request, response);
-			}
-			
-		} else {
-			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
-			request.getRequestDispatcher("/WEB-INF/cartmaint.jsp").forward(request, response);
+			Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Sold);
 		}
+		
+		request.getRequestDispatcher("/WEB-INF/checkoutreceipt.jsp").forward(request, response);
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("cartmaint_pb", 1);
+		
 		doGet(request, response);
 	}
 

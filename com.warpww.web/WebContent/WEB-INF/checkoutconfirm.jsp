@@ -12,7 +12,12 @@
 			<%@ include file="/htx/menu.html"%>
 		</header>
 		<form action="checkoutconfirm" method="post">
-			<textarea id="statusMessage" style="color: red; width: 100%; border-style: none; text-align: center;">${statusMessage}</textarea>
+		<div class="form-row" id="productDescription]">
+			<fieldset>
+				${displayCart}
+			</fieldset>
+		</div>	
+		<br><br>
 			<input id="paymentSourceId" name="paymentSourceId" type="text" value=${param["vid"]}>
 			<input id="email-address" name=email-address type="text" value=${param["email-address"]}>
 			<div style=" margin-top: 1em;">

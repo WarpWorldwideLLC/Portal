@@ -73,7 +73,7 @@
 		</header>
 		<form action="checkout" method="post" id="payment-form">
 		
-	
+		Shopping Cart Checkout
 		<div class="form-row" id="productDescription]">
 			<fieldset>
 				${displayCart}
@@ -81,7 +81,7 @@
 		</div>	
 		<br><br>
 		<label for="owner-name">
-		      Paymet Information
+		      Payment Information
 		</label>
 		<br>
 		<div class="form-row" id="ownerInfo">
@@ -92,7 +92,7 @@
 				<input id="city" name="city" placeholder="City" type="text"><br>
 				<input id="state" name="state" placeholder="State" type="text"><br>
 				<input id="zip-code" name="zip-code" placeholder="Postal Code" type="text"><br>
-				
+				<input id="receiptNumber" name="receiptNumber" type="hidden" value="${ReceiptNumber}">
 			</fieldset>
 			   
 		</div>
@@ -108,7 +108,7 @@
 		    <div id="card-errors" role="alert"></div>
 		  </div>
 			<br><br>
-		  <button>Submit Payment</button>
+		  <button id="SubmitPayment" name="SubmitPayment" value="posted">Submit Payment</button>
 		  
 		</form>
 	    <footer>

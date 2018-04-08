@@ -82,61 +82,7 @@ USE WarpAdmin2017;
     
     SELECT * FROM SolutionProduct;
 
-	UPDATE Solution 
-    SET SolutionCost = SolutionCost * 100
-    WHERE ID > 0;
-
-	SELECT * FROM Solution;
-    SELECT * FROM EntityName;
-	SELECT * FROM EntitySolution;
-    SELECT * FROM ShoppingCart; 
-
-
-SELECT sc.ID as CartID, mn.EntityName AS MemberName, 
-  s.ID AS SolutionID, s.SolutionName, s.SolutionCode, s.SolutionCost,
-  p.ID as ProductID, p.ProductName, p.ProductCode,
-  'END' AS EndCode
---  sc.*, mn.*, s.*, sp.*, p.*
-FROM ShoppingCart sc
-  LEFT JOIN EntityName mn
-	ON mn.ID = sc.EntityID
-      AND mn.EntityNameTypeID = 2
-  LEFT JOIN Solution s
-    ON s.ID = sc.SolutionID
-  LEFT JOIN SolutionProduct sp
-    ON s.SolutionCode = sp.SolutionCode
-  LEFT JOIN Product p
-    ON sp.ProductCode = p.ProductCode
-
-
-;
-
-SELECT * FROM SolutionProduct;
-
-
-
-CALL getCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
-CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":3, "BillingEventID":0}');
--- CALL clearCart('{"CommandName": "GetCart", "AuID":1,"IuID":1,"MemberID":2}');
-
-/* Save Shopping Cart Record */
-	INSERT INTO ShoppingCart (EntityID, SolutionID, BillingEventID, Quantity) VALUES (2, 1, 0, 1);
-	CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
-	CALL clearCart('{"CommandName":"ClearCart","AuID":1,"IuID":1,"MemberID":2}');
-
-/* Clear Shopping Cart Record */
-	DELETE FROM ShoppingCart WHERE EntityID = 2;
-
-
-	INSERT INTO EntitySolution (SolutionID, EntityID, BillingEventID) VALUES (1, 2, 0);
-    CALL addMemberSolution('{"CommandName":"AddMemberSolution","AuID":1,"IuID":1,"MemberID":2, "SolutionID": 1}');
-	SELECT * FROM EntitySolution;
-    -- TRUNCATE TABLE EntitySolution;
-    
-    
-    SELECT * FROM Product;
-    
-
+	
 /* 
 
  DROP TABLE IF EXISTS EntitySolution;

@@ -50,17 +50,26 @@ public class checkout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Authenticate 
-		Login.authenticate(request, response);
-		int memberID = 2;
+		// Set PageName & System Mode
+		String uri = request.getRequestURI();
+		String pageName = uri.substring(uri.lastIndexOf("/")+1);
+		request.setAttribute("pageName", pageName);
 		
+		int memberID = 0;
+		String authTime = null;
+		boolean authenticated = false;
 		
-		Util.printParams("checkout.doGet", request);
+		// Authenticate the User via Cookie; populate memberID and authTime fields.
+		if(Login.authenticate(request, response)) {
+			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
+			authTime = request.getAttribute("verifyToken_CreateTime").toString();
+			authenticated = true;
+		} else {
+			authenticated = false;
+			memberID = 0;	
+		}
 		
-		// Clear Messages
-		request.setAttribute("statusMessage", "");
-		if(Login.authenticateToken(request)) {
-			request.setAttribute("statusMessage", "");
+		if(authenticated) {
 
 			// determine if a remove button was pressed
 			String buttonRemove = request.getParameter("Remove");
@@ -71,16 +80,15 @@ public class checkout extends HttpServlet {
 			// Public Keys
 			request.setAttribute("paymentPublicKey", hsc.pk_stripe);
 			
-			// And retrieve the full ShoppingCart
-			Util.getShoppingCart(request, response);
-			
-			Util.printParams("checkout.doGet.afterShoppingCart", request);
+			// And retrieve the ShoppingCart
+			Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Pending);
 			
 			// After the user confirms payment, forward to the checkout confirmation screen. 
 			// Check to see if there is a Stripe Source ID
 			String tokenTest = request.getParameter("stripeSourceId");
 			if(tokenTest != null && !tokenTest.isEmpty()) {
 				System.out.println("Stripe Source Id Found");
+	
 				request.getRequestDispatcher("checkoutconfirm?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
 							
 			} else {
@@ -88,30 +96,12 @@ public class checkout extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 			}
 			
-			// Util.printParams("StripeCheckout", request);
-			
-			// processPayment(request, response);
+			Util.printParams("checkout.doGet", request);
 					
 		} else {
-			request.setAttribute("statusMessage", "You must register as a member and be signed in to complete a purchase.");
+			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
 			request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 		}
-		
-		
-		/* 
-			1. When the user selects Purchase/Pay, add the item to the shopping cart.
-			2. Redirect the user to Checkout.
-			3. Checkout retrieves the info from the shopping cart, displays it, and asks the user to enter payment information. 
-			4. Redirect to CheckoutConfirm
-			5. CheckoutConfirm retrieves shopping cart, displays it, asks for confirmation. 
-			6. Confirmation and thank you is presented. 
-			
-			For the solution description, take the solution code passed in, validate it, and pull the information from the database for confirmation. 
-			First Query pulls the solution by ID from the database. 
-			Secont action builds the display table HTML = showing Solution Code, Solution Price, Solution Description
-			Third action pulls the Product info for the Solution and displays it. 
-			Checkout Confirmation pulls the pricing from the database again, so it cant' be tampered with by manipulating the HTML. 
-		 */
 		
 	}
 
@@ -119,7 +109,8 @@ public class checkout extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setAttribute("checkout_pb", 1);
+		Util.printParams("checkout.doPost", request);
 		doGet(request, response);
 	}
 	

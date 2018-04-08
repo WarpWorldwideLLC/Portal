@@ -40,32 +40,57 @@ public class checkoutconfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Util.printParams("CheckoutConfirm", request);
-		Login.authenticate(request, response);
-		request.setAttribute("stripeSourceId", request.getAttribute("stripeSourceId"));
-		request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
+		// Set PageName & System Mode
+		String uri = request.getRequestURI();
+		String pageName = uri.substring(uri.lastIndexOf("/")+1);
+		request.setAttribute("pageName", pageName);
+		
+		int memberID = 0;
+		String authTime = null;
+		boolean authenticated = false;
+		
+		// Authenticate the User via Cookie; populate memberID and authTime fields.
+		if(Login.authenticate(request, response)) {
+			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
+			authTime = request.getAttribute("verifyToken_CreateTime").toString();
+			authenticated = true;
+		} else {
+			authenticated = false;
+			memberID = 0;	
+		}
+
+		// And retrieve the ShoppingCart
+		Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Pending);
+		
+		int totalCost = Integer.parseInt(request.getAttribute("ShoppingCartTotalCost").toString());
+		
+		if(request.getParameter("confirmPayment") != null) {
+			String customerId = addToCustomer(request.getParameter("paymentSourceId"), request.getParameter("email-address"));
+			processPayment(request.getParameter("paymentSourceId"), customerId, totalCost);
+			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+			System.out.println("Payment Source ID: " + request.getParameter("paymentSourceId"));
+			System.out.println("Email Address: " + request.getParameter("email-address"));
+			System.out.println("Customer ID: " + customerId);
+			
+			Util.markCartSold(request, response, memberID);
+			
+			request.getRequestDispatcher("checkoutreceipt").forward(request, response);
+			
+		} else {
+			request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
+		}
+		
+		// request.setAttribute("stripeSourceId", request.getAttribute("stripeSourceId"));
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Util.printParams("CheckoutConfirm", request);
-		
-		if(request.getParameter("confirmPayment") != null) {
-			String customerId = addToCustomer(request.getParameter("paymentSourceId"), request.getParameter("email-address"));
-			processPayment(request.getParameter("paymentSourceId"), customerId, 1000);
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-			System.out.println("Payment Source ID: " + request.getParameter("paymentSourceId"));
-			System.out.println("Email Address: " + request.getParameter("email-address"));
-			System.out.println("Customer ID: " + customerId);
-		}
-		
 		
 		doGet(request, response);
-		
-		
-		
+	
 	}
 	
 	protected String addToCustomer(String sourceId, String emailAddress) {
@@ -113,4 +138,6 @@ public class checkoutconfirm extends HttpServlet {
 		return returnValue;
 	}
 
+	
+	
 }

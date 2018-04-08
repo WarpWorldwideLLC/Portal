@@ -73,6 +73,9 @@ INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (99,
 INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (50, 'Receipt Identified', 'RCI');
 INSERT INTO ctlRecordStatus (ID, RecordStatusName, RecordStatusCode) VALUES (51, 'Purchase Completed', 'PUR');
 
+UPDATE ctlRecordStatus SET RecordStatusName = 'PURCHASE PENDING', RecordStatusCode = 'PPN' WHERE ID = 50;
+UPDATE ctlRecordStatus SET RecordStatusName = 'PURCHASE COMPLETE', RecordStatusCode = 'PUR' WHERE ID = 51;
+
 SELECT * FROM ctlRecordStatus;
 
 DROP TABLE IF EXISTS ctlCommand;    
@@ -609,7 +612,7 @@ CREATE TABLE eContact (
 	LastAuID 							BIGINT DEFAULT -1,
 	LastIuID 							BIGINT DEFAULT -1,
     ProductCode							NVARCHAR(25) NOT NULL,
-    ProductExternalKey					NVARCHAR(25) NULL, 
+    ProductExternalKey					NVARCHAR(255) NULL, 
 	ProductName							NVARCHAR(100) NOT NULL,
     ProductCost							DECIMAL(19,4) NOT NULL
 	);

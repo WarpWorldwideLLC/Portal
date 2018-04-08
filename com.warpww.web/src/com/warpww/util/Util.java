@@ -240,23 +240,47 @@ public class Util {
 	}
 
 	// Retrieve the contents of the shopping cart for display to the payor. 
-	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response) {
+	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response, int memberID) {
+		String returnValue = null;
+		
+		returnValue = getShoppingCart(request, response, memberID, true, Util.CartContents.All);
+		
+		return returnValue;
+	}
+	
+	public enum CartContents {
+		All, Pending, Sold
+	}
+	
+	// Base Shopping Cart Display
+	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response, int memberID, boolean showButtons, CartContents itemsToInclude) {
 		String returnValue = null;
 		
 		try {
 			
+			String commandValue = "";
+			switch(itemsToInclude) {
+			case Pending: 
+				commandValue = "GetCartPendingItemsOnly";
+				break;
+			case Sold: 
+				commandValue = "GetCartSoldItemsOnly";
+			default: 
+				commandValue = "GetCart";
+				break;
+			}
+			System.out.println("Command Value: " + commandValue);
 			// Create the command JSON
 			String json = Json.createObjectBuilder()
-					 .add("Command", "GetCart")
+					 .add("Command", commandValue)
 					 .add("AuID", 1)
 					 .add("IuID", 1)
-					 .add("MemberID", 2)
+					 .add("MemberID", memberID)
 					 .build()
 					 .toString(); 		
 
-
 			String jsonParms = "";
-		
+
 			jsonParms = json;
 			request.setAttribute("CommandText", jsonParms);
 			
@@ -270,43 +294,48 @@ public class Util {
 			//* ******************************************************************************************************************************* */
 			//* ******************************************************************************************************************************* */
 			
-			// Load and Parse the InputJSON
-			JsonReader reader = Json.createReader(new StringReader("{\"CartItems\": [" + request.getAttribute("CommandResults").toString() + "]}"));
-			JsonObject originalDoc = reader.readObject();
-			// returnValue = originalDoc.getJsonString("CommandResults").toString();
-			// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
-			
 			String displayCart = "";
 			int solutionCost = 0;
 			int totalCost = 0;
 			
-			displayCart += "<table class=\"table1\">";
-			displayCart += "<tr><td>&nbsp</td><td>Code</td><td>Name</td><td>Price</td><td>&nbsp</td></tr>";
-
-			javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
-			for (int i = 0; i < cart.size(); i++) {
+			// Load and Parse the InputJSON
+			if(request.getAttribute("CommandResults") != null ) {
+				JsonReader reader = Json.createReader(new StringReader("{\"CartItems\": [" + request.getAttribute("CommandResults").toString() + "]}"));
+				JsonObject originalDoc = reader.readObject();
+				// returnValue = originalDoc.getJsonString("CommandResults").toString();
+				// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
 				
-				JsonObject explrObject = cart.getJsonObject(i);
+				displayCart += "<table class=\"table1\">";
+				displayCart += "<tr><td>&nbsp</td><td>Code</td><td>Name</td><td>Price</td><td>&nbsp</td></tr>";
+	
+				javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
+				for (int i = 0; i < cart.size(); i++) {
 					
-				solutionCost = (int)Double.parseDouble(explrObject.getJsonNumber("SolutionCost").toString());
-				totalCost += solutionCost;
+					JsonObject explrObject = cart.getJsonObject(i);
+						
+					solutionCost = (int)Double.parseDouble(explrObject.getJsonNumber("SolutionCost").toString());
+					totalCost += solutionCost;
+					
+					displayCart += "<tr>";
+					displayCart += "<td>" + explrObject.getJsonNumber("CartID").toString() + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
+				    if(showButtons) {
+				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button>";
+				    }
+				    displayCart += "</tr>";
+				}
 				
-				displayCart += "<tr>";
-				displayCart += "<td>" + explrObject.getJsonNumber("CartID").toString() + "</td>";
-			    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
-			    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
-			    displayCart += "<td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
-			    displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button>";
-			    displayCart += "</tr>";
+				request.setAttribute("ShoppingCartTotalCost", totalCost);
+				displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
+				displayCart += "</table>";
+				displayCart += "<br><br>";
+				request.setAttribute("displayCart", displayCart);
+				// System.out.println("Cart: " + displayCart);
+			} else {
+				displayCart = "No items in your cart.";
 			}
-			
-			
-			displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
-			displayCart += "</table>";
-			displayCart += "<br><br>";
-			request.setAttribute("displayCart", displayCart);
-			System.out.println("Cart: " + displayCart);
-			
 			/*
 			javax.json.JsonArray value = javax.json.Json.createArrayBuilder()
 				     .add(javax.json.Json.createObjectBuilder()
@@ -329,7 +358,7 @@ public class Util {
 		
 		return returnValue;
 	}
-		
+	
 	// Add the solution passed to the shopping cart
 	public static boolean addSolutionToCart(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
 		boolean returnValue = false;
@@ -416,12 +445,27 @@ public class Util {
 			jsonParms = json;
 			request.setAttribute("CommandText", jsonParms);
 			
+			
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
+			
+			
+			
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
+		return returnValue;
+	}
+	
+	public static String getJsonValueString(String jsonResults, String retrievalKey) {
+		String returnValue = "";
+		
+		// Load and Parse the InputJSON
+		JsonReader reader = Json.createReader(new StringReader(jsonResults));
+		JsonObject originalDoc = reader.readObject();
+		returnValue = originalDoc.getJsonString(retrievalKey).toString().replaceAll("\"", "");
 		
 		return returnValue;
 	}
@@ -434,7 +478,7 @@ public class Util {
 			
 			// Create the command JSON.
 			String json = Json.createObjectBuilder()
-					 .add("Command", "MarkCartPending")
+					 .add("Command", "MarkCartSold")
 					 .add("AuID", 1)
 					 .add("IuID", 1)
 					 .add("MemberID", memberID)
@@ -457,4 +501,68 @@ public class Util {
 		return returnValue;
 	}
 
+	// Add Solution to Member's available content.
+	public static boolean addMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "AddMemberSolution")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("SolutionID", solutionID)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
+	// Retrieve all Solutions & Products for a  member. 
+	public static boolean getMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
+		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "GetMemberSolution")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
+	
 }
