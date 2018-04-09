@@ -7,7 +7,7 @@
 		<%@ include file="/htx/head.html"%>
 		<title><fmt:message key="warp18001.page_title" /></title>
 	</head>
-	<body>
+	<body> 
 		<header>
 			<%@ include file="/htx/menu.html"%>
 		</header>
