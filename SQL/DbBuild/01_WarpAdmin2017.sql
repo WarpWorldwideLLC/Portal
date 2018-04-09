@@ -663,7 +663,8 @@ CREATE TABLE eContact (
 	LastIuID 							BIGINT DEFAULT -1,
 	SolutionID							BIGINT, 
     EntityID							BIGINT,
-    BillingEventID						BIGINT
+    BillingEventID						BIGINT,
+    StartDate							DATETIME
 	);
     
     
