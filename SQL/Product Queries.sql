@@ -40,30 +40,37 @@ USE WarpAdmin2017;
 	/* *************************************************************************************************** */
     /* WARP Solutions
     /* *************************************************************************************************** */  
-	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-001', 'STEM Science Hub', 249.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-002', 'STEM Mathematics Hub', 249.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-003', 'STEM Technology Hub', 199.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-004', 'STEM Social Science Hub', 199.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-005', 'STEM Medical Hub', 199.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-006', 'STEM Pre-Engineering Hub', 199.00);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (1, 'WARP-STEM-001', 'STEM Science Hub', 249.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (2, 'WARP-STEM-002', 'STEM Mathematics Hub', 249.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (3, 'WARP-STEM-003', 'STEM Technology Hub', 199.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (4, 'WARP-STEM-004', 'STEM Social Science Hub', 199.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (5, 'WARP-STEM-005', 'STEM Medical Hub', 199.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (6, 'WARP-STEM-006', 'STEM Pre-Engineering Hub', 199.00);
     
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-STEM-007', 'STEM Summer Camps', 0.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (7, 'WARP-STEM-007', 'STEM Summer Camps', 0.00);
 
-	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-EL-001', 'Elementary OASC', 249.00);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (8, 'WARP-EL-001', 'Elementary OASC', 249.00);
     
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-ML-001', 'Middle School Online Academic Learning', 349.00);
-	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-ML-002', 'Middle School SSAT', 79.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (9, 'WARP-ML-001', 'Middle School Online Academic Learning', 349.00);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (10, 'WARP-ML-002', 'Middle School SSAT', 79.00);
     
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-001', 'SAT Online Preparation', 199.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-002', 'ACT Online Preparation', 199.00);
-	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-003', 'ACT Online Preparation', 49.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-004', 'ACT Online Preparation', 99.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-005', 'ACT Online Preparation', 79.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-006', 'ACT Online Preparation', 349.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-007', 'ACT Online Preparation', 79.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-008', 'ACT Online Preparation', 79.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-009', 'ACT Online Preparation', 79.00);
-    INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-HL-010', 'ACT Online Preparation', 379.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (11, 'WARP-HL-001', 'SAT Online Preparation', 199.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (12, 'WARP-HL-002', 'ACT Online Preparation', 199.00);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (13, 'WARP-HL-003', 'SAT/ACY Flashcards', 49.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (14, 'WARP-HL-004', 'PSAT Online Preparation', 99.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (15, 'WARP-HL-005', 'SAT Subject Test Online Preparation', 79.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (16, 'WARP-HL-006', 'High School Online Academy Skils Course', 349.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (17, 'WARP-HL-007', 'High School SSAT/ISEE', 79.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (18, 'WARP-HL-008', 'AP Practice Tests', 79.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (19, 'WARP-HL-009', 'ISEE', 79.00);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (20, 'WARP-HL-010', 'College Placement Skills Training', 379.00);
+
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (21, 'WARP-US-001', 'Test of Education as a Foreign Language (TOEFL)', 9.99);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (22, 'WARP-US-002', 'Graduate Record Examination', 59.00);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (23, 'WARP-US-003', 'Graduation Management Admission Test (GMAT)', 59.00);
+    
+-- 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (500, 'WARP-US-999', 'Graduation Management Admission Test (GMAT)', 59.00);
+
     
     SELECT * FROM Solution;
 
@@ -79,8 +86,40 @@ USE WarpAdmin2017;
     INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-STEM-005', 'PILR-006');
     INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-STEM-006', 'PILR-008');
     
+    -- OASC
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-ML-001', 'POLC-004');
+    -- SSAT
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-ML-002', 'PILR-003');
+    -- SAT
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-001', 'POLC-001');
+    -- ACT
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-002', 'POLC-002');
+    -- SSAT/ACT Flashcards
+    -- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-003', 'POLC-XXX');
+    -- PSAT
+    -- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-004', 'POLC-XXX');
+    -- SSAT Subject Tests
+	-- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-005', 'POLC-XXX');
+    -- OASC (Duplicate)
+	-- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-006', 'POLC-XXX');
+    -- SSAT (Duplicate)
+    -- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-007', 'PILR-003');
+    -- AP Practice Tests
+    -- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-008', 'POLC-XXX');
+    -- ISEE
+    -- INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-009', 'PILR-XXX');
+    -- CPST
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-HL-010', 'POLC-003');
+    -- TOEFL
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-US-001', 'PILR-004');
+    -- GRE
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-US-002', 'PILR-002');
+    -- GMAT 
+    INSERT INTO SolutionProduct (SolutionCode, ProductCode) VALUES ('WARP-US-003', 'PILR-004');
     
     SELECT * FROM SolutionProduct;
+    
+    SELECT * FROM Product;
 
 	
 /* 
