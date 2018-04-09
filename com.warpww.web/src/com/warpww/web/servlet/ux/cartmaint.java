@@ -42,6 +42,7 @@ public class cartmaint extends HttpServlet {
 		// Authenticate the User via Cookie; populate memberID and authTime fields.
 		if(Login.authenticate(request, response)) {
 			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
+			System.out.println("Member ID: " + memberID);
 			authTime = request.getAttribute("verifyToken_CreateTime").toString();
 			authenticated = true;
 		} else {
@@ -49,8 +50,6 @@ public class cartmaint extends HttpServlet {
 			memberID = 0;
 			
 		}
-
-		System.out.println("Auth Time - " + authTime);
 		
 		if(authenticated) {
 			
@@ -85,7 +84,7 @@ public class cartmaint extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("cartmaint_pb", 1);
+
 		doGet(request, response);
 	}
 

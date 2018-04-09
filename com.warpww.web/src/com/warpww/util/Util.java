@@ -255,6 +255,7 @@ public class Util {
 	// Base Shopping Cart Display
 	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response, int memberID, boolean showButtons, CartContents itemsToInclude) {
 		String returnValue = null;
+		System.out.println("Shopping Cart Member ID: " + memberID); 
 		
 		try {
 			
@@ -269,7 +270,7 @@ public class Util {
 				commandValue = "GetCart";
 				break;
 			}
-			System.out.println("Command Value: " + commandValue);
+			
 			// Create the command JSON
 			String json = Json.createObjectBuilder()
 					 .add("Command", commandValue)
@@ -534,9 +535,41 @@ public class Util {
 		return returnValue;
 	}
 	
-	// Retrieve all Solutions & Products for a  member. 
-	public static boolean getMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
+	// Add Solution to Member's available content.
+	public static boolean setMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID) { 
 		boolean returnValue = false;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "SetMemberSolution")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+			
+	// Retrieve all Solutions & Products for a  member. 
+	public static String getMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID) { 
+		String returnValue = "";
 		
 		try {
 			
@@ -556,6 +589,62 @@ public class Util {
 			
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
+			
+			Util.printParams("getMemberSolutions", request);
+			
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			// Format the data for display on the web page. 
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			
+			String displayCart = "";
+			
+			// Load and Parse the InputJSON
+			if(request.getAttribute("CommandResults") != null ) {
+				JsonReader reader = Json.createReader(new StringReader("{\"MySolutions\": [" + request.getAttribute("CommandResults").toString() + "]}"));
+				JsonObject originalDoc = reader.readObject();
+				// returnValue = originalDoc.getJsonString("CommandResults").toString();
+				// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
+				
+				displayCart += "<table class=\"table1\">";
+				displayCart += "<tr>"
+						+ "<td>Solution Code</td>"
+						+ "<td>Solution Name</td>"
+						+ "<td>Product Code</td>"
+						+ "<td>Product Name</td>"
+						+ "<td>Link</td>"
+						+ "<td>Start Date</td>"
+						+ "</tr>";
+	
+				
+				
+				javax.json.JsonArray cart = originalDoc.getJsonArray("MySolutions");
+				for (int i = 0; i < cart.size(); i++) {
+					
+					JsonObject explrObject = cart.getJsonObject(i);
+					
+					displayCart += "<tr>";
+				    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("ProductCode").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("ProductName").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + "<a href=\"" +explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
+				    // displayCart += "<td>" + explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + explrObject.getJsonString("StartDate").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "</tr>";
+				}
+				
+				displayCart += "</table>";
+				displayCart += "<br><br>";
+				request.setAttribute("displayCart", displayCart);
+				// System.out.println("Cart: " + displayCart);
+			} else {
+				displayCart = "No Solutions Active or Available.";
+			}
+			
+			returnValue = displayCart;
+			
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

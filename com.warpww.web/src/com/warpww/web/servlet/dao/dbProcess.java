@@ -146,6 +146,10 @@ public class dbProcess extends HttpServlet {
         				break;
 	            case "GetCartSoldItemsOnly" : spName = "getCartSoldItemsOnly";
         				break;
+	            case "GetMemberSolution" : spName = "getMemberSolution";
+        				break;
+	            case "SetMemberSolution" : spName = "setMemberSolution";
+        				break;
 	            default: spName = "Invalid_Command";
 	                break;
 	        }

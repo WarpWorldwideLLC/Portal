@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.Login;
+import com.warpww.util.Util;
+
 /**
  * Servlet implementation class mysolutions
  */
@@ -26,15 +29,43 @@ public class mysolutions extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// Set PageName & System Mode
+		String uri = request.getRequestURI();
+		String pageName = uri.substring(uri.lastIndexOf("/")+1);
+		request.setAttribute("pageName", pageName);
+		
+		int memberID = 0;
+		String authTime = null;
+		boolean authenticated = false;
+		
+		
+		
+		// Authenticate the User via Cookie; populate memberID and authTime fields.
+		if(Login.authenticate(request, response)) {
+			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
+			authTime = request.getAttribute("verifyToken_CreateTime").toString();
+			authenticated = true;
+		} else {
+			authenticated = false;
+			memberID = 0;
+			
+		}
+		
+		if(authenticated) { 
+			request.setAttribute("mySolutions", Util.getMemberSolution(request, response, memberID));
+			// request.setAttribute("mySolutions", "Your solutions go here.");
+		} else {
+			request.setAttribute("mySolutions", "You must be logged in to view your solutions.");
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

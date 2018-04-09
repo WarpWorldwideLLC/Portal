@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<%@ include file="/htx/head.html"%>
-	    <title><fmt:message key="checkout.page_title" /></title>
+	    <title><fmt:message key="mysolutions.page_title" /></title>
 	</head>
 	<body>
 		<header>
@@ -13,7 +13,11 @@
 		</header>
 		<form action="cartmaint" method="post" id="shopping-cart">	
 		My Solutions<br>
-				
+		<div class="form-row" id="my">
+			<fieldset>
+				${mySolutions}
+			</fieldset>
+		</div>			
 	
 
 		</form>

@@ -73,6 +73,7 @@ public class checkoutconfirm extends HttpServlet {
 			System.out.println("Customer ID: " + customerId);
 			
 			Util.markCartSold(request, response, memberID);
+			Util.setMemberSolution(request, response, memberID);
 			
 			request.getRequestDispatcher("checkoutreceipt").forward(request, response);
 			

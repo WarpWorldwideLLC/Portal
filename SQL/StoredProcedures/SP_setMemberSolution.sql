@@ -1,9 +1,9 @@
 USE WarpAdmin2017;
 
-DROP PROCEDURE IF EXISTS getMemberSolution;
+DROP PROCEDURE IF EXISTS setMemberSolution;
 
 DELIMITER $$
-CREATE PROCEDURE getMemberSolution(query JSON)
+CREATE PROCEDURE setMemberSolution(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
@@ -46,26 +46,27 @@ BEGIN
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
     SET Command := JSON_EXTRACT(query, '$.Command');
     
-	SELECT GROUP_CONCAT(JSON_OBJECT(
+    DELETE FROM EntitySolution WHERE EntityID = MemberID AND ID > 0;
+
+
+	INSERT INTO EntitySolution (SolutionID, EntityID, BillingEventID, StartDate)
+	SELECT SolutionID, EntityID, 0, MAX(CreateDate) AS StartDate
+	FROM ShoppingCart
+	WHERE RecordStatusID = 51
+	  AND EntityID = MemberID
+      AND ID > 0
+	GROUP BY SolutionID, EntityID
+	;
+    
+    
+	SELECT JSON_OBJECT(
                      'MemberID', MemberID,
                      'Command', Command,
                      'CommandResults', ProcStatus,
-                     'SolutionCode', s.SolutionCode,
-                     'SolutionName', s.SolutionName,
-                     'ProductCode', p.ProductCode, 
-                     'ProductName', p.ProductName,
-                     'ProductExternalKey', p.ProductExternalKey, 
-                     'StartDate', sp.CreateDate
-                     
-				)) AS CommandResult
+                     'Count', COUNT(*)
+				) AS CommandResult
 	FROM EntitySolution es
-	  LEFT JOIN Solution s
-		ON es.SolutionID = s.ID
-	  LEFT JOIN SolutionProduct sp
-		ON s.SolutionCode = sp.SolutionCode
-	  LEFT JOIN Product p
-		ON sp.ProductCode = p.ProductCode
-	WHERE es.EntityID = memberID
+	WHERE es.EntityID = MemberID
 
 	;
         

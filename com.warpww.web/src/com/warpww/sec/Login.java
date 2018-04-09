@@ -24,7 +24,7 @@ import com.warpww.util.Util;
 
 public class Login {
 
-	public static String getGreeting(int MemberID, HttpServletRequest request, HttpServletResponse response) {
+	public static String getGreetingAuthenticated(int MemberID, HttpServletRequest request, HttpServletResponse response) {
 		String returnValue = "";
 		
 		try
@@ -56,7 +56,51 @@ public class Login {
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = "Hello, " + cmd.FirstName + " " + cmd.LastName;
+			returnValue += "<div class=\"account-content\">";
+			returnValue += "<a href=\"#\">Link 1</a>";
+			returnValue += "<a href=\"#\">Link 2</a>";
+			returnValue += "<a href=\"#\">Link 3</a>";
+			returnValue += "</div>";
+			returnValue += "";			
 		}
+		
+		} catch (Exception ex)
+		{
+			System.out.println(ex.toString());
+			ex.printStackTrace();
+			returnValue = null;
+		}
+		
+		return returnValue;
+	}
+	
+	public static String getGreetingAnonymous(HttpServletRequest request, HttpServletResponse response) {
+		String returnValue = "";
+		
+		try
+		{
+			returnValue = "Please Log In. ";
+		} catch (Exception ex)
+		{
+			System.out.println(ex.toString());
+			ex.printStackTrace();
+			returnValue = null;
+		}
+		
+		return returnValue;
+	}
+	
+	public static String getGreeting(int MemberID, HttpServletRequest request, HttpServletResponse response, boolean authenticated) {
+		String returnValue = "";
+		
+		try
+		{
+			if(authenticated) {
+				returnValue = getGreetingAuthenticated(MemberID, request, response);
+			} else {
+				returnValue = getGreetingAnonymous(request, response);
+			}
+
 		
 		} catch (Exception ex)
 		{
@@ -366,13 +410,11 @@ public class Login {
 		try {
 			if(Login.authenticateToken(request)) {
 				returnValue = true;
-				System.out.println(callingMethod + ": authenticateToken Succeeded.");
-				// Util.printParams(location, request);
-				greeting = Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response);
+				greeting = Login.getGreeting(Integer.parseInt(request.getAttribute("TokenMemberID").toString()), request, response, true);
 				request.setAttribute("Greeting", greeting);
 			} else {
 				returnValue = false;
-				System.out.println(callingMethod + ": authenticateToken Failed.");
+				greeting = Login.getGreeting(0, request, response, false);;
 			}
 		} catch (Exception ex) {
 			returnValue = false;
