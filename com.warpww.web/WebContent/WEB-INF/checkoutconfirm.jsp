@@ -18,8 +18,8 @@
 			</fieldset>
 		</div>	
 		<br><br>
-			<input id="paymentSourceId" name="paymentSourceId" type="text" value=${param["vid"]}>
-			<input id="email-address" name=email-address type="text" value=${param["email-address"]}>
+			<input id="paymentSourceId" name="paymentSourceId" type="hidden" value=${param["vid"]}>
+			<input id="email-address" name=email-address type="hidden" value=${param["email-address"]}>
 			<div style=" margin-top: 1em;">
 			<button id="confirmPayment" name="confirmPayment" type="submit" class="btn btn-primary">Confirm Payment</button>
 			</div><br>

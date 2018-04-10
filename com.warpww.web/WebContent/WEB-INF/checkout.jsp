@@ -190,10 +190,10 @@
 					      // Inform the user if there was an error
 					      var errorElement = document.getElementById('card-errors');
 					      errorElement.textContent = result.error.message;
-					      alert("fail");
+					      //alert("fail");
 					    } else {
 					      // Send the source to your server
-					      alert("success");
+					      //alert("success");
 					      stripeSourceHandler(result.source);
 					      
 					    }
