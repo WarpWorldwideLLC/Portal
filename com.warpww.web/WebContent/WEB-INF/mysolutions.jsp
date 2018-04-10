@@ -11,7 +11,7 @@
 		<header>
 			<%@ include file="/htx/menu.html"%>
 		</header>
-		<form action="cartmaint" method="post" id="shopping-cart">	
+		<form action="mysolutions" method="post" id="shopping-cart">	
 		My Solutions<br>
 		<div class="form-row" id="my">
 			<fieldset>

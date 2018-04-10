@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+	<html>
+		<head>
+		    <meta charset="utf-8" />
+		    <title>AuthenticatePost - Authentication Testing Application</title>
+		</head>
+		<body>
+			<form action="http://warpauth.petersons.com//olc/PlainAuthenticate" method="post">
+			    <input name="userData" value="
+								    <proxieduser>
+								  		<ACCESSCODE>BELLEVUE13</ACCESSCODE>
+								  		<SPONSORID>1</SPONSORID>
+								  		<SUBSPONSORID>1</SUBSPONSORID>
+								  		<USERID>JohnnyWarp</USERID>
+								  		<ROLEID>6</ROLEID>
+								  		<FNAME>John</FNAME>
+								  		<LNAME>Arp</LNAME>
+								  		<EMAIL>test@warp.cn</EMAIL>
+								  		<SELTESTCATEGORY>ACT2016</SELTESTCATEGORY>
+									</proxieduser>" 
+									type="hidden" />
+			    <input name="clientId" value="111" type="hidden" />
+			    <input name="symKey" type="hidden" />
+			    <input type="submit" value="Go" />
+			</form>
+		</body>
+	</html>
+
+	<!--  
+	http://warpauth.petersons.com/olc/PlainAuthenticate?ACCESSCODE=BELLEVUE13&SPONSORID=1&subsponsorid=1&userid=JohnnyWarp&roleid=6&fname=John&lname=Arp&email=test@warp.cn&seltestcategory=ACT2016
+	 -->

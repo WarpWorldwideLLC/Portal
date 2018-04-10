@@ -58,7 +58,20 @@ public class mysolutions extends HttpServlet {
 			request.setAttribute("mySolutions", "You must be logged in to view your solutions.");
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
+		if(request.getParameter("olcCmd") != null) {
+			try {
+				Util.getMemberInfo(request, response, memberID);
+				Util.printParams("mySolutions.doGet", request);
+				String s = Util.sendGetOLC(memberID, request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
+				response.getWriter().append(s).append(request.getContextPath());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else { 
+			request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
+		}
+		
+		// request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
 	}
 
 	/**

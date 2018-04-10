@@ -150,6 +150,8 @@ public class dbProcess extends HttpServlet {
         				break;
 	            case "SetMemberSolution" : spName = "setMemberSolution";
         				break;
+	            case "GetMemberInfo" : spName = "getMemberInfo";
+        				break;
 	            default: spName = "Invalid_Command";
 	                break;
 	        }

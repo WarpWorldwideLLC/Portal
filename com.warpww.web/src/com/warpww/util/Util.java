@@ -239,6 +239,130 @@ public class Util {
 
 	}
 
+	public static String sendPostOLC(String userID, String firstName, String lastName, String eMail, String testName) throws Exception {
+		
+		String USER_AGENT = "Mozilla/5.0";
+		
+		// Clear Text Redirects - Curren
+		String url = ""; 
+		// url = "http://warpauth.petersons.com/WarpTest/Plainauthenticate";
+		// url = "http://warpauth.petersons.com/olc/PlainAuthenticate";
+		
+		url = "http://warpauth.petersons.com//olc/PlainAuthenticate";
+		
+		URL obj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+		//add request header
+		con.setRequestMethod("POST");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+			
+		String urlParameters = "_RequestVerificationToken=";
+		
+		// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		
+		String pForm = "";
+		pForm = "<!DOCTYPE html>";
+		pForm += "	<html>";
+		pForm += "		<head>";
+		pForm += "		    <meta charset=\"utf-8\" />";
+		pForm += "		</head>";
+		pForm += "		<body>";
+		pForm += "			<form>";
+		pForm += "			    <input name=\"userData\" value=\"";
+		pForm += "								    <proxieduser>";
+		pForm += "								  		<ACCESSCODE>BELLEVUE13</ACCESSCODE>";
+		pForm += "								  		<SPONSORID>1</SPONSORID>";
+		pForm += "								  		<SUBSPONSORID>1</SUBSPONSORID>";
+		pForm += "								  		<USERID>JohnnyWarp</USERID>";
+		pForm += "								  		<ROLEID>6</ROLEID>";
+		pForm += "								  		<FNAME>John</FNAME>";
+		pForm += "								  		<LNAME>Arp</LNAME>";
+		pForm += "								  		<EMAIL>test@warp.cn</EMAIL>";
+		pForm += "								  		<SELTESTCATEGORY>ACT2016</SELTESTCATEGORY>";
+		pForm += "									</proxieduser>\" ";
+		pForm += "									type=\"hidden\" />";
+		pForm += "			    <input name=\"clientId\" value=\"111\" type=\"hidden\" />";
+		pForm += "			    <input name=\"symKey\" type=\"hidden\" />";
+		pForm += "			    <input type=\"submit\" value=\"Go\" />";
+		pForm += "			</form>";
+		pForm += "		</body>";
+		pForm += "	</html>";
+		pForm += "";
+		pForm += "";
+		
+		wr.writeBytes(pForm);
+		wr.flush();
+		wr.close();
+
+		int responseCode = con.getResponseCode();
+		System.out.println("Response Code: " + responseCode);
+
+		InputStream _is;
+		
+		if (con.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+		    _is = con.getInputStream();
+		} else {
+		     /* error from server */
+		    _is = con.getErrorStream();
+		}
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(_is));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		// print result
+		// System.out.println(response.toString());
+		return response.toString();
+
+	}
+
+	public static String sendGetOLC(int userID, String memberName, String firstName, String lastName, String eMail, String testName) {
+		String returnValue = null;
+		
+		String pForm = "";
+		pForm = "<!DOCTYPE html>";
+		pForm += "	<html>";
+		pForm += "		<head>";
+		pForm += "		    <meta charset=\"utf-8\" />";
+		pForm += "		</head>";
+		pForm += "		<body>";
+		pForm += "			<form action=\"http://warpauth.petersons.com//olc/PlainAuthenticate\" method=\"post\">";
+		pForm += "			    <input name=\"userData\" value=\"";
+		pForm += "								    <proxieduser>";
+		pForm += "								  		<ACCESSCODE>BELLEVUE13</ACCESSCODE>";
+		pForm += "								  		<SPONSORID>1</SPONSORID>";
+		pForm += "								  		<SUBSPONSORID>1</SUBSPONSORID>";
+		pForm += "								  		<USERID>" + memberName + "</USERID>";
+		pForm += "								  		<ROLEID>6</ROLEID>";
+		pForm += "								  		<FNAME>" + firstName +"</FNAME>";
+		pForm += "								  		<LNAME>" + lastName + "</LNAME>";
+		pForm += "								  		<EMAIL>" + eMail + "</EMAIL>";
+		pForm += "								  		<SELTESTCATEGORY>" + testName + "</SELTESTCATEGORY>";
+		pForm += "									</proxieduser>\" ";
+		pForm += "									type=\"hidden\" />";
+		pForm += "			    <input name=\"clientId\" value=\"111\" type=\"hidden\" />";
+		pForm += "			    <input name=\"symKey\" type=\"hidden\" />";
+		pForm += "			    <input type=\"submit\" value=\"Go To Test\" />";
+		pForm += "			</form>";
+		pForm += "		</body>";
+		pForm += "	</html>";
+		pForm += "";
+		pForm += "";
+		
+		returnValue = pForm;
+		
+		return returnValue;
+	}
+	
 	// Retrieve the contents of the shopping cart for display to the payor. 
 	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response, int memberID) {
 		String returnValue = null;
@@ -590,7 +714,7 @@ public class Util {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 			
-			Util.printParams("getMemberSolutions", request);
+			// Util.printParams("getMemberSolutions", request);
 			
 			//* ******************************************************************************************************************************* */
 			//* ******************************************************************************************************************************* */
@@ -615,7 +739,7 @@ public class Util {
 						+ "<td>Product Name</td>"
 						+ "<td>Link</td>"
 						+ "<td>Start Date</td>"
-						+ "</tr>";
+						+ "</tr>"; 
 	
 				
 				
@@ -629,7 +753,19 @@ public class Util {
 				    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
 				    displayCart += "<td>" + explrObject.getJsonString("ProductCode").toString().replaceAll("\"", "") + "</td>";
 				    displayCart += "<td>" + explrObject.getJsonString("ProductName").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + "<a href=\"" +explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
+				    String keyValue = explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "");
+				    switch(keyValue.substring(0, 4)) {
+				    case "ILR:": 
+				    	 	displayCart += "<td>" + "<a href=\"" + keyValue.replaceAll("ILR:", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
+				    		break;
+				    case "OLC:": 
+				    		displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + keyValue.replaceAll("OLC:", "") + "\">Go Now!</button>";
+				    		break;
+				    	default:
+				    		displayCart += "<td>" + "<a>&nbsp</a>";
+				    		break;
+				    }
+				    // displayCart += "<td>" + "<a href=\"" + explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
 				    // displayCart += "<td>" + explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "</td>";
 				    displayCart += "<td>" + explrObject.getJsonString("StartDate").toString().replaceAll("\"", "") + "</td>";
 				    displayCart += "</tr>";
@@ -637,6 +773,7 @@ public class Util {
 				
 				displayCart += "</table>";
 				displayCart += "<br><br>";
+				displayCart += "<form>";
 				request.setAttribute("displayCart", displayCart);
 				// System.out.println("Cart: " + displayCart);
 			} else {
@@ -653,5 +790,44 @@ public class Util {
 		return returnValue;
 	}
 	
-	
+	public static String getMemberInfo(HttpServletRequest request, HttpServletResponse response, int memberID) {
+		String returnValue = null;
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "GetMemberInfo")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+		
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+			String MemberName = getJsonValueString(request.getAttribute("CommandResults").toString(), "MemberName");
+			String MemberFirstName = getJsonValueString(request.getAttribute("CommandResults").toString(), "MemberFirstName");
+			String MemberLastName = getJsonValueString(request.getAttribute("CommandResults").toString(), "MemberLastName");
+			String MemberEmail = getJsonValueString(request.getAttribute("CommandResults").toString(), "MemberEmail");
+			
+			request.setAttribute("MemberName", MemberName);
+			request.setAttribute("MemberFirstName", MemberFirstName);
+			request.setAttribute("MemberLastName", MemberLastName);
+			request.setAttribute("MemberEmail", MemberEmail);
+			
+			returnValue = MemberName;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
 }

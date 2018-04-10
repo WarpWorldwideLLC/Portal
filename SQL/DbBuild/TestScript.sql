@@ -45,6 +45,8 @@ SELECT COALESCE(NULL, 'W3Schools.com', 1, 2);
  CALL getMemberList('{"AuID": 1, "IuID": 1}');
 
  CALL registerMember ('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":"PeterWarp","EmailAddress":"peter.parker@warpww.com","PassphraseHash":"1000:dd47287a430d50a93a5e39e5184090661a1c13297395d6fb:67391a09d9dbf3b267f1b983796104928119dd873b7eecb7"}');
+ 
+ 
  CALL registerUserAccount ('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":"JonLi","EmailAddress":"john.arp@warpww.com","PassphraseHash":"1000:74068e30d8adc7a357d374643e9397d10ff3856b93734075:ed639b2ed05ad00aebe40d2dd81bfd593fdf491fcb3da5cb"}');
  CALL registerUserAccount ('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":"","EmailAddress":"john.arp@warpww.com","PassphraseHash":"1000:fa8fe8aba06bb324368c20271924cef3eefc005b917f424c:f16aa4e478293a00563af6218c2cf17d1496a806047773fb"}');
 
