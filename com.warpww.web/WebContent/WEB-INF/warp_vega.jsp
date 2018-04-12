@@ -13,6 +13,8 @@
 		</header>
 		<form>
 		<div id="warp_vega" class="block" style="width: 100%; vertical-align: text-top; background-color: coral; border-radius: 25px; padding: 20px; ">
+
+		        		
 		        		<div >
 		        			<h2 style="text-align: center;"><fmt:message key="warp_vega.p1.0" /></h2>
 		        			<h4 style="text-align: center;"><fmt:message key="warp_vega.p2.0" /></h4>
@@ -23,6 +25,13 @@
 		        					<fmt:message key="warp_vega.p100.0" /><br><br>
 		        			
 		        				</div>
+		        				<div>
+								<video width="320" height="240" style="max-width: 85%; max-height: 85%; display: block; margin: auto auto;" controls>
+								  <source  src="https://s3-ap-southeast-1.amazonaws.com/warp.video-in/STEM%2BOverview.mp4"  type="video/mp4">
+								  
+								</video>
+								<h4 style="text-align: center;">View a video demonstration of a sample STEM course</h4>
+				            </div>
 		        				<br>
 		        				<div>
 			        				<a class="productHeading" ><fmt:message key="warp_vega.p101.0"/></a><br>

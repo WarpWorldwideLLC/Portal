@@ -95,8 +95,7 @@ public class checkout extends HttpServlet {
 				System.out.println("Stripe Source Id Not Found");
 				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 			}
-			
-			Util.printParams("checkout.doGet", request);
+
 					
 		} else {
 			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
@@ -110,7 +109,7 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("checkout_pb", 1);
-		Util.printParams("checkout.doPost", request);
+
 		doGet(request, response);
 	}
 	

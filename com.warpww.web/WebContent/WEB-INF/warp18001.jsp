@@ -11,19 +11,33 @@
 		<header>
 			<%@ include file="/htx/menu.html"%>
 		</header>
+		<form action="warp18001" method="post">
 		<div id="solution_panel" class="row" style="width: 99%; vertical-align: text-top; display: flex;">
 		   
 	   		 <div id="pictures" class="block" style="width: 33%; vertical-align: text-top; horizontal-align: center; padding: 10px; border-right: thin solid darkgoldenrod;">
 	        		<div >
 					<img src="imgx/warp18001_1.png" alt=<fmt:message key="warp18001.image1.alt.text" /> style="width: 75%;">	 
 				</div>
-			
-				<div style=" margin-top: 1em; margin-left: 15%;">
-					<a href="register" class="btn btn-primary" style="width: 45%;"><fmt:message key="warp18001.button.apply" /></a>
+				<div>
+		        		<table>
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								<div style=" margin-top: 1em;">
+					  				<button name="purchase" class="btn btn-primary" value="24"><fmt:message key="warp18001.button.pay" /></button>
+								</div>
+							</td>
+							<td>&nbsp;</td>
+							<!-- 
+							<td>
+								<div style=" margin-top: 1em;">
+					  				<a href="mailto:warpcustomer@warpww.com" class="btn btn-primary">Request More Information</a>
+								</div>
+							</td>
+							 -->
+						</tr>
+					</table>
 				</div>
-				<div style=" margin-top: 1em; margin-left: 15%;">
-			  		<a href="campregistration?paymentmethod=deposit" class="btn btn-primary disabled" style="width: 45%;"><fmt:message key="warp18001.button.pay" /></a>
-				</div>  
 				<br><br>
 				<div>
 					<p>
@@ -90,6 +104,7 @@
 
 		</div>
 		<br><br><br><br><br><br><br><br><br><br><br>	
+		</form>
 		<footer>
 				<%@ include file="/htx/footer1.html"%>
 		</footer>

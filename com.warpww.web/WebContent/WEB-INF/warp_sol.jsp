@@ -13,8 +13,17 @@
 		</header>
 		<form>
 		        <div id="warp_sol" class="block" style="width: 100%; vertical-align: text-top;  background-color: yellow; border-radius: 25px; padding: 20px; ">
+		            
 		            <div >
 		                    <h2><fmt:message key="solutions.p0.0" /></h2>
+		                    	<div>
+								<video width="320" height="240"  controls="controls" preload="metadata" >
+								 
+								  <source  src="https://s3-ap-southeast-1.amazonaws.com/warp.video-in/Online%2BAcademic%2BSkills%2B-%2BOverview.mp4"  type="video/mp4" type=>
+								  
+								</video>
+								<h4>View a video demonstration of a sample course.</h4><br><br>
+				            </div>
 		                    <h4><fmt:message key="warp_sol.p1.01" /></h4>
 		                    <div style="margin-left: 25px; line-height: 125%;">
 		                    <fmt:message key="warp_sol.p1.02" /><br><br>
