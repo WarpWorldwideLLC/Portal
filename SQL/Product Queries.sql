@@ -30,8 +30,8 @@ USE WarpAdmin2017;
  	/* *************************************************************************************************** */
     /* Pathways Products
     /* *************************************************************************************************** */    
-	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (17, 'BV-18101', 'N/A', 'Business Analytics Pathway Certificate', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (18, 'BV-18102', 'N/A', 'Project Management Pathway Certificate', 0);
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (17, 'BV-18101', '999999', 'Business Analytics Pathway Certificate', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (18, 'BV-18102', '999999', 'Project Management Pathway Certificate', 0);
     
     SELECT * FROM Product;
     
@@ -69,6 +69,9 @@ USE WarpAdmin2017;
     INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (21, 'WARP-US-001', 'Test of Education as a Foreign Language (TOEFL)', 999);
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (22, 'WARP-US-002', 'Graduate Record Examination', 5900);
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (23, 'WARP-US-003', 'Graduation Management Admission Test (GMAT)', 5900);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (24, 'WARP-CERT-001', 'Business Analytics Pathway Certificate', 615500);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (25, 'WARP-CERT-002', 'Project Management Pathway Certificate', 615500);
     
 -- 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (500, 'WARP-US-999', 'Graduation Management Admission Test (GMAT)', 59.00);
 
@@ -121,6 +124,10 @@ USE WarpAdmin2017;
     INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (14, 'WARP-US-003', 'PILR-004');
      -- OASC
     INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (15, 'WARP-ML-001', 'POLC-004'); 
+    -- Business Analytics
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (16, 'WARP-CERT-001', 'BV-18101'); 
+	-- Project Management
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (17, 'WARP-CERT-002', 'BV-18102'); 
     
     
     SELECT * FROM SolutionProduct;
@@ -139,6 +146,9 @@ USE WarpAdmin2017;
 	);
 
 	TRUNCATE TABLE Product;
+
+    
+	INSERT INTO EntitySolution(SolutionID, EntityID, BillingEventID, StartDate) VALUES (24, 2, 0, '2018-04-11');
 
 	INSERT INTO Solution (SolutionCode, SolutionName, SolutionCost) VALUES ('WARP-17001', 'Petersons Suite', 15.55);
       

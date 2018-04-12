@@ -13,7 +13,7 @@ CALL getSolutionList('{}');
 
 CALL addSolutionToCart('{"CommandName":"AddSolutionToCart","AuID":1,"IuID":1,"MemberID":2, "SolutionID":1, "BillingEventID":0}');
 
-
+SELECT * FROM EntitySolution;
 
  SET CommandName := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.CommandName')));
  	SET MemberID := TRIM(JSON_UNQUOTE(JSON_EXTRACT(query, '$.MemberID')));

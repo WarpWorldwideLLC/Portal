@@ -2,6 +2,8 @@
 USE WarpAdmin2017;
 
 
+
+
 /* No Table Format Changes, just added records from Product Queries */
 
 SELECT * FROM ctlRecordStatus;
