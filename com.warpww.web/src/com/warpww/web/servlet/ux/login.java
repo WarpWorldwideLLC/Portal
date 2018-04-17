@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.sec.Password;
 import com.warpww.util.Util;
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 
 
@@ -39,7 +40,9 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 		validate(request, response);
 	}
 

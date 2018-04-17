@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
@@ -29,26 +30,9 @@ public class warp_vega extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Set PageName & System Mode
-		String uri = request.getRequestURI();
-		String pageName = uri.substring(uri.lastIndexOf("/")+1);
-		request.setAttribute("pageName", pageName);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
 		
-		int memberID = 0;
-		String authTime = null;
-		boolean authenticated = false;
-		
-		// Authenticate the User via Cookie; populate memberID and authTime fields.
-		if(Login.authenticate(request, response)) {
-			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
-			System.out.println("Member ID: " + memberID);
-			authTime = request.getAttribute("verifyToken_CreateTime").toString();
-			authenticated = true;
-		} else {
-			authenticated = false;
-			memberID = 0;
-			
-		}
 		
 		
 		String purchase_action = request.getParameter("purchase") + "";
@@ -71,7 +55,7 @@ public class warp_vega extends HttpServlet {
 		
 		}
 		if(Integer.parseInt(purchase_action) >= 0) {
-			Util.addSolutionToCart(request, response, memberID, Integer.parseInt(purchase_action));
+			Util.addSolutionToCart(request, response, a.getMemberID(), Integer.parseInt(purchase_action));
 			// request.getRequestDispatcher("checkout").forward(request, response);
 			request.getRequestDispatcher("cartmaint").forward(request, response);
 		} else {

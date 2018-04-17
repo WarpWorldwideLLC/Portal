@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
@@ -32,7 +33,9 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 		
 		// Read Properties File
 		//Properties prop = new Properties();

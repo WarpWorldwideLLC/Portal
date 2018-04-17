@@ -15,6 +15,7 @@ import javax.json.Json;
 
 import javax.servlet.RequestDispatcher;
 
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.sec.Password;
 import com.warpww.util.*;
@@ -45,7 +46,9 @@ public class register extends HttpServlet {
 			request.setAttribute("ErrorMessage", "");
 		}
 		
-		Login.authenticate(request, response);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 		
 		// Process the request
 		setRequestState(request, response);
@@ -57,7 +60,9 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 		
 		// Clear any existing error messages.
 		Util.clearErrorMessage(request);

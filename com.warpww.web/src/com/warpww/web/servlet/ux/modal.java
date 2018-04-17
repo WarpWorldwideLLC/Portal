@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 
 /**
@@ -28,7 +29,9 @@ public class modal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 		request.getRequestDispatcher("/WEB-INF/modal.jsp").forward(request, response);
 	}
 

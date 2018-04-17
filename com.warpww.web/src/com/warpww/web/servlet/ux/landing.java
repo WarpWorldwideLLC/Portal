@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.warpww.sec.*;
 import com.warpww.util.*;
 
+
 /**
  * Servlet implementation class landing
  */
@@ -31,7 +32,7 @@ public class landing extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Set PageName & System Mode
+		/* Set PageName & System Mode
 		String uri = request.getRequestURI();
 		String pageName = uri.substring(uri.lastIndexOf("/")+1);
 		request.setAttribute("pageName", pageName);
@@ -51,7 +52,11 @@ public class landing extends HttpServlet {
 			memberID = 0;
 			
 		}
-
+		*/
+		
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+		
 	
 		request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
 	}

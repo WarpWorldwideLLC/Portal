@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.pymt.hsc;
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
@@ -30,41 +31,23 @@ public class cartmaint extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Set PageName & System Mode
-		String uri = request.getRequestURI();
-		String pageName = uri.substring(uri.lastIndexOf("/")+1);
-		request.setAttribute("pageName", pageName);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
 		
-		int memberID = 0;
-		String authTime = null;
-		boolean authenticated = false;
-		
-		// Authenticate the User via Cookie; populate memberID and authTime fields.
-		if(Login.authenticate(request, response)) {
-			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
-			System.out.println("Member ID: " + memberID);
-			authTime = request.getAttribute("verifyToken_CreateTime").toString();
-			authenticated = true;
-		} else {
-			authenticated = false;
-			memberID = 0;
+		if(a.getAuthenticated()) {
 			
-		}
-		
-		if(authenticated) {
-			
-			Util.markCartPending(request, response, memberID);
+			Util.markCartPending(request, response, a.getMemberID());
 			// request.setAttribute("ReceiptNumber", Util.getJsonValueString(request.getAttribute("CommandResults").toString(),"ReceiptNumber"));
 			
 				
 			// determine if a remove button was pressed
 			String buttonRemove = request.getParameter("remove");
 			if(buttonRemove != null) {
-				Util.removeSolutionFromCart(request, response, memberID, Integer.parseInt(buttonRemove));
+				Util.removeSolutionFromCart(request, response, a.getMemberID(), Integer.parseInt(buttonRemove));
 			}
 			
 			// And retrieve the full ShoppingCart - on cartmaint, always pull the full cart. 
-			Util.getShoppingCart(request, response, memberID); 
+			Util.getShoppingCart(request, response, a.getMemberID()); 
 
 			if(request.getParameter("continueShopping") != null) {
 				request.getRequestDispatcher("landing").forward(request, response);

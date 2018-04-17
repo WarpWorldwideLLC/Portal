@@ -5,6 +5,13 @@ CREATE Schema WarpAdmin2017;
 -- CREATE DATABASE WarpAdmin2017 CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE  WarpAdmin2017;
 
+CREATE TABLE Version (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+	VersionNumber						NVARCHAR(20),
+    Location							NVARCHAR(20)
+	)
+;
 
 /*                                                                                                     */
 /* Just an empty table used as a template for building new tables */

@@ -70,7 +70,7 @@ public class checkout extends HttpServlet {
 		}
 		
 		if(authenticated) {
-
+			
 			// determine if a remove button was pressed
 			String buttonRemove = request.getParameter("Remove");
 			if(buttonRemove != null) {

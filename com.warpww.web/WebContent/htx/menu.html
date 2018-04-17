@@ -13,7 +13,8 @@
 			<li class="topMenuItem"><a href="contact">Contact</a>
 		  </ul>
 		  <div class="account" align="right">
-			<label class="accountbtn"><fmt:message key="menu.label.greeting" /><%=request.getAttribute("Greeting")%></label>
+			<!--  <label class="accountbtn"><fmt:message key="menu.label.greeting" /><%=request.getAttribute("Greeting")%></label>  -->
+			${accountButton}
 		  </div>
 	  <br><hr/>
 </div>
@@ -44,6 +45,19 @@
 				<p><a href="Forgot your passphrase?</p>
 				-->
 				<p><a href="register">Not a member? Click here to sign up for free!</a></p>
+			</div>
+		</div> 	
+	</form>
+
+	<form method="post" action="logout" name="logout" autocomplete="off">
+		<div id="openModalLogout" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
+				<h2>Logout</h2>
+				Logout Now?
+				<div style=" margin-top: 1em;">
+  					<input type="submit" class="btn btn-primary"></a>
+				</div>
 			</div>
 		</div> 	
 	</form>

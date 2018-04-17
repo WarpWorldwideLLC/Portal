@@ -57,11 +57,11 @@ public class Login {
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = "Hello, " + cmd.FirstName + " " + cmd.LastName;
 			returnValue += "<div class=\"account-content\">";
-			returnValue += "<a href=\"#\">Link 1</a>";
-			returnValue += "<a href=\"#\">Link 2</a>";
-			returnValue += "<a href=\"#\">Link 3</a>";
+			returnValue += "<a href=\"#openModalLogout\">Logout</a>";
+			returnValue += "<a href=\"#\">My Solutions</a>";
 			returnValue += "</div>";
-			returnValue += "";			
+			returnValue += "";	
+			request.setAttribute("accountButton", returnValue);
 		}
 		
 		} catch (Exception ex)
@@ -79,7 +79,8 @@ public class Login {
 		
 		try
 		{
-			returnValue = "Please Log In. ";
+			returnValue = "<a href=\"#openModalLogin\">Login</a>";
+			request.setAttribute("accountButton", returnValue);
 		} catch (Exception ex)
 		{
 			System.out.println(ex.toString());
@@ -92,6 +93,8 @@ public class Login {
 	
 	public static String getGreeting(int MemberID, HttpServletRequest request, HttpServletResponse response, boolean authenticated) {
 		String returnValue = "";
+		// accountButton
+		
 		
 		try
 		{
@@ -424,5 +427,30 @@ public class Login {
 		
 		return returnValue;
 	}
+	
+	public static boolean printLoginMenu(HttpServletRequest request, HttpServletResponse response, boolean authenticated, int MemberID) { 
+		boolean returnValue = false;
+		
+		// accountButton
+		
+		
+		try { 
+			if(authenticated) {
+				String accountButton = "";
+				
+			} else {
+				
+			}
+			
+			returnValue = true;
+		} catch (Exception ex) {
+			returnValue = false;
+			ex.printStackTrace();
+		}
+		
+		
+		return returnValue;
+	}
+			
 	
 }

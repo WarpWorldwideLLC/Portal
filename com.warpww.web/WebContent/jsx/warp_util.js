@@ -5,7 +5,28 @@
  */
 
 function testFunction() {
-	alert("testFunction Runnng!");
+	alert("testFunction Runnng!!");
+}
+
+function getClientDateTime() {
+	  var date = new Date();
+	  var hours = date.getHours();
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'pm' : 'am';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  var strTime = hours + ':' + minutes + ' ' + ampm;
+	  // return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;	  
+	  var returnValue = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;	  ;
+	  return returnValue;
+}
+
+function getClientTimeZone() {
+	var d = new Date();
+	var tz = d.toString().split("GMT")[1].split(" (")[0]; // timezone, i.e. -0700
+	var tzName = d.toString().split("GMT")[1]; // timezone, i.e. -0700 (Pacific Daylight Time)
+	
 }
 
 function toggleHide(targetElement)

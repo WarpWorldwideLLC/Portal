@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
@@ -29,30 +30,11 @@ public class mysolutions extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Set PageName & System Mode
-		String uri = request.getRequestURI();
-		String pageName = uri.substring(uri.lastIndexOf("/")+1);
-		request.setAttribute("pageName", pageName);
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
 		
-		int memberID = 0;
-		String authTime = null;
-		boolean authenticated = false;
-		
-		
-		
-		// Authenticate the User via Cookie; populate memberID and authTime fields.
-		if(Login.authenticate(request, response)) {
-			memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
-			authTime = request.getAttribute("verifyToken_CreateTime").toString();
-			authenticated = true;
-		} else {
-			authenticated = false;
-			memberID = 0;
-			
-		}
-		
-		if(authenticated) { 
-			request.setAttribute("mySolutions", Util.getMemberSolution(request, response, memberID));
+		if(a.getAuthenticated()) { 
+			request.setAttribute("mySolutions", Util.getMemberSolution(request, response, a.getMemberID()));
 			// request.setAttribute("mySolutions", "Your solutions go here.");
 		} else {
 			request.setAttribute("mySolutions", "You must be logged in to view your solutions.");
@@ -60,9 +42,9 @@ public class mysolutions extends HttpServlet {
 		
 		if(request.getParameter("olcCmd") != null) {
 			try {
-				Util.getMemberInfo(request, response, memberID);
+				Util.getMemberInfo(request, response, a.getMemberID());
 				// Util.printParams("mySolutions.doGet", request);
-				String s = Util.sendGetOLC(memberID, request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
+				String s = Util.sendGetOLC(a.getMemberID(), request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
 				response.getWriter().append(s).append(request.getContextPath());
 			} catch (Exception e) {
 				e.printStackTrace();

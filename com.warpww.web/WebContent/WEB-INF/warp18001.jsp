@@ -25,6 +25,8 @@
 							<td>
 								<div style=" margin-top: 1em;">
 					  				<button name="purchase" class="btn btn-primary" value="24"><fmt:message key="warp18001.button.pay" /></button>
+					  				<br><b> Course starts early June 2018
+					  				<br> Registration required by May 25, 2018</b>
 								</div>
 							</td>
 							<td>&nbsp;</td>
