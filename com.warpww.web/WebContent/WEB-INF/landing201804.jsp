@@ -106,7 +106,7 @@
 		            <li role="separator" class="divider"></li>
 		            <li><a href="#">One more separated link</a></li>
 		          </ul>
-		        </li>
+		        </li> 
 		      </ul>
 		      <form class="navbar-form navbar-right">
 		        <div class="form-group">
