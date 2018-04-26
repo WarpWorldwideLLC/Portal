@@ -23,6 +23,8 @@
 			<%@ include file="/htx/headerbar1.html"%>
 		</header>
 		<form method="post" action="test" name="test" autocomplete="off">
+			<!--  request-time attribute value example. -->
+			<jsp:setProperty name="logEntry" property="entryTime" value="<%= new java.util.Date( ) %>" />
 		    <b>Tomcat Version</b> : <%= application.getServerInfo() %><br>    
     			<b>Servlet Specification Version :</b> 
 			<%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>    

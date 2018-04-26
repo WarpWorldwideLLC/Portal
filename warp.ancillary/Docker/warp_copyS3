@@ -25,3 +25,9 @@ $ aws s3api list-objects --bucket knapp-standard-ia
 pip install --upgrade awscli
 
 pip install --upgrade pip
+
+# List number of objects in S3  Bucket
+aws s3 ls s3://photos-johnny-laptop --recursive | wc -l
+
+# Copy Photos 
+aws s3 ls s3://photos-johnny-laptop --recursive

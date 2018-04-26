@@ -257,7 +257,7 @@ public class Login {
 			userCookie.setSecure(hsc.cookieSSL);       	// Cookie can only be retreived over SSL
 			userCookie.setHttpOnly(true);       		 	// Cookie can only be retrieved via HTTP 
 			response.addCookie(userCookie);
-			
+			System.out.println("Authentication Cookie added.");
 			returnValue = tokenFinal;
 			
 		} catch (Exception ex) {
@@ -389,6 +389,7 @@ public class Login {
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			String token = createAuthenticationToken(request, response, Integer.parseInt(cmd.MemberID));
+			request.setAttribute("MemberID", Integer.parseInt(cmd.MemberID));
 			// System.out.println("Token: " + token);
 			returnValue = true;
 		}

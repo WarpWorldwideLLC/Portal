@@ -32,21 +32,37 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
-		validate(request, response);
+
+		
+		AuthMod a = new AuthMod(request, response);
+		a.authenticate();
+			
+		String forwardServlet = "landing";
+		if(validate(request, response)) {
+			request.setAttribute("signin_out", "in");
+			request.getRequestDispatcher(forwardServlet).forward(request, response);
+			
+		} else { 
+			request.getRequestDispatcher(forwardServlet).forward(request, response);
+		}
+		
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AuthMod a = new AuthMod(request, response);
-		a.authenticate();
+		// AuthMod a = new AuthMod(request, response);
+		// a.authenticate();
 		
-		validate(request, response);
+		// validate(request, response);
+		
+		doGet(request, response);
 	}
 
-	protected void validate(HttpServletRequest request, HttpServletResponse response)
+	protected boolean validate(HttpServletRequest request, HttpServletResponse response)
 	{
 		boolean validated = false;
 		
@@ -68,6 +84,9 @@ public class login extends HttpServlet {
 			System.out.println(ex.toString());
 			ex.printStackTrace();
 		}
+		
+		return validated;
+		/* 
 		try {		
 			if(validated) {
 	
@@ -84,6 +103,7 @@ public class login extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	

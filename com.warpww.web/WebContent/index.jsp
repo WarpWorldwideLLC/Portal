@@ -7,6 +7,6 @@
 <title>Index</title>
 </head>
 <body>
-<jsp:forward page="/landing"/> Redirected
+<jsp:forward page="/landing201804"/> Redirected
 </body>
 </html>

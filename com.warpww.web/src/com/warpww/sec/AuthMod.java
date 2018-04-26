@@ -115,6 +115,15 @@ public class AuthMod {
 		this.authenticated = authenticated;
 	}
 	
+	//**********************************************************************
+	// Enumerations
+	//**********************************************************************
+	public enum Sign { 
+		
+		in, out
+		
+	}
+	
 	
 	//**********************************************************************
 	// Constructors
@@ -132,6 +141,37 @@ public class AuthMod {
 		
 		this.request = request;
 		this.response = response;
+		
+	}
+	
+	public AuthMod(HttpServletRequest request, HttpServletResponse response, Sign actionValue) {
+
+		this.request = request;
+		this.response = response;
+		String greeting;
+		
+		// indicates the values are already stored in session variables. 
+		switch (actionValue) {
+		
+		case in: 
+			greeting = Login.getGreeting(Integer.parseInt(this.request.getAttribute("MemberID").toString()), this.request, this.response, true);
+			this.memberID = Integer.parseInt(request.getAttribute("MemberID").toString());
+			this.authenticated = true;
+			System.out.println("Authenticated.");
+			break;
+			
+		default:
+			this.authenticated = false;
+			this.memberID = 0;
+			greeting = Login.getGreeting(this.memberID, this.request, this.response, false);
+			System.out.println("Not Authenticated.");
+			break;
+			
+		}
+				
+		request.setAttribute("Greeting", greeting);
+
+			
 		
 	}
 	
@@ -160,10 +200,12 @@ public class AuthMod {
 				this.memberID = Integer.parseInt(request.getAttribute("verifyToken_MemberID").toString());
 				this.authTime = request.getAttribute("verifyToken_CreateTime").toString();
 				this.authenticated = true;
+				System.out.println("Authenticated.");
 			} else {
 				this.authenticated = false;
 				this.memberID = 0;
 				greeting = Login.getGreeting(this.memberID, this.request, this.response, false);
+				System.out.println("Not Authenticated.");
 			}	
 
 			request.setAttribute("Greeting", greeting);

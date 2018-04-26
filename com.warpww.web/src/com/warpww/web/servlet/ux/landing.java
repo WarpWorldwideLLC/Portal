@@ -53,23 +53,30 @@ public class landing extends HttpServlet {
 			
 		}
 		*/
+		//Check to see if this page was loaded after a sign in or sign out
+		Util.printParams("landing.doGet", request);
+		if(null == request.getAttribute("signin_out")) {
+			AuthMod a = new AuthMod(request, response);
+			a.authenticate();	
+		} else if(request.getAttribute("signin_out").toString() == "in") {
+			AuthMod a = new AuthMod(request, response, AuthMod.Sign.in);
+		} else {
+			AuthMod a = new AuthMod(request, response, AuthMod.Sign.out);
+		}
 		
-		AuthMod a = new AuthMod(request, response);
-		a.authenticate();
 		
-	
 		request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login.authenticate(request, response);
-		request.getRequestDispatcher("/WEB-INF/landing2.jsp").forward(request, response);
+		doGet(request, response);
 	}
 
-	protected void validate(HttpServletRequest request, HttpServletResponse response)
+	protected void validate234(HttpServletRequest request, HttpServletResponse response)
 	{
 		boolean validated = false;
 		boolean tryValidation = false;

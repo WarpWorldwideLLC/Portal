@@ -33,6 +33,10 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getAttribute("logTest") != null) {
+			System.out.println("LogTest: " + request.getAttribute("logTest").toString());
+		}
+		
 		AuthMod a = new AuthMod(request, response);
 		a.authenticate();
 		

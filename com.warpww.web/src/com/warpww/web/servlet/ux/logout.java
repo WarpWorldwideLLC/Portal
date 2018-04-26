@@ -33,8 +33,11 @@ public class logout extends HttpServlet {
 		AuthMod a = new AuthMod(request, response);
 		a.authenticate();
 		
+		request.setAttribute("signin_out", "out");
+		
 		deleteCookie(request, response);
-		String forwardServlet = "warp_sol";
+		
+		String forwardServlet = "landing";
 		request.getRequestDispatcher(forwardServlet).forward(request, response);
 	}
 
@@ -51,15 +54,11 @@ public class logout extends HttpServlet {
 		
 		boolean returnValue = false;
 		
-		// Store a token in a cookie. 
-		response.setContentType("text/html");
+		// Set Cookie MaxAge to 0, deleting it when the browser processes the header.
 		Cookie userCookie = new Cookie(hsc.cookieName, "");
-		userCookie.setComment("Used by Warp Worldwide website.");
 		userCookie.setMaxAge(0);      
-		// userCookie.setDomain(hsc.cookieDomain);
-		userCookie.setSecure(hsc.cookieSSL);       	// Cookie can only be retreived over SSL
-		userCookie.setHttpOnly(true);       		 	// Cookie can only be retrieved via HTTP 
 		response.addCookie(userCookie);
+		System.out.println("Authentication Cookie Deleted.");
 		returnValue = true;
 		
 		return returnValue;

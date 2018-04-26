@@ -8,6 +8,13 @@ Servers/.settings
 
 /warp.logparse/
 
+/dbMaintenance/appClientModule/com/warpww.sec/hsc.java
+/dbMaintenance/appClientModule/com/warpww.sec/hsc.Test.java
+/dbMaintenance/appClientModule/com/warpww.sec/hsc.Prod.java
+/dbMaintenance/hsc.test.java
+
+
+
 __MACOSX
 .DS_Store
 
