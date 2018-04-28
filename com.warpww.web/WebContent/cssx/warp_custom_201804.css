@@ -7,23 +7,57 @@
     box-sizing: border-box;
 }
 
-/*no collapse*/
-.navbar-right {
-    float: right;
+/* ************************************************************************* */
+/* T O P   M E N U                                                           */
+/* ************************************************************************* */
+.topMenu {
+	background-color: gray; 
 }
 
-.navbar-right > li {
-    float: right
+.topMenu ul { 
+	
+}
+ 
+ .topMenu li {
+ 	display: inline;
+ }
+
+.topMenu a {
+	color: white;
+
+  /* First we need to help some browsers along for this to work.
+     Just because a vendor prefix is there, doesn't mean it will
+     work in a browser made by that vendor either, it's just for
+     future-proofing purposes I guess. */
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  /* ...and now for the proper property */
+  transition:.5s;
+}
+.topMenu a:hover {
+  color: black;
+  text-decoration: none;
 }
 
+/* ************************************************************************* */
+/* M I D D L E   M E N U                                                     */
+/* ************************************************************************* */
+.midLogo { 
+	display: block;
+  	max-width:250px;
+  	max-height:120px;
+  	width: auto;
+  	height: auto;
+}
 
 
 /* ************************************************************************* */
-/*                                                                           */
-/* Top Menu                                                                   */
-/*                                                                           */
+/* B O T T O M   M E N U                                                     */
 /* ************************************************************************* */
-.warpTopMenu {
-  font-size: 1.5vw;
+.bottomLogo { 
+  	background-color: #00579a; 
 }
 
+#00579a
