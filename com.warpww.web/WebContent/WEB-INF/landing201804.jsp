@@ -12,123 +12,90 @@
 <body >
 	<!--  BODY.HEADER -->
 	<header>		
-		<!-- -------------------------- -->
-		<!--        TOP NAVBAR          -->
-		<!-- -------------------------- -->	
-		<nav class="">
-		    <div align="right" class="topMenu">
-				<!-- Just an image -->
-				<ul>
-			  		<li><a href="#">Join</a></li>
-			  		<li><a href="#">Sign In</a></li>
-			  		<li><a href="#">Contact</a></li>				
-				</ul>
-		    </div>
-		</nav>
-		
-		<!-- -------------------------- -->
-		<!--        MID NAVBAR          -->
-		<!-- -------------------------- -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-					<!-- Just an image -->
-					<nav class="navbar navbar-light bg-light">
-					  <a class="navbar-brand" href="#">
-					     <img src="imgx/warp_logo3.png" class="e5-6 x-image" alt="WARP Worldwide, LLC" width="300" height="140" class="midLogo">
-					  </a>
-
-					</nav>
-			    </div>
-			    <div>
-			    					   <h1><p class="navbar-form navbar-right" >Creating life-fulfilling learning opportunities for all learners</p></h1>
-			    </div>
-		    </div>
-		</nav>
-
-		<!-- -------------------------- -->
-		<!--        BOTTOM NAVBAR       -->
-		<!-- -------------------------- -->
-		<nav class="navbar navbar-default">
-
-		
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-		        <li><a href="#">Link</a></li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">One more separated link</a></li>
-		          </ul>
-		        </li> 
-		      </ul>
-		      <form class="navbar-form navbar-right">
-		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
-		        </div>
-		        <button type="submit" class="btn btn-default">Submit</button>
-		      </form>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">Link</a></li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
-		          </ul>
-		        </li>
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-		
+		<%@ include file="/htx/menu_201804.html"%>
 	</header>
 	<!--  BODY.FORM  -->
 	<form method="post" action="landing201804" name="landing" autocomplete="off">
 	
-	
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+  <!-- 
+    <div class="item active">
+      <img src="imgx/1_Panda.png" alt="Los Angeles">
+      <div class="carousel-caption">
+        <h3>Los Angeles</h3>
+        <p>LA is always so much fun!</p>
+      </div>
+    </div>
+ -->
+ 
+    <div class="item active">
+      <img src="imgx/1600x650-grace2.jpg" alt="Grace">
+    </div>
+
+    <div class="item">
+      <img src="imgx/1600x650-hands2.jpg" alt="New York">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> <!--  Carousel -->
 	
 
-		
-		<div class="container">
-		  <div class="jumbotron">
-		    <h1>My First Bootstrap Page</h1>
-		    <p>Resize this responsive page to see the effect!</p> 
-		  </div>
-		  <div class="row">
-		    <div class="col-sm-4">
-		      <h3>Column 1</h3>
-		      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-		      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-		    </div>
-		    <div class="col-sm-4">
-		      <h3>Column 2</h3>
-		      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-		      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-		    </div>
-		    <div class="col-sm-4">
-		      <h3>Column 3</h3>        
-		      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-		      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-		    </div>
-		  </div>
-		</div>
+
+  <div class="warpRow" >
+  	<div class="col-sm-4 warpItem">
+		<h2>K-12 Courses</h2>
+		<p><img class="warpImage" src="http://warp.zaisscodev2.info/wp-content/uploads/2018/03/800x450-3.jpg" alt="K-12 students"/><br />
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod sapien nec sapien dignissim gravida. Nulla cursus, mi vel pharetra eleifend, justo felis ullamcorper ex, ut lobortis ex erat quis massa.</p>
+	</div>
 	
+	<div class="col-sm-4 warpItem">
+		<h2>Stem Courses</h2>
+		<p><img class="warpImage" src="http://warp.zaisscodev2.info/wp-content/uploads/2018/03/800x450-2.jpg" alt="Student at laptop" /><br />
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod sapien nec sapien dignissim gravida. Nulla cursus, mi vel pharetra eleifend, justo felis ullamcorper ex, ut lobortis ex erat quis massa.</p>
+	</div>
 	
+	<!-- class="wpb_animate_when_almost_visible wpb_fadeIn fadeIn wpb_column vc_column_container vc_col-sm-4" -->
+	<div class="col-sm-4 warpItem">
+		<h2>College Learning</h2>
+		<p><img class="warpImage" src="http://warp.zaisscodev2.info/wp-content/uploads/2018/03/800x450-1.jpg" alt="Student studying online"/><br />
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod sapien nec sapien dignissim gravida. Nulla cursus, mi vel pharetra eleifend, justo felis ullamcorper ex, ut lobortis ex erat quis massa.</p>
+	</div>
+</div>
+
+  <div class="warpRow" >
+  	<div class="col-sm-4 warpItem">
+		<h2>R2 K-12 Courses</h2>
+	</div>
 	
+	<div class="col-sm-4 warpItem">
+		<h2>R2 Stem Courses</h2>
+	</div>
 	
+	<!-- class="wpb_animate_when_almost_visible wpb_fadeIn fadeIn wpb_column vc_column_container vc_col-sm-4" -->
+	<div class="col-sm-4 warpItem">
+		<h2>R2 College Learning</h2>
+	</div>
+</div>
+
+ <!--  warpRow -->
 	</form>
 	<!-- BODY.FOOTER -->
     <footer>
