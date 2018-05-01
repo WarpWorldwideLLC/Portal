@@ -50,7 +50,7 @@ public class mysolutions201804 extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else { 
-			request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/mysolutions201804.jsp").forward(request, response);
 		}
 		
 		// request.getRequestDispatcher("/WEB-INF/mysolutions.jsp").forward(request, response);
