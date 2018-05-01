@@ -61,6 +61,22 @@ public class Login {
 			returnValue += "<a href=\"#\">My Solutions</a>";
 			returnValue += "</div>";
 			returnValue += "";	
+			
+			String greetingText = "Hello, " + cmd.FirstName + " " + cmd.LastName;
+			
+
+			returnValue = "    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">" + greetingText  + "<span class=\"caret\"></span></a>";
+			returnValue += "    <ul class=\"dropdown-menu\">";
+			returnValue += "      <li><a href=\"#openModalLogout\">Logout</a></li>";
+			returnValue += "      <li><a href=\"mysolutions201804\">My Solutions</a></li>";
+			returnValue += "      <li><a href=\"checkoutconfirm201804\">Shopping Cart</a></li>";
+			returnValue += "    </ul>";
+			returnValue += "";
+			returnValue += "";
+			
+			System.out.println(returnValue);
+			
+			// returnValue = greetingText;
 			request.setAttribute("accountButton", returnValue);
 		}
 		

@@ -18,8 +18,12 @@
 	background-color: gray; 
 }
 
+.topMenu nav {
+	background-color: gray; 
+}
+
 .topMenu ul { 
-	
+	background-color: gray; 
 }
  
  .topMenu li {
@@ -93,7 +97,7 @@
 /* B O T T O M   M E N U                                                     */
 /* ************************************************************************* */
 .navbar-custom {
-    background-color: #00579a;
+    
 }
 
 .bottomMenu { 
