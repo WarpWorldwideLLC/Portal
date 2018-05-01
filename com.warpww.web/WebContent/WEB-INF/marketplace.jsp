@@ -15,19 +15,9 @@
 			</h1>
 
 		</header>
-		<div class="wrapper">
-			<!-- Sidebar -->
-			<%@ include file="/htx/sidebar.html"%>
-			
-			<!-- Page Content -->
-		    <div id="content">
-			    <br>
-     			<table id="jsonDataTable" border="1"></table>
-			    <br>
-			    <button type="submit" id="Submit" >Submit</button>
-		    </div>
-		</div>
-
+		<form>
+		
+		</form>
 		<footer>
 				<%@ include file="/htx/footer1.html"%>
 		</footer>

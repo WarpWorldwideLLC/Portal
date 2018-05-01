@@ -61,18 +61,7 @@
 					<br><label><fmt:message key="label.title2" /></label> 
 				</h1>
 			</header>	
-					
-			<div class="wrapper">
-			
-				<%@ include file="/htx/sidebar.html"%>
-			
-			    <!-- Page Content -->
-			    <div id="content">
-	     			<table id="jsonDataTable" border="1"></table>
-				    <br>
-				    <button type="submit" id="Submit" >Submit</button>
-			    </div>
-			</div>       
+					   
 	
 			<br>
 			<footer>
