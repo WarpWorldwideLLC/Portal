@@ -62,7 +62,16 @@ public class checkoutconfirm201804 extends HttpServlet {
 		// And retrieve the ShoppingCart
 		Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Pending);
 		
-		int totalCost = Integer.parseInt(request.getAttribute("ShoppingCartTotalCost").toString());
+		int totalCost = 0;
+		
+		if (request.getParameterMap().containsKey("ShoppingCartTotalCost")) {
+			String editType = request.getAttribute("ShoppingCartTotalCost").toString();
+			if(editType!=null && !editType.isEmpty()){
+				totalCost = Integer.parseInt(request.getAttribute("ShoppingCartTotalCost").toString());
+			}
+
+	    }
+		
 		
 		if(request.getParameter("confirmPayment") != null) {
 			String customerId = addToCustomer(request.getParameter("paymentSourceId"), request.getParameter("email-address"));
@@ -75,10 +84,10 @@ public class checkoutconfirm201804 extends HttpServlet {
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
 			
-			request.getRequestDispatcher("checkoutreceipt").forward(request, response);
+			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			
 		} else {
-			request.getRequestDispatcher("/WEB-INF/checkoutconfirm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/checkoutconfirm201804.jsp").forward(request, response);
 		}
 		
 		// request.setAttribute("stripeSourceId", request.getAttribute("stripeSourceId"));

@@ -69,7 +69,7 @@ public class Login {
 			returnValue += "    <ul class=\"dropdown-menu\">";
 			returnValue += "      <li><a href=\"#openModalLogout\">Logout</a></li>";
 			returnValue += "      <li><a href=\"mysolutions201804\">My Solutions</a></li>";
-			returnValue += "      <li><a href=\"checkoutconfirm201804\">Shopping Cart</a></li>";
+			returnValue += "      <li><a href=\"cartmaint201804\">Shopping Cart</a></li>";
 			returnValue += "    </ul>";
 			returnValue += "";
 			returnValue += "";

@@ -89,17 +89,17 @@ public class checkout201804 extends HttpServlet {
 			if(tokenTest != null && !tokenTest.isEmpty()) {
 				System.out.println("Stripe Source Id Found");
 	
-				request.getRequestDispatcher("checkoutconfirm?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
+				request.getRequestDispatcher("checkoutconfirm201804?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
 							
 			} else {
 				System.out.println("Stripe Source Id Not Found");
-				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/checkout201804.jsp").forward(request, response);
 			}
 
 					
 		} else {
 			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
-			request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/checkout201804.jsp").forward(request, response);
 		}
 		
 	}
@@ -112,8 +112,7 @@ public class checkout201804 extends HttpServlet {
 
 		doGet(request, response);
 	}
-	
-		
+			
 	private String genStripeScriptSource(HttpServletRequest request) {
 		String returnValue = "";
 		

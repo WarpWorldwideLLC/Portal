@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@ include file="/htx/head.html"%>
+		<%@ include file="/htx/html.head.201804.html"%>
 	    <title><fmt:message key="mysolutions.page_title" /></title>
 	</head>
 	<body>
