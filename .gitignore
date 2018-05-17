@@ -13,7 +13,9 @@ Servers/.settings
 /dbMaintenance/appClientModule/com/warpww.sec/hsc.Prod.java
 /dbMaintenance/hsc.test.java
 
-
+/warp.ancillary/Docker/warp_createdb_uat
+/warp.ancillary/Docker/warp_createdb_prod
+/warp.ancillary/Docker/warp_createdb_test
 
 __MACOSX
 .DS_Store

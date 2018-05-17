@@ -50,10 +50,35 @@ public class cartmaint201804 extends HttpServlet {
 			// And retrieve the full ShoppingCart - on cartmaint, always pull the full cart. 
 			Util.getShoppingCart(request, response, a.getMemberID()); 
 
+			// Go back to shopping
 			if(request.getParameter("continueShopping") != null) { 
 				request.getRequestDispatcher("landing").forward(request, response);
+			
+			// Proceed to payment
 			} else if(request.getParameter("completePurchase") != null) {
-				request.getRequestDispatcher("checkout201804").forward(request, response); 
+				
+				// Determine  Payment Method
+				
+				switch(request.getParameter("payment").toString()){
+					case "payment-ach":
+						
+						break;
+					
+					case "payment-card":
+						request.getRequestDispatcher("checkout201804").forward(request, response); 
+						break;
+					
+					case "payment-alipay":
+						request.getRequestDispatcher("checkout_alipay201804").forward(request, response); 
+						break;
+					
+					default:
+						break;
+			
+					
+				}
+				
+			// Not sure what happened, go back to this page. 
 			} else { 
 				request.getRequestDispatcher("/WEB-INF/cartmaint201804.jsp").forward(request, response);
 			}

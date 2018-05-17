@@ -1,6 +1,6 @@
 /* Compare Database */
 
-DROP DATABASE IF EXISTS DbCompare
+DROP DATABASE IF EXISTS DbCompare;
 CREATE DATABASE DbCompare CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE  DbCompare;
 

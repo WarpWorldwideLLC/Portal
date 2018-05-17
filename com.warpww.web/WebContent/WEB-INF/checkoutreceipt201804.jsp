@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<%@ include file="/htx/html.head.201804.html"%>
-	    <title><fmt:message key="checkout.page_title" /></title>
+	    <title><fmt:message key="checkoutreceipt.page_title" /></title>
 	</head>
 	<body>
 		<header>

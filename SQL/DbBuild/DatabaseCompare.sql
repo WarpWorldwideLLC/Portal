@@ -18,7 +18,7 @@ SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'warpadmin2017'
 select * from mysql.proc where db = 'warpadmin2017';
 
 
-SHOW VARIABLES LIKE "secure_file_priv";
+SHOW VARIABLES LIKE '%secure_file_priv%';
 
 /* SELECT TO CSV */
 SELECT TABLE_NAME 
@@ -28,3 +28,6 @@ INTO OUTFILE '/var/lib/mysql-files/orders.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
+
+LOAD DATA LOCAL INFILE "text.txt" INTO TABLE mytable;
+

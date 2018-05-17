@@ -11,7 +11,7 @@
 		<header>
 			<%@ include file="/htx/menu_201804.html"%>
 		</header>
-		<form action="cartmaint" method="post" id="shopping-cart">
+		<form action="cartmaint201804" method="post" id="shopping-cart">
 			Shopping Cart Maintenance
 			<div class="form-row" id="productDescription]">
 				<fieldset>
@@ -25,7 +25,7 @@
 		              <li>
 		              	<div class="warpRow">
 		              		<div class="warpItem">
-			                		<input type="radio" name="payment" id="payment-card" value="card" checked>
+			                		<input type="radio" name="payment" id="payment-card" value="payment-card" checked>
 			                </div>
 			                <div class="warpItem">
 			                		<label for="payment-card">Credit Card</label>
@@ -38,7 +38,7 @@
 		              <li>
 		              	<div class="warpRow">
 		              		<div class="warpItem">
-		                			<input type="radio" name="payment" id="payment-ach_credit_transfer" value="ach_credit_transfer">
+		                			<input type="radio" name="payment" id="payment-ach" value="payment-ach">
 		                		</div>
 			                <div class="warpItem">
 		                			<label for="payment-ach_credit_transfer">U.S. Bank Account</label>
@@ -51,7 +51,7 @@
 		              <li>
 		              	<div class="warpRow">
 			                <div class="warpItem">
-				                <input type="radio" name="payment" id="payment-alipay" value="alipay">
+				                <input type="radio" name="payment" id="payment-alipay" value="payment-alipay">
 				       		</div>
 			                <div class="warpItem">
 				                <label for="payment-alipay">Alipay</label>

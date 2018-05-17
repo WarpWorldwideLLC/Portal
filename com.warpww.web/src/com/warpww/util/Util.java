@@ -77,6 +77,23 @@ public class Util {
 
 	}
 	
+	public static boolean isParam(HttpServletRequest request, String paramName) {
+		
+		boolean returnValue = false;
+		
+		String paramTest = request.getParameter(paramName);
+		if(paramTest != null && !paramTest.isEmpty()) {
+			System.out.println("Parameter " + paramTest + " was found");
+			returnValue = true;
+						
+		} else {
+			System.out.println("Parameter " + paramTest + " was not found");
+		}
+		
+		return returnValue;
+		
+	}
+	
 	// Returns null on error, prints error to the system log.
 	public static InputStream StringToStream(String inputString)
 	{

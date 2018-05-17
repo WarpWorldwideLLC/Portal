@@ -86,6 +86,21 @@ public class checkoutconfirm201804 extends HttpServlet {
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			
+		} else if(request.getParameter("source") != null) {
+		
+			String customerId = addToCustomer(request.getParameter("source"), request.getParameter("email-address"));
+			processPayment(request.getParameter("source"), customerId, totalCost);
+			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+			System.out.println("Payment Source ID: " + request.getParameter("paymentSourceId"));
+			System.out.println("Email Address: " + request.getParameter("email-address"));
+			System.out.println("Customer ID: " + customerId);
+			
+			Util.markCartSold(request, response, memberID);
+			Util.setMemberSolution(request, response, memberID);
+			
+			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
+			
+			
 		} else {
 			request.getRequestDispatcher("/WEB-INF/checkoutconfirm201804.jsp").forward(request, response);
 		}
