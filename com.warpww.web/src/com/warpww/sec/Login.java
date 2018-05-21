@@ -1,5 +1,6 @@
 package com.warpww.sec;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
+import java.util.Enumeration;
+import java.util.Properties;
 import java.util.UUID;
 
 import javax.json.Json;
@@ -54,15 +57,29 @@ public class Login {
 		System.out.println("Comparison: " + cmd.ProcStatus.equals( cmd.COMMAND_SUCCESS));
 		*/
 		
+		Properties prop = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+		InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+		prop.load(stream);
+		/*
+		Enumeration en = prop.propertyNames(); 
+		while (en.hasMoreElements()) { 
+			System.out.println(en.nextElement()); 
+		} 
+		*/
+		
+		String greeting = prop.getProperty("topmenu.greeting");
+		System.out.println("Greeting: " + greeting);
+		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
-			returnValue = "Hello, " + cmd.FirstName + " " + cmd.LastName;
+			returnValue = "<fmt:message key=\"cartmaint.topmenu.greeting\" /> " + cmd.FirstName + " " + cmd.LastName;
 			returnValue += "<div class=\"account-content\">";
 			returnValue += "<a href=\"#openModalLogout\">Logout</a>";
 			returnValue += "<a href=\"#\">My Solutions</a>";
 			returnValue += "</div>";
 			returnValue += "";	
 			
-			String greetingText = "Hello, " + cmd.FirstName + " " + cmd.LastName;
+			String greetingText = greeting + " " + cmd.FirstName + " " + cmd.LastName;
 			
 
 			returnValue = "    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">" + greetingText  + "<span class=\"caret\"></span></a>";
@@ -74,7 +91,7 @@ public class Login {
 			returnValue += "";
 			returnValue += "";
 			
-			System.out.println(returnValue);
+			// System.out.println(returnValue);
 			
 			// returnValue = greetingText;
 			request.setAttribute("accountButton", returnValue);

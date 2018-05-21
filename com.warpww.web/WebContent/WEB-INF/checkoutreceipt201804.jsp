@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp201804" />
 
 <!DOCTYPE html>
 <html>
@@ -11,9 +11,9 @@
 		<header>
 			<%@ include file="/htx/menu_201804.html"%>
 		</header>
-		<form action="cartmaint" method="post" id="shopping-cart">		
+		<form action="checkoutreceipt201804" method="post" id="shopping-cart">		
 			
-			This Is Your Receipt - Please Print For Your Records
+			<fmt:message key="checkoutconfirm.page_label" />
 			<div class="form-row" id="productDescription]">
 				<fieldset>
 					${displayCart}

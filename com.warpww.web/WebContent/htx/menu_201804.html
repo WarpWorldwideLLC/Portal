@@ -22,7 +22,7 @@
 			    		</a>
 				</div>
 			  <div class="col-sm-6">
-			  		<p>Creating life-fulfilling learning opportunities for all learners</p>
+			  		<p><fmt:message key="topmenu.tagline" /></p>
 			  </div>
 			</div>		
 		</div>
@@ -48,27 +48,26 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">K-12 Courses</a></li>
-		        <li><a href="#">STEM Courses</a></li>
-		        <li><a href="#">College Learning</a></li>
+		        <li><a href="#"><fmt:message key="botmenu.k12" /></a></li>
+		        <li><a href="#"><fmt:message key="botmenu.stem" /></a></li>
+		        <li><a href="#"><fmt:message key="botmenu.college" /></a></li>
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Learners <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><fmt:message key="botmenu.learners" /> <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Children</a></li>
-		            <li><a href="#">College Students</a></li>
-		            <li><a href="#">Working Adults</a></li>
+		            <li><a href="#"><fmt:message key="botmenu.children" /></a></li>
+		            <li><a href="#"><fmt:message key="botmenu.college_students" /></a></li>
+		            <li><a href="#"><fmt:message key="botmenu.working_adults" /></a></li>
 		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Enterprises</a></li>
+		            <li><a href="#"><fmt:message key="botmenu.enterprises" /></a></li>
 		          </ul>
 		        </li>
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partners <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><fmt:message key="botmenu.partners" /> <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
+		            <li><a href="#"><fmt:message key="botmenu.partners.partner_benefits" /></a></li>
+		            <li><a href="#"><fmt:message key="botmenu.partners.partner_signup" /></a></li>
 		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
+		            <li><a href="#"><fmt:message key="botmenu.partners.partner_list" /></a></li>
 		          </ul>
 		        </li>
 		      </ul>
@@ -92,7 +91,7 @@
 				<!--
 				<p><a href="Forgot your passphrase?</p>
 				-->
-				<p><a href="register">Not a member? Click here to sign up for free!</a></p>
+				<p><a href="register"><fmt:message key="usermenu.register" /></a></p>
 			</div>
 		</div> 	
 	</form>
@@ -101,8 +100,8 @@
 		<div id="openModalLogout" class="modalDialog">
 			<div>
 				<a href="#close" title="Close" class="close">X</a>
-				<h2>Logout</h2>
-				Logout Now?
+				<h2><fmt:message key="usermenu.signout" /></h2>
+				<fmt:message key="usermenu.signout_prompt" />
 				<div style=" margin-top: 1em;">
   					<input type="submit" class="btn btn-primary"></a>
 				</div>

@@ -10,9 +10,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -450,6 +452,11 @@ public class Util {
 				displayCart += "<table class=\"table1\">";
 				displayCart += "<tr><td>&nbsp</td><td>Code</td><td>Name</td><td>Price</td><td>&nbsp</td></tr>";
 	
+				Properties prop = new Properties();
+				ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+				InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+				prop.load(stream);
+				
 				javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
 				for (int i = 0; i < cart.size(); i++) {
 					
@@ -457,14 +464,19 @@ public class Util {
 						
 					solutionCost = (int)Double.parseDouble(explrObject.getJsonNumber("SolutionCost").toString());
 					totalCost += solutionCost;
+					String solutionCode = explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "");
+					
+					String localizedSolutionName = prop.getProperty("solution.name." + solutionCode);
 					
 					displayCart += "<tr>";
 					displayCart += "<td>" + explrObject.getJsonNumber("CartID").toString() + "</td>";
 				    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + localizedSolutionName + "</td>";
 				    displayCart += "<td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
 				    if(showButtons) {
-				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button>";
+				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button></td>";
+				    } else {
+				    	displayCart += "<td>&nbsp</td>";
 				    }
 				    displayCart += "</tr>";
 				}
@@ -748,14 +760,19 @@ public class Util {
 				// returnValue = originalDoc.getJsonString("CommandResults").toString();
 				// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
 				
+				Properties prop = new Properties();
+				ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+				InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+				prop.load(stream);
+				
 				displayCart += "<table class=\"table1\">";
 				displayCart += "<tr>"
-						+ "<td>Solution Code</td>"
-						+ "<td>Solution Name</td>"
-						+ "<td>Product Code</td>"
-						+ "<td>Product Name</td>"
-						+ "<td>Link</td>"
-						+ "<td>Start Date</td>"
+						+ "<td><b>Solution Code</b></td>"
+						+ "<td><b>Solution Name</b></td>"
+						+ "<td><b>Product Code</b></td>"
+						+ "<td><b>Product Name</b></td>"
+						+ "<td><b>Link</b></td>"
+						+ "<td><b>Start Date</b></td>"
 						+ "</tr>"; 
 	
 				
@@ -765,11 +782,23 @@ public class Util {
 					
 					JsonObject explrObject = cart.getJsonObject(i);
 					
+					String solutionCode = explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "");
+					String productCode = explrObject.getJsonString("ProductCode").toString().replaceAll("\"", "");
+					String rawDate = explrObject.getJsonString("StartDate").toString().replaceAll("\"", "").substring(0, 10);
+					System.out.println(rawDate);
+					
+					// String formattedDate = LocalDate.parse(rawDate, );
+					String localizedProductName = prop.getProperty("product.name." + productCode);
+					String localizedSolutionName = prop.getProperty("solution.name." + solutionCode);
+					
+					
+					
+					
 					displayCart += "<tr>";
-				    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + explrObject.getJsonString("SolutionName").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + explrObject.getJsonString("ProductCode").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + explrObject.getJsonString("ProductName").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + solutionCode + "</td>";
+				    displayCart += "<td>" + localizedSolutionName + "</td>";
+				    displayCart += "<td>" + productCode + "</td>";
+				    displayCart += "<td>" + localizedProductName + "</td>";
 				    String keyValue = explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "");
 				    switch(keyValue.substring(0, 4)) {
 				    case "ILR:": 
@@ -784,7 +813,7 @@ public class Util {
 				    }
 				    // displayCart += "<td>" + "<a href=\"" + explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
 				    // displayCart += "<td>" + explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "") + "</td>";
-				    displayCart += "<td>" + explrObject.getJsonString("StartDate").toString().replaceAll("\"", "") + "</td>";
+				    displayCart += "<td>" + rawDate + "</td>";
 				    displayCart += "</tr>";
 				}
 				

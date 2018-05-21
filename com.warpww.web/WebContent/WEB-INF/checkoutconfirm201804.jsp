@@ -1,11 +1,11 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp201804" />
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<%@ include file="/htx/html.head.201804.html"%>
-	    <title><fmt:message key="checkout.page_title" /></title>
+	    <title><fmt:message key="checkoutconfirm.page_title" /></title>
 	</head>
 	<body>
 		<header>
@@ -21,7 +21,7 @@
 			<input id="paymentSourceId" name="paymentSourceId" type="hidden" value=${param["vid"]}>
 			<input id="email-address" name=email-address type="hidden" value=${param["email-address"]}>
 			<div style=" margin-top: 1em;">
-			<button id="confirmPayment" name="confirmPayment" type="submit" class="btn btn-primary">Confirm Payment</button>
+			<button id="confirmPayment" name="confirmPayment" type="submit" class="btn btn-primary"><fmt:message key="checkoutconfirm.button.confirm_payment" /></button>
 			</div><br>
 		</form>
 		<footer>

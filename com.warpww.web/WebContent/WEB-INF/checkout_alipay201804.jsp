@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp201804" />
 
 <!DOCTYPE html>
 <html>
@@ -73,38 +73,20 @@
 		</header>
 		<form action="checkout_alipay201804" method="post" id="payment-form">
 		
-		Shopping Cart Checkout
+		<fmt:message key="checkout_alipay.label" />
 		<div class="form-row" id="productDescription]">
 			<fieldset>
 				${displayCart}
 			</fieldset>
 		</div>	
-		<br><br>
-		<label for="owner-name">
-		      Payment Information
-		</label>
 		<br>
-		<div class="form-row" id="ownerInfo">
-			<fieldset>
-				<input id="owner-name" name="owner-name" placeholder="Cardholder Name" type="text"><br>
-				<input id="email-address" name="email-address" placeholder="E-Mail Address" type="text"><br>
-				<input id="street-address" name="street-address" placeholder="Street Address" type="text"><br>
-				<input id="city" name="city" placeholder="City" type="text"><br>
-				<input id="state" name="state" placeholder="State" type="text"><br>
-				<input id="zip-code" name="zip-code" placeholder="Postal Code" type="text"><br>
-				<input id="receiptNumber" name="receiptNumber" type="hidden" value="${ReceiptNumber}">
-			</fieldset>
+		<div class="form-row" id="aliPayInfo">
+
 			   
 		</div>
+		
 		<br><br>
-		
-		  <div class="form-row" id="cardInfo">
-		
-		    <!-- Used to display form errors. -->
-		    <div id="card-errors" role="alert"></div>
-		  </div>
-			<br><br>
-		  <button id="SubmitPayment" name="SubmitPayment" value="posted">Submit Payment</button>
+		<button id="SubmitPayment" name="SubmitPayment" value="posted"><fmt:message key="checkout_alipay.label" /></button>
 		  
 		</form>
 	    <footer>

@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp201804" />
 
 <!DOCTYPE html>
 <html>
@@ -73,7 +73,7 @@
 		</header>
 		<form action="checkout" method="post" id="payment-form">
 		
-		Shopping Cart Checkout
+		<fmt:message key="cartmaint.page_title" />
 		<div class="form-row" id="productDescription]">
 			<fieldset>
 				${displayCart}
@@ -81,17 +81,17 @@
 		</div>	
 		<br><br>
 		<label for="owner-name">
-		      Payment Information
+		      <fmt:message key="checkout.payment_information_label" />
 		</label>
 		<br>
 		<div class="form-row" id="ownerInfo">
 			<fieldset>
-				<input id="owner-name" name="owner-name" placeholder="Cardholder Name" type="text"><br>
-				<input id="email-address" name="email-address" placeholder="E-Mail Address" type="text"><br>
-				<input id="street-address" name="street-address" placeholder="Street Address" type="text"><br>
-				<input id="city" name="city" placeholder="City" type="text"><br>
-				<input id="state" name="state" placeholder="State" type="text"><br>
-				<input id="zip-code" name="zip-code" placeholder="Postal Code" type="text"><br>
+				<input id="owner-name" name="owner-name" placeholder=<fmt:message key="payment_information.placeholder.name" /> type="text"><br>
+				<input id="email-address" name="email-address" placeholder=<fmt:message key="payment_information.placeholder.email" /> type="text"><br>
+				<input id="street-address" name="street-address" placeholder=<fmt:message key="payment_information.placeholder.street_address" /> type="text"><br>
+				<input id="city" name="city" placeholder=<fmt:message key="payment_information.placeholder.city" />\ type="text"><br>
+				<input id="state" name="state" placeholder=<fmt:message key="payment_information.placeholder.state" /> type="text"><br>
+				<input id="zip-code" name="zip-code" placeholder=<fmt:message key="payment_information.placeholder.postal_code" /> type="text"><br>
 				<input id="receiptNumber" name="receiptNumber" type="hidden" value="${ReceiptNumber}">
 			</fieldset>
 			   
@@ -108,7 +108,7 @@
 		    <div id="card-errors" role="alert"></div>
 		  </div>
 			<br><br>
-		  <button id="SubmitPayment" name="SubmitPayment" value="posted">Submit Payment</button>
+		  <button id="SubmitPayment" name="SubmitPayment" value="posted"><fmt:message key="checkout.button.submit_payment" /></button>
 		  
 		</form>
 	    <footer>

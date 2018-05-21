@@ -1,5 +1,5 @@
 <%@ include file="/htx/pagehead.html"%>
-<fmt:setBundle basename="com.warpww.web.i18n.warp" />
+<fmt:setBundle basename="com.warpww.web.i18n.warp201804" />
 
 <!DOCTYPE html>
 <html>
@@ -11,8 +11,8 @@
 		<header>
 			<%@ include file="/htx/menu_201804.html"%>
 		</header>
-		<form action="mysolutions" method="post" id="shopping-cart">	
-		My Solutions<br>
+		<form action="mysolutions201804" method="post" id="shopping-cart">	
+		<fmt:message key="mysolutions.page_title" /><br>
 		<div class="form-row" id="my">
 			<fieldset>
 				${mySolutions}

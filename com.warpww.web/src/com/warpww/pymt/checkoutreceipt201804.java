@@ -52,7 +52,7 @@ public class checkoutreceipt201804 extends HttpServlet {
 			Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Sold);
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/checkoutreceipt.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/checkoutreceipt201804.jsp").forward(request, response);
 	
 	}
 
