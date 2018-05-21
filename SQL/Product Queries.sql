@@ -33,6 +33,24 @@ USE WarpAdmin2017;
 	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (17, 'BV-18101', '999999', 'Business Analytics Pathway Certificate', 0);
     INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (18, 'BV-18102', '999999', 'Project Management Pathway Certificate', 0);
     
+ 	/* *************************************************************************************************** */
+    /* Lingo ELL Products
+    /* *************************************************************************************************** */    
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (19, 'ESL-1810103', '999999', 'Winnie''s World (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (20, 'ESL-1810106', '999999', 'Winnie''s World (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (21, 'ESL-1810112', '999999', 'Winnie''s World (12 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (22, 'ESL-1810212', '999999', 'English Academy', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (23, 'ESL-1810303', '999999', 'English For Success (EFS) (3 Month)', 0);
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (24, 'ESL-1810306', '999999', 'English For Success (EFS) (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (25, 'ESL-1810312', '999999', 'English For Success (EFS) (12 Month)', 0);
+
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (26, 'ESL-1810403', '999999', 'Master English (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (27, 'ESL-1810406', '999999', 'Master English (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (28, 'ESL-1810412', '999999', 'Master English (12 Month)', 0);
+    
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (29, 'ESL-1810512', '999999', 'Business English', 0);
+
+	
     SELECT * FROM Product;
     
 
@@ -73,6 +91,22 @@ USE WarpAdmin2017;
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (24, 'WARP-CERT-001', 'Business Analytics Pathway Certificate', 615500);
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (25, 'WARP-CERT-002', 'Project Management Pathway Certificate', 615500);
     
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (26, 'WARP-ESL-00103', 'Winnie''s World (3 mos)', 24900);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (27, 'WARP-ESL-00106', 'Winnie''s World (6 mos)', 45800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (28, 'WARP-ESL-00112', 'Winnie''s World (12 mos)', 86900);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (29, 'WARP-ESL-00212', 'English Academy', 97800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (30, 'WARP-ESL-00303', 'English For Success (EFS) (3 mos)', 29900);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (31, 'WARP-ESL-00306', 'English For Success (EFS) (6 mos)', 57800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (32, 'WARP-ESL-00312', 'English For Success (EFS) (12 mos)', 98800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (33, 'WARP-ESL-00403', 'Master English (3 mos)', 29900);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (34, 'WARP-ESL-00406', 'Master English (6 mos)', 57800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (35, 'WARP-ESL-00412', 'Master English (12 mos)', 98800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (36, 'WARP-ESL-00512', 'Business English', 98800);
+            
 -- 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (500, 'WARP-US-999', 'Graduation Management Admission Test (GMAT)', 59.00);
 
     
@@ -128,6 +162,27 @@ USE WarpAdmin2017;
 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (16, 'WARP-CERT-001', 'BV-18101'); 
 	-- Project Management
 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (17, 'WARP-CERT-002', 'BV-18102'); 
+    
+	-- Winnie's World
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (18, 'WARP-ESL-00103', 'ESL-1810103'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (19, 'WARP-ESL-00106', 'ESL-1810106'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (20, 'WARP-ESL-00112', 'ESL-1810112'); 
+    
+    	-- English Academy
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (21, 'WARP-ESL-00212', 'ESL-1810212'); 
+    
+    	-- English For Success (EFS)
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (22, 'WARP-ESL-00303', 'ESL-1810303'); 
+ 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (23, 'WARP-ESL-00306', 'ESL-1810306'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (24, 'WARP-ESL-00312', 'ESL-1810312'); 
+   
+    	-- Master English
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (25, 'WARP-ESL-00403', 'ESL-1810403'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (26, 'WARP-ESL-00406', 'ESL-1810406'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (27, 'WARP-ESL-00412', 'ESL-1810412'); 
+    
+    	-- Business English
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (28, 'WARP-ESL-00512', 'ESL-1810512'); 
     
     
     SELECT * FROM SolutionProduct;
