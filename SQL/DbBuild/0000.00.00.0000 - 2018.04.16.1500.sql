@@ -1,5 +1,7 @@
 USE WarpAdmin2017;
 
+SHOW VARIABLES LIKE "%version%";
+
 SELECT * FROM Version;
 
 /*
@@ -27,3 +29,14 @@ VALUES (2, '2018-04-16', '2018.04.16.1500', 'DEV-000');
     INSERT INTO EntityRole (EntityID, RoleID) VALUES(3, 1);
     
     SELECT * FROM EntityRole;
+    
+    SELECT ProductCode, ProductName
+    FROM Product;
+    
+    SELECT CONCAT('product.name.', ProductCode, ' = ', ProductName)
+    FROM Product;
+    
+	SELECT CONCAT('solution.name.', SolutionCode, ' = ', SolutionName)
+    FROM Solution;
+    
+    SELECT * FROM Solution;
