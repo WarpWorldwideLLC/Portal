@@ -100,7 +100,9 @@
 		<h2><fmt:message key="landing.stem_header" /></h2>
 		<!-- 	<p><img class="warpImage" src="http://warp.zaisscodev2.info/wp-content/uploads/2018/03/800x450-2.jpg" alt="" /><br />  -->
 		<p>
-			<img class="myImage" src="imgx/Warp_Image_Shutterstock_STEM-800-450-Resize.jpg" alt="STEM Innovation & Camps" /><br />
+			<a href="product?productPage=warp_stem201804">
+				<img class="myImage" src="imgx/Warp_Image_Shutterstock_STEM-800-450-Resize.jpg" alt=<fmt:message key="landing.stem_alt" /> />
+			</a>
 			<p><fmt:message key="landing.stem_text1" /></p>
 			<p><fmt:message key="landing.stem_text2" /></p>
 		</p>
@@ -112,7 +114,9 @@
 		<h2><fmt:message key="landing.prodev_header" /></h2>
 	<!-- ZCo image college learning src="http://warp.zaisscodev2.info/wp-content/uploads/2018/03/800x450-1 -->	
 		<p>
-			<img class="myImage" src="imgx/consulting-professional-dev-800-450-resize.jpg" alt=<fmt:message key="landing.prodev_alt" /> /><br />
+			<a href="product?productPage=warp_prodev201804">
+				<img class="myImage" src="imgx/consulting-professional-dev-800-450-resize.jpg" alt=<fmt:message key="landing.prodev_alt" /> />
+			</a>
 			<p><fmt:message key="landing.prodev_text1" /></p>
 			<p><fmt:message key="landing.prodev_text2" /></p>
 			<p><fmt:message key="landing.prodev_text3" /></p>
