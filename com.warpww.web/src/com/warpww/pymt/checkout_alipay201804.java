@@ -88,7 +88,7 @@ public class checkout_alipay201804 extends HttpServlet {
 			String sourceTest = request.getParameter("stripeSourceId");
 			if(sourceTest != null && !sourceTest.isEmpty()) {
 				System.out.println("Stripe Source Id Found");
-				Util.printParams("authURL", request);
+				Util.printParams("checkout_alipay", request);
 				
 				// request.getRequestDispatcher(request.getParameter("authURL").toString()).forward(request, response);
 				response.sendRedirect(request.getParameter("authURL").toString());

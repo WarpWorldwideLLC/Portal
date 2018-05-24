@@ -86,7 +86,7 @@
 		</div>
 		
 		<br><br>
-		<button id="SubmitPayment" name="SubmitPayment" value="posted"><fmt:message key="checkout_alipay.label" /></button>
+		<button id="SubmitPayment" name="SubmitPayment" value="posted"><fmt:message key="checkout_alipay.button.submit_payment" /></button>
 		  
 		</form>
 	    <footer>

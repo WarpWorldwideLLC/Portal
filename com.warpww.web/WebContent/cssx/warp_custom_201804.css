@@ -61,7 +61,11 @@ th, td { padding: 5px; }
 
 .topMenu a {
 	color: white;
-
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	
   /* First we need to help some browsers along for this to work.
      Just because a vendor prefix is there, doesn't mean it will
      work in a browser made by that vendor either, it's just for
@@ -90,9 +94,9 @@ th, td { padding: 5px; }
 	
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: left;
 	/* vertically aligns items */
-	align-items: center;
+	align-items: left;
 	/* horizontally aligns items */
 }
 
@@ -104,14 +108,14 @@ th, td { padding: 5px; }
 }
 
 .middleLogo p {
-	margin 5px;
+	margin-right: 5px;
 }
 
 @media screen and (max-width: 1000px) {
 
 	.midMiss {
  		width: 100%;
- 		 text-align: center; // center the content of the container
+ 		 text-align: left; // center the content of the container
 	 }
 
 }
