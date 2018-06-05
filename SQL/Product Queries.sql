@@ -48,6 +48,8 @@
     
     INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (29, 'ESL-1810512', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Business English', 0);
 
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (42, 'ESL-1810612', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English Training Mobile App', 0);
+
  	/* *************************************************************************************************** */
     /* Lingo ELL Products - China
     /* *************************************************************************************************** */    
@@ -124,6 +126,8 @@
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (35, 'WARP-ESL-00412', 'Master English (12 mos)', 98800);
     
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (36, 'WARP-ESL-00512', 'Business English', 98800);
+    
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (37, 'WARP-ESL-00512', 'English Training Mobile App', 98800);
 
  	/* *************************************************************************************************** */
     /* WARP Solutions - ESL China

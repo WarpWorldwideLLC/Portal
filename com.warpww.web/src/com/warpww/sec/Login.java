@@ -48,7 +48,6 @@ public class Login {
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 		dispatcher.include(request, response);
 		
-		// Util.printParams("getGreeting", request);
 		Command cmd = new Command(request.getAttribute("CommandResults").toString());
 		
 		/* 
@@ -69,7 +68,6 @@ public class Login {
 		*/
 		
 		String greeting = prop.getProperty("topmenu.greeting");
-		System.out.println("Greeting: " + greeting);
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = "<fmt:message key=\"cartmaint.topmenu.greeting\" /> " + cmd.FirstName + " " + cmd.LastName;

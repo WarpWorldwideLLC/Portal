@@ -43,7 +43,6 @@ public class mysolutions201804 extends HttpServlet {
 		if(request.getParameter("olcCmd") != null) {
 			try {
 				Util.getMemberInfo(request, response, a.getMemberID());
-				// Util.printParams("mySolutions.doGet", request);
 				String s = Util.sendGetOLC(a.getMemberID(), request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
 				response.getWriter().append(s).append(request.getContextPath());
 			} catch (Exception e) {

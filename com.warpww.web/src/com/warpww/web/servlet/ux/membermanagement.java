@@ -78,8 +78,7 @@ public class membermanagement extends HttpServlet {
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
-			
-			// Util.printParams("MemberManagement.processRequest", request);
+
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

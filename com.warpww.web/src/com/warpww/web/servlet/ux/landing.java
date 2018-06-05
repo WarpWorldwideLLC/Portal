@@ -54,7 +54,6 @@ public class landing extends HttpServlet {
 		}
 		*/
 		//Check to see if this page was loaded after a sign in or sign out
-		Util.printParams("landing.doGet", request);
 		if(null == request.getAttribute("signin_out")) {
 			AuthMod a = new AuthMod(request, response);
 			a.authenticate();	
@@ -81,7 +80,6 @@ public class landing extends HttpServlet {
 		boolean validated = false;
 		boolean tryValidation = false;
 		
-		//Util.printParams("landing.doPost", request);
 		
         // Check if memberName parameter exists
         if (request.getParameterMap().containsKey("memberName")) {

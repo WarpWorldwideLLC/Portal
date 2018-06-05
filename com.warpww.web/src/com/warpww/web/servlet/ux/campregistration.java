@@ -294,9 +294,6 @@ public class campregistration extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		Util.printParams("Register.processRequest", request);
-					
-
 		
 		return returnValue;
 	}
@@ -351,7 +348,6 @@ public class campregistration extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		Util.printParams("Register.processRequest", request);
 		
 		return returnValue;
 	}

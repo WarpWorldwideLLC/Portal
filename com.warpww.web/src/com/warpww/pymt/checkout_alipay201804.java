@@ -88,14 +88,12 @@ public class checkout_alipay201804 extends HttpServlet {
 			// Check to see if there is a Stripe Source ID
 			String sourceTest = request.getParameter("stripeSourceId");
 			if(sourceTest != null && !sourceTest.isEmpty()) {
-				System.out.println("Stripe Source Id Found");
-				Util.printParams("checkout_alipay", request);
 				
-				// request.getRequestDispatcher(request.getParameter("authURL").toString()).forward(request, response);
+
 				response.sendRedirect(request.getParameter("authURL").toString());
 							
 			} else {
-				System.out.println("Stripe Source Id Not Found");
+				
 				request.getRequestDispatcher("/WEB-INF/checkout_alipay201804.jsp").forward(request, response);
 			}
 
@@ -161,7 +159,7 @@ public class checkout_alipay201804 extends HttpServlet {
 		//Meta-data
 		Map<String, String> initialMetadata = new HashMap<String, String>();
 		String metadata = request.getParameter("travelerEMailAddress") + "; " + request.getParameter("travelerPrimaryPhoneNumber") + "; " + request.getParameter("travelerAlternatePhoneNumber");
-		System.out.println(metadata);
+		
 		initialMetadata.put("metadata", metadata);
 		params.put("metadata", initialMetadata);
 
@@ -179,6 +177,7 @@ public class checkout_alipay201804 extends HttpServlet {
 			System.out.println("Payment Succeeded!");
 			request.setAttribute("paymentMessage", "Your payment was successful! Thank you, and we will be contacting you soon! Please email us at WarpCustomer@warpww.com if you have any questions before then.");
 			System.out.println("Charge ID: " + charge.getId());
+			
 		} else {
 			System.out.println("Payment Failed!");
 			request.setAttribute("paymentMessage", "There was a problem processing your payment. Please contact us via the Contact Us link and we will be happy to help resolve any issues.");
@@ -311,10 +310,7 @@ public class checkout_alipay201804 extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		//Util.printParams("Register.processRequest", request);
 					
-
-		
 		return returnValue;
 	}
 	

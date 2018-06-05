@@ -78,6 +78,21 @@ public class Util {
 		}
 
 	}
+
+	public static boolean isAttribute(HttpServletRequest request, String attributeName) {
+		
+		boolean returnValue = false;
+		
+		if(null == request.getAttribute(attributeName)) {
+			System.out.println("Attribute " + attributeName + " was not found");
+		} else {
+			System.out.println("Attribute " + attributeName + " was found");
+			returnValue = true;
+		}
+		
+		return returnValue;
+		
+	}
 	
 	public static boolean isParam(HttpServletRequest request, String paramName) {
 		
@@ -398,7 +413,7 @@ public class Util {
 	// Base Shopping Cart Display
 	public static String getShoppingCart (HttpServletRequest request, HttpServletResponse response, int memberID, boolean showButtons, CartContents itemsToInclude) {
 		String returnValue = null;
-		System.out.println("Shopping Cart Member ID: " + memberID); 
+		
 		
 		try {
 			
@@ -483,7 +498,7 @@ public class Util {
 				    }
 				    displayCart += "</tr>";
 				}
-				
+				System.out.println("totalCost from getShoppingCart: " + totalCost);
 				request.setAttribute("ShoppingCartTotalCost", totalCost);
 				displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hscObject.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
 				displayCart += "</table>";
@@ -746,7 +761,6 @@ public class Util {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 			
-			// Util.printParams("getMemberSolutions", request);
 			
 			//* ******************************************************************************************************************************* */
 			//* ******************************************************************************************************************************* */

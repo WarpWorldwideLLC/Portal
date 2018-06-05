@@ -88,12 +88,11 @@ public class checkout extends HttpServlet {
 			// Check to see if there is a Stripe Source ID
 			String tokenTest = request.getParameter("stripeSourceId");
 			if(tokenTest != null && !tokenTest.isEmpty()) {
-				System.out.println("Stripe Source Id Found");
-	
+
 				request.getRequestDispatcher("checkoutconfirm?vid=" + request.getParameter("stripeSourceId")).forward(request, response);
 							
 			} else {
-				System.out.println("Stripe Source Id Not Found");
+				
 				request.getRequestDispatcher("/WEB-INF/checkout.jsp").forward(request, response);
 			}
 
@@ -160,7 +159,7 @@ public class checkout extends HttpServlet {
 		//Meta-data
 		Map<String, String> initialMetadata = new HashMap<String, String>();
 		String metadata = request.getParameter("travelerEMailAddress") + "; " + request.getParameter("travelerPrimaryPhoneNumber") + "; " + request.getParameter("travelerAlternatePhoneNumber");
-		System.out.println(metadata);
+		
 		initialMetadata.put("metadata", metadata);
 		params.put("metadata", initialMetadata);
 
@@ -310,7 +309,6 @@ public class checkout extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		//Util.printParams("Register.processRequest", request);
 					
 
 		
@@ -367,7 +365,6 @@ public class checkout extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		//Util.printParams("Register.processRequest", request);
 		
 		return returnValue;
 	}

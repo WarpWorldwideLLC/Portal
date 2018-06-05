@@ -85,8 +85,7 @@ public class register201804 extends HttpServlet {
 			{
 				e.printStackTrace();
 			}
-			
-			Util.printParams("register.doPost", request);
+
 			String jsonResults = request.getAttribute("CommandResults").toString();
 			
 			System.out.println("CommandResults: " + jsonResults);
@@ -188,7 +187,6 @@ public class register201804 extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 			
-			// Util.printParams("Register.processRequest", request);
 			
 			break;
 		default: 

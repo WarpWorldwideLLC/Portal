@@ -32,7 +32,7 @@ public class payment extends HttpServlet {
      */
     public payment() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -40,8 +40,7 @@ public class payment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Util.foo();
-		// Util.printParams("payment.doGet", request);
-		System.out.println("Payment GET.");
+
 		request.getRequestDispatcher("/WEB-INF/payment.jsp").forward(request, response);
 	}
 
@@ -49,8 +48,6 @@ public class payment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Util.printParams("payment.doPost", request);
-		System.out.println("Payment POST.");
 		
 		try {
 			
@@ -70,9 +67,8 @@ public class payment extends HttpServlet {
 	
 			Charge charge = Charge.create(chargeParams);
 		
-		} catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException
-				| APIException ex) {
-			System.out.println(ex.toString());
+		} catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException | APIException ex) {
+			ex.printStackTrace();
 		}
 
 		/* 

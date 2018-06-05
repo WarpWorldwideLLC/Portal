@@ -41,9 +41,7 @@ public class landing201804 extends HttpServlet {
 		} else {
 			a = new AuthMod(request, response, AuthMod.Sign.out);
 		}
-		
-		System.out.println("landing201804 processed.");
-		
+	
 		PageElements p = new PageElements();
 		request.setAttribute("jspPageDirectives", p.getJspPageDirectives());
 		//request.setAttribute("HtmlBodyHeader", p.getHtmlBodyHeader());

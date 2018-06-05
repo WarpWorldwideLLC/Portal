@@ -159,7 +159,7 @@ public class checkout201804 extends HttpServlet {
 		//Meta-data
 		Map<String, String> initialMetadata = new HashMap<String, String>();
 		String metadata = request.getParameter("travelerEMailAddress") + "; " + request.getParameter("travelerPrimaryPhoneNumber") + "; " + request.getParameter("travelerAlternatePhoneNumber");
-		System.out.println(metadata);
+		
 		initialMetadata.put("metadata", metadata);
 		params.put("metadata", initialMetadata);
 
@@ -309,7 +309,6 @@ public class checkout201804 extends HttpServlet {
 			ex.printStackTrace();
 		}
 			
-		//Util.printParams("Register.processRequest", request);
 					
 
 		
@@ -365,9 +364,7 @@ public class checkout201804 extends HttpServlet {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-			
-		//Util.printParams("Register.processRequest", request);
-		
+
 		return returnValue;
 	}
 	

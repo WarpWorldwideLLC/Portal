@@ -53,8 +53,7 @@ public class StripeSource {
             
              
         } catch (Exception ex) {
-            // TODO Auto-generated catch block
-            System.out.println(ex.toString());
+            ex.printStackTrace();
         }
 		
 		

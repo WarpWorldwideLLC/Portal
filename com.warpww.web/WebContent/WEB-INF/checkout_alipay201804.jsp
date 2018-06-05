@@ -105,7 +105,7 @@
 					  
 					  stripe.createSource({
 						  type: 'alipay',
-						  amount: 1099,
+						  amount: '${ShoppingCartTotalCost}',
 						  currency: 'usd',
 						  redirect: {
 						    return_url: 'http://localhost:8080/com.warpww.web/checkoutconfirm201804',

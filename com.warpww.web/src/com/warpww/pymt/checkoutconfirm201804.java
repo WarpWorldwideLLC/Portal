@@ -33,7 +33,6 @@ public class checkoutconfirm201804 extends HttpServlet {
      */
     public checkoutconfirm201804() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -62,25 +61,30 @@ public class checkoutconfirm201804 extends HttpServlet {
 		// And retrieve the ShoppingCart
 		Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Pending);
 		
-		int totalCost = 0;
+		int totalCost = 0;		
 		
-		if (request.getParameterMap().containsKey("ShoppingCartTotalCost")) {
+		
+		System.out.println(request.getAttribute("ShoppingCartTotalCost").toString());
+		
+		if (Util.isAttribute(request, "ShoppingCartTotalCost")) {
 			String editType = request.getAttribute("ShoppingCartTotalCost").toString();
 			if(editType!=null && !editType.isEmpty()){
 				totalCost = Integer.parseInt(request.getAttribute("ShoppingCartTotalCost").toString());
+				System.out.println("checkoutconfirm Found Param.");
 			}
 
 	    }
-		
+
 		
 		if(request.getParameter("confirmPayment") != null) {
 			String customerId = addToCustomer(request.getParameter("paymentSourceId"), request.getParameter("email-address"));
 			processPayment(request.getParameter("paymentSourceId"), customerId, totalCost);
+			/*
 			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			System.out.println("Payment Source ID: " + request.getParameter("paymentSourceId"));
 			System.out.println("Email Address: " + request.getParameter("email-address"));
 			System.out.println("Customer ID: " + customerId);
-			
+			*/
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
 			
@@ -90,11 +94,12 @@ public class checkoutconfirm201804 extends HttpServlet {
 		
 			String customerId = addToCustomer(request.getParameter("source"), request.getParameter("email-address"));
 			processPayment(request.getParameter("source"), customerId, totalCost);
+			/*
 			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			System.out.println("Payment Source ID: " + request.getParameter("paymentSourceId"));
 			System.out.println("Email Address: " + request.getParameter("email-address"));
 			System.out.println("Customer ID: " + customerId);
-			
+			*/
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
 			
@@ -153,6 +158,13 @@ public class checkoutconfirm201804 extends HttpServlet {
 		chargeParams.put("customer", customerId);
 		chargeParams.put("source", sourceId);
 
+
+		System.out.println("checkoutconfirm ChargeParams");
+		System.out.println("  amount: " + paymentAmount);
+		System.out.println("  currency: usd");
+		System.out.println("  customer: " + customerId);
+		System.out.println("  source: " + sourceId);
+		
 		try {
 			Charge charge = Charge.create(chargeParams);
 		} catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException

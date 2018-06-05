@@ -63,7 +63,6 @@ public class dbProcess extends HttpServlet {
 		
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
-		Util.printParams("dbProcess.processCommand.Start", request);
 		
 		String spName = "";
 
@@ -103,7 +102,6 @@ public class dbProcess extends HttpServlet {
                 }
                 hadResults = cStmt.getMoreResults();
             }          
-            // Util.printParams("dbProcess.processCommand.AfterProcessing", request);
  
         } catch (Exception e2) 
         {
