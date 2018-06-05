@@ -1,4 +1,3 @@
-USE WarpAdmin2017;
 
 DROP PROCEDURE IF EXISTS saveCampData;
 

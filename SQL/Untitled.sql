@@ -1,4 +1,3 @@
-USE WarpAdmin2017;
 
 
 SELECT * FROM ShoppingCart; 

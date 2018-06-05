@@ -46,7 +46,7 @@ public class landing201804 extends HttpServlet {
 		
 		PageElements p = new PageElements();
 		request.setAttribute("jspPageDirectives", p.getJspPageDirectives());
-		request.setAttribute("HtmlBodyHeader", p.getHtmlBodyHeader());
+		//request.setAttribute("HtmlBodyHeader", p.getHtmlBodyHeader());
 		request.setAttribute("testValue", "Test Valeu From Servlet.");
 		
 		request.getRequestDispatcher("/WEB-INF/landing201804.jsp").forward(request, response);

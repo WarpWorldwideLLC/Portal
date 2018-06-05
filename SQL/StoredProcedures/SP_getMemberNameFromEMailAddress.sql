@@ -1,6 +1,5 @@
 -- SP_GetMemberNameFromEmailAddress
 
-USE WarpAdmin2017;
 
 -- Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ');       SET ID := LAST_INSERT_ID();       COMMIT;        SELECT JSON_OBJECT('Us' at line 45
 

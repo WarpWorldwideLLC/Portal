@@ -40,7 +40,7 @@ public class dbProcess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
+		request.setCharacterEncoding("UTF-8");
 		processCommand(request, response);
 	}
 
@@ -48,6 +48,7 @@ public class dbProcess extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		//String statusCode =  getClass().getName() + ".doGet()" + ".." + System.currentTimeMillis() + ";";
 		//String statusCode2 = (String) request.getAttribute("ResultCode"); 
 		//request.setAttribute("ResultCode", statusCode2);
@@ -57,11 +58,12 @@ public class dbProcess extends HttpServlet {
 
 	}
 	
-	private void processCommand(HttpServletRequest request, HttpServletResponse response)
+	private void processCommand(HttpServletRequest request, HttpServletResponse response) 
 	{
+		
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
-		// Util.printParams("dbProcess.processCommand.Start", request);
+		Util.printParams("dbProcess.processCommand.Start", request);
 		
 		String spName = "";
 
@@ -81,7 +83,8 @@ public class dbProcess extends HttpServlet {
         {
             Class.forName("com.mysql.jdbc.Driver");
             // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WarpAdmin2017", "root", "62XYhC;erw;zZaCmZVzrFEwW");
-            Connection conn = DriverManager.getConnection(hsc.jdbcURI, hsc.jdbcUser, hsc.jdbcPassword);   
+            hsc hscObject = new hsc();
+            Connection conn = DriverManager.getConnection(hscObject.jdbcURI, hscObject.jdbcUser, hscObject.jdbcPassword);   
             
             // System.out.println("dbprocess.processCommand:StoredProc: " + spName);
             CallableStatement cStmt = conn.prepareCall("{call " + spName + "(?)}");

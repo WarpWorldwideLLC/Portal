@@ -37,19 +37,6 @@
 		              </li>
 		              <li>
 		              	<div class="warpRow">
-		              		<div class="warpItem">
-		                			<input type="radio" name="payment" id="payment-ach" value="payment-ach">
-		                		</div>
-			                <div class="warpItem">
-		                			<label for="payment-ach_credit_transfer"><fmt:message key="cartmaint.payment_type.us_bank_transfer" /></label>
-		                		</div>
-			                <div class="warpItem">	
-		                			<img src="imgx/pymt_logo_ach.png" alt=<fmt:message key="cartmaint.payment_type.us_bank_transfer_alt" /> height="55" width="70">
-		                		</div>
-		                	</div>
-		              </li>
-		              <li>
-		              	<div class="warpRow">
 			                <div class="warpItem">
 				                <input type="radio" name="payment" id="payment-alipay" value="payment-alipay">
 				       		</div>

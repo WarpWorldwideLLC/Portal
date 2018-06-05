@@ -163,7 +163,8 @@ public class Login {
 		
 		int rawValue = Integer.parseInt(memberHex, 16);
 		String offset = createTime.substring(14);
-		returnValue = rawValue - Integer.parseInt(offset) - hsc.tokenMemberPadding;
+		hsc hscObject = new hsc();
+		returnValue = rawValue - Integer.parseInt(offset) - hscObject.tokenMemberPadding;
 		
 		return returnValue;
 	}
@@ -173,7 +174,8 @@ public class Login {
 		
 			// Token is: Embedded Member ID
 			String offset = createTime.substring(14);
-			int memberCodeN = memberID + Integer.parseInt(offset) + hsc.tokenMemberPadding;
+			hsc hscObject = new hsc();
+			int memberCodeN = memberID + Integer.parseInt(offset) + hscObject.tokenMemberPadding;
 			String memberCode = Integer.toHexString(memberCodeN);
 			
 			returnValue = memberCode;
@@ -283,11 +285,12 @@ public class Login {
 			String tokenFinal = encodeToken(tokenRaw);
 			
 			// Store a token in a cookie. 
-			Cookie userCookie = new Cookie(hsc.cookieName, tokenFinal);
+			hsc hscObject = new hsc();
+			Cookie userCookie = new Cookie(hscObject.cookieName, tokenFinal);
 			userCookie.setComment("Used by Warp Worldwide website.");
-			userCookie.setMaxAge(hsc.tokenExpirationDuration);      
+			userCookie.setMaxAge(hscObject.tokenExpirationDuration);      
 			// userCookie.setDomain(hsc.cookieDomain);
-			userCookie.setSecure(hsc.cookieSSL);       	// Cookie can only be retreived over SSL
+			userCookie.setSecure(hscObject.cookieSSL);       	// Cookie can only be retreived over SSL
 			userCookie.setHttpOnly(true);       		 	// Cookie can only be retrieved via HTTP 
 			response.addCookie(userCookie);
 			System.out.println("Authentication Cookie added.");
@@ -315,8 +318,8 @@ public class Login {
 		    {
 		    		
 		        Cookie cookie = cookies[i];
-		        
-		        if (hsc.cookieName.equals(cookie.getName())) 
+		        hsc hscObject = new hsc();
+		        if (hscObject.cookieName.equals(cookie.getName())) 
 		        {
 		        		/*
 		            System.out.println("Domain: " + cookie.getDomain()); 

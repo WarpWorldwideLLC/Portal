@@ -78,7 +78,8 @@ public class checkout extends HttpServlet {
 			}
 			
 			// Public Keys
-			request.setAttribute("paymentPublicKey", hsc.pk_stripe);
+			hsc hscObject = new hsc();
+			request.setAttribute("paymentPublicKey", hscObject.pk_stripe);
 			
 			// And retrieve the ShoppingCart
 			Util.getShoppingCart(request, response, memberID, false, Util.CartContents.Pending);
@@ -141,7 +142,8 @@ public class checkout extends HttpServlet {
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
 		//***********************************************************************************
-		Stripe.apiKey = hsc.sk_stripe;
+		hsc hscObject = new hsc();
+		Stripe.apiKey = hscObject.sk_stripe;
 		
 		
 		// Token is created using Checkout or Elements!

@@ -60,7 +60,8 @@ public class logout201804 extends HttpServlet {
 		boolean returnValue = false;
 		
 		// Set Cookie MaxAge to 0, deleting it when the browser processes the header.
-		Cookie userCookie = new Cookie(hsc.cookieName, "");
+		hsc hscObject = new hsc();
+		Cookie userCookie = new Cookie(hscObject.cookieName, "");
 		userCookie.setMaxAge(0);      
 		response.addCookie(userCookie);
 		System.out.println("Authentication Cookie Deleted.");
@@ -84,7 +85,8 @@ public class logout201804 extends HttpServlet {
 		    		
 		        Cookie cookie = cookies[i];
 		        
-		        if (hsc.cookieName.equals(cookie.getName())) 
+		        hsc hscObject = new hsc();
+		        if (hscObject.cookieName.equals(cookie.getName())) 
 		        {
 		        		/*
 		            System.out.println("Domain: " + cookie.getDomain()); 

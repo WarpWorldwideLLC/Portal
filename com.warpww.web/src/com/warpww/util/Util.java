@@ -457,6 +457,8 @@ public class Util {
 				InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
 				prop.load(stream);
 				
+				hsc hscObject = new hsc();
+				
 				javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
 				for (int i = 0; i < cart.size(); i++) {
 					
@@ -468,11 +470,12 @@ public class Util {
 					
 					String localizedSolutionName = prop.getProperty("solution.name." + solutionCode);
 					
+					
 					displayCart += "<tr>";
 					displayCart += "<td>" + explrObject.getJsonNumber("CartID").toString() + "</td>";
 				    displayCart += "<td>" + explrObject.getJsonString("SolutionCode").toString().replaceAll("\"", "") + "</td>";
 				    displayCart += "<td>" + localizedSolutionName + "</td>";
-				    displayCart += "<td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
+				    displayCart += "<td>" +  hscObject.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
 				    if(showButtons) {
 				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button></td>";
 				    } else {
@@ -482,7 +485,7 @@ public class Util {
 				}
 				
 				request.setAttribute("ShoppingCartTotalCost", totalCost);
-				displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hsc.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
+				displayCart += "<tr><td>&nbsp</td><td>&nbsp</td><td>Total Due: </td><td>" +  hscObject.currencySymbol + " " + String.format("%,.2f", (double)totalCost/100) + "</td><td>&nbsp</td></tr>";
 				displayCart += "</table>";
 				displayCart += "<br><br>";
 				request.setAttribute("displayCart", displayCart);

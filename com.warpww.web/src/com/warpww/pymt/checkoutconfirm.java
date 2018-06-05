@@ -97,7 +97,8 @@ public class checkoutconfirm extends HttpServlet {
 	protected String addToCustomer(String sourceId, String emailAddress) {
 		String returnValue = null;
 		
-		Stripe.apiKey = hsc.sk_stripe;
+		hsc hscObject = new hsc();
+		Stripe.apiKey = hscObject.sk_stripe;
 
 		Map<String, Object> customerParams = new HashMap<String, Object>();
 		customerParams.put("email", emailAddress);
@@ -120,7 +121,8 @@ public class checkoutconfirm extends HttpServlet {
 		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
-		Stripe.apiKey = hsc.sk_stripe;
+		hsc hscObject = new hsc();
+		Stripe.apiKey = hscObject.sk_stripe;
 
 		Map<String, Object> chargeParams = new HashMap<String, Object>();
 		chargeParams.put("amount", paymentAmount);

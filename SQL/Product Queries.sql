@@ -1,5 +1,3 @@
-USE WarpAdmin2017;
-
 
 	TRUNCATE TABLE Product;
 
@@ -36,19 +34,39 @@ USE WarpAdmin2017;
  	/* *************************************************************************************************** */
     /* Lingo ELL Products
     /* *************************************************************************************************** */    
-	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (19, 'ESL-1810103', '999999', 'Winnie''s World (3 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (20, 'ESL-1810106', '999999', 'Winnie''s World (6 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (21, 'ESL-1810112', '999999', 'Winnie''s World (12 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (22, 'ESL-1810212', '999999', 'English Academy', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (23, 'ESL-1810303', '999999', 'English For Success (EFS) (3 Month)', 0);
-	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (24, 'ESL-1810306', '999999', 'English For Success (EFS) (6 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (25, 'ESL-1810312', '999999', 'English For Success (EFS) (12 Month)', 0);
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (19, 'ESL-1810103', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (20, 'ESL-1810106', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (21, 'ESL-1810112', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (12 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (22, 'ESL-1810212', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English Academy', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (23, 'ESL-1810303', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (3 Month)', 0);
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (24, 'ESL-1810306', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (25, 'ESL-1810312', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (12 Month)', 0);
 
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (26, 'ESL-1810403', '999999', 'Master English (3 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (27, 'ESL-1810406', '999999', 'Master English (6 Month)', 0);
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (28, 'ESL-1810412', '999999', 'Master English (12 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (26, 'ESL-1810403', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (27, 'ESL-1810406', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (28, 'ESL-1810412', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (12 Month)', 0);
     
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (29, 'ESL-1810512', '999999', 'Business English', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (29, 'ESL-1810512', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Business English', 0);
+
+ 	/* *************************************************************************************************** */
+    /* Lingo ELL Products - China
+    /* *************************************************************************************************** */    
+
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (40, 'ESLC-1810103', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (30, 'ESLC-1810106', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (31, 'ESLC-1810112', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Winnie''s World (12 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (32, 'ESLC-1810212', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English Academy', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (33, 'ESLC-1810303', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (3 Month)', 0);
+	INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (34, 'ESLC-1810306', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (35, 'ESLC-1810312', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'English For Success (EFS) (12 Month)', 0);
+
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (36, 'ESLC-1810403', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (3 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (37, 'ESLC-1810406', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (6 Month)', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (38, 'ESLC-1810412', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Master English (12 Month)', 0);
+    
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (39, 'ESLC-1810512', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Business English', 0);
+
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (41, 'ESLC-1810612', '', 'English Training Mobile App', 0);
 
 	
     SELECT * FROM Product;
@@ -106,6 +124,27 @@ USE WarpAdmin2017;
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (35, 'WARP-ESL-00412', 'Master English (12 mos)', 98800);
     
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (36, 'WARP-ESL-00512', 'Business English', 98800);
+
+ 	/* *************************************************************************************************** */
+    /* WARP Solutions - ESL China
+    /* *************************************************************************************************** */             
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (47, 'WARP-ESLC-00103', 'Winnie''s World (3 mos)', 288800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (37, 'WARP-ESLC-00106', 'Winnie''s World (6 mos)', 428800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (38, 'WARP-ESLC-00112', 'Winnie''s World (12 mos)', 838800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (39, 'WARP-ESLC-00212', 'English Academy', 886800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (40, 'WARP-ESLC-00303', 'English For Success (EFS) (3 mos)', 328800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (41, 'WARP-ESLC-00306', 'English For Success (EFS) (6 mos)', 488800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (42, 'WARP-ESLC-00312', 'English For Success (EFS) (12 mos)', 968800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (43, 'WARP-ESLC-00403', 'Master English (3 mos)', 388800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (44, 'WARP-ESLC-00406', 'Master English (6 mos)', 638800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (45, 'WARP-ESLC-00412', 'Master English (12 mos)', 1188800);
+    
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (46, 'WARP-ESLC-00512', 'Business English', 968800);
+
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (48, 'WARP-ESLC-00612', 'English Training Mobile App', 38800);
             
 -- 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (500, 'WARP-US-999', 'Graduation Management Admission Test (GMAT)', 59.00);
 
@@ -181,14 +220,40 @@ USE WarpAdmin2017;
 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (26, 'WARP-ESL-00406', 'ESL-1810406'); 
 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (27, 'WARP-ESL-00412', 'ESL-1810412'); 
     
+    	-- Winnie's World China
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (38, 'WARP-ESLC-00103', 'ESLC-1810103'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (39, 'WARP-ESLC-00106', 'ESLC-1810106'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (40, 'WARP-ESLC-00112', 'ESLC-1810112'); 
+    
+    	-- English Academy China
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (41, 'WARP-ESLC-00212', 'ESLC-1810212'); 
+    
+    	-- English For Success (EFS) China
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (42, 'WARP-ESLC-00303', 'ESLC-1810303'); 
+ 	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (43, 'WARP-ESLC-00306', 'ESLC-1810306'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (44, 'WARP-ESLC-00312', 'ESLC-1810312'); 
+   
+    	-- Master English China
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (45, 'WARP-ESLC-00403', 'ESLC-1810403'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (46, 'WARP-ESLC-00406', 'ESLC-1810406'); 
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (47, 'WARP-ESLC-00412', 'ESLC-1810412'); 
+
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (48, 'WARP-ESLC-00512', 'ESLC-1810512');
+    
+	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (49, 'WARP-ESLC-00612', 'ESLC-1810612');
+    
     	-- Business English
-	INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (28, 'WARP-ESL-00512', 'ESL-1810512'); 
+	-- INSERT INTO SolutionProduct (ID, SolutionCode, ProductCode) VALUES (28, 'WARP-ESL-00512', 'ESL-1810512'); 
     
     
     SELECT * FROM SolutionProduct;
     
     SELECT * FROM Product;
 
+	SELECT * FROM EntitySolution;
+
+	-- TRUNCATE TABLE EntitySolution;
+-- INSERT INTO EntitySolution(SolutionID, EntityID, BillingEventID, ForeignKey, StartDate) VALUES (24, 2, 0, '', '2018-04-11');
 	
 /* 
 

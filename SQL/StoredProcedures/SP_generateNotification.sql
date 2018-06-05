@@ -1,7 +1,5 @@
 -- SP_generateNotification
 
-
-USE WarpAdmin2017;
 /*
 	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
     RecordStatusID						BIGINT DEFAULT 10, 

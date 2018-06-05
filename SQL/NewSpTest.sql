@@ -1,4 +1,3 @@
-USE WarpAdmin2017;
 
 SELECT * FROM Entity;
 SELECT * FROM EntityName;
