@@ -68,12 +68,17 @@ public class Login {
 		*/
 		
 		String greeting = prop.getProperty("topmenu.greeting");
+		String mySolutions = prop.getProperty("usermenu.my_solutions");
+		String shoppingCart = prop.getProperty("usermenu.shopping_cart");
+		String signout = prop.getProperty("usermenu.signout");
+		
+		
 		
 		if(cmd.CommandResults.equals( cmd.COMMAND_SUCCESS)) {
 			returnValue = "<fmt:message key=\"cartmaint.topmenu.greeting\" /> " + cmd.FirstName + " " + cmd.LastName;
 			returnValue += "<div class=\"account-content\">";
-			returnValue += "<a href=\"#openModalLogout\">Logout</a>";
-			returnValue += "<a href=\"#\">My Solutions</a>";
+			returnValue += "<a href=\"#openModalLogout\">" + signout + "</a>";
+			returnValue += "<a href=\"#\">" + mySolutions + "</a>";
 			returnValue += "</div>";
 			returnValue += "";	
 			
@@ -82,9 +87,9 @@ public class Login {
 
 			returnValue = "    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">" + greetingText  + "<span class=\"caret\"></span></a>";
 			returnValue += "    <ul class=\"dropdown-menu\">";
-			returnValue += "      <li><a href=\"#openModalLogout\">Logout</a></li>";
-			returnValue += "      <li><a href=\"mysolutions201804\">My Solutions</a></li>";
-			returnValue += "      <li><a href=\"cartmaint201804\">Shopping Cart</a></li>";
+			returnValue += "      <li><a href=\"#openModalLogout\">" + signout + "</a></li>";
+			returnValue += "      <li><a href=\"mysolutions201804\">" + mySolutions + "</a></li>";
+			returnValue += "      <li><a href=\"cartmaint201804\">" + shoppingCart + "</a></li>";
 			returnValue += "    </ul>";
 			returnValue += "";
 			returnValue += "";
@@ -110,7 +115,21 @@ public class Login {
 		
 		try
 		{
-			returnValue = "<a href=\"#openModalLogin\">Login</a>";
+			Properties prop = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+			InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+			prop.load(stream);
+			/*
+			Enumeration en = prop.propertyNames(); 
+			while (en.hasMoreElements()) { 
+				System.out.println(en.nextElement()); 
+			} 
+			*/
+			
+			String signin = prop.getProperty("usermenu.signin");
+			
+			
+			returnValue = "<a href=\"#openModalLogin\">" + signin + "</a>";
 			request.setAttribute("accountButton", returnValue);
 		} catch (Exception ex)
 		{

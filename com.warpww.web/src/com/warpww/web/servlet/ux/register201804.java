@@ -167,6 +167,7 @@ public class register201804 extends HttpServlet {
 				 .add("PhoneNumber", request.getParameter("phoneNumber"))
 				 .add("FirstName", request.getParameter("firstName"))
 				 .add("LastName", request.getParameter("lastName"))
+				 .add("BirthDate", request.getParameter("birthDate"))
 				 .add("CountryID", request.getParameter("countrySelector"))
 				 .build()
 				 .toString(); 		

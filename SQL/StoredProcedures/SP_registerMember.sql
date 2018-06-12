@@ -21,6 +21,7 @@ BEGIN
     DECLARE LastNameKey NVARCHAR(255) DEFAULT NULL;
     DECLARE LastName NVARCHAR (200) DEFAULT NULL;
     DECLARE CountryID BIGINT DEFAULT 0;
+    DECLARE BirthDate NVARCHAR(10);
 
 	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
@@ -61,7 +62,7 @@ BEGIN
     SET FirstName := JSON_UNQUOTE(JSON_EXTRACT(query, '$.FirstName'));
     SET LastName := JSON_UNQUOTE(JSON_EXTRACT(query, '$.LastName'));
     SET CountryID := JSON_UNQUOTE(JSON_EXTRACT(query, '$.CountryID'));
-  
+	SET BirthDate := JSON_UNQUOTE(JSON_EXTRACT(query, '$.BirthDate'));
 	
     SET EntityID := 0;
 
@@ -104,7 +105,9 @@ BEGIN
     -- CountryCode
 	INSERT INTO EntityCountry (AuiD, IuID, LastAuID, LastIuID, EntityID, CountryID) 
       VALUES (AuID, IuID, AuID, IuID, EntityID, CountryID);
-       
+    -- Birth Date
+    INSERT INTO EntityBirthDate (AuiD, IuID, LastAuID, LastIuID, EntityID, EntityBirthDate)
+		VALUES (AuID, IuID, AuID, IuID, EntityID, BirthDate);
 	-- Assign Passphrase for account.
 	INSERT INTO Passphrase (AuiD, IuID, LastAuID, LastIuID, EntityID, PassphraseHash) 
       VALUES (AuID, IuID, AuID, IuID, EntityID, PassphraseHash);

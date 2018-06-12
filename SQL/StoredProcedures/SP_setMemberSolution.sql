@@ -45,11 +45,11 @@ BEGIN
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
     SET Command := JSON_EXTRACT(query, '$.Command');
     
-    DELETE FROM EntitySolution WHERE EntityID = MemberID AND ID > 0;
+    -- DELETE FROM EntitySolution WHERE EntityID = MemberID AND ID > 0;
 
-
-	INSERT INTO EntitySolution (SolutionID, EntityID, BillingEventID, StartDate)
-	SELECT SolutionID, EntityID, 0, MAX(CreateDate) AS StartDate
+	-- Create EntitySolution records from ShoppingCart Records.
+	INSERT INTO EntitySolution (SolutionID, EntityID, BillingEventID, KeySet, StartDate)
+	SELECT SolutionID, EntityID, 0, 0, MAX(CreateDate) AS StartDate
 	FROM ShoppingCart
 	WHERE RecordStatusID = 51
 	  AND EntityID = MemberID
@@ -57,6 +57,36 @@ BEGIN
 	GROUP BY SolutionID, EntityID
 	;
     
+
+    -- Update the hyperlink for each product the user has in their solutions list,
+    -- but only if the key has not already been set. 
+    -- This record will be customized in code later. 
+	SET SQL_SAFE_UPDATES = 0;
+	UPDATE EntitySolution es
+		INNER JOIN Solution s
+          ON es.SolutionID = s.ID
+		INNER JOIN SolutionProduct sp
+          ON s.SolutionCode = sp.SolutionCode
+		INNER JOIN Product p
+          ON sp.ProductCode = p.ProductCode
+	SET es.KeySet = 1,
+		es.ProductExternalKey =p.ProductExternalKey
+	WHERE es.ID > 0
+      AND es.EntityID = MemberID
+      AND es.KeySet = 0
+	;
+    SET SQL_SAFE_UPDATES = 1;
+    
+    
+    -- Set ShoppingCart Status to resolved. 
+    UPDATE ShoppingCart
+    SET RecordStatusID = 999
+	WHERE RecordStatusID = 51
+	  AND EntityID = MemberID
+      AND ID > 0
+	;
+    
+    -- Add the link template to EntitySolution 
     
 	SELECT JSON_OBJECT(
                      'MemberID', MemberID,

@@ -674,7 +674,7 @@ public class Util {
 	}
 
 	// Add Solution to Member's available content.
-	public static boolean addMemberSolution(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
+	public static boolean addMemberSolutionOLD(HttpServletRequest request, HttpServletResponse response, int memberID, int solutionID) { 
 		boolean returnValue = false;
 		
 		try {
@@ -808,21 +808,27 @@ public class Util {
 					String localizedProductName = prop.getProperty("product.name." + productCode);
 					String localizedSolutionName = prop.getProperty("solution.name." + solutionCode);
 					
-					
-					
-					
 					displayCart += "<tr>";
 				    displayCart += "<td>" + solutionCode + "</td>";
 				    displayCart += "<td>" + localizedSolutionName + "</td>";
 				    displayCart += "<td>" + productCode + "</td>";
 				    displayCart += "<td>" + localizedProductName + "</td>";
 				    String keyValue = explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "");
+				    
+				    // Create Hyperlink on the MySolutions page for users to go to. 
+				    System.out.println(keyValue);
 				    switch(keyValue.substring(0, 4)) {
 				    case "ILR:": 
 				    	 	displayCart += "<td>" + "<a href=\"" + keyValue.replaceAll("ILR:", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
 				    		break;
 				    case "OLC:": 
 				    		displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + keyValue.replaceAll("OLC:", "") + "\">Go Now!</button>";
+				    		break;
+				    case "LGO:":
+				    	displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + keyValue.replaceAll("LGO:", "") + "\">Go Now!</button>";
+				    		break;
+				    case "N/A:":
+				    	displayCart += "<td>" + "&nbsp";
 				    		break;
 				    	default:
 				    		displayCart += "<td>" + "<a>&nbsp</a>";

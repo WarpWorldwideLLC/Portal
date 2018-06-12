@@ -18,6 +18,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
+import com.warpww.ell.ellutil;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
 
@@ -87,6 +88,9 @@ public class checkoutconfirm201804 extends HttpServlet {
 			*/
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
+			String newUserId = "";
+			ellutil ellUtil = new ellutil();
+			newUserId = ellUtil.encryptCredentials(newUserId);
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			
@@ -167,10 +171,11 @@ public class checkoutconfirm201804 extends HttpServlet {
 		
 		try {
 			Charge charge = Charge.create(chargeParams);
-		} catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException
-				| APIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Charge Status: " + charge.getStatus());
+		} catch (AuthenticationException  | InvalidRequestException | APIConnectionException | CardException | APIException e) {
+			
+			System.out.println("Message: " + e.getMessage());
+
 		}
 		
 		return returnValue;

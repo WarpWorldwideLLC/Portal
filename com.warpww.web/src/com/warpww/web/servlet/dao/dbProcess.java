@@ -59,7 +59,11 @@ public class dbProcess extends HttpServlet {
 	}
 	
 	private void processCommand(HttpServletRequest request, HttpServletResponse response) 
-	{
+	{	
+		//******************************************************************************
+		// Debug Switch 
+		//******************************************************************************
+		boolean debugMode = true;
 		
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
@@ -70,6 +74,11 @@ public class dbProcess extends HttpServlet {
 		JsonObject jsonst = reader.readObject();
         // spName = translateCommand("RegisterUserAccount");
 		spName = translateCommand(jsonst.getString("Command"));
+		
+		if(debugMode) {
+			System.out.println("spName: " + spName);
+			System.out.println("Command: " + json);
+		}
 		
 		// If the command is invalid,stop processing and return an error.
 		if(spName == "Invalid_Command") {
@@ -95,13 +104,17 @@ public class dbProcess extends HttpServlet {
             		ResultSet rs = cStmt.getResultSet();
             		ResultSetMetaData rsmd = rs.getMetaData(); 
                 String name = rsmd.getColumnName(1);
-                // System.out.println(name);
+
                 while(rs.next())
                 {
                  request.setAttribute("CommandResults", rs.getString(1));
                 }
                 hadResults = cStmt.getMoreResults();
-            }          
+            }      
+            
+            if(debugMode) {
+            		System.out.println("Command Results: " + request.getAttribute("CommandResults"));
+            }
  
         } catch (Exception e2) 
         {
@@ -152,6 +165,8 @@ public class dbProcess extends HttpServlet {
 	            case "SetMemberSolution" : spName = "setMemberSolution";
         				break;
 	            case "GetMemberInfo" : spName = "getMemberInfo";
+        				break;
+	            case "GetEllNewUserData" : spName = "getEllNewUserData";
         				break;
 	            default: spName = "Invalid_Command";
 	                break;

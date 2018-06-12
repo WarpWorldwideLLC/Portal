@@ -446,6 +446,53 @@ SELECT * FROM ctlEntityNameType;
 SELECT * FROM Entity;
 SELECT * FROM ctlEntityType;
 
+
+DROP TABLE IF EXISTS EntityBirthDate;    
+CREATE TABLE EntityBirthDate (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    EntityID							BIGINT, 
+    EntityBirthDate						NVARCHAR(50),
+    EntityBirthDateKey					NVARCHAR(100) /* Used to enforce unique constraint on specific entity types in the uniqueName constraint */
+	);
+   
+/* This constraint is used to enforce uniqueness on specific EntityName Types. For those that don't require uniquenss,  
+   a UUIDis appended to the name and inserted in this column. */
+ALTER TABLE EntityName
+	ADD CONSTRAINT uniqueName UNIQUE (EntityNameTypeID, EntityNameKey);
+   
+INSERT INTO EntityName (ID, EntityID, EntityNameTypeID, EntityName, DefaultName) VALUES (1, 1, 1, 'WARP Worldwide, LLC', 'Y');
+
+SELECT * FROM EntityName;   
+SELECT * FROM ctlEntityNameType;
+SELECT * FROM Entity;
+SELECT * FROM ctlEntityType;
+
+DROP TABLE IF EXISTS EntityExternalProductKeys;
+CREATE TABLE EntityExternalProductKeys (
+	ID 									BIGINT PRIMARY KEY AUTO_INCREMENT,
+    RecordStatusID						BIGINT DEFAULT 10, 
+    CreateDate 							DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AuID 								BIGINT DEFAULT -1,
+	IuID 								BIGINT DEFAULT -1,
+	LastModifyDate 						DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	LastAuID 							BIGINT DEFAULT -1,
+	LastIuID 							BIGINT DEFAULT -1,
+    EntityID							BIGINT, 
+    ExternalKeyGroup					NVARCHAR(20),
+    WarpProductKey						NVARCHAR(255),
+    ExternalLookupKey					NVARCHAR(255),
+    ExternalKeyValue					NVARCHAR(255),
+    ExternalKeyExpired					NVARCHAR(1)
+);
+
+
 /* 
 Use no more than 5 lines, including:
 Addressee's name.
@@ -672,8 +719,9 @@ CREATE TABLE eContact (
 	LastIuID 							BIGINT DEFAULT -1,
 	SolutionID							BIGINT, 
     EntityID							BIGINT,
-    ForeignKey							NVARCHAR(255),
-    BillingEventID						BIGINT,
+    ProductExternalKey					NVARCHAR(255),
+    KeySet								INT,
+    BillingEventID						BIGINT DEFAULT 0,
     StartDate							DATETIME
 	);
     

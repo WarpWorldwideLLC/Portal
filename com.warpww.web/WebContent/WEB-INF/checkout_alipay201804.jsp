@@ -59,7 +59,7 @@
 				  clientSecret.setAttribute('value', source.client_secret);
 				  form.appendChild(clientSecret);
 		
-				  alert('authURL: ' + source.redirect.url);
+				  // alert('authURL: ' + source.redirect.url);
 				  // Submit the form
 				  form.submit();
 				}

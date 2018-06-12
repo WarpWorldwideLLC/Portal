@@ -45,6 +45,12 @@
 				  	<td>	<label><fmt:message key="register.label.lastname" /></label></td>
 				  	<td>	<input type="text" name="lastName" id="lastName" class="registerInput" value=${param["lastName"]}></td>
 				  </tr>
+				  
+				  <tr>
+				  	<td>	<label><fmt:message key="register.label.birthdate"/></label></td>
+				  	<td>	<input type="text" name="birthDate" id="birthDate" placeholder="YYYY-MM-DD" class="registerInput" value=${param["birthDate"]}></td>
+				  </tr>
+				  
 				  <tr>	
 				  	<td>	<label><fmt:message key="register.label.phonenumber" /></label></td>
 				  	<td><input type="text" name="phoneNumber" id="phoneNumber" class="registerInput" value=${param["phoneNumber"]}></td>

@@ -68,7 +68,7 @@
     
     INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (39, 'ESLC-1810512', 'LGO:sdb.elldevelopment.com/user/autoLogin?userInfo=XXXXXXX&partnerId=2544', 'Business English', 0);
 
-    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (41, 'ESLC-1810612', '', 'English Training Mobile App', 0);
+    INSERT INTO Product (ID,ProductCode, ProductExternalKey, ProductName, ProductCost) VALUES (41, 'ESLC-1810612', 'N/A:', 'English Training Mobile App', 0);
 
 	
     SELECT * FROM Product;
@@ -127,28 +127,28 @@
     
 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (36, 'WARP-ESL-00512', 'Business English', 98800);
     
-    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (37, 'WARP-ESL-00512', 'English Training Mobile App', 98800);
+    INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (49, 'WARP-ESL-00512', 'English Training Mobile App', 98800);
 
  	/* *************************************************************************************************** */
     /* WARP Solutions - ESL China
     /* *************************************************************************************************** */             
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (47, 'WARP-ESLC-00103', 'Winnie''s World (3 mos)', 288800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (37, 'WARP-ESLC-00106', 'Winnie''s World (6 mos)', 428800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (38, 'WARP-ESLC-00112', 'Winnie''s World (12 mos)', 838800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (47, 'WARP-ESLC-00103', 'Winnie''s World (3 mos)', 45888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (37, 'WARP-ESLC-00106', 'Winnie''s World (6 mos)', 68888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (38, 'WARP-ESLC-00112', 'Winnie''s World (12 mos)', 133888);
     
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (39, 'WARP-ESLC-00212', 'English Academy', 886800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (39, 'WARP-ESLC-00212', 'English Academy', 138888);
     
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (40, 'WARP-ESLC-00303', 'English For Success (EFS) (3 mos)', 328800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (41, 'WARP-ESLC-00306', 'English For Success (EFS) (6 mos)', 488800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (42, 'WARP-ESLC-00312', 'English For Success (EFS) (12 mos)', 968800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (40, 'WARP-ESLC-00303', 'English For Success (EFS) (3 mos)', 51888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (41, 'WARP-ESLC-00306', 'English For Success (EFS) (6 mos)', 76888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (42, 'WARP-ESLC-00312', 'English For Success (EFS) (12 mos)', 152888);
     
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (43, 'WARP-ESLC-00403', 'Master English (3 mos)', 388800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (44, 'WARP-ESLC-00406', 'Master English (6 mos)', 638800);
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (45, 'WARP-ESLC-00412', 'Master English (12 mos)', 1188800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (43, 'WARP-ESLC-00403', 'Master English (3 mos)', 61888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (44, 'WARP-ESLC-00406', 'Master English (6 mos)', 101888);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (45, 'WARP-ESLC-00412', 'Master English (12 mos)', 188888);
     
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (46, 'WARP-ESLC-00512', 'Business English', 968800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (46, 'WARP-ESLC-00512', 'Business English', 153888);
 
-	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (48, 'WARP-ESLC-00612', 'English Training Mobile App', 38800);
+	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (48, 'WARP-ESLC-00612', 'English Training Mobile App', 6088);
             
 -- 	INSERT INTO Solution (ID, SolutionCode, SolutionName, SolutionCost) VALUES (500, 'WARP-US-999', 'Graduation Management Admission Test (GMAT)', 59.00);
 

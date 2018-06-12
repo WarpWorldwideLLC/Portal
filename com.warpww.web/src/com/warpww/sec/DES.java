@@ -45,5 +45,36 @@ public class DES {
 		System.out.println("URL Encoded Text: " + urlEncodedText);
 		
 	}
+	
+	public static String encrypt2(String key, String inputString) throws Throwable {
+
+		String returnValue = null;
+		
+		// Create DESKey from key
+		DESKeySpec dks = new DESKeySpec(key.getBytes());
+		SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
+		SecretKey desKey = skf.generateSecret(dks);
+		
+		// Select DES/ECB/PKCS5Padding as the cipher for encryption
+		Cipher desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+		
+		byte[] text = inputString.getBytes();
+
+		// Encrypt the text
+		desCipher.init(Cipher.ENCRYPT_MODE, desKey);
+		byte[] textEncrypted = desCipher.doFinal(text);
+		
+		String base64text = Base64.encodeBase64String(textEncrypted);
+		
+		String urlEncodedText = URLEncoder.encode(base64text, "utf-8");
+		
+		returnValue = urlEncodedText;
+		
+		System.out.println("Bas64 Encoded Text: " + base64text);
+		System.out.println("URL Encoded Text: " + urlEncodedText);
+		
+		return returnValue;
+		
+	}
 
 }
