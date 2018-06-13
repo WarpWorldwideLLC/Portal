@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.warpww.web.servlet.lingo.Test.Environment;
+
 /**
  * Servlet implementation class ellnewuser
  */
@@ -48,14 +50,15 @@ public class ellnewuser extends HttpServlet {
 		String password = "";
 		 String generatedString = RandomStringUtils.randomAlphabetic(10);
 		 
-		System.out.println(generatedString);
+		System.out.println("Random String: " + generatedString);
 		
 		//String url = "https://lms.ellcampus.com/user/create";
 		String url = "https://api.elldevelopment.com/user/create";
-		String param = "clientId=2544"
-				+ "&username=ZeZeWarp"
+		url = "https://api.ellcampus.com/user/create";
+		String param = "clientId=3945"
+				+ "&username=BigBadBill"
 				+ "&password=abcdef"
-				+ "&email=john.arp2@warpww.com"
+				+ "&email=bill.warp@warpww.com"
 				+ "&firstName=ZeZe"
 				+ "&lastName=Warp"
 				+ "&birthdate=2017-04-27"
@@ -64,7 +67,7 @@ public class ellnewuser extends HttpServlet {
 		
 		try {
 			
-			System.out.println(Test.sendHttpsPost(url,param));
+			System.out.println(Test.sendHttpsPost(url,param, Environment.Prod));
 		
 		} catch (IOException e) {
 			e.printStackTrace();

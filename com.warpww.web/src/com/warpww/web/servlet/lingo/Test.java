@@ -23,6 +23,10 @@ import org.apache.commons.codec.binary.Base64;
 
 public class Test {
 
+	public enum Environment {
+		Test, Prod
+	}
+	
 	public static SSLSocketFactory init() throws Exception { 
 	
 		class MyX509TrustManager implements X509TrustManager {
@@ -59,11 +63,30 @@ public class Test {
      * @return
      * @throwsIOException
      */
-	public static String sendHttpsPost(String POST_URL,String params) throws IOException {
+
+	
+	public static String sendHttpsPost(String POST_URL,String params, Environment envValue) throws IOException {
 		String result = "";  
-		String name = "2544";//provided by ELL
-		String password = "fkelJ4bD";// provided by ELL
-		String authString = name + ":" + password;
+		
+		String name = "";
+		String password = "";
+		String authString = "";
+		
+		switch(envValue) {
+		
+		// Production
+		case Prod:
+			name = "3945";
+			password = "fJuWlfiB";
+		
+		// Test
+		default:
+			name = "2544";
+			password = "fkelJ4bD";
+			
+		}
+		
+		authString = name + ":" + password;
 		
 		System.out.println("POST_URL: " + POST_URL);
 		System.out.println("params: " + params);

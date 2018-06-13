@@ -90,7 +90,7 @@ public class checkoutconfirm201804 extends HttpServlet {
 			Util.setMemberSolution(request, response, memberID);
 			String newUserId = "";
 			ellutil ellUtil = new ellutil();
-			newUserId = ellUtil.encryptCredentials(newUserId);
+			//newUserId = ellUtil.encryptCredentials(newUserId);
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			

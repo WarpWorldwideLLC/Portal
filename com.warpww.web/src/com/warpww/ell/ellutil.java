@@ -30,28 +30,141 @@ import org.apache.commons.codec.binary.Base64;
 import com.warpww.pymt.hsc;
 import com.warpww.sec.DES;
 import com.warpww.web.servlet.lingo.Test;
+import com.warpww.web.servlet.lingo.Test.Environment;
 
 public class ellutil {
 	
-	private String nullVar = "fkelJ4bD";
+	private String ellUserID = null;
+	private String userName = null;
+	private String password = null;
+	private String email = null;
+	private String firstName = null;
+	private String lastName = null;
+	private String birthDate = null;
+	private String language = null;
+	private String country = null;
 	
-	private String ellUserID = "";
-	private String clientID = "2544";
-	private String userName = "";
-	private String password = "";
-	private String email = "";
-	private String firstName = "";
-	private String lastName = "";
-	private String birthDate = "";
-	private String language = "";
-	private String country = "";
+	// ********************************************************************************************
+	// Accessors and Mutators (Getters and Setters)
+	// ********************************************************************************************
+	public String getEllUserID () {
+		return this.ellUserID;
+	}
+
+	public  boolean setEllUserID (String parmEllUserID) {
+		boolean returnValue = false;
+		
+		this.ellUserID = parmEllUserID;
+		returnValue = true;
+		return returnValue;
+	}
+
+	public  boolean setUserName (String parmUserName) {
+		boolean returnValue = false;
+		
+		this.userName = parmUserName;
+		returnValue = true;
+		return returnValue;
+	}
 	
+	public String getUserName () {
+		return this.userName;
+	}
+
+	public  boolean setPassword (String parmPassword) {
+		boolean returnValue = false;
+		
+		this.password = parmPassword;
+		returnValue = true;
+		return returnValue;
+	}
 	
-	// Constructor
+	public String getPassword () {
+		return this.password;
+	}
+	
+	public  boolean setEmail (String parmEmail) {
+		boolean returnValue = false;
+		
+		this.email = parmEmail;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getEmail () {
+		return this.email;
+	}	
+	
+	public  boolean setFirstName (String parmFirstName) {
+		boolean returnValue = false;
+		
+		this.firstName = parmFirstName;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getFirstName () {
+		return this.firstName;
+	}
+	
+	public  boolean setLastName (String parmLastName) {
+		boolean returnValue = false;
+		
+		this.lastName = parmLastName;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getLastName () {
+		return this.lastName;
+	}
+	
+	public  boolean setBirthDate (String parmBirthDate) {
+		boolean returnValue = false;
+		
+		this.birthDate = parmBirthDate;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getBirthDate () {
+		return this.birthDate;
+	}
+	
+	public  boolean setLanguage (String parmLanguage) {
+		boolean returnValue = false;
+		
+		this.language = parmLanguage;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getLanguage () {
+		return this.language;
+	}
+	
+	public  boolean setCountry (String parmCountry) {
+		boolean returnValue = false;
+		
+		this.country = parmCountry;
+		returnValue = true;
+		return returnValue;
+	}
+	
+	public String getCountry () {
+		return this.country;
+	}
+	
+	// ********************************************************************************************	
+	// Constructors
+	// ********************************************************************************************
 	public ellutil() {
 		
 	}
+
 	
+	// **************************************
+	// ********************************************************************************************
 	public boolean getMemberDataFromDb(int memberID, HttpServletRequest request, HttpServletResponse response) {
 		boolean returnValue = false;
 
@@ -111,21 +224,23 @@ public class ellutil {
 	public boolean createNewUser() {
 		boolean returnValue = false;
 		
-		//String url = "https://lms.ellcampus.com/user/create";
-		String url = "https://api.elldevelopment.com/user/create";
-		String param = "clientId=" + this.clientID
+		final String uriSuffix = "/user/create";
+		hsc configW = new hsc();
+		String createUri = configW.ell_apiuri + uriSuffix;
+		
+		String param = "clientId=" + configW.ell_clientid
 				+ "&username=" + this.ellUserID 
 				+ "&password=" + this.password
 				+ "&email=" + this.email
 				+ "&firstName=" + this.firstName
 				+ "&lastName=" + this.lastName
 				+ "&birthdate=" + this.birthDate
-				+ "&language=english"
-				+ "&country=China";
+				+ "&language=" + this.language
+				+ "&country=" + this.country;
 		
 		try {
 			
-			System.out.println(sendHttpsPost(url,param));
+			System.out.println(sendHttpsPost(createUri,param));
 		
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -135,14 +250,20 @@ public class ellutil {
 		return returnValue;
 	}
 	
-	public boolean assignLicense() {
+	public boolean assignLicense(String ellUserID, String ellLicenseID) {
 		boolean returnValue = false;
 		
-		String url = "https://api.ellcampus.com/license/assign";
-		String param = "clientId=2544&userId=229460&licenseId=1542";
+		final String uriSuffix = "/license/assign";
+		hsc configW = new hsc();
+		
+		String url = configW.ell_apiuri + uriSuffix;
+		String param = "clientId=" + configW.ell_clientid + "&userId=" + ellUserID + "&licenseId=" + ellLicenseID;
+		
+		System.out.println("URL: " + url);
+		System.out.println("Params: " + param);
 		
 		try {
-			System.out.println(Test.sendHttpsPost(url,param));
+			System.out.println(Test.sendHttpsPost(url,param, Environment.Prod));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -159,23 +280,36 @@ public class ellutil {
 		return returnValue;
 	}
 	
-	public String encryptCredentials(String inputValue) {
+	public String  CreateSSO(String inputUserID) {
 		String returnValue = null;
+		final String uriSuffix = "/user/autologin";
+		
+		hsc configW = new hsc();
+		String ssoUri = configW.ell_ssouri + uriSuffix;
 		
 		try {
 			
-			returnValue = DES.encrypt2(this.nullVar, inputValue);
+			String ssoParams = "?";
+			String parmUid = "uid=" + inputUserID;
 			
-		} catch (Throwable e) {
+			String parmUserInfo = "userInfo=" + DES.ellEncrypt(configW.ell_sk, parmUid);
+			String parmPartnerID = "&partnerId=" +  configW.ell_clientid;
+			ssoParams += parmUserInfo + parmPartnerID;
 			
-			e.printStackTrace();
+			ssoUri += ssoParams; 
+			
+			returnValue = ssoUri;
+			
+		} catch (Throwable ex) {
+			// TODO: Add Error URI on WARP site to use here. Or use external static S3 site to serve error and maintenance pages.
+			returnValue = "Unable to create SSO tokens.";
+			ex.printStackTrace();
 		}
+		
 		
 		return returnValue;
 	}
-	
-	
-	
+		
 	public static SSLSocketFactory init() throws Exception { 
 		
 		class MyX509TrustManager implements X509TrustManager {
@@ -213,9 +347,12 @@ public class ellutil {
      * @throwsIOException
      */
 	public static String sendHttpsPost(String POST_URL,String params) throws IOException {
+		
+		hsc configW = new hsc();
+		
 		String result = "";  
-		String name = "2544";//provided by ELL
-		String password = "fkelJ4bD";// provided by ELL
+		String name = configW.ell_clientid; //provided by ELL
+		String password = configW.ell_sk;   // provided by ELL
 		String authString = name + ":" + password;
 		
 		System.out.println("POST_URL: " + POST_URL);

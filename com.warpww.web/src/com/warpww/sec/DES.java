@@ -40,18 +40,18 @@ public class DES {
 		String base64text = Base64.encodeBase64String(textEncrypted);
 		
 		String urlEncodedText = URLEncoder.encode(base64text, "utf-8");
-		
+		System.out.println("key: " + key);
+		System.out.println("inputString: " + inputString);
 		System.out.println("Bas64 Encoded Text: " + base64text);
 		System.out.println("URL Encoded Text: " + urlEncodedText);
-		
 	}
 	
-	public static String encrypt2(String key, String inputString) throws Throwable {
+	public static String ellEncrypt(String key, String inputString) throws Throwable {
 
 		String returnValue = null;
-		
+				
 		// Create DESKey from key
-		DESKeySpec dks = new DESKeySpec(key.getBytes());
+		DESKeySpec dks = new DESKeySpec(key.getBytes("utf-8"));
 		SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
 		SecretKey desKey = skf.generateSecret(dks);
 		
@@ -68,8 +68,11 @@ public class DES {
 		
 		String urlEncodedText = URLEncoder.encode(base64text, "utf-8");
 		
-		returnValue = urlEncodedText;
 		
+		returnValue = urlEncodedText;
+
+		System.out.println("key: " + key);
+		System.out.println("inputString: " + inputString);
 		System.out.println("Bas64 Encoded Text: " + base64text);
 		System.out.println("URL Encoded Text: " + urlEncodedText);
 		

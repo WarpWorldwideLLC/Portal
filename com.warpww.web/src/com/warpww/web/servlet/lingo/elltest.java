@@ -1,6 +1,9 @@
 package com.warpww.web.servlet.lingo;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.warpww.ell.ellutil;
+import com.warpww.sec.DES;
 
 /**
  * Servlet implementation class elltest
@@ -28,11 +32,49 @@ public class elltest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ellutil eu = new ellutil();
-		// eu.getMemberDataFromDb(12, request, response);
-		// eu.createNewUser();
-		// eu.assignLicense();
-		eu.encryptCredentials("uid=229462");
+		// 
+
+		try {
+			
+			ellutil eu = new ellutil();
+			
+			Date date = new Date();
+			String formattedDate = new SimpleDateFormat("ssSSS").format(date);
+			System.out.println(formattedDate);
+			
+			// Create SSO 
+			/*
+			String ellUserID = "229462";
+			String ssoString = eu.CreateSSO(ellUserID);
+			System.out.println("SSO URI for " + ellUserID + " : " + ssoString);
+			*/
+					
+			
+			// Create New User
+			
+			eu.setEllUserID("Warp" + formattedDate);
+			eu.setPassword("abcdef");
+			eu.setEmail("warp" + formattedDate + "@ansebbian.com");
+			eu.setFirstName("Johnny");
+			eu.setLastName("BeGoode");
+			eu.setBirthDate("2017-01-01");
+			eu.setLanguage("english");
+			eu.setCountry("China");
+			
+			eu.createNewUser();
+			
+			
+			// Add License to User
+			// eu.assignLicense("229466", "1551");
+			
+			
+			
+			
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
