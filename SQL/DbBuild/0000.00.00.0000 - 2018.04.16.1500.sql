@@ -95,3 +95,10 @@ CREATE TABLE EntityExternalProductKeys (
     ExternalKeyExpired					NVARCHAR(1)
 );
 
+
+
+
+    
+    
+    
+    

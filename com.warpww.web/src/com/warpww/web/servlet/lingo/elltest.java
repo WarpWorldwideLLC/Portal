@@ -43,15 +43,29 @@ public class elltest extends HttpServlet {
 			System.out.println(formattedDate);
 			
 			// Create SSO 
-			/*
-			String ellUserID = "229462";
+			
+			String ellUserID = "229478";
 			String ssoString = eu.CreateSSO(ellUserID);
 			System.out.println("SSO URI for " + ellUserID + " : " + ssoString);
-			*/
+			
 					
 			
 			// Create New User
+			/*
+			String newUserId = "";
+			int memberID = 2;
 			
+			// Create ELL Account     
+			eu.getMemberDataFromDb(memberID, request, response);
+			eu.createNewUser();
+			eu.addMemberEllUserId(memberID, request, response);
+			if(eu.ellResponseStatus.equals("0")) {
+				eu.addLicenseToAllSolutionsForMember(request, response, memberID);
+			}
+			*/
+			
+			
+			/*
 			eu.setEllUserID("Warp" + formattedDate);
 			eu.setPassword("abcdef");
 			eu.setEmail("warp" + formattedDate + "@ansebbian.com");
@@ -62,7 +76,7 @@ public class elltest extends HttpServlet {
 			eu.setCountry("China");
 			
 			eu.createNewUser();
-			
+			*/
 			
 			// Add License to User
 			// eu.assignLicense("229466", "1551");

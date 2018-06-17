@@ -1,9 +1,35 @@
 
+
+SELECT * FROM ShoppingCart;
+
+
+SELECT * FROM EntitySolution;
+
+DELETE FROM EntitySolution 
+
+
 CALL registerMember('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":"TestWarp3","EmailAddress":"test@test.tst","PassphraseHash":"1000:60abc45ad3b737509f90223273b10333eaae57fe07b54da2:742fd94a7ca04298529ed4a7808c31114a3c186872ec996f","PhoneNumber":"‭1 (778) 986-9268‬","FirstName":"Susie","LastName":"Warp","BirthDate":"2000-01-01","CountryID":"46"}');
 
-Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CALL getEllNewUserData('{"Command":"GetGreeting","AuID":1,"IuID":1,"MemberID":7}' at line 4
 
 
+SELECT 
+	es.SolutionID, es.EntityID, es.ProductExternalKey, s.SolutionCode, s.SolutionName, el.SystemMode, el.EllLicenseCode
+FROM EntitySolution es
+  LEFT JOIN Solution s
+    ON es.SolutionID = s.ID
+    
+  LEFT JOIN EllLicense el
+    ON s.SolutionCode = el.WarpSolutionCode
+WHERE es.EntityID = 2
+  AND el.SystemMode = 'Test'
+
+;
+
+SELECT * FROM EntityName;
+
+SELECT * FROM EntityMiscellany;
+
+TRUNCATE TABLE EntityMiscellany;
 
 CALL getEllNewUserData('{"Command":"GetGreeting","AuID":1,"IuID":1,"MemberID":7}');
     

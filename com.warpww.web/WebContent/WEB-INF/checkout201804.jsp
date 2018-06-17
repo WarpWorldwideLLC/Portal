@@ -78,6 +78,7 @@
 				${displayCart}
 			</fieldset>
 		</div>	
+		<div><p><fmt:message key="checkout.currency_conversion" /></p></div>
 		<br><br>
 		<label for="owner-name">
 		      <fmt:message key="checkout.payment_information_label" />

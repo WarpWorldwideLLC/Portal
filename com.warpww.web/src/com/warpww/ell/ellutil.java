@@ -29,8 +29,7 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.warpww.pymt.hsc;
 import com.warpww.sec.DES;
-import com.warpww.web.servlet.lingo.Test;
-import com.warpww.web.servlet.lingo.Test.Environment;
+import com.warpww.util.Util;
 
 public class ellutil {
 	
@@ -43,6 +42,18 @@ public class ellutil {
 	private String birthDate = null;
 	private String language = null;
 	private String country = null;
+	
+	private String rawResponse = null;
+	
+	public int HttpResponseCode = -1;
+	public String HttpResponseMessage = null;
+	public String ellResponseMessage = null;
+	public String ellResponseStatus = null;
+	public String ellResponseUserid = null;
+	
+	public boolean userAlreadyExists = false;
+	
+	private boolean debugMode = true;
 	
 	// ********************************************************************************************
 	// Accessors and Mutators (Getters and Setters)
@@ -163,7 +174,8 @@ public class ellutil {
 	}
 
 	
-	// **************************************
+	// ********************************************************************************************
+	// Public Methods
 	// ********************************************************************************************
 	public boolean getMemberDataFromDb(int memberID, HttpServletRequest request, HttpServletResponse response) {
 		boolean returnValue = false;
@@ -185,13 +197,16 @@ public class ellutil {
 			String jsonParms = "";
 
 			jsonParms = json;
+			
+			Util.debugPrint(this.debugMode, "ellutil.getMemberDataFromDb jsonParms", jsonParms);
+			
 			request.setAttribute("CommandText", jsonParms);
 			
 			// Retrieve the shopping cart information in JSON format.
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
 			dispatcher.include(request, response);
 					
-			System.out.println(request.getAttribute("CommandResults"));
+			Util.debugPrint(debugMode, "ellutil.getMemberDataFromDb Command Results", request.getAttribute("CommandResults").toString());
 			
 			// Load and Parse the InputJSON
 			if(request.getAttribute("CommandResults") != null ) {
@@ -214,9 +229,186 @@ public class ellutil {
 
 			
 		} catch (Exception ex) {
+			returnValue = false;
 			ex.printStackTrace();
 		}
 		
+		
+		return returnValue;
+	}
+	
+	public boolean addMemberEllUserId(int memberID, HttpServletRequest request, HttpServletResponse response) {
+		boolean returnValue = false;
+
+		
+		try {
+			
+			String commandValue = "AddMemberEllUserID";
+			
+			// Create the command JSON
+			String json = Json.createObjectBuilder()
+					 .add("Command", commandValue)
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("MiscKey", "ELLID")
+					 .add("MiscValue", this.ellUserID)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+
+			jsonParms = json;
+			
+			Util.debugPrint(this.debugMode, "ellutil.addMemberEllUserId jsonParms", jsonParms);
+			
+			request.setAttribute("CommandText", jsonParms);
+			
+			// Add the data. 
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+					
+			Util.debugPrint(debugMode, "ellutil.addMemberEllUserId Command Results", request.getAttribute("CommandResults").toString());
+			
+			// Load and Parse the InputJSON
+			if(request.getAttribute("CommandResults") != null ) {
+				JsonReader reader = Json.createReader(new StringReader(request.getAttribute("CommandResults").toString()));
+				JsonObject originalDoc = reader.readObject();
+				// String jsonResults = originalDoc.getJsonString("Country").toString();
+				
+				Util.debugPrint(debugMode, "ellutil.addMemberEllUserId CommandResults", request.getAttribute("CommandResults").toString());
+
+
+			}
+
+			
+		} catch (Exception ex) {
+			returnValue = false;
+			ex.printStackTrace();
+		}
+		
+		
+		return returnValue;
+	}
+	 
+	public boolean addLicenseToAllSolutionsForMember(HttpServletRequest request, HttpServletResponse response, int memberID) { 
+		boolean returnValue = false;
+		
+		hsc configW = new hsc();
+		
+		try {
+			
+			// Create the command JSON.
+			String json = Json.createObjectBuilder()
+					 .add("Command", "GetEllEntitySolutions")
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("SystemMode", configW.systemMode)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+		
+			
+			jsonParms = json;
+			request.setAttribute("CommandText", jsonParms);
+			
+			Util.debugPrint(this.debugMode,"ellutil.addLicenseToAllSolutionsForMember ComandText", jsonParms);
+			
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+			
+			
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			// Loop through all EntitySolution Records, assigning Licenses to Lingo Records
+			//* ******************************************************************************************************************************* */
+			//* ******************************************************************************************************************************* */
+			
+			String displayCart = "";
+			
+			// Load and Parse the InputJSON
+			if(request.getAttribute("CommandResults") != null ) {
+				JsonReader reader = Json.createReader(new StringReader("{\"MySolutions\": [" + request.getAttribute("CommandResults").toString() + "]}"));
+				JsonObject originalDoc = reader.readObject();
+				// returnValue = originalDoc.getJsonString("CommandResults").toString();
+				// System.out.println("Checkout getShoppingCart ProcStatus: " + returnValue);
+			
+				javax.json.JsonArray cart = originalDoc.getJsonArray("MySolutions");
+				for (int i = 0; i < cart.size(); i++) {
+					
+					JsonObject explrObject = cart.getJsonObject(i);
+
+					String ellLicenseID = explrObject.getJsonString("EllLicenseCode").toString().replaceAll("\"", "");
+					this.assignLicense(this.ellUserID, ellLicenseID);
+				}
+				
+
+				// System.out.println("Cart: " + displayCart);
+			} else {
+				displayCart = "No Solutions Active or Available.";
+			}
+			
+			returnValue = true;
+			
+			
+		} catch (Exception ex) {
+			returnValue = false;
+			ex.printStackTrace();
+		}
+		
+		return returnValue;
+	}
+	
+	
+	public boolean parseResponse(String rawResponse) {
+		boolean returnValue = false;
+		
+		// Reset all the response values. 
+		this.ellResponseMessage = null;
+		this.ellResponseStatus = null;
+		this.ellResponseUserid = null;
+		
+		Util.debugPrint(debugMode, "ellutil.parseResponse: ", rawResponse);
+		BufferedReader inputData = new BufferedReader(new StringReader(rawResponse));
+		
+		String line;
+		try {
+			while ((line = inputData.readLine()) != null) {
+				
+				// {"message":"Username must be between 6 and 15 characters!","status":1}
+				// {"message":"Username(JohnnyWarp) already exists!","status":1,"userid":229476}
+				// {"message":"User(JohnnyWarp) create success","status":0,"userid":229477}
+				
+				Util.debugPrint(debugMode, "ellutil.parseResponse.LineRead", line);
+				
+				String responseArray[] = line.split(",");
+				for (String responseElement: responseArray) {           
+			        if(responseElement.startsWith("{\"message\""))
+			        {
+			        		this.ellResponseMessage = responseElement.replace("{\"message\":", "");
+			        		this.ellResponseMessage = this.ellResponseMessage.replaceAll("\"","");
+			        		Util.debugPrint(debugMode, "ellutil.parseResponse.responseElement.message", this.ellResponseMessage);
+			        		
+			        } else if (responseElement.startsWith("\"status\"")) {
+			        		this.ellResponseStatus = responseElement.replace("\"status\":", "");
+			        		this.ellResponseStatus = this.ellResponseStatus.replaceAll("}", "");
+			        		Util.debugPrint(debugMode, "ellutil.parseResponse.responseElement.status", this.ellResponseStatus);
+			        		
+			        } else if(responseElement.startsWith("\"userid\"")) {
+			        		this.ellResponseUserid = responseElement.replace("\"userid\":", "");
+			        		this.ellResponseUserid = this.ellResponseUserid.replaceAll("}", "");
+			        		Util.debugPrint(debugMode, "ellutil.parseResponse.responseElement.userid", this.ellResponseUserid);
+			        		
+			        }
+			        
+			    }
+			}
+		} catch (IOException e) {
+			returnValue = false;
+			e.printStackTrace();
+		}
 		
 		return returnValue;
 	}
@@ -240,10 +432,31 @@ public class ellutil {
 		
 		try {
 			
-			System.out.println(sendHttpsPost(createUri,param));
+			rawResponse = sendHttpsPost(createUri,param);
+			parseResponse(rawResponse);
+			
+			if(this.ellResponseStatus == "0") {
+				this.ellUserID = this.ellResponseUserid;
+				returnValue = true;
+				Util.debugPrint(debugMode, "ellutil.createNewUser: ", "User Creation Successful.");
+			} else {
+				if(this.ellUserID != null) {
+					returnValue = true;
+					this.ellResponseStatus = "0";
+					this.userAlreadyExists = true;
+					this.ellUserID = this.ellResponseUserid;
+					Util.debugPrint(debugMode, "ellutil.createNewUser: ", "User Creation Failed, Existing User Found.");
+					
+				} else {
+					returnValue = false;
+					Util.debugPrint(debugMode, "ellutil.createNewUser: ", "User Creation Failed.");
+				}
+
+			}
 		
 		} catch (IOException e) {
 			e.printStackTrace();
+			returnValue = false;
 		}
 		
 		
@@ -252,6 +465,8 @@ public class ellutil {
 	
 	public boolean assignLicense(String ellUserID, String ellLicenseID) {
 		boolean returnValue = false;
+		
+		// {"message":"The user has been assigned,canot assign again!","status":1}
 		
 		final String uriSuffix = "/license/assign";
 		hsc configW = new hsc();
@@ -263,7 +478,7 @@ public class ellutil {
 		System.out.println("Params: " + param);
 		
 		try {
-			System.out.println(Test.sendHttpsPost(url,param, Environment.Prod));
+			System.out.println(sendHttpsPost(url,param));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -310,7 +525,7 @@ public class ellutil {
 		return returnValue;
 	}
 		
-	public static SSLSocketFactory init() throws Exception { 
+	public SSLSocketFactory init() throws Exception { 
 		
 		class MyX509TrustManager implements X509TrustManager {
 			public MyX509TrustManager() throws Exception {}  
@@ -346,17 +561,21 @@ public class ellutil {
      * @return
      * @throwsIOException
      */
-	public static String sendHttpsPost(String POST_URL,String params) throws IOException {
+	public String sendHttpsPost(String POST_URL,String params) throws IOException {
 		
 		hsc configW = new hsc();
+		
+		// Clear any old codes before starting.
+		this.HttpResponseCode = -1;
+		this.HttpResponseMessage = null;
 		
 		String result = "";  
 		String name = configW.ell_clientid; //provided by ELL
 		String password = configW.ell_sk;   // provided by ELL
 		String authString = name + ":" + password;
 		
-		System.out.println("POST_URL: " + POST_URL);
-		System.out.println("params: " + params);
+		Util.debugPrint(debugMode, "ellutil.sendHttpsPost POST_URL", POST_URL);
+		Util.debugPrint(debugMode, "ellutil.sendHttpsPost params", params);
 	
 		byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
 		String authStringEnc = new String(authEncBytes);
@@ -394,8 +613,11 @@ public class ellutil {
 		out.flush(); 
 		out.close(); 
 	
-		System.out.println("Response Code: " + con.getResponseCode());
-		System.out.println("Response Message: " + con.getResponseMessage());
+		this.HttpResponseCode = con.getResponseCode();
+		this.HttpResponseMessage = con.getResponseMessage();
+		
+		Util.debugPrint(debugMode, "ellutil.sendHttpsPost Response Code", this.HttpResponseCode);
+		Util.debugPrint(debugMode, "ellutil.sendHttpsPost Response Message", this.HttpResponseMessage);
 		
 		InputStream _is;
 		if (con.getResponseCode() < HttpsURLConnection.HTTP_BAD_REQUEST) {

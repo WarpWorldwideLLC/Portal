@@ -1,6 +1,9 @@
 package com.warpww.web.servlet.ux;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,7 +55,7 @@ public class cartmaint201804 extends HttpServlet {
 
 			// Go back to shopping
 			if(request.getParameter("continueShopping") != null) { 
-				request.getRequestDispatcher("landing").forward(request, response);
+				request.getRequestDispatcher("landing201804").forward(request, response);
 			
 			// Proceed to payment
 			} else if(request.getParameter("completePurchase") != null) {
@@ -84,7 +87,16 @@ public class cartmaint201804 extends HttpServlet {
 			}
 			
 		} else {
-			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
+			
+			Properties prop = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+			InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+			prop.load(stream);
+		
+			
+			String notLoggedIn = prop.getProperty("checkout.not_logged_in");
+			
+			request.setAttribute("displayCart", "<p style=\"color:red\"><b>" + notLoggedIn + "</b></p>");
 			request.getRequestDispatcher("/WEB-INF/cartmaint201804.jsp").forward(request, response);
 		}
 	}

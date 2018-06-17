@@ -63,7 +63,7 @@ public class dbProcess extends HttpServlet {
 		//******************************************************************************
 		// Debug Switch 
 		//******************************************************************************
-		boolean debugMode = true;
+		boolean debugMode = false;
 		
 		String json = "";
 		json = (String) request.getAttribute("CommandText");
@@ -167,6 +167,10 @@ public class dbProcess extends HttpServlet {
 	            case "GetMemberInfo" : spName = "getMemberInfo";
         				break;
 	            case "GetEllNewUserData" : spName = "getEllNewUserData";
+        				break;
+	            case "AddMemberEllUserID" : spName = "AddEntityEllUserId";
+	            		break;
+	            case "GetEllEntitySolutions" : spName = "getEllEntitySolutions";
         				break;
 	            default: spName = "Invalid_Command";
 	                break;

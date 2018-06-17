@@ -38,6 +38,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p1.98.02" /> ><fmt:message key="warp_esl.p1.99.02" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p1.99.99" /><br> 
 					</div>
@@ -57,6 +58,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p2.98.02" /> ><fmt:message key="warp_esl.p2.99.02" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p2.99.99" /><br> 
 					</div>
@@ -96,6 +98,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p3.98.02" /> ><fmt:message key="warp_esl.p3.99.02" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p3.99.99" /><br> 
 					</div>
@@ -136,6 +139,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p4.98.02" /> ><fmt:message key="warp_esl.p4.99.02" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p4.99.99" /><br> 
 					</div>
@@ -157,6 +161,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p5.98.02" /> ><fmt:message key="warp_esl.p5.99.02" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p5.99.99" /><br> 
 					</div>
@@ -178,6 +183,7 @@
 					<div style=" margin-top: 1em;">
 						<button name="purchase" class="btn btn-primary" value=<fmt:message key="warp_esl.p6.98.00" /> ><fmt:message key="warp_esl.p6.99.00" /></button>
 					</div>
+					<div><p><fmt:message key="warp_esl.currency_conversion" /></p></div>
 					<div style=" margin-top: 1em;">
 						<fmt:message key="warp_esl.p6.99.99" /><br> 
 					</div>

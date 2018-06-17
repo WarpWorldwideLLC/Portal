@@ -25,8 +25,8 @@
 			  		</table>
 			  		<br>
 			  	  	<br>
-		  			Your registration was successful. Welcome to WARP! <br>
-		  			We will contact you as programs you sign up for become available, or you can contact us any time using the Contact Us page. 
+		  			<fmt:message key="register.thankyou1" /><br>
+		  			<fmt:message key="register.thankyou2" /> 
 		  		</div>
 
 			</form>

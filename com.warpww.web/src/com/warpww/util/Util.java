@@ -33,6 +33,18 @@ public class Util {
 		return "FunctionName";
 	}
 	
+	public static void debugPrint(boolean debugMode, String valueName, String valueToBePrinted) {
+		
+		if(debugMode) {
+			System.out.println(valueName + " : " + valueToBePrinted);
+		}
+	}
+	
+	public static void debugPrint(boolean debugMode, String valueName, int valueToBePrinted) {
+		
+		debugPrint(debugMode, valueName, Integer.toString(valueToBePrinted));
+	}
+	
 	public static void foo()
 	{
 		// Util x = new Util();
@@ -474,6 +486,8 @@ public class Util {
 				
 				hsc hscObject = new hsc();
 				
+				String removeButtonText = prop.getProperty("cart.remove_button");
+				
 				javax.json.JsonArray cart = originalDoc.getJsonArray("CartItems");
 				for (int i = 0; i < cart.size(); i++) {
 					
@@ -492,7 +506,7 @@ public class Util {
 				    displayCart += "<td>" + localizedSolutionName + "</td>";
 				    displayCart += "<td>" +  hscObject.currencySymbol + " " + String.format("%,.2f", (double)solutionCost/100) + "</td>";
 				    if(showButtons) {
-				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />Remove</button></td>";
+				    		displayCart += "<td>" + "<button name=\"remove\" class=\"btn btn-primary\" value=\"" + explrObject.getJsonNumber("CartID").toString() + "\"><fmt:message key=\"warp_vega.p101.payment\" />" + removeButtonText +"</button></td>";
 				    } else {
 				    	displayCart += "<td>&nbsp</td>";
 				    }

@@ -1,10 +1,12 @@
 package com.warpww.pymt;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -99,7 +101,15 @@ public class checkout201804 extends HttpServlet {
 
 					
 		} else {
-			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
+			
+			Properties prop = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+			InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+			prop.load(stream);
+		
+			String notLoggedIn = prop.getProperty("checkout.not_logged_in");
+			
+			request.setAttribute("displayCart", "<p style=\"color:red\"><b>" + notLoggedIn + "</b></p>");
 			request.getRequestDispatcher("/WEB-INF/checkout201804.jsp").forward(request, response);
 		}
 		

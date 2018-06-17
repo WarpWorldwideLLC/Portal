@@ -1,10 +1,12 @@
 package com.warpww.pymt;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -99,7 +101,16 @@ public class checkout_alipay201804 extends HttpServlet {
 
 					
 		} else {
-			request.setAttribute("displayCart", "<b>You must register as a member and be signed in to complete a purchase.</b>");
+			
+			Properties prop = new Properties();
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+			InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+			prop.load(stream);
+		
+			
+			String notLoggedIn = prop.getProperty("checkout.not_logged_in");
+			
+			request.setAttribute("displayCart", "<p style=\"color:red\"><b>" + notLoggedIn + "</b></p>");
 			request.getRequestDispatcher("/WEB-INF/checkout_alipay201804.jsp").forward(request, response);
 		}
 		
@@ -173,14 +184,28 @@ public class checkout_alipay201804 extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		Properties prop = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+		InputStream stream = loader.getResourceAsStream("/com/warpww/web/i18n/warp201804.properties");
+		try {
+			prop.load(stream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+		String paymentSuccess = prop.getProperty("checkout.payment_successful");
+		String paymentFailure = prop.getProperty("checkout.payment_failed");
+		
 		if(returnValue == true) {
 			System.out.println("Payment Succeeded!");
-			request.setAttribute("paymentMessage", "Your payment was successful! Thank you, and we will be contacting you soon! Please email us at WarpCustomer@warpww.com if you have any questions before then.");
+			request.setAttribute("paymentMessage", paymentSuccess);
 			System.out.println("Charge ID: " + charge.getId());
 			
 		} else {
 			System.out.println("Payment Failed!");
-			request.setAttribute("paymentMessage", "There was a problem processing your payment. Please contact us via the Contact Us link and we will be happy to help resolve any issues.");
+			request.setAttribute("paymentMessage", paymentFailure);
 
 			System.out.println("Charge ID: " + charge.getId());
 			System.out.println("Failure Code: " + charge.getFailureCode());

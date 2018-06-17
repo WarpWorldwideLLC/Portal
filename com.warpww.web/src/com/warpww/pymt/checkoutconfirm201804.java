@@ -88,9 +88,32 @@ public class checkoutconfirm201804 extends HttpServlet {
 			*/
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
-			String newUserId = "";
-			ellutil ellUtil = new ellutil();
-			//newUserId = ellUtil.encryptCredentials(newUserId);
+			
+			/* ****************************************************************/
+			/* ****************************************************************/
+			/* Lingo Logic                                                    */
+			/* After MemberSolution is complete, create the Lingo user account,
+			 * Assing a license, and update the MemberSolution record.
+			 * 
+			 * Loop through all the existing EntitySolution records, assigning licenses
+			 *  to each. ELL's API will reject duplicate requests for a single user. 
+			 *  
+			 *  It's not efficient, but it will work until it can be refactored.
+			 * 
+			 */
+			/* ****************************************************************/
+			/* ****************************************************************/
+			ellutil eu = new ellutil();
+			eu.getMemberDataFromDb(memberID, request, response);
+			eu.createNewUser();
+			eu.addMemberEllUserId(memberID, request, response);
+			if(eu.ellResponseStatus.equals("0")) {
+				eu.addLicenseToAllSolutionsForMember(request, response, memberID);
+			}
+			
+			
+			/* ****************************************************************/
+			/* ****************************************************************/
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			
@@ -106,6 +129,29 @@ public class checkoutconfirm201804 extends HttpServlet {
 			*/
 			Util.markCartSold(request, response, memberID);
 			Util.setMemberSolution(request, response, memberID);
+			
+			/* ****************************************************************/
+			/* ****************************************************************/
+			/* Lingo Logic                                                    */
+			/* After MemberSolution is complete, create the Lingo user account,
+			 * Assing a license, and update the MemberSolution record.
+			 * 
+			 * Loop through all the existing EntitySolution records, assigning licenses
+			 *  to each. ELL's API will reject duplicate requests for a single user. 
+			 *  
+			 *  It's not efficient, but it will work until it can be refactored.
+			 * 
+			 */
+			/* ****************************************************************/
+			/* ****************************************************************/
+			ellutil eu = new ellutil();
+			eu.getMemberDataFromDb(memberID, request, response);
+			eu.createNewUser();
+			eu.addMemberEllUserId(memberID, request, response);
+			if(eu.ellResponseStatus.equals("0")) {
+				eu.addLicenseToAllSolutionsForMember(request, response, memberID);
+			}
+
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			

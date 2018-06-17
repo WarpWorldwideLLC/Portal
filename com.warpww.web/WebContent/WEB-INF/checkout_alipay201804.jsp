@@ -79,6 +79,7 @@
 				${displayCart}
 			</fieldset>
 		</div>	
+		<div><p><fmt:message key="checkout.currency_conversion" /></p></div>
 		<br>
 		<div class="form-row" id="aliPayInfo">
 

@@ -19,7 +19,7 @@
 					${displayCart}
 				</fieldset>
 			</div>	
-
+			<div><p><fmt:message key="checkout.currency_conversion" /></p></div>
 		</form>
 	    <footer>
 	    		<%@ include file="/htx/footer_201804.html"%>

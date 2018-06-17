@@ -17,6 +17,7 @@
 				${displayCart}
 			</fieldset>
 		</div>	
+		<div><p><fmt:message key="checkout.currency_conversion" /></p></div>
 		<br><br>
 			<input id="paymentSourceId" name="paymentSourceId" type="hidden" value=${param["vid"]}>
 			<input id="email-address" name=email-address type="hidden" value=${param["email-address"]}>
