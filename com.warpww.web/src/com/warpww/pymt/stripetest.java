@@ -38,10 +38,7 @@ public class stripetest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		pk_stripe = "pk_live_9IU3u0bPEmnKRLb103pW4ILu";
-		sk_stripe = "sk_live_R3mT2ILaX6p0OdO6Dk9cotz6";
-		*/
+
 		
 		String customerId = addToCustomer("", "john.arp@warpww.com");
 		System.out.println(customerId);
