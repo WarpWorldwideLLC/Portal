@@ -23,7 +23,7 @@
 	          <h2><fmt:message key="cartmaint.payment_type_label" /></h2>
 		          <nav id="payment-methods">
 		            <ul>
-		            <!-- Comment out Credit Card for China
+		          
 		              <li>
 		              	<div class="warpRow">
 		              		<div class="warpItem">
@@ -37,7 +37,7 @@
 			                </div>
 		                </div>
 		              </li>
-		               -->
+		              
 		              <li>
 		              	<div class="warpRow">
 			                <div class="warpItem">

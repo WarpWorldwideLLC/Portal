@@ -1,19 +1,16 @@
 
 
-DROP PROCEDURE IF EXISTS addEntityEllUserId;
+DROP PROCEDURE IF EXISTS setMemberEllSso;
 
 DELIMITER $$
-CREATE PROCEDURE addEntityEllUserId(query JSON)
+CREATE PROCEDURE setMemberEllSso(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
     DECLARE MemberID BIGINT DEFAULT NULL;
     DECLARE Command NVARCHAR(255) DEFAULT NULL;
-    DECLARE MiscKey NVARCHAR(255) DEFAULT NULL;
-    DECLARE MiscValue NVARCHAR(255) DEFAULT NULL;
-    DECLARE Identity BIGINT DEFAULT NULL;
-
+    DECLARE SsoUri NVARCHAR(255) DEFAULT NULL;
 
 	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
@@ -50,28 +47,27 @@ BEGIN
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
     SET Command := JSON_EXTRACT(query, '$.Command');
     
-    SET MiscKey := JSON_UNQUOTE(JSON_EXTRACT(query, '$.MiscKey'));
-    SET MiscValue := JSON_UNQUOTE(JSON_EXTRACT(query, '$.MiscValue'));
+    SET SystemMode := JSON_UNQUOTE(JSON_EXTRACT(query, '$.SystemMode'));
     
-	INSERT INTO EntityMiscellany (AuID, IuID, LastAuID, LastIuID, EntityID, MiscKey, MiscValue)
-    VALUES (AuID, IuID, AuID, IuID, MemberID, MiscKey, MiscValue);
-    
-    SET Identity := LAST_INSERT_ID();
-    
-	SELECT GROUP_CONCAT(JSON_OBJECT(
-                     'Command', Command, 
-                     'CommandResults', ProcStatus, 
-                     'EntiyMiscellanyID', ID,
-                     'MemberNumber', EntityID,
-                     'MiscKey', MiscKey, 
-                     'MiscValue', MiscValue
-				) ) AS CommandResult
-                FROM EntityMiscellany 
-                WHERE ID = Identity
-    
-    ;
-    
+    SELECT GROUP_CONCAT(JSON_OBJECT(
+		'SolutionID', es.SolutionID, 
+        'MemberID', es.EntityID, 
+        'ProductExternalKey', es.ProductExternalKey, 
+        'SolutionCode', s.SolutionCode, 
+        'SolutionName', s.SolutionName, 
+        'SystemMode', el.SystemMode, 
+        'EllLicenseCode', el.EllLicenseCode
+	)) AS CommandResult
+	FROM EntitySolution es
+		LEFT JOIN Solution s
+			ON es.SolutionID = s.ID
+		LEFT JOIN EllLicense el
+			ON s.SolutionCode = el.WarpSolutionCode
+	WHERE es.EntityID = 2
+		AND el.SystemMode = 'Test'
+		AND s.SolutionCode LIKE 'WARP_ESL%'
 
+;
 
 
 END $$

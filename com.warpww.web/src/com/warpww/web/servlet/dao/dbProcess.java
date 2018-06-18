@@ -172,6 +172,8 @@ public class dbProcess extends HttpServlet {
 	            		break;
 	            case "GetEllEntitySolutions" : spName = "getEllEntitySolutions";
         				break;
+	            case "SetEllSolutionSso" : spName = "setEllSolutionSso";
+        				break;
 	            default: spName = "Invalid_Command";
 	                break;
 	        }

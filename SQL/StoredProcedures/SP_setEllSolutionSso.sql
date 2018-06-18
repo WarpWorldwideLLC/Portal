@@ -1,19 +1,16 @@
 
 
-DROP PROCEDURE IF EXISTS addEntityEllUserId;
+DROP PROCEDURE IF EXISTS setEllSolutionSso;
 
 DELIMITER $$
-CREATE PROCEDURE addEntityEllUserId(query JSON)
+CREATE PROCEDURE setEllSolutionSso(query JSON)
 BEGIN
 
 	DECLARE AuID BIGINT DEFAULT NULL;
 	DECLARE IuID BIGINT DEFAULT NULL;
     DECLARE MemberID BIGINT DEFAULT NULL;
     DECLARE Command NVARCHAR(255) DEFAULT NULL;
-    DECLARE MiscKey NVARCHAR(255) DEFAULT NULL;
-    DECLARE MiscValue NVARCHAR(255) DEFAULT NULL;
-    DECLARE Identity BIGINT DEFAULT NULL;
-
+    DECLARE SsoUri NVARCHAR(255) DEFAULT NULL;
 
 	-- Error and Warning Block Variables 
 	DECLARE ProcStatus NVARCHAR(10) DEFAULT 'SUCCESS';
@@ -50,28 +47,23 @@ BEGIN
     SET MemberID := JSON_EXTRACT(query, '$.MemberID');
     SET Command := JSON_EXTRACT(query, '$.Command');
     
-    SET MiscKey := JSON_UNQUOTE(JSON_EXTRACT(query, '$.MiscKey'));
-    SET MiscValue := JSON_UNQUOTE(JSON_EXTRACT(query, '$.MiscValue'));
+    SET SsoUri := JSON_UNQUOTE(JSON_EXTRACT(query, '$.SsoUri'));
     
-	INSERT INTO EntityMiscellany (AuID, IuID, LastAuID, LastIuID, EntityID, MiscKey, MiscValue)
-    VALUES (AuID, IuID, AuID, IuID, MemberID, MiscKey, MiscValue);
+    UPDATE EntitySolution
+    SET ProductExternalKey = CONCAT('LGO:',SsoUri)
+	WHERE EntityID = MemberID
+		AND ProductExternalKey LIKE 'LGO:%'
+	;
     
-    SET Identity := LAST_INSERT_ID();
-    
-	SELECT GROUP_CONCAT(JSON_OBJECT(
-                     'Command', Command, 
-                     'CommandResults', ProcStatus, 
-                     'EntiyMiscellanyID', ID,
-                     'MemberNumber', EntityID,
-                     'MiscKey', MiscKey, 
-                     'MiscValue', MiscValue
-				) ) AS CommandResult
-                FROM EntityMiscellany 
-                WHERE ID = Identity
-    
-    ;
-    
+    SELECT DISTINCT JSON_OBJECT(
+        'MemberID', es.EntityID, 
+        'ProductExternalKey', es.ProductExternalKey
+	) AS CommandResult
+	FROM EntitySolution es
+	WHERE es.EntityID = MemberID
+		AND es.ProductExternalKey LIKE 'LGO:%'
 
+	;
 
 
 END $$

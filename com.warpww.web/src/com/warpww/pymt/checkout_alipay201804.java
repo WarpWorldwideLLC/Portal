@@ -57,6 +57,9 @@ public class checkout_alipay201804 extends HttpServlet {
 		String pageName = uri.substring(uri.lastIndexOf("/")+1);
 		request.setAttribute("pageName", pageName);
 		
+		hsc configW = new hsc();
+		request.setAttribute("stripe_return_url", configW.stripe_return_url);
+		
 		int memberID = 0;
 		String authTime = null;
 		boolean authenticated = false;

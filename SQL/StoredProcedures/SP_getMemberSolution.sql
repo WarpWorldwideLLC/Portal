@@ -54,6 +54,7 @@ BEGIN
                      'ProductCode', p.ProductCode, 
                      'ProductName', p.ProductName,
                      'ProductExternalKey', p.ProductExternalKey, 
+                     'MemberSolutionExternalKey', es.ProductExternalKey,
                      'StartDate', sp.CreateDate
                      
 				)) AS CommandResult

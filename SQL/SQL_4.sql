@@ -5,24 +5,31 @@ SELECT * FROM ShoppingCart;
 
 SELECT * FROM EntitySolution;
 
-DELETE FROM EntitySolution 
 
+CALL getEllEntitySolutions('{"Command":"GetEllEntitySolution","AuID":1,"IuID":1,"MemberID":2,"SystemMode":"Test"}');
 
 CALL registerMember('{"Command":"RegisterMember","AuID":1,"IuID":1,"MemberName":"TestWarp3","EmailAddress":"test@test.tst","PassphraseHash":"1000:60abc45ad3b737509f90223273b10333eaae57fe07b54da2:742fd94a7ca04298529ed4a7808c31114a3c186872ec996f","PhoneNumber":"‭1 (778) 986-9268‬","FirstName":"Susie","LastName":"Warp","BirthDate":"2000-01-01","CountryID":"46"}');
 
 
 
-SELECT 
-	es.SolutionID, es.EntityID, es.ProductExternalKey, s.SolutionCode, s.SolutionName, el.SystemMode, el.EllLicenseCode
+SELECT es.SolutionID, es.EntityID, es.ProductExternalKey, s.SolutionCode, s.SolutionName, el.SystemMode, el.EllLicenseCode
 FROM EntitySolution es
   LEFT JOIN Solution s
     ON es.SolutionID = s.ID
-    
   LEFT JOIN EllLicense el
     ON s.SolutionCode = el.WarpSolutionCode
 WHERE es.EntityID = 2
   AND el.SystemMode = 'Test'
+  AND s.SolutionCode LIKE 'WARP_ESL%'
 
+;
+
+
+
+UPDATE EntitySolution SET ProductExternalKey = CONCAT('LGO:',ProductExternalKey) WHERE ID >= 1;
+
+SELECT * 
+FROM EntitySolution
 ;
 
 SELECT * FROM EntityName;
@@ -78,6 +85,30 @@ SELECT * FROM EntityBirthDate;
 		WHERE e.ID = 2
               AND e.EntityTypeID = 6    -- Retrieve only UserAccount Entity Types
 		;
+    
+    
+    	SELECT -- GROUP_CONCAT(JSON_OBJECT(
+               --      'MemberID', MemberID,
+               --      'Command', Command,
+               --      'CommandResults', ProcStatus,
+                     'SolutionCode', s.SolutionCode,
+                     'SolutionName', s.SolutionName,
+                     'ProductCode', p.ProductCode, 
+                     'ProductName', p.ProductName,
+                     'ProductExternalKey', p.ProductExternalKey, 
+                     'MemberSolutionExternalKey', es.ProductExternalKey,
+                     'StartDate', sp.CreateDate
+                     
+				-- )) AS CommandResult
+		FROM EntitySolution es
+		  LEFT JOIN Solution s
+			ON es.SolutionID = s.ID
+		  LEFT JOIN SolutionProduct sp
+			ON s.SolutionCode = sp.SolutionCode
+		  LEFT JOIN Product p
+			ON sp.ProductCode = p.ProductCode
+		WHERE es.EntityID = 2
+    ;
     
 /*    
     

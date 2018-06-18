@@ -110,6 +110,7 @@ public class checkoutconfirm201804 extends HttpServlet {
 			if(eu.ellResponseStatus.equals("0")) {
 				eu.addLicenseToAllSolutionsForMember(request, response, memberID);
 			}
+			eu.setEllSolutionSso(memberID, request, response);
 			
 			
 			/* ****************************************************************/
@@ -151,7 +152,7 @@ public class checkoutconfirm201804 extends HttpServlet {
 			if(eu.ellResponseStatus.equals("0")) {
 				eu.addLicenseToAllSolutionsForMember(request, response, memberID);
 			}
-
+			eu.setEllSolutionSso(memberID, request, response);
 			
 			request.getRequestDispatcher("checkoutreceipt201804").forward(request, response);
 			

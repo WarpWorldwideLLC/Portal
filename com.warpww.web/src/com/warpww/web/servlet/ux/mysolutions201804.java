@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.warpww.ell.ellutil;
 import com.warpww.sec.AuthMod;
 import com.warpww.sec.Login;
 import com.warpww.util.Util;
@@ -42,9 +43,18 @@ public class mysolutions201804 extends HttpServlet {
 		
 		if(request.getParameter("olcCmd") != null) {
 			try {
-				Util.getMemberInfo(request, response, a.getMemberID());
-				String s = Util.sendGetOLC(a.getMemberID(), request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
-				response.getWriter().append(s).append(request.getContextPath());
+				String httpDest = request.getParameter("olcCmd").toString();
+				Util.debugPrint(true, "olcCmd Value; " , httpDest);
+				
+				if(httpDest.startsWith("LGO:")) {
+					response.sendRedirect(httpDest.replaceAll("LGO:", ""));
+				} else {
+					Util.getMemberInfo(request, response, a.getMemberID());
+					String s = Util.sendGetOLC(a.getMemberID(), request.getAttribute("MemberName").toString(), request.getAttribute("MemberFirstName").toString(), request.getAttribute("MemberLastName").toString(), request.getAttribute("MemberEmail").toString(), request.getParameter("olcCmd").toString());
+					response.getWriter().append(s).append(request.getContextPath());
+				}
+				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

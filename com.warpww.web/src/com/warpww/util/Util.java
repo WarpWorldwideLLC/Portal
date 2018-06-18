@@ -828,9 +828,10 @@ public class Util {
 				    displayCart += "<td>" + productCode + "</td>";
 				    displayCart += "<td>" + localizedProductName + "</td>";
 				    String keyValue = explrObject.getJsonString("ProductExternalKey").toString().replaceAll("\"", "");
+				    String memberKeyValue = explrObject.getJsonString("MemberSolutionExternalKey").toString().replaceAll("\"", "");
 				    
 				    // Create Hyperlink on the MySolutions page for users to go to. 
-				    System.out.println(keyValue);
+				    System.out.println("MemberKeyValue" + memberKeyValue);
 				    switch(keyValue.substring(0, 4)) {
 				    case "ILR:": 
 				    	 	displayCart += "<td>" + "<a href=\"" + keyValue.replaceAll("ILR:", "") + "\" class=\"btn btn-primary\" target=\"_blank\" >Go Now!</a>";
@@ -839,7 +840,7 @@ public class Util {
 				    		displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + keyValue.replaceAll("OLC:", "") + "\">Go Now!</button>";
 				    		break;
 				    case "LGO:":
-				    	displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + keyValue.replaceAll("LGO:", "") + "\">Go Now!</button>";
+				    	displayCart += "<td>" + "<button name=\"olcCmd\" class=\"btn btn-primary\" value=\"" + memberKeyValue + "\">Go Now!</button>";
 				    		break;
 				    case "N/A:":
 				    	displayCart += "<td>" + "&nbsp";

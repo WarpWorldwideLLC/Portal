@@ -361,7 +361,6 @@ public class ellutil {
 		return returnValue;
 	}
 	
-	
 	public boolean parseResponse(String rawResponse) {
 		boolean returnValue = false;
 		
@@ -525,6 +524,57 @@ public class ellutil {
 		return returnValue;
 	}
 		
+	public boolean setEllSolutionSso(int memberID, HttpServletRequest request, HttpServletResponse response) {
+		boolean returnValue = false;
+		
+		
+		try {
+			
+			String commandValue = "SetEllSolutionSso";
+			String ssoString = this.CreateSSO(this.ellUserID);
+			
+			// Create the command JSON
+			String json = Json.createObjectBuilder()
+					 .add("Command", commandValue)
+					 .add("AuID", 1)
+					 .add("IuID", 1)
+					 .add("MemberID", memberID)
+					 .add("SsoUri", ssoString)
+					 .build()
+					 .toString(); 		
+
+			String jsonParms = "";
+
+			jsonParms = json;
+			
+			Util.debugPrint(this.debugMode, "ellutil.setEllSolutionSso jsonParms", jsonParms);
+			
+			request.setAttribute("CommandText", jsonParms);
+			
+			// Retrieve the shopping cart information in JSON format.
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dbProcess");
+			dispatcher.include(request, response);
+					
+			Util.debugPrint(debugMode, "ellutil.setEllSolutionSso Command Results", request.getAttribute("CommandResults").toString());
+			
+			// Load and Parse the InputJSON
+			if(request.getAttribute("CommandResults") != null ) {
+				JsonReader reader = Json.createReader(new StringReader(request.getAttribute("CommandResults").toString()));
+				JsonObject originalDoc = reader.readObject();
+				//String jsonResults = originalDoc.getJsonString("Country").toString();
+				//System.out.println("ellUtil.setEllSolutionSso User Data: " +jsonResults);
+				
+			}
+
+			
+		} catch (Exception ex) {
+			returnValue = false;
+			ex.printStackTrace();
+		}
+				
+		return returnValue;
+	}
+	
 	public SSLSocketFactory init() throws Exception { 
 		
 		class MyX509TrustManager implements X509TrustManager {

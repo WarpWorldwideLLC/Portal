@@ -109,7 +109,7 @@
 						  amount: '${ShoppingCartTotalCost}',
 						  currency: 'usd',
 						  redirect: {
-						    return_url: 'http://localhost:8080/com.warpww.web/checkoutconfirm201804',
+						    return_url: '${stripe_return_url}',
 						  },
 						}).then(function(result) {
 					    if (result.error) {
